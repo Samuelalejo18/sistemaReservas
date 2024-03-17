@@ -3,12 +3,13 @@ package model;
 import java.util.ArrayList;
 
 public class AuthCliente {
-	private static ArrayList<Cliente> clientes = new ArrayList<>();
-	private static Cliente usuarioAutenticado;
 
 	public AuthCliente() {
 
 	}
+
+	private static ArrayList<Cliente> clientes = new ArrayList<>();
+	private static Cliente usuarioAutenticado;
 
 	public ArrayList<Cliente> getClientes() {
 		return clientes;
@@ -73,7 +74,9 @@ public class AuthCliente {
 		} else {
 			return null;
 		}
+		
 	}
+
 
 	@Override
 	public String toString() {

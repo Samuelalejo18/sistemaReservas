@@ -9,6 +9,9 @@ public class Reserva {
 	private Hospedaje hospedajeReservado;
 	private int cantidadDePersonas;
 	private double precioTotal;
+	
+
+
 
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
 			int cantidadDePersonas, double precioTotal) {
@@ -67,12 +70,12 @@ public class Reserva {
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
-
-	@Override
-	public String toString() {
-		return "Reserva [cliente=" + cliente + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida
-				+ ", hospedajeReservado=" + hospedajeReservado + ", cantidadDePersonas=" + cantidadDePersonas
-				+ ", precioTotal=" + precioTotal + "]";
+/* 
+	public double calcularPrecio(){
+		double precioTotal;  
+		
+		return 0;
+		
 	}
-
+*/
 }

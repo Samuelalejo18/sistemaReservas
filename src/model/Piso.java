@@ -7,7 +7,7 @@ public class Piso {
 	private static int contadorPiso;
 	private int maximoDeHabitaciones;
 	private ArrayList<Habitacion> habitaciones;
-
+	
 	public Piso() {
 
 	}
