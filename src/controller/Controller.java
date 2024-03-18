@@ -8,11 +8,12 @@ public class Controller {
 	ViewDatosCliente viewDatosCliente = new ViewDatosCliente();
 	AuthCliente metodosCliente = new AuthCliente();
 	ControllerHospedajes controllerHospedajes = new ControllerHospedajes();
-	
+
 	public Controller() {
 	}
 
 	public void funcionar() {
+		controllerHospedajes.registrarHospedajes();
 		int opcion = -1;
 		while (opcion != 0) {
 			viewDatosCliente.opcionesDisponibles();
@@ -20,7 +21,7 @@ public class Controller {
 			switch (opcion) {
 				case 1:
 
-					metodosCliente.registrarClientePrueba();
+					//metodosCliente.registrarClientePrueba();
 					Cliente usuarioAutenticado = AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
 							viewDatosCliente.pedirContrasena());
 					if (usuarioAutenticado != null) {
@@ -40,7 +41,7 @@ public class Controller {
 							viewDatosCliente.pedirNumeroTelefono(), viewDatosCliente.pedirDireccion());
 					if (!AuthCliente.registrar(cliente)) {
 						viewDatosCliente.registroFallido(cliente.getNombre());
-					
+
 					} else {
 						viewDatosCliente.registroExitoso(cliente.getNombre());
 						AuthCliente.registrar(cliente);
@@ -50,6 +51,8 @@ public class Controller {
 				case 0:
 					viewDatosCliente.saliendoDelSistema();
 					break;
+				default:
+					viewDatosCliente.opcionInvalida();
 			}
 		}
 	}
@@ -79,8 +82,20 @@ public class Controller {
 					controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.pedirNumeroEstrellas());
 					break;
 				case 6:
-
 					controllerHospedajes.filtrarTipoHospedaje(viewDatosCliente.pedirTipoHospedaje());
+					break;
+				case 7:
+					controllerHospedajes.filtrarPorPrecio(viewDatosCliente.pedirPrecioMinimo(),
+							viewDatosCliente.pedirPrecioMaximo());
+					break;
+				case 8:
+				viewDatosCliente.nombreHospedajeReservar();
+
+				case 0:
+					viewDatosCliente.saliendoDelSistema();
+					break;
+				default:
+					viewDatosCliente.opcionInvalida();
 
 			}
 		}

@@ -7,6 +7,7 @@ public class ViewHospedaje {
 	}
 
 	public void mostrarTitulo() {
+
 		System.out.format("%20s %20s %20s %20s %20s %20s %n", "nombre", " ubicacion Ciudad", "ubicacion Pais",
 				"numero Estrellas", "descripcion", "tipo");
 
@@ -19,7 +20,12 @@ public class ViewHospedaje {
 				"----------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.format("%20s %20s %20s %20d %20s %2s %n", nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,
 				descripcion, tipo);
-
+		System.out.println("\n");
 	}
-
+	/*
+	 * public void filtrofallido(){
+	 * System.out.println("no se encontro el hospedaje indicado, intente nuevamente"
+	 * );
+	 * }
+	 */
 }

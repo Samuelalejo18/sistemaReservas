@@ -3,32 +3,47 @@ package model;
 public class Motel extends Hospedaje {
 	private String tematica;
 	private boolean jacuzzi;
-	private String servicios;
+	private String servicio;
 
 	public Motel() {
 	}
 
-	public Motel(String tematica, boolean jacuzzi, String servicios) {
-		this.tematica = tematica;
-		this.jacuzzi = jacuzzi;
-		this.servicios = servicios;
-	}
-
-
-
-	
 	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-			String descripcion, String tipo, String tematica, boolean jacuzzi, String servicios) {
+			String descripcion, String tipo, String tematica, boolean jacuzzi, String servicio) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, maximoDePisos, descripcion, tipo);
 		this.tematica = tematica;
 		this.jacuzzi = jacuzzi;
-		this.servicios = servicios;
+		this.servicio = servicio;
+	}
+
+	@Override
+	public double calcularPrecioPorNoche(String tipoHabitacion) {
+		double precioTotal = PreciosHotel.TARIFA_BASE;
+		switch (tipoHabitacion.toLowerCase()) {
+			case "suite":
+				precioTotal += PreciosHotel.PRECIO_SUITE;
+				break;
+			case "presidencial":
+				precioTotal += PreciosHotel.PRECIO_PRESIDENCIAL;
+				break;
+			case "dobles":
+				precioTotal += PreciosHotel.PRECIO_DOBLES;
+				break;
+			case "sencilla":
+				precioTotal += PreciosHotel.PRECIO_SENCILLA;
+				break;
+			default:
+				System.out.println("Tipo de habitación no válido");
+				break;
+		}
+		return precioTotal;
+		
 	}
 
 	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
 			String tipo) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
-		
+
 	}
 
 	public String getTematica() {
@@ -47,17 +62,17 @@ public class Motel extends Hospedaje {
 		this.jacuzzi = jacuzzi;
 	}
 
-	public String getServicios() {
-		return servicios;
+	public String getServicio() {
+		return servicio;
 	}
 
-	public void setServicios(String servicios) {
-		this.servicios = servicios;
+	public void setServicio(String servicio) {
+		this.servicio = servicio;
 	}
 
 	@Override
 	public String toString() {
-		return "Motel [tematica=" + tematica + ", jacuzzi=" + jacuzzi + ", servicios=" + servicios + "]";
+		return "Motel [tematica=" + tematica + ", jacuzzi=" + jacuzzi + ", servicio=" + servicio + "]";
 	}
 
 }

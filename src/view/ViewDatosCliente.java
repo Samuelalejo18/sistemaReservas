@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class ViewDatosCliente {
 	Scanner sc = new Scanner(System.in);
 
-
-	
 	public ViewDatosCliente() {
 	}
 
@@ -21,9 +19,11 @@ public class ViewDatosCliente {
 		System.out.println("1. Autenticarse ");
 		System.out.println("2.Registrarse ");
 		System.out.println("0.Salir del sistema de reservas");
+		System.out.println("\n");
 	}
 
 	public void opcionesDeHospedaje() {
+		System.out.println("\n");
 		System.out.println("Ingrese una opcion");
 		System.out.println("1.Mostrar hospedajes disponibles : ");
 		System.out.println("2.Buscar por nombre: ");
@@ -33,30 +33,30 @@ public class ViewDatosCliente {
 		System.out.println("6.Filtrar por tipo(rural/urbano): ");
 		System.out.println("7.Filtrar por precio: ");
 		System.out.println("8.Reservar: ");
+		System.out.println("0. Salir del sistema de reservas");
+		System.out.println("\n");
 
 	}
 
 	public String pedirEmail() {
+		System.out.println("\n");
 		System.out.println("Ingrese email del usuario: ");
 		String email = sc.next();
 		return email;
+
 	}
 
 	public String pedirContrasena() {
+		System.out.println("\n");
 		System.out.println("Ingrese la contraña del usuario: ");
 		String contrasena = sc.next();
 		return contrasena;
 	}
 
 	public String pedirNombre() {
+		System.out.println("\n");
 		System.out.println("Ingrese el nombre del usuario: ");
 		String nombre = sc.nextLine();
-		return nombre;
-	}
-
-	public String pedirNombreHospedaje() {
-		System.out.println("Ingrese el nombre del hospedaje:  ");
-		String nombre = sc.next();
 		return nombre;
 	}
 
@@ -86,40 +86,58 @@ public class ViewDatosCliente {
 	}
 
 	public void saliendoDelSistema() {
+		System.out.println("\n");
 		System.out.println("Saliendo del sistema de reservas");
+	}
+
+	public void opcionInvalida() {
+		System.out.println("opcion invalida");
+	}
+
+	public int pedirPrecioMinimo() {
+		System.out.println("Ingrese el precio minimo: ");
+		int numeroMinimo = sc.nextInt();
+		return numeroMinimo;
+	}
+
+	public int pedirPrecioMaximo() {
+		System.out.println("Ingrese el precio maximo: ");
+		int numeroMaximo = sc.nextInt();
+		return numeroMaximo;
 	}
 
 	public void autenticacionExitosa() {
 		System.out.println("Autenticación exitosa ");
+		System.out.println("\n");
 	}
 
 	public void autenticacionFallida() {
 		System.out.println("Autenticación fallida. Verifique su email y contraseña.");
+		System.out.println("\n");
 	}
 
 	public void registroExitoso(String nombre) {
 		System.out.println("Registro exitoso para el usuario  " + nombre);
+		System.out.println("\n");
 	}
 
 	public void registroFallido(String nombre) {
-		System.out.println("Registro fallido, para   " + nombre );
+		System.out.println("Registro fallido, para   " + nombre);
+		System.out.println("\n");
 	}
 
-
-
 	public String pedirCiudad() {
-		
+
 		System.out.println("Ingrese nombre de la ciudad: ");
 		sc.nextLine();
 		String nombreCiudad = sc.next();
-		
 		return nombreCiudad;
 	}
 
 	public String pedirPais() {
 		System.out.println("Ingrese nombre del pais: ");
-		sc.nextLine();
-		String nombrePais = sc.nextLine();
+
+		String nombrePais = sc.next();
 		return nombrePais;
 
 	}
@@ -133,8 +151,30 @@ public class ViewDatosCliente {
 
 	public String pedirTipoHospedaje() {
 		System.out.println("Ingrese el tipo de hospedaje(urbano/rural): ");
-		String tipoHospedaje = sc.nextLine();
+
+		String tipoHospedaje = sc.next();
 		return tipoHospedaje;
 	}
 
+	public String pedirNombreHospedaje() {
+		System.out.println("Ingrese el nombre del hospedaje:  ");
+		sc.nextLine();
+		String nombre = sc.nextLine();
+		return nombre;
+	}
+
+	public String pedirTipoHabitacion() {
+		System.out.println("Ingrese el tipo de habitacion:  ");
+		sc.nextLine();
+		String tipo = sc.nextLine();
+		return tipo;
+	}
+
+	public void mostrarPrecio() {
+
+	}
+
+	public String nombreHospedajeReservar() {
+		return "";
+	}
 }

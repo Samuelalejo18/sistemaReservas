@@ -2,7 +2,7 @@ package model;
 
 public class Hotel extends Hospedaje {
 
-    private boolean piscinas;
+    private boolean piscina;
     private boolean gimnasio;
 
     public Hotel() {
@@ -10,12 +10,19 @@ public class Hotel extends Hospedaje {
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-            String descripcion, String tipo, Boolean piscinas, boolean gimnasio) {
+            String descripcion, String tipo, Boolean piscina, boolean gimnasio) {
         super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, maximoDePisos, descripcion, tipo);
-        this.piscinas = piscinas;
+        this.piscina = piscina;
         this.gimnasio = gimnasio;
     }
+
+    public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
+            String descripcion, String tipo) {
+        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, maximoDePisos, descripcion, tipo);
+
+    }
     
+   @Override
     public double calcularPrecioPorNoche(String tipoHabitacion) {
 
         double precioTotal = PreciosHotel.TARIFA_BASE;
@@ -39,12 +46,12 @@ public class Hotel extends Hospedaje {
         return precioTotal;
     }
 
-    public boolean isPiscinas() {
-        return piscinas;
+    public boolean isPiscina() {
+        return piscina;
     }
 
-    public void setPiscinas(boolean piscinas) {
-        this.piscinas = piscinas;
+    public void setPiscina(boolean piscina) {
+        this.piscina = piscina;
     }
 
     public boolean isGimnasio() {
@@ -53,6 +60,11 @@ public class Hotel extends Hospedaje {
 
     public void setGimnasio(boolean gimnasio) {
         this.gimnasio = gimnasio;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel [piscina=" + piscina + ", gimnasio=" + gimnasio + "]";
     }
 
 }

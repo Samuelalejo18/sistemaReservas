@@ -62,7 +62,7 @@ public class Piso {
 		}
 	}
 
-	public String HabitacionesDisponibles(int numeroHabitacion) {
+	public String habitacionesDisponibles(int numeroHabitacion) {
 		for (Habitacion habitacion : habitaciones) {
 			if (habitacion.getNumeroHabitacion() == numeroHabitacion) {
 				if (habitacion.isDisponible()) {

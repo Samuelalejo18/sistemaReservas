@@ -9,21 +9,38 @@ public class Cabana extends Hospedaje {
 
 	public Cabana() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Cabana(String decoracion, boolean vistasExclusivas, String actividadesExtra) {
-		this.decoracion = decoracion;
-		this.vistasExclusivas = vistasExclusivas;
-		this.actividadesExtra = actividadesExtra;
-	}
 
+	}
 
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo,String decoracion, boolean vistasExclusivas, String actividadesExtra) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,  descripcion, tipo);
+			String descripcion, String tipo, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
 		this.decoracion = decoracion;
 		this.vistasExclusivas = vistasExclusivas;
 		this.actividadesExtra = actividadesExtra;
+	}
+	@Override
+	public double calcularPrecioPorNoche(String tipoHabitacion) {
+		double precioTotal = Precioscabana.TARIFA_BASE;
+		switch (tipoHabitacion.toLowerCase()) {
+			case "jacuzzi":
+				precioTotal += Precioscabana.PRECIO_JACUZZI;
+				break;
+			case "wifi":
+				precioTotal += Precioscabana.PRECIO_WIFI;
+				break;
+			case "dobles":
+				precioTotal += Precioscabana.PRECIO_DOBLES;
+				break;
+			case "sencilla":
+				precioTotal += Precioscabana.PRECIO_SENCILLA;
+				break;
+			default:
+				System.out.println("Tipo de habitación no válido");
+				break;
+		}
+		return precioTotal;
+
 	}
 
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,

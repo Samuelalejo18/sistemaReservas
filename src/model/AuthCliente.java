@@ -26,13 +26,13 @@ public class AuthCliente {
 	public static void setUsuarioAutenticado(Cliente usuarioAutenticado) {
 		AuthCliente.usuarioAutenticado = usuarioAutenticado;
 	}
-
+/* 
 	public void registrarClientePrueba() {
 		Cliente clientePrueba = new Cliente("Samuel", "Monsalve", 1014180725, "samuel@gmail.com", "lukas2012",
 				321456879, "mi casa");
 		clientes.add(clientePrueba);
 	}
-
+*/
 	public static boolean registrar(Cliente cliente) {
 		boolean existeUsuario = false;
 		boolean existeUsuario2 = false;

@@ -70,12 +70,33 @@ public class Reserva {
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
-/* 
-	public double calcularPrecio(){
-		double precioTotal;  
+
+	public void CalcularPrecio( ){
 		
-		return 0;
+		if(hospedajeReservado instanceof Motel){
+			Motel motel = (Motel) hospedajeReservado;
+			double precioMotel = motel.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}	else if (hospedajeReservado instanceof Hotel) {
+			Hotel hotel = (Hotel) hospedajeReservado;
+			double precioHotel = hotel.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}	else if (hospedajeReservado instanceof Cabana){
+			Cabana cabana = (Cabana) hospedajeReservado;
+			double PrecioCabana = cabana.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}	else if (hospedajeReservado instanceof Resort){
+			Resort resort = (Resort) hospedajeReservado;
+			double precioResort =  resort.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}	else if (hospedajeReservado instanceof Camping){
+			Camping camping = (Camping) hospedajeReservado;
+			double precioCamping = camping.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}	else if (hospedajeReservado instanceof Glamping){
+			Glamping glamping = (Glamping) hospedajeReservado;
+			double precioGlamping = glamping.calcularPrecioPorNoche("") * getCantidadDePersonas();
+		}
+
+		
+		
+		
 		
 	}
-*/
+
 }

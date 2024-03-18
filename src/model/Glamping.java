@@ -8,13 +8,7 @@ public class Glamping extends Hospedaje {
 
 	public Glamping() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Glamping(String experienciasNaturales, String servicios, String sostenibilidad) {
-		this.experienciasNaturales = experienciasNaturales;
-		this.servicios = servicios;
-		this.sostenibilidad = sostenibilidad;
+		
 	}
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
@@ -23,13 +17,37 @@ public class Glamping extends Hospedaje {
 		this.experienciasNaturales = experienciasNaturales;
 		this.servicios = servicios;
 		this.sostenibilidad = sostenibilidad;
-		
+
+	}
+	@Override
+	public double calcularPrecioPorNoche(String tipoHabitacion) {
+
+		double precioTotal = PreciosGlamping.TARIFA_BASE;
+		switch (tipoHabitacion.toLowerCase()) {
+			case "suite":
+				precioTotal += PreciosGlamping.PRECIO_YUTAS;
+				break;
+			case "presidencial":
+				precioTotal += PreciosGlamping.PRECIO_TIPI;
+				break;
+			case "dobles":
+				precioTotal += PreciosGlamping.PRECIO_CUBOS;
+				break;
+			case "sencilla":
+				precioTotal += PreciosGlamping.PRECIO_DOMOS;
+				break;
+			default:
+				System.out.println("Tipo de habitación no válido");
+				break;
+		}
+		return precioTotal;
+
 	}
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
 			String descripcion, String tipo) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public String getExperienciasNaturales() {

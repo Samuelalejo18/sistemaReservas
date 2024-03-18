@@ -11,6 +11,7 @@ public class Hospedaje {
 	protected String descripcion;
 	protected String tipo;
 	private ArrayList<Piso> pisos;
+	
 
 	public Hospedaje() {
 
@@ -27,13 +28,13 @@ public class Hospedaje {
 		this.tipo = tipo;
 		this.pisos = new ArrayList<>();
 	}
+
 	public void agregarPiso(Piso piso) {
 		if (pisos.size() <= getMaximoDePisos()) {
 			pisos.add(piso);
-			
-		} 
-	}
 
+		}
+	}
 
 	public Hospedaje(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
 			String descripcion, String tipo) {
@@ -115,5 +116,10 @@ public class Hospedaje {
 				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", maximoDePisos=" + maximoDePisos
 				+ ", descripcion=" + descripcion + ", tipo=" + tipo + ", pisos=" + pisos + "]";
 	}
+	
+	public double calcularPrecioPorNoche(String tipoHabitacion) {
+        
+        return 0.0; 
+    }
 
 }
