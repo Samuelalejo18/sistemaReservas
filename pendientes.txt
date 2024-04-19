@@ -1,0 +1,7 @@
+1. actulizar precios
+2. filtros ponerlos a funcinar
+3. filtros nuevos
+4. realizar las reservas
+5. relizar todo el instance of 
+6. mirar si se pude agregar una base de datos
+
