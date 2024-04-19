@@ -1,17 +1,17 @@
-package controller;
+package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import model.Cabana;
-import model.Camping;
-import model.Glamping;
-import model.Habitacion;
-import model.Hospedaje;
-import model.Hotel;
-import model.Motel;
-import model.Piso;
-import model.Resort;
-import view.ViewHospedaje;
+import co.edu.konradlorenz.model.Cabana;
+import co.edu.konradlorenz.model.Camping;
+import co.edu.konradlorenz.model.Glamping;
+import co.edu.konradlorenz.model.Habitacion;
+import co.edu.konradlorenz.model.Hospedaje;
+import co.edu.konradlorenz.model.Hotel;
+import co.edu.konradlorenz.model.Motel;
+import co.edu.konradlorenz.model.Piso;
+import co.edu.konradlorenz.model.Resort;
+import co.edu.konradlorenz.view.ViewHospedaje;
 
 public class ControllerHospedajes {
 	ArrayList<Hospedaje> hospedajes = new ArrayList<>();

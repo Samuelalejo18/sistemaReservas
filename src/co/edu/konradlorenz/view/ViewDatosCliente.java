@@ -1,4 +1,4 @@
-package view;
+package co.edu.konradlorenz.view;
 
 import java.util.Scanner;
 

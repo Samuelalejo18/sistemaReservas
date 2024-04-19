@@ -1,4 +1,4 @@
-package model;
+package co.edu.konradlorenz.model;
 
 class Precioscabana{
     public static final double TARIFA_BASE = 235000.0;

@@ -1,4 +1,4 @@
-package view;
+package co.edu.konradlorenz.view;
 
 public class ViewHospedaje {
 
@@ -20,7 +20,7 @@ public class ViewHospedaje {
 				"----------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.format("%20s %20s %20s %20d %20s %2s %n", nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,
 				descripcion, tipo);
-		System.out.println("\n");v
+		System.out.println("\n");
 	}
 	/*
 	 * public void filtrofallido(){

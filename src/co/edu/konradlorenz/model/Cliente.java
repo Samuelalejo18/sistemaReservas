@@ -1,4 +1,4 @@
-package model;
+package co.edu.konradlorenz.model;
 
 public class Cliente {
 	private String nombre;

@@ -1,4 +1,4 @@
-package controller;
+package co.edu.konradlorenz.controller;
 
 public class AplMain {
 

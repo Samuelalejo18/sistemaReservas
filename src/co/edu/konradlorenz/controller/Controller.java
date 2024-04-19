@@ -1,8 +1,8 @@
-package controller;
+package co.edu.konradlorenz.controller;
 
-import model.AuthCliente;
-import model.Cliente;
-import view.ViewDatosCliente;
+import co.edu.konradlorenz.model.AuthCliente;
+import co.edu.konradlorenz.model.Cliente;
+import co.edu.konradlorenz.view.ViewDatosCliente;
 
 public class Controller {
 	ViewDatosCliente viewDatosCliente = new ViewDatosCliente();

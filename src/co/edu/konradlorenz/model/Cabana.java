@@ -1,4 +1,4 @@
-package model;
+package co.edu.konradlorenz.model;
 
 //cabaña
 public class Cabana extends Hospedaje {
