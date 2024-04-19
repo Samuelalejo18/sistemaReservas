@@ -1,14 +1,10 @@
 package co.edu.konradlorenz.model;
 
-
-import java.util.ArrayList;
-
 public abstract class Hospedaje {
 	protected String nombre;
 	protected String ubicacionCiudad;
 	protected String ubicacionPais;
 	protected int numeroEstrellas;
-	protected int maximoDePisos;
 	protected String descripcion;
 	protected String tipo;
 	
@@ -61,13 +57,6 @@ public abstract class Hospedaje {
 		this.numeroEstrellas = numeroEstrellas;
 	}
 
-	public int getMaximoDePisos() {
-		return maximoDePisos;
-	}
-
-	public void setMaximoDePisos(int maximoDePisos) {
-		this.maximoDePisos = maximoDePisos;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -89,8 +78,7 @@ public abstract class Hospedaje {
 	@Override
 	public String toString() {
 		return "Hospedaje [nombre=" + nombre + ", ubicacionCiudad=" + ubicacionCiudad + ", ubicacionPais="
-				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", maximoDePisos=" + maximoDePisos
-				+ ", descripcion=" + descripcion + ", tipo=" + tipo + "]";
+				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", descripcion=" + descripcion + ", tipo=" + tipo + "]";
 	}
 
 	public abstract  double calcularPrecioPorNoche(String tipoHabitacion);

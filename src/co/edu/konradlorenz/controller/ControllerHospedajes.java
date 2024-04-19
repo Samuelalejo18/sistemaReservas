@@ -2,16 +2,40 @@ package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.*;
+import co.edu.konradlorenz.model.Cabana;
+import co.edu.konradlorenz.model.Camping;
+import co.edu.konradlorenz.model.Glamping;
+import co.edu.konradlorenz.model.Hospedaje;
+import co.edu.konradlorenz.model.Hotel;
+import co.edu.konradlorenz.model.Motel;
+import co.edu.konradlorenz.model.Resort;
 import co.edu.konradlorenz.view.ViewHospedaje;
-
-
 
 public class ControllerHospedajes {
 	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
 	ViewHospedaje viewHospedaje = new ViewHospedaje();
+	
+	
 
 	public ControllerHospedajes() {
+	}
+
+	public String hallarTipoHospedaje(Hospedaje hospedaje) {
+		String tipoHospedaje= "no existe";
+		if (hospedaje instanceof Hotel) {
+			tipoHospedaje = "Hotel";
+		} else if (hospedaje instanceof Cabana) {
+			tipoHospedaje = "Cabaña";
+		} else if (hospedaje instanceof Camping) {
+			tipoHospedaje = "Camping";
+		} else if (hospedaje instanceof Glamping) {
+			tipoHospedaje = "Glamping";
+		}else if (hospedaje instanceof Motel) {
+			tipoHospedaje = "Motel";
+		}else if (hospedaje instanceof Resort) {
+			tipoHospedaje = "Resort";
+		}
+		return tipoHospedaje;
 	}
 
 	public void buscarPorNombre(String nombre) {
@@ -19,8 +43,10 @@ public class ControllerHospedajes {
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNombre().equals(nombre)) {
 				// viewHospedaje.mostrarFiltros(hospedaje);
+				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+					
 				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
@@ -31,8 +57,9 @@ public class ControllerHospedajes {
 	public void filtrarPorUbicacionCiudad(String ubicacionCiudad) {
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getUbicacionCiudad() == ubicacionCiudad) {
+					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
 				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
@@ -41,21 +68,24 @@ public class ControllerHospedajes {
 	}
 
 	public void hospedajesDisponibles() {
-		
+
+			
 		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
-			ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 					hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 					hospedaje.getTipo());
 		}
 	}
 
 	public void filtrarPorUbicacionPais(String ubicacionPais) {
+	
 		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getUbicacionPais() == ubicacionPais) {
-				
-				ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
@@ -67,8 +97,9 @@ public class ControllerHospedajes {
 
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNumeroEstrellas() == numeroDeEstrellas) {
+					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
 				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
@@ -79,8 +110,9 @@ public class ControllerHospedajes {
 	public void filtrarTipoHospedaje(String tipo) {
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getTipo() == tipo) {
+					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
 				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
@@ -90,8 +122,8 @@ public class ControllerHospedajes {
 
 	public void filtrarPorPrecio(int min, int max) {
 		for (Hospedaje hospedaje : hospedajes) {
-			
-			}
+
+		}
 	}
 
 	public void registrarHospedajes() {
@@ -122,21 +154,24 @@ public class ControllerHospedajes {
 				"Gastronomía gourmet"));
 
 		/* Camping */
-		hospedajes.add(new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5, "Un camping rodeado de montañas",
-				"Rural", "Área de fogatas", "Senderismo"));
+		hospedajes.add(
+				new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5, "Un camping rodeado de montañas",
+						"Rural", "Área de fogatas", "Senderismo"));
 		hospedajes.add(new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
 				"Rural", "Zona de barbacoa", "Pesca"));
 		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural",
 				"Piscina natural", "Observación de aves"));
 		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural",
 				"Zona de descanso", "Surf"));
-		hospedajes.add(new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",
-				"Parque infantil", "Excursiones"));
+		hospedajes.add(
+				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",
+						"Parque infantil", "Excursiones"));
 		hospedajes.add(new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
 				"Un camping para los amantes de la adrenalina", "Rural", "Pared de escalada", "Rafting"));
 		hospedajes.add(new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
 				"Un camping comprometido con el medio ambiente", "Rural", "Reciclaje", "Observación de estrellas"));
-		hospedajes.add(new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4, "Un camping para desconectar y relajarse",
+		hospedajes.add(new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
+				"Un camping para desconectar y relajarse",
 				"Rural", "Área de meditación", "Yoga"));
 		hospedajes.add(new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
 				"Un camping para los más intrépidos", "Rural", "Tirolesa", "Escalada"));
@@ -150,7 +185,8 @@ public class ControllerHospedajes {
 				"Glamping perfecto para ir con tu pareja", "rural", "Vistas con mucha fauan", "Comida",
 				"Todo es reciclable"));
 		hospedajes.add(
-				new Glamping("Glamping de Montaña", "Monteverde", "CostaRica", 5, "Una experiencia de lujo en la naturaleza",
+				new Glamping("Glamping de Montaña", "Monteverde", "CostaRica", 5,
+						"Una experiencia de lujo en la naturaleza",
 						"Rural", "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
 		hospedajes.add(new Glamping("Glamping Ecológico", "El Chalten ", "Argentina", 4,
 				"Un glamping comprometido con el medio ambiente", "Rural", "Senderismo guiado", "Cocina gourmet",
@@ -166,25 +202,25 @@ public class ControllerHospedajes {
 
 		/* Hotel */
 		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", true, true);
-		Hotel hotel2 = new Hotel("Hotel Central", "Ciudad1", "Pais1", 5,  "El hotel más céntrico de la ciudad",
+		Hotel hotel2 = new Hotel("Hotel Central", "Ciudad1", "Pais1", 5, "El hotel más céntrico de la ciudad",
 				"Urbano", true, true);
-		Hotel hotel3 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5, 
+		Hotel hotel3 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
 				"Una experiencia de alojamiento de primer nivel", "Urbano", true, true);
-		Hotel hotel4 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4, 
+		Hotel hotel4 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
 				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", true, true);
-		Hotel hotel5 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4, 
+		Hotel hotel5 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
 				"Un hotel exclusivo con atención personalizada", "Urbano", true, false);
 
-		
-
 		/* Moteles */
-		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2, "Un motel para momentos especiales",
+		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2,
+				"Un motel para momentos especiales",
 				"Urbano", "Romántica", true, "Servicio a la habitación");
 		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, 2,
 				"Cada habitación con una temática diferente", "Urbano", "Fantasía", true, "Desayuno incluido");
 		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, 3, "Con instalaciones de primer nivel",
 				"Urbano", "Elegante", true, "Spa privado");
-		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, 2, "Con un estilo retro y acogedor", "Urbano",
+		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, 2, "Con un estilo retro y acogedor",
+				"Urbano",
 				"Clásica", false, "Bar en la habitación");
 
 		hospedajes.add(motel1);
@@ -196,7 +232,8 @@ public class ControllerHospedajes {
 		Resort resort1 = new Resort("Resort de Lujo", "Punta Cana", "Republica Dominicana", 5, 10,
 				"Un resort de lujo en el centro de la ciudad",
 				"Urbano", "Spa de clase mundial", "Piscina en la azotea");
-		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4, 8, "Perfecto para vacaciones en familia",
+		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4, 8,
+				"Perfecto para vacaciones en familia",
 				"Urbano", "Club infantil", "Parque acuático");
 		Resort resort3 = new Resort("Resort Wellness", "Santorini", "Grecia", 5, 12,
 				"Para quienes buscan bienestar y relajación",

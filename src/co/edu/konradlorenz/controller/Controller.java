@@ -1,7 +1,8 @@
 package co.edu.konradlorenz.controller;
 
-import co.edu.konradlorenz.model.*;
-import co.edu.konradlorenz.view.*;
+import co.edu.konradlorenz.model.AuthCliente;
+import co.edu.konradlorenz.model.Cliente;
+import co.edu.konradlorenz.view.ViewDatosCliente;
 
 public class Controller {
 	ViewDatosCliente viewDatosCliente = new ViewDatosCliente();
@@ -20,7 +21,7 @@ public class Controller {
 			switch (opcion) {
 				case 1:
 
-					//metodosCliente.registrarClientePrueba();
+					metodosCliente.registrarClientePrueba();
 					Cliente usuarioAutenticado = AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
 							viewDatosCliente.pedirContrasena());
 					if (usuarioAutenticado != null) {
@@ -55,6 +56,10 @@ public class Controller {
 			}
 		}
 	}
+
+
+
+
 
 	public void opcionesReserva() {
 		int opcion = -1;
