@@ -20,7 +20,7 @@ public class ViewHospedaje {
 				"----------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.format("%20s %20s %20s %20d %20s %2s %n", nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,
 				descripcion, tipo);
-		System.out.println("\n");
+		System.out.println("\n");v
 	}
 	/*
 	 * public void filtrofallido(){
