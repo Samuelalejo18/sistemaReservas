@@ -1,7 +1,7 @@
 package co.edu.konradlorenz.model;
 
 //cabaña
-public class Cabana extends Hospedaje {
+public class Cabana extends Hospedaje  implements PreciosCabana{
 
 	private String decoracion;
 	private boolean vistasExclusivas;
@@ -21,19 +21,19 @@ public class Cabana extends Hospedaje {
 	}
 	@Override
 	public double calcularPrecioPorNoche(String tipoHabitacion) {
-		double precioTotal = Precioscabana.TARIFA_BASE;
+		double precioTotal = TARIFA_BASE;
 		switch (tipoHabitacion.toLowerCase()) {
 			case "jacuzzi":
-				precioTotal += Precioscabana.PRECIO_JACUZZI;
+				precioTotal += PRECIO_JACUZZI;
 				break;
 			case "wifi":
-				precioTotal += Precioscabana.PRECIO_WIFI;
+				precioTotal += PRECIO_WIFI;
 				break;
 			case "dobles":
-				precioTotal += Precioscabana.PRECIO_DOBLES;
+				precioTotal += PRECIO_DOBLES;
 				break;
 			case "sencilla":
-				precioTotal += Precioscabana.PRECIO_SENCILLA;
+				precioTotal += PRECIO_SENCILLA;
 				break;
 			default:
 				System.out.println("Tipo de habitación no válido");

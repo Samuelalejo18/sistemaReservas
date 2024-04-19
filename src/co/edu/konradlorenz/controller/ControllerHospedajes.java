@@ -2,16 +2,10 @@ package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.Cabana;
-import co.edu.konradlorenz.model.Camping;
-import co.edu.konradlorenz.model.Glamping;
-import co.edu.konradlorenz.model.Habitacion;
-import co.edu.konradlorenz.model.Hospedaje;
-import co.edu.konradlorenz.model.Hotel;
-import co.edu.konradlorenz.model.Motel;
-import co.edu.konradlorenz.model.Piso;
-import co.edu.konradlorenz.model.Resort;
+import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.ViewHospedaje;
+
+
 
 public class ControllerHospedajes {
 	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
@@ -171,67 +165,17 @@ public class ControllerHospedajes {
 						"Rural", "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
 
 		/* Hotel */
-		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, 3, "Hotel hermoso", "urbano", true, true);
-		Hotel hotel2 = new Hotel("Hotel Central", "Ciudad1", "Pais1", 5, 4, "El hotel más céntrico de la ciudad",
+		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", true, true);
+		Hotel hotel2 = new Hotel("Hotel Central", "Ciudad1", "Pais1", 5,  "El hotel más céntrico de la ciudad",
 				"Urbano", true, true);
-		Hotel hotel3 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5, 2,
+		Hotel hotel3 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5, 
 				"Una experiencia de alojamiento de primer nivel", "Urbano", true, true);
-		Hotel hotel4 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4, 5,
+		Hotel hotel4 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4, 
 				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", true, true);
-		Hotel hotel5 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4, 6,
+		Hotel hotel5 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4, 
 				"Un hotel exclusivo con atención personalizada", "Urbano", true, false);
 
-		/* hotel 1 */
-		hospedajes.add(hotel1);
-		Piso piso1 = new Piso(5);
-		Piso piso2 = new Piso(5);
-		Piso piso3 = new Piso(6);
-		hotel1.agregarPiso(piso1);
-		piso1.agregarHabitacion(new Habitacion("Doble", 2, true, 100.0));
-		piso1.agregarHabitacion(new Habitacion("Doble", 2, true, 100.0));
-		piso1.agregarHabitacion(new Habitacion("Individual", 1, true, 80.0));
-		piso1.agregarHabitacion(new Habitacion("Suite", 4, true, 200.0));
-		piso1.agregarHabitacion(new Habitacion("Familiar", 6, true, 250.0));
-
-		hotel1.agregarPiso(piso2);
-		piso2.agregarHabitacion(new Habitacion("Doble", 2, true, 120.0));
-		piso2.agregarHabitacion(new Habitacion("Doble", 2, true, 120.0));
-		piso2.agregarHabitacion(new Habitacion("Individual", 1, true, 100.0));
-		piso2.agregarHabitacion(new Habitacion("Suite", 4, true, 240.0));
-		piso2.agregarHabitacion(new Habitacion("Familiar", 6, true, 280.0));
-
-		hotel1.agregarPiso(piso3);
-		piso3.agregarHabitacion(new Habitacion("Doble", 2, true, 130.0));
-		piso3.agregarHabitacion(new Habitacion("Doble", 2, true, 130.0));
-		piso3.agregarHabitacion(new Habitacion("Individual", 1, true, 110.0));
-		piso3.agregarHabitacion(new Habitacion("Suite", 4, true, 260.0));
-		piso3.agregarHabitacion(new Habitacion("Familiar", 6, true, 300.0));
-
-		/* Hotel 2 */
-		hospedajes.add(hotel2);
-		Piso piso1Hotel2 = new Piso(3);
-		Piso piso2Hotel2 = new Piso(2);
-		Piso piso3Hotel2 = new Piso(2);
-		Piso piso4Hotel2 = new Piso(1);
-		hotel2.agregarPiso(piso1Hotel2);
-		piso1Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 100.0));
-		piso1Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 100.0));
-		piso1Hotel2.agregarHabitacion(new Habitacion("Individual", 1, true, 80.0));
-
-		hotel2.agregarPiso(piso2Hotel2);
-		piso2Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 120.0));
-		piso2Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 120.0));
-
-		hotel2.agregarPiso(piso3Hotel2);
-		piso3Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 130.0));
-		piso3Hotel2.agregarHabitacion(new Habitacion("Doble", 2, true, 130.0));
-
-		hotel2.agregarPiso(piso4Hotel2);
-		piso4Hotel2.agregarHabitacion(new Habitacion("Suite", 4, true, 200.0));
-
-		hospedajes.add(hotel3);
-		hospedajes.add(hotel4);
-		hospedajes.add(hotel5);
+		
 
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2, "Un motel para momentos especiales",

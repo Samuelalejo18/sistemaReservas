@@ -1,6 +1,7 @@
 package co.edu.konradlorenz.model;
 
-public class Motel extends Hospedaje {
+
+public class Motel extends Hospedaje  {
 	private String tematica;
 	private boolean jacuzzi;
 	private String servicio;
@@ -10,7 +11,7 @@ public class Motel extends Hospedaje {
 
 	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
 			String descripcion, String tipo, String tematica, boolean jacuzzi, String servicio) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, maximoDePisos, descripcion, tipo);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
 		this.tematica = tematica;
 		this.jacuzzi = jacuzzi;
 		this.servicio = servicio;

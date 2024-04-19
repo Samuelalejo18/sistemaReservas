@@ -3,7 +3,7 @@ package co.edu.konradlorenz.model;
 /**
  * PreciosGlamping
  */
-public class PreciosGlamping {
+public interface PreciosGlamping {
 
     public static final double TARIFA_BASE  = 300000.0;
     public static final double PRECIO_YUTAS = 300000.0;
