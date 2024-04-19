@@ -4,7 +4,6 @@ public class Habitacion {
 	private String tipo;
 	private int capacidad;
 	private boolean disponible;
-	private double precioPorNoche;
 	private int numeroHabitacion;
 	private static int contadorHabitacion;
 
@@ -16,7 +15,7 @@ public class Habitacion {
 		this.tipo = tipo;
 		this.capacidad = capacidad;
 		this.disponible = disponible;
-		this.precioPorNoche = precioPorNoche;
+
 		this.numeroHabitacion = Habitacion.contadorHabitacion++;
 	}
 
@@ -44,14 +43,6 @@ public class Habitacion {
 		this.disponible = disponible;
 	}
 
-	public double getPrecioPorNoche() {
-		return precioPorNoche;
-	}
-
-	public void setPrecioPorNoche(double precioPorNoche) {
-		this.precioPorNoche = precioPorNoche;
-	}
-
 	public int getNumeroHabitacion() {
 		return numeroHabitacion;
 	}
@@ -71,7 +62,7 @@ public class Habitacion {
 	@Override
 	public String toString() {
 		return "Habitacion [tipo=" + tipo + ", capacidad=" + capacidad + ", disponible=" + disponible
-				+ ", precioPorNoche=" + precioPorNoche + ", numeroHabitacion=" + numeroHabitacion + "]";
+				+ ", numeroHabitacion=" + numeroHabitacion + "]";
 	}
 
 }

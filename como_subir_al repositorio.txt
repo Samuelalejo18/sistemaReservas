@@ -1,0 +1,14 @@
+1. abrir una terminal de git bash
+2. poner lo siguiente   git add .
+poner el punto siempre 
+3. poner luego    git commit -m ""
+dentro de las llaves va el comentario quue ud realizo 
+4. poner luego  git push 
+cargara los lo que hizo al repositorio y finalmente ya acabo
+
+si quiere cargar los cambios que hicieron los demas solo haga 
+
+git pull 
+
+se actualizaran los cambios de los demas en el codigo que tiene en su pc 
+

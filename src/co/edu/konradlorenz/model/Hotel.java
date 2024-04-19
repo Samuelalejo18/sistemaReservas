@@ -43,7 +43,7 @@ public class Hotel extends Hospedaje {
                 break;
             default:
                 System.out.println("Tipo de habitación no válido");
-                break;
+                return calcularPrecioPorNoche(tipoHabitacion);
         }
         return precioTotal;
     }
