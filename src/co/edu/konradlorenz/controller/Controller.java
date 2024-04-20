@@ -57,10 +57,6 @@ public class Controller {
 		}
 	}
 
-
-
-
-
 	public void opcionesReserva() {
 		int opcion = -1;
 		while (opcion != 0) {
@@ -93,8 +89,26 @@ public class Controller {
 							viewDatosCliente.pedirPrecioMaximo());
 					break;
 				case 8:
-				viewDatosCliente.nombreHospedajeReservar();
-
+					controllerHospedajes.filtrarHoteles();
+					break;
+				case 9:
+					controllerHospedajes.filtrarMoteles();
+					break;
+				case 10:
+					controllerHospedajes.filtralResorts();
+					break;
+				case 11:
+					controllerHospedajes.filtralCampings();
+					break;
+				case 12:
+					controllerHospedajes.filtralGlampings();
+					break;
+				case 13:
+					controllerHospedajes.filtralCabanas();
+					break;
+				case 14:
+					viewDatosCliente.nombreHospedajeReservar();
+					break;
 				case 0:
 					viewDatosCliente.saliendoDelSistema();
 					break;

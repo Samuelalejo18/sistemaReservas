@@ -39,17 +39,20 @@ public class ControllerHospedajes {
 	}
 
 	public void buscarPorNombre(String nombre) {
-
+		boolean encontradoNombre = false;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
 				// viewHospedaje.mostrarFiltros(hospedaje);
 				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
-					
+				encontradoNombre = true;
 				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo());
 			}
+		}
+		if (!encontradoNombre) {
+			ViewHospedaje.filtroFallido();
 		}
 
 	}
@@ -137,6 +140,79 @@ public class ControllerHospedajes {
 		}
 	}
 
+// Tipo urbano o rural
+
+public void filtrarHoteles () {
+	
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Hotel) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+
+}
+
+public void filtrarMoteles () {
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Motel) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+}
+
+public void filtralResorts () {
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Resort) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+}
+
+
+public void filtralCampings () {
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Camping) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+}
+public void filtralGlampings () {
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Glamping ) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+}
+
+public void filtralCabanas() {
+	for (Hospedaje hospedaje: hospedajes) {
+		if (hospedaje instanceof Cabana ) {
+			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+			viewHospedaje.mostrarTitulo();
+			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+	
+		}
+	}
+}
+
+
+
+
 	public void filtrarPorPrecio(int min, int max) {
 		for (Hospedaje hospedaje : hospedajes) {
 
@@ -218,15 +294,15 @@ public class ControllerHospedajes {
 						"Rural", "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
 
 		/* Hotel */
-		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", true, true);
-		Hotel hotel2 = new Hotel("Hotel Central", "Ciudad1", "Pais1", 5, "El hotel más céntrico de la ciudad",
-				"Urbano", true, true);
-		Hotel hotel3 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
-				"Una experiencia de alojamiento de primer nivel", "Urbano", true, true);
-		Hotel hotel4 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
-				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", true, true);
-		Hotel hotel5 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
-				"Un hotel exclusivo con atención personalizada", "Urbano", true, false);
+		hospedajes.add(new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", true, true));
+		hospedajes.add(new Hotel("Hotel Central", "Ciudad1", "Pais1", 5, "El hotel más céntrico de la ciudad",
+				"Urbano", true, true));
+				hospedajes.add( new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
+				"Una experiencia de alojamiento de primer nivel", "Urbano", true, true));
+				hospedajes.add(new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
+				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", true, true));
+				hospedajes.add(new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
+				"Un hotel exclusivo con atención personalizada", "Urbano", true, false));
 
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2,

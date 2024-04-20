@@ -32,7 +32,13 @@ public class ViewDatosCliente {
 		System.out.println("5. Filtrar por numero de estrellas: ");
 		System.out.println("6.Filtrar por tipo(rural/urbano): ");
 		System.out.println("7.Filtrar por precio: ");
-		System.out.println("8.Reservar: ");
+		System.out.println("8.Filtrar por hoteles: ");
+		System.out.println("9.Filtrar por moteles: ");
+		System.out.println("10.Filtrar por resorts: ");
+		System.out.println("11.Filtrar por campings: ");
+		System.out.println("12.Filtrar por  glampings: ");
+		System.out.println("13.Filtrar por cabañas: ");
+		System.out.println("14.Reservar: ");
 		System.out.println("0. Salir del sistema de reservas");
 		System.out.println("\n");
 
