@@ -48,7 +48,7 @@ public class ViewDatosCliente {
 
 	public String pedirContrasena() {
 		System.out.println("\n");
-		System.out.println("Ingrese la contraña del usuario: ");
+		System.out.println("Ingrese la contraseña del usuario: ");
 		String contrasena = sc.next();
 		return contrasena;
 	}
@@ -61,6 +61,7 @@ public class ViewDatosCliente {
 	}
 
 	public String pedirApellido() {
+		sc.nextLine();
 		System.out.println("Ingrese el apellido del usuario:");
 		String apellido = sc.next();
 		return apellido;
@@ -72,9 +73,9 @@ public class ViewDatosCliente {
 		return id;
 	}
 
-	public int pedirNumeroTelefono() {
+	public Long pedirNumeroTelefono() {
 		System.out.println("Ingrese el número de teléfono del usuario:");
-		int numeroTelefono = sc.nextInt();
+		Long numeroTelefono = sc.nextLong();
 		return numeroTelefono;
 	}
 

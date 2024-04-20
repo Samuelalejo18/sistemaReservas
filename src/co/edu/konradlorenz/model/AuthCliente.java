@@ -28,9 +28,11 @@ public class AuthCliente {
 	}
 
 	public void registrarClientePrueba() {
-		Cliente clientePrueba = new Cliente("Samuel", "Monsalve", 1014180725, "s", "l",
-				321456879, "mi casa");
-		clientes.add(clientePrueba);
+		
+		// Usuarios admin 
+		// La letra L al final del numero especifica que es Long
+		Cliente clienteAdmin = new Cliente("Julian", "Homez", 289, "felipemadeit@gmail.com", "JulianHomez2005",  3161925274L, "Calle 5");
+		clientes.add(clienteAdmin);
 	}
 
 	public static boolean registrar(Cliente cliente) {

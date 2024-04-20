@@ -5,21 +5,19 @@ public class Cliente {
 	private String apellido;
 	private int id;
 	private String email;
-	// contraseña
 	private String contrasena;
-	private int numeroTelefono;
+	private Long numeroTelefono;
 	private String direccion;
 
-	public Cliente() {
-	}
+	
+	
 
-	public Cliente(String nombre, String apellido, int id, String email, String contrasena, int numeroTelefono,
+	public Cliente(String nombre, String apellido, int id, String email, String contrasena, Long numeroTelefono,
 			String direccion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.id = id;
 		this.email = email;
-		// contraseña
 		this.contrasena = contrasena;
 		this.numeroTelefono = numeroTelefono;
 		this.direccion = direccion;
@@ -67,11 +65,11 @@ public class Cliente {
 		this.contrasena = contrasena;
 	}
 
-	public int getNumeroTelefono() {
+	public Long getNumeroTelefono() {
 		return numeroTelefono;
 	}
 
-	public void setNumeroTelefono(int numeroTelefono) {
+	public void setNumeroTelefono(Long numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
 

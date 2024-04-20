@@ -76,17 +76,17 @@ public class Controller {
 					break;
 				case 3:
 
-					controllerHospedajes.filtrarPorUbicacionCiudad(viewDatosCliente.pedirCiudad());
+					controllerHospedajes.filtrarCiudad(viewDatosCliente.pedirCiudad());
 					break;
 				case 4:
 
-					controllerHospedajes.filtrarPorUbicacionPais(viewDatosCliente.pedirPais());
+					controllerHospedajes.filtrarPorPais(viewDatosCliente.pedirPais());
 					break;
 				case 5:
 					controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.pedirNumeroEstrellas());
 					break;
 				case 6:
-					controllerHospedajes.filtrarTipoHospedaje(viewDatosCliente.pedirTipoHospedaje());
+					controllerHospedajes.filtrarTipo(viewDatosCliente.pedirTipoHospedaje());
 					break;
 				case 7:
 					controllerHospedajes.filtrarPorPrecio(viewDatosCliente.pedirPrecioMinimo(),

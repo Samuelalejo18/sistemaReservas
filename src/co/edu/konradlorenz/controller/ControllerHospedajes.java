@@ -41,7 +41,7 @@ public class ControllerHospedajes {
 	public void buscarPorNombre(String nombre) {
 
 		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getNombre().equals(nombre)) {
+			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
 				// viewHospedaje.mostrarFiltros(hospedaje);
 				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
 					
@@ -54,23 +54,25 @@ public class ControllerHospedajes {
 
 	}
 
-	public void filtrarPorUbicacionCiudad(String ubicacionCiudad) {
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getUbicacionCiudad() == ubicacionCiudad) {
-					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+	
+	public void filtrarCiudad (String ubicacionCiudad) {
+		boolean encontradoCiudad = false;
+		for (Hospedaje hospedaje: hospedajes) {
+			if (hospedaje.getUbicacionCiudad().equalsIgnoreCase(ubicacionCiudad)) {
+				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+				encontradoCiudad = true;
 				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(),hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
 			}
 		}
 
+		if (!encontradoCiudad) {
+			ViewHospedaje.filtroFallido();
+		}
 	}
 
 	public void hospedajesDisponibles() {
-
-			
-		viewHospedaje.mostrarTitulo();
+	viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			String tipoHospedaje= hallarTipoHospedaje(hospedaje);
 			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
@@ -79,22 +81,28 @@ public class ControllerHospedajes {
 		}
 	}
 
-	public void filtrarPorUbicacionPais(String ubicacionPais) {
-	
-		viewHospedaje.mostrarTitulo();
+
+
+	public void filtrarPorPais (String ubicacionPais) {
+		boolean encontrado = false;
 		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getUbicacionPais() == ubicacionPais) {
+			if (hospedaje.getUbicacionPais().equalsIgnoreCase(ubicacionPais)) {
 				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
-				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+				encontrado = true;
+				viewHospedaje.mostrarTitulo();
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());	
 			}
 		}
+
+	if (!encontrado){
+		ViewHospedaje.filtroFallido();
+	}
+		
 
 	}
 
 	public void filtrarPorNumeroDeEstrellas(int numeroDeEstrellas) {
-
+		boolean encontradoEstrellas = false;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNumeroEstrellas() == numeroDeEstrellas) {
 					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
@@ -105,19 +113,28 @@ public class ControllerHospedajes {
 			}
 		}
 
-	}
-
-	public void filtrarTipoHospedaje(String tipo) {
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getTipo() == tipo) {
-					String tipoHospedaje= hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
-				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
-			}
+		if(!encontradoEstrellas) {
+			ViewHospedaje.filtroFallido();
 		}
 
+	}
+
+	// Tipo urbano o rural
+
+	public void filtrarTipo (String tipo) {
+		boolean encontradoTipo = false;
+		for (Hospedaje hospedaje: hospedajes) {
+			if (hospedaje.getTipo().equalsIgnoreCase(tipo)) {
+				encontradoTipo = true;
+				String tipoHospedaje= hallarTipoHospedaje(hospedaje);
+				viewHospedaje.mostrarTitulo();
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(), hospedaje.getTipo());
+				
+			}
+		}
+		if(!encontradoTipo) {
+			ViewHospedaje.filtroFallido();
+		}
 	}
 
 	public void filtrarPorPrecio(int min, int max) {

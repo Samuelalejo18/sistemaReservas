@@ -8,8 +8,10 @@ public class ViewHospedaje {
 
 	public void mostrarTitulo() {
 
-		System.out.format("%20s %20s %20s %20s %20s %20s %20s %n","Tipo Hospedaje" ,"nombre", " ubicacion Ciudad", "ubicacion Pais",
-				"numero Estrellas", "descripcion", "tipo");
+		System.out.format("%-20s %-20s %-20s %-20s %-20s %-40s %-20s %n",
+                  "Tipo Hospedaje", "nombre", "ubicacion Ciudad", "ubicacion Pais",
+                  "numero Estrellas", "descripcion", "tipo");
+
 
 	}
 
@@ -18,14 +20,15 @@ public class ViewHospedaje {
 
 		System.out.println(
 				"----------------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.format("%20s %20s %20s %20s %20d %20s %2s %n",tH, nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,
+				System.out.format("%-20s %-20s %-20s %-20s %-10d %30s %20s %n", tH, nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas,
 				descripcion, tipo);
+
+
 		System.out.println("\n");
 	}
-	/*
-	 * public void filtrofallido(){
-	 * System.out.println("no se encontro el hospedaje indicado, intente nuevamente"
-	 * );
-	 * }
-	 */
+	
+
+	public static void filtroFallido () {
+		System.out.println("No se encontro ningun resultado");
+	}
 }
