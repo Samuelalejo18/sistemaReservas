@@ -69,7 +69,7 @@ public class Reserva {
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
-
+/* 
 	public double CalcularPrecio(String tipoDeHabitacion) {
 
 		if (hospedajeReservado instanceof Motel) {
@@ -100,5 +100,5 @@ public class Reserva {
 		return 0.0;
 
 	}
-
+*/
 }

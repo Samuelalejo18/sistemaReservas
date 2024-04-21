@@ -5,26 +5,24 @@ public abstract class Hospedaje {
 	protected String ubicacionCiudad;
 	protected String ubicacionPais;
 	protected int numeroEstrellas;
-	protected int maximoDePisos;
 	protected String descripcion;
 	protected String tipo;
-	
+	protected double precioPorPersona;
 
 	public Hospedaje() {
 
 	}
 
 	public Hospedaje(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-	 String descripcion, String tipo) {
+			String descripcion, String tipo, double precioPorPersona) {
 		this.nombre = nombre;
 		this.ubicacionCiudad = ubicacionCiudad;
 		this.ubicacionPais = ubicacionPais;
 		this.numeroEstrellas = numeroEstrellas;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
-
+        this.precioPorPersona= precioPorPersona;
 	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -58,14 +56,6 @@ public abstract class Hospedaje {
 		this.numeroEstrellas = numeroEstrellas;
 	}
 
-	public int getMaximoDePisos() {
-		return maximoDePisos;
-	}
-
-	public void setMaximoDePisos(int maximoDePisos) {
-		this.maximoDePisos = maximoDePisos;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -81,15 +71,14 @@ public abstract class Hospedaje {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
+	public abstract double calcularPrecioPorNoche(String tipoHabitacion);
 
 	@Override
 	public String toString() {
 		return "Hospedaje [nombre=" + nombre + ", ubicacionCiudad=" + ubicacionCiudad + ", ubicacionPais="
-				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", maximoDePisos=" + maximoDePisos
-				+ ", descripcion=" + descripcion + ", tipo=" + tipo + "]";
+				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", descripcion=" + descripcion + ", tipo="
+				+ tipo + "]";
 	}
 
-	public abstract  double calcularPrecioPorNoche(String tipoHabitacion);
 
 }
