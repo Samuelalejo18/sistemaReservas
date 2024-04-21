@@ -1,6 +1,8 @@
 package co.edu.konradlorenz.model;
 
-public abstract class Hospedaje  {
+import java.util.ArrayList;
+
+public abstract class Hospedaje {
 	protected String nombre;
 	protected String ubicacionCiudad;
 	protected String ubicacionPais;
@@ -8,6 +10,7 @@ public abstract class Hospedaje  {
 	protected String descripcion;
 	protected String tipo;
 	protected double precioPorPersona;
+	private ArrayList<Habitacion> habitaciones;
 
 	public Hospedaje() {
 
@@ -21,7 +24,8 @@ public abstract class Hospedaje  {
 		this.numeroEstrellas = numeroEstrellas;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
-        this.precioPorPersona= precioPorPersona;
+		this.precioPorPersona = precioPorPersona;
+		habitaciones = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -80,17 +84,21 @@ public abstract class Hospedaje  {
 		this.precioPorPersona = precioPorPersona;
 	}
 
+	public ArrayList<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
 
-	
+	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+
 	public abstract double calcularPrecioPorNoche(String tipoHabitacion);
 
 	@Override
 	public String toString() {
 		return "Hospedaje [nombre=" + nombre + ", ubicacionCiudad=" + ubicacionCiudad + ", ubicacionPais="
 				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", descripcion=" + descripcion + ", tipo="
-				+ tipo + "]";
+				+ tipo + ", precioPorPersona=" + precioPorPersona + ", habitaciones=" + habitaciones + "]";
 	}
-
-
 
 }

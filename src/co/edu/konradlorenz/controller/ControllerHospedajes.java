@@ -316,9 +316,9 @@ public class ControllerHospedajes {
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2,
 				"Un motel para momentos especiales",
-				"Urbano", "Romántica", true, "Servicio a la habitación");
+				"Urbano",200000, "Romántica", true, "Servicio a la habitación");
 		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, 2,
-				"Cada habitación con una temática diferente", "Urbano", "Fantasía", true, "Desayuno incluido");
+				"Cada habitación con una temática diferente", "Urbano",50000, "Fantasía", true, "Desayuno incluido");
 		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, 3, "Con instalaciones de primer nivel",
 				"Urbano", "Elegante", true, "Spa privado");
 		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, 2, "Con un estilo retro y acogedor",

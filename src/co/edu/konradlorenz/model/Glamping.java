@@ -22,25 +22,8 @@ public class Glamping extends Hospedaje {
 	@Override
 	public double calcularPrecioPorNoche(String tipoHabitacion) {
 
-		double precioTotal = PreciosGlamping.TARIFA_BASE;
-		switch (tipoHabitacion.toLowerCase()) {
-			case "suite":
-				precioTotal += PreciosGlamping.PRECIO_YUTAS;
-				break;
-			case "presidencial":
-				precioTotal += PreciosGlamping.PRECIO_TIPI;
-				break;
-			case "dobles":
-				precioTotal += PreciosGlamping.PRECIO_CUBOS;
-				break;
-			case "sencilla":
-				precioTotal += PreciosGlamping.PRECIO_DOMOS;
-				break;
-			default:
-				System.out.println("Tipo de habitación no válido");
-				return calcularPrecioPorNoche(tipoHabitacion);
-		}
-		return precioTotal;
+		
+		return 0;
 
 	}
 

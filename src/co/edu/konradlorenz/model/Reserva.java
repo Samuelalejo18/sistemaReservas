@@ -4,13 +4,15 @@ package co.edu.konradlorenz.model;
 
 import java.sql.Date;
 
-public class Reserva {
+public class Reserva implements Pago  {
 	private Cliente cliente;
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private Hospedaje hospedajeReservado;
 	private int cantidadDePersonas;
 	private double precioTotal;
+
+
 
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
 			int cantidadDePersonas, double precioTotal) {
@@ -69,6 +71,25 @@ public class Reserva {
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
+ 
+	@Override
+    public double calcularPrecioTotal(int numeroPersonas, int numeroNoches){
+		double precioPorPersona= hospedajeReservado.getPrecioPorPersona();
+
+		double precioTotal=0;
+		return  precioTotal;
+
+	}
+	@Override
+    public void realizarPago(){
+		
+	}
+	@Override
+    public void cancelarPago(){
+		
+	}
+
+
 /* 
 	public double CalcularPrecio(String tipoDeHabitacion) {
 

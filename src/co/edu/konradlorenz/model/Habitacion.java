@@ -1,7 +1,7 @@
 package co.edu.konradlorenz.model;
 
 public class Habitacion {
-	private String tipo;
+
 	private int capacidad;
 	private boolean disponible;
 	private int numeroHabitacion;
@@ -10,19 +10,11 @@ public class Habitacion {
 	public Habitacion() {
 	}
 
-	public Habitacion(String tipo, int capacidad, boolean disponible, double precioPorNoche) {
-		this.tipo = tipo;
+	public Habitacion(int capacidad, boolean disponible) {
+
 		this.capacidad = capacidad;
 		this.disponible = disponible;
 		this.numeroHabitacion = Habitacion.contadorHabitacion++;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public int getCapacidad() {
@@ -59,7 +51,7 @@ public class Habitacion {
 
 	@Override
 	public String toString() {
-		return "Habitacion [tipo=" + tipo + ", capacidad=" + capacidad + ", disponible=" + disponible
+		return "Habitacion [, capacidad=" + capacidad + ", disponible=" + disponible
 				+ ", numeroHabitacion=" + numeroHabitacion + "]";
 	}
 

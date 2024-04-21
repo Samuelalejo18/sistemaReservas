@@ -6,35 +6,11 @@ public class Resort extends Hospedaje {
 	private String espaciosExclusivos;
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-			String descripcion, String tipo, double precioPorPersona, String actividadesExtra, String espaciosExclusivos) {
+			String descripcion, String tipo, double precioPorPersona, String actividadesExtra,
+			String espaciosExclusivos) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
 		this.actividadesExtra = actividadesExtra;
 		this.espaciosExclusivos = espaciosExclusivos;
-	}
-
-	@Override
-	public double calcularPrecioPorNoche(String tipoHabitacion) {
-
-		double precioTotal = PreciosHotel.TARIFA_BASE;
-		switch (tipoHabitacion.toLowerCase()) {
-		case "suite":
-			precioTotal += PreciosHotel.PRECIO_SUITE;
-			break;
-		case "presidencial":
-			precioTotal += PreciosHotel.PRECIO_PRESIDENCIAL;
-			break;
-		case "dobles":
-			precioTotal += PreciosHotel.PRECIO_DOBLES;
-			break;
-		case "sencilla":
-			precioTotal += PreciosHotel.PRECIO_SENCILLA;
-			break;
-		default:
-			System.out.println("Tipo de habitación no válido");
-			return calcularPrecioPorNoche(tipoHabitacion);
-		}
-		return precioTotal;
-
 	}
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
@@ -52,6 +28,31 @@ public class Resort extends Hospedaje {
 
 	public String getEspaciosExclusivos() {
 		return espaciosExclusivos;
+	}
+
+	@Override
+	public double calcularPrecioPorNoche(String tipoHabitacion) {
+
+		double precioTotal = PreciosHotel.TARIFA_BASE;
+		switch (tipoHabitacion.toLowerCase()) {
+			case "suite":
+				precioTotal += PreciosHotel.PRECIO_SUITE;
+				break;
+			case "presidencial":
+				precioTotal += PreciosHotel.PRECIO_PRESIDENCIAL;
+				break;
+			case "dobles":
+				precioTotal += PreciosHotel.PRECIO_DOBLES;
+				break;
+			case "sencilla":
+				precioTotal += PreciosHotel.PRECIO_SENCILLA;
+				break;
+			default:
+
+				return calcularPrecioPorNoche(tipoHabitacion);
+		}
+		return precioTotal;
+
 	}
 
 	public void setEspaciosExclusivos(String espaciosExclusivos) {
