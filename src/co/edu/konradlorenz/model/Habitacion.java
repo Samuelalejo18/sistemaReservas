@@ -11,11 +11,9 @@ public class Habitacion {
 	}
 
 	public Habitacion(String tipo, int capacidad, boolean disponible, double precioPorNoche) {
-
 		this.tipo = tipo;
 		this.capacidad = capacidad;
 		this.disponible = disponible;
-
 		this.numeroHabitacion = Habitacion.contadorHabitacion++;
 	}
 

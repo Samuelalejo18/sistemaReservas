@@ -1,6 +1,6 @@
 package co.edu.konradlorenz.model;
 
-public abstract class Hospedaje {
+public abstract class Hospedaje  {
 	protected String nombre;
 	protected String ubicacionCiudad;
 	protected String ubicacionPais;
