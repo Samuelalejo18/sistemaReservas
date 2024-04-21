@@ -10,8 +10,8 @@ public class Camping extends Hospedaje {
 	}
 
 	public Camping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, String zonasComunes, String actividadesAlAireLibre) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
+			String descripcion, String tipo, double precioPorPersona , String zonasComunes, String actividadesAlAireLibre) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
 		this.zonasComunes = zonasComunes;
 		this.actividadesAlAireLibre = actividadesAlAireLibre;
 	}
@@ -41,8 +41,8 @@ public class Camping extends Hospedaje {
 	}
 
 	public Camping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
-			String tipo) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
+			String tipo, double precioPorPersona) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
 
 	}
 
