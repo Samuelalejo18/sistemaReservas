@@ -12,21 +12,22 @@ public class Hotel extends Hospedaje {
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-            String descripcion, String tipo, Boolean piscina, boolean gimnasio) {
-        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
+            String descripcion, String tipo,double precioPorPersona, Boolean piscina, boolean gimnasio) {
+        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona );
         this.piscina = piscina;
         this.gimnasio = gimnasio;
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-            String descripcion, String tipo) {
-        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo);
+            String descripcion, String tipo, double precioPorPersona) {
+        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
 
     }
     
    @Override
     public double calcularPrecioPorNoche(String tipoHabitacion) {
-
+        return numeroEstrellas;
+/* 
         double precioTotal = PreciosHotel.TARIFA_BASE;
         switch (tipoHabitacion.toLowerCase()) {
             case "suite":
@@ -46,6 +47,7 @@ public class Hotel extends Hospedaje {
                 return calcularPrecioPorNoche(tipoHabitacion);
         }
         return precioTotal;
+        */
     }
 
     public boolean isPiscina() {

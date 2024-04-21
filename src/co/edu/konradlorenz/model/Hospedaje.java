@@ -71,6 +71,17 @@ public abstract class Hospedaje {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public double getPrecioPorPersona() {
+		return precioPorPersona;
+	}
+
+	public void setPrecioPorPersona(double precioPorPersona) {
+		this.precioPorPersona = precioPorPersona;
+	}
+
+
+	
 	public abstract double calcularPrecioPorNoche(String tipoHabitacion);
 
 	@Override
@@ -79,6 +90,7 @@ public abstract class Hospedaje {
 				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", descripcion=" + descripcion + ", tipo="
 				+ tipo + "]";
 	}
+
 
 
 }
