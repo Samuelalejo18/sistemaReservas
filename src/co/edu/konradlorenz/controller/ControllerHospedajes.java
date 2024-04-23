@@ -246,13 +246,13 @@ public class ControllerHospedajes {
 		hospedajes.add(new Cabana("Cabana Histórica", "Villeta", "Colombia", 3,
 				"Una cabaña con siglos de historia en su interior", "Rural",60000, "Antigua", false, "Visitas guiadas"));
 		hospedajes.add(new Cabana("Cabana de Campo", "Capitanejo", "Colombia", 5,
-				"Un refugio campestre con todas las comodidades", "Rural", "Rural", true, "Equitación"));
+				"Un refugio campestre con todas las comodidades", "Rural", 230000));
 		hospedajes.add(new Cabana("Cabana Ecológica", "Anapoima", "Colombia", 4,
-				"Una cabaña diseñada para minimizar su impacto ambiental", "Rural", , "Sostenible", false, "Reciclaje"));
+				"Una cabaña diseñada para minimizar su impacto ambiental", "Rural", 420000 , "Sostenible", false, "Reciclaje"));
 		hospedajes.add(new Cabana("Cabana Romántica", "Neusa", "Colombia", 3,
-				"Un rincón íntimo para parejas en busca de tranquilidad", "Rural", "Acogedora", true, "Masajes"));
+				"Un rincón íntimo para parejas en busca de tranquilidad", "Rural", 320000,  "Acogedora", true, "Masajes"));
 		hospedajes.add(new Cabana("Cabana de Lujo", "Anapoima", "Colombia", 5,
-				"Una experiencia exclusiva con servicio de primera clase", "Rural", "Elegante", false,
+				"Una experiencia exclusiva con servicio de primera clase", "Rural", 230000,  "Elegante", false,
 				"Gastronomía gourmet"));
   
 		/* Camping */
