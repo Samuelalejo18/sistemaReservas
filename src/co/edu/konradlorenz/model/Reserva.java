@@ -109,7 +109,7 @@ public class Reserva implements Pago {
 
 	@Override
 	public String cancelarPago() {
-		return " Pago Canselado";
+		return " Pago Cancelado";
 	}
 
 	@Override
