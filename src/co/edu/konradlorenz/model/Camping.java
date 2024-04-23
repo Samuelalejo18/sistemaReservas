@@ -10,16 +10,17 @@ public class Camping extends Hospedaje {
 	}
 
 	public Camping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona, String zonasComunes,
+			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion, String zonasComunes,
 			String actividadesAlAireLibre) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.zonasComunes = zonasComunes;
 		this.actividadesAlAireLibre = actividadesAlAireLibre;
+		sumaPorHabitacion();
 	}
 
 	public Camping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
-			String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String tipo, double precioAdicionalPorTipoHabitacion) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 
 	}
 
@@ -49,5 +50,7 @@ public class Camping extends Hospedaje {
 	public String toString() {
 		return "Camping [zonasComunes=" + zonasComunes + ", actividadesAlAireLibre=" + actividadesAlAireLibre + "]";
 	}
+
+	
 
 }

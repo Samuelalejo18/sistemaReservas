@@ -13,16 +13,17 @@ public class Cabana extends Hospedaje {
 	}
 
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo,double precioPorPersona, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo,double precioAdicionalPorTipoHabitacion, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.decoracion = decoracion;
 		this.vistasExclusivas = vistasExclusivas;
 		this.actividadesExtra = actividadesExtra;
+		sumaPorHabitacion();
 	}
 	
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
-	String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+	String tipo, double precioAdicionalPorTipoHabitacion) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -50,12 +51,7 @@ public class Cabana extends Hospedaje {
 		this.actividadesExtra = actividadesExtra;
 	}
 	
-	@Override
-	public double calcularPrecioPorNoche(String tipoHabitacion) {
-		
-		return 0;
-	
-	}
+
 	@Override
 	public String toString() {
 		return "Cabana [decoracion=" + decoracion + ", vistasExclusivas=" + vistasExclusivas + ", actividadesExtra="

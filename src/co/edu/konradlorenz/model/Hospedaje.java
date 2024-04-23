@@ -26,6 +26,7 @@ public abstract class Hospedaje {
 		this.tipo = tipo;
 		this.precioPorPersona = precioPorPersona;
 		habitaciones = new ArrayList<>();
+		sumaPorHabitacion();
 	}
 
 	public String getNombre() {
@@ -92,7 +93,31 @@ public abstract class Hospedaje {
 		this.habitaciones = habitaciones;
 	}
 
-	public abstract double calcularPrecioPorNoche(String tipoHabitacion);
+	public void agregarHabitacion(Habitacion habitacion) {
+		habitaciones.add(habitacion);
+
+	}
+
+	// Calcular precio por persona de acuerdo a la habitacion, dependiendo el tipo
+	// de habitacion el precio por persona aumenta
+	public double sumaPorHabitacion() {
+		double sumaPorHabitacion = 0;
+		for (Habitacion habitacion : habitaciones) {
+			if (habitacion instanceof HabitacionBase) {
+				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+			} else if (habitacion instanceof HabitacionDoble) {
+				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+			} else if (habitacion instanceof HabitacionPresidencial) {
+				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+			} else if (habitacion instanceof HabitacionPresidencial) {
+				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+			} else if (habitacion instanceof HabitacionPresidencial) {
+				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+			}
+		}
+
+		return sumaPorHabitacion;
+	}
 
 	@Override
 	public String toString() {

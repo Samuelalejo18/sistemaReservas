@@ -1,18 +1,16 @@
 package co.edu.konradlorenz.model;
 
-
-
 import java.sql.Date;
 
-public class Reserva implements Pago  {
+public class Reserva implements Pago {
 	private Cliente cliente;
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private Hospedaje hospedajeReservado;
 	private int cantidadDePersonas;
 	private double precioTotal;
-
-
+	private int numeroPersonas;
+	private int numeroNoches;
 
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
 			int cantidadDePersonas, double precioTotal) {
@@ -71,55 +69,76 @@ public class Reserva implements Pago  {
 	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
- 
+
 	@Override
-    public double calcularPrecioTotal(int numeroPersonas, int numeroNoches){
-		double precioPorPersona= hospedajeReservado.getPrecioPorPersona();
+	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
+		double precioPorPersona = hospedajeReservado.sumaPorHabitacion();
+		double precio = 0;
 
-		double precioTotal=0;
-		return  precioTotal;
-
-	}
-	@Override
-    public void realizarPago(){
-		
-	}
-	@Override
-    public void cancelarPago(){
-		
-	}
-
-
-/* 
-	public double CalcularPrecio(String tipoDeHabitacion) {
-
-		if (hospedajeReservado instanceof Motel) {
-			Motel motel = (Motel) hospedajeReservado;
-			double precioMotel = motel.calcularPrecioPorNoche( tipoDeHabitacion) * getCantidadDePersonas();
-			return precioMotel;
-		} else if (hospedajeReservado instanceof Hotel) {
-			Hotel hotel = (Hotel) hospedajeReservado;
-			double precioHotel = hotel.calcularPrecioPorNoche( tipoDeHabitacion) * getCantidadDePersonas();
-			return precioHotel;
-		} else if (hospedajeReservado instanceof Cabana) {
-			Cabana cabana = (Cabana) hospedajeReservado;
-			double PrecioCabana = cabana.calcularPrecioPorNoche( tipoDeHabitacion) * getCantidadDePersonas();
-			return PrecioCabana;
-		} else if (hospedajeReservado instanceof Resort) {
-			Resort resort = (Resort) hospedajeReservado;
-			double precioResort = resort.calcularPrecioPorNoche(tipoDeHabitacion) * getCantidadDePersonas();
-			return precioResort;
-		} else if (hospedajeReservado instanceof Camping) {
-			Camping camping = (Camping) hospedajeReservado;
-			double precioCamping = camping.calcularPrecioPorNoche( tipoDeHabitacion) * getCantidadDePersonas();
-			return precioCamping;
-		} else if (hospedajeReservado instanceof Glamping) {
-			Glamping glamping = (Glamping) hospedajeReservado;
-			double precioGlamping = glamping.calcularPrecioPorNoche( tipoDeHabitacion) * getCantidadDePersonas();
-			return precioGlamping;
+		if (numeroPersonas > 2) {
+			precio = precioPorPersona * numeroPersonas * numeroNoches;
+			precioTotal = precio * IMPUESTO;
+		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
+			precio = precioPorPersona * numeroNoches;
+			precioTotal = precio * IMPUESTO;
 		}
-		return 0.0;
+
+		return precioTotal;
 
 	}
-*/
+
+	@Override
+	public String realizarPago(boolean aceptar) {
+		String pagoRealizado = "";
+		if (aceptar) {
+			pagoRealizado = " Pago realizado por un total de : " + calcularPrecioTotal(numeroPersonas, numeroNoches);
+		} else {
+			cancelarPago();
+		}
+		return pagoRealizado;
+	}
+
+	@Override
+	public String cancelarPago() {
+		return " Pago Canselado";
+	}
+
+	/*
+	 * public double CalcularPrecio(String tipoDeHabitacion) {
+	 * 
+	 * if (hospedajeReservado instanceof Motel) {
+	 * Motel motel = (Motel) hospedajeReservado;
+	 * double precioMotel = motel.calcularPrecioPorNoche( tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return precioMotel;
+	 * } else if (hospedajeReservado instanceof Hotel) {
+	 * Hotel hotel = (Hotel) hospedajeReservado;
+	 * double precioHotel = hotel.calcularPrecioPorNoche( tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return precioHotel;
+	 * } else if (hospedajeReservado instanceof Cabana) {
+	 * Cabana cabana = (Cabana) hospedajeReservado;
+	 * double PrecioCabana = cabana.calcularPrecioPorNoche( tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return PrecioCabana;
+	 * } else if (hospedajeReservado instanceof Resort) {
+	 * Resort resort = (Resort) hospedajeReservado;
+	 * double precioResort = resort.calcularPrecioPorNoche(tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return precioResort;
+	 * } else if (hospedajeReservado instanceof Camping) {
+	 * Camping camping = (Camping) hospedajeReservado;
+	 * double precioCamping = camping.calcularPrecioPorNoche( tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return precioCamping;
+	 * } else if (hospedajeReservado instanceof Glamping) {
+	 * Glamping glamping = (Glamping) hospedajeReservado;
+	 * double precioGlamping = glamping.calcularPrecioPorNoche( tipoDeHabitacion) *
+	 * getCantidadDePersonas();
+	 * return precioGlamping;
+	 * }
+	 * return 0.0;
+	 * 
+	 * }
+	 */
 }

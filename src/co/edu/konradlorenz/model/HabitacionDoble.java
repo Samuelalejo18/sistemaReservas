@@ -1,31 +1,21 @@
 package co.edu.konradlorenz.model;
 
 public class HabitacionDoble extends Habitacion {
-    private double precioDobles;
+
     private String tipoCama;
 
     public HabitacionDoble() {
         super();
     }
 
-    public HabitacionDoble(int capacidad, boolean disponible, double precioDobles,
-            String tipoCama) {
-        super(capacidad, disponible);
-        this.precioDobles = precioDobles;
+    public HabitacionDoble(int capacidad, boolean disponible, double precioPorPersona, String tipoCama) {
+        super(capacidad, disponible, precioPorPersona);
         this.tipoCama = tipoCama;
     }
 
-    public HabitacionDoble(int capacidad, boolean disponible) {
-        super(capacidad, disponible);
-
-    }
-
-    public double getPrecioDobles() {
-        return precioDobles;
-    }
-
-    public void setPrecioDobles(double precioDobles) {
-        this.precioDobles = precioDobles;
+    public HabitacionDoble(int capacidad, boolean disponible, double precioPorPersona) {
+        super(capacidad, disponible, precioPorPersona);
+    
     }
 
     public String getTipoCama() {
@@ -34,6 +24,11 @@ public class HabitacionDoble extends Habitacion {
 
     public void setTipoCama(String tipoCama) {
         this.tipoCama = tipoCama;
+    }
+
+    @Override
+    public String toString() {
+        return "HabitacionDoble [tipoCama=" + tipoCama + "]";
     }
 
 }

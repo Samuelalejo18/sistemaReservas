@@ -6,16 +6,17 @@ public class Resort extends Hospedaje {
 	private String espaciosExclusivos;
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-			String descripcion, String tipo, double precioPorPersona, String actividadesExtra,
+			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion, String actividadesExtra,
 			String espaciosExclusivos) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.actividadesExtra = actividadesExtra;
 		this.espaciosExclusivos = espaciosExclusivos;
+		sumaPorHabitacion();
 	}
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-			String descripcion, String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 	}
 
 	public String getActividadesExtra() {
@@ -30,30 +31,7 @@ public class Resort extends Hospedaje {
 		return espaciosExclusivos;
 	}
 
-	@Override
-	public double calcularPrecioPorNoche(String tipoHabitacion) {
 
-		double precioTotal = PreciosHotel.TARIFA_BASE;
-		switch (tipoHabitacion.toLowerCase()) {
-			case "suite":
-				precioTotal += PreciosHotel.PRECIO_SUITE;
-				break;
-			case "presidencial":
-				precioTotal += PreciosHotel.PRECIO_PRESIDENCIAL;
-				break;
-			case "dobles":
-				precioTotal += PreciosHotel.PRECIO_DOBLES;
-				break;
-			case "sencilla":
-				precioTotal += PreciosHotel.PRECIO_SENCILLA;
-				break;
-			default:
-
-				return calcularPrecioPorNoche(tipoHabitacion);
-		}
-		return precioTotal;
-
-	}
 
 	public void setEspaciosExclusivos(String espaciosExclusivos) {
 		this.espaciosExclusivos = espaciosExclusivos;

@@ -6,7 +6,7 @@ public interface Pago {
 
     double calcularPrecioTotal(int numeroPersonas, int numeroNoches);
 
-    public void realizarPago();
+    public String realizarPago( boolean aceptar);
 
-    public void cancelarPago();
+    public String cancelarPago();
 }

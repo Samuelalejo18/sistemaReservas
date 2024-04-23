@@ -1,31 +1,26 @@
 package co.edu.konradlorenz.model;
 
 public class HabitacionPresidencial extends Habitacion {
-    private double precioPresidencial;
+
     private String serviciosExclusivos;
 
     public HabitacionPresidencial() {
         super();
     }
 
-    public HabitacionPresidencial(int capacidad, boolean disponible) {
-        super(capacidad, disponible);
-    }
 
-    public HabitacionPresidencial(int capacidad, boolean disponible, double precioPresidencial,
+    public HabitacionPresidencial(int capacidad, boolean disponible, double precioPorPersona,
             String serviciosExclusivos) {
-        super(capacidad, disponible);
-        this.precioPresidencial = precioPresidencial;
+        super(capacidad, disponible, precioPorPersona);
         this.serviciosExclusivos = serviciosExclusivos;
     }
 
-    public double getPrecioPresidencial() {
-        return precioPresidencial;
+    public HabitacionPresidencial(int capacidad, boolean disponible, double precioPorPersona) {
+        super(capacidad, disponible, precioPorPersona);
+   
     }
 
-    public void setPrecioPresidencial(double precioPresidencial) {
-        this.precioPresidencial = precioPresidencial;
-    }
+
 
     public String getServiciosExclusivos() {
         return serviciosExclusivos;
@@ -35,11 +30,13 @@ public class HabitacionPresidencial extends Habitacion {
         this.serviciosExclusivos = serviciosExclusivos;
     }
 
+
     @Override
     public String toString() {
-        return "HabitacionPresidencial [precioPresidencial=" + precioPresidencial + ", serviciosExclusivos="
-                + serviciosExclusivos + "]";
+        return "HabitacionPresidencial [serviciosExclusivos=" + serviciosExclusivos + "]";
     }
+
+  
 
 
     

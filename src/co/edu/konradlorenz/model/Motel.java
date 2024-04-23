@@ -10,40 +10,18 @@ public class Motel extends Hospedaje  {
 	}
 
 	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
-			String descripcion, String tipo,double precioPorPersona, String tematica, boolean jacuzzi, String servicio) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo,double precioAdicionalPorTipoHabitacion, String tematica, boolean jacuzzi, String servicio) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.tematica = tematica;
 		this.jacuzzi = jacuzzi;
 		this.servicio = servicio;
+		sumaPorHabitacion();
 	}
 
-	@Override
-	public double calcularPrecioPorNoche(String tipoHabitacion) {
-		double precioTotal = PreciosHotel.TARIFA_BASE;
-		switch (tipoHabitacion.toLowerCase()) {
-			case "suite":
-				precioTotal += PreciosHotel.PRECIO_SUITE;
-				break;
-			case "presidencial":
-				precioTotal += PreciosHotel.PRECIO_PRESIDENCIAL;
-				break;
-			case "dobles":
-				precioTotal += PreciosHotel.PRECIO_DOBLES;
-				break;
-			case "sencilla":
-				precioTotal += PreciosHotel.PRECIO_SENCILLA;
-				break;
-			default:
-				System.out.println("Tipo de habitación no válido");
-				return calcularPrecioPorNoche(tipoHabitacion);
-		}
-		return precioTotal;
-		
-	}
 
 	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
-			String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String tipo, double precioAdicionalPorTipoHabitacion) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 
 	}
 

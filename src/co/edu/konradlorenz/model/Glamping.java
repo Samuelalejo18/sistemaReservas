@@ -12,24 +12,18 @@ public class Glamping extends Hospedaje {
 	}
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona,String experienciasNaturales, String servicios, String sostenibilidad) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion,String experienciasNaturales, String servicios, String sostenibilidad) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.experienciasNaturales = experienciasNaturales;
 		this.servicios = servicios;
 		this.sostenibilidad = sostenibilidad;
-
+		sumaPorHabitacion();
 	}
-	@Override
-	public double calcularPrecioPorNoche(String tipoHabitacion) {
-
-		
-		return 0;
-
-	}
+	
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 
 	}
 
