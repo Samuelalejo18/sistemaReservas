@@ -9,7 +9,7 @@ public class Motel extends Hospedaje  {
 	public Motel() {
 	}
 
-	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
+	public Motel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, 
 			String descripcion, String tipo,double precioAdicionalPorTipoHabitacion, String tematica, boolean jacuzzi, String servicio) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
 		this.tematica = tematica;

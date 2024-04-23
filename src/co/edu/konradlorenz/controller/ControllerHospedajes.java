@@ -258,29 +258,29 @@ public class ControllerHospedajes {
 		/* Camping */
 		hospedajes.add(
 				new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5, "Un camping rodeado de montañas",
-						"Rural", "Área de fogatas", "Senderismo"));
+						"Rural",300000, "Área de fogatas", "Senderismo"));
 		hospedajes.add(new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
-				"Rural", "Zona de barbacoa", "Pesca"));
-		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural",
+				"Rural",200000 ,"Zona de barbacoa", "Pesca"));
+		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural",150000,
 				"Piscina natural", "Observación de aves"));
-		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural",
+		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural",450000,
 				"Zona de descanso", "Surf"));
 		hospedajes.add(
-				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",
+				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",220000,
 						"Parque infantil", "Excursiones"));
 		hospedajes.add(new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
-				"Un camping para los amantes de la adrenalina", "Rural", "Pared de escalada", "Rafting"));
+				"Un camping para los amantes de la adrenalina", "Rural",170000, "Pared de escalada", "Rafting"));
 		hospedajes.add(new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
-				"Un camping comprometido con el medio ambiente", "Rural", "Reciclaje", "Observación de estrellas"));
+				"Un camping comprometido con el medio ambiente", "Rural",380000, "Reciclaje", "Observación de estrellas"));
 		hospedajes.add(new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
 				"Un camping para desconectar y relajarse",
-				"Rural", "Área de meditación", "Yoga"));
+				"Rural",240000, "Área de meditación", "Yoga"));
 		hospedajes.add(new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
-				"Un camping para los más intrépidos", "Rural", "Tirolesa", "Escalada"));
+				"Un camping para los más intrépidos", "Rural",18000, "Tirolesa", "Escalada"));
 		hospedajes.add(new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
-				"Un camping para parejas en busca de romance", "Rural", "Área de picnic", "Paseos nocturnos"));
+				"Un camping para parejas en busca de romance", "Rural",165000, "Área de picnic", "Paseos nocturnos"));
 		hospedajes.add(new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
-				"Camping con excelente ubicacion", "rural", "Cercano a parrillas comunitarias", "Yoga"));
+				"Camping con excelente ubicacion", "rural",175000, "Cercano a parrillas comunitarias", "Yoga"));
 
 		/* Glampings */
 		hospedajes.add(new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
@@ -314,14 +314,14 @@ public class ControllerHospedajes {
 				"Un hotel exclusivo con atención personalizada", "Urbano", true, false));
 
 		/* Moteles */
-		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, 2,
+		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3
 				"Un motel para momentos especiales",
 				"Urbano",200000, "Romántica", true, "Servicio a la habitación");
-		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, 2,
+		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, 
 				"Cada habitación con una temática diferente", "Urbano",50000, "Fantasía", true, "Desayuno incluido");
-		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, 3, "Con instalaciones de primer nivel",
+		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, "Con instalaciones de primer nivel",
 				"Urbano", "Elegante", true, "Spa privado");
-		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, 2, "Con un estilo retro y acogedor",
+		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3 "Con un estilo retro y acogedor",
 				"Urbano",
 				"Clásica", false, "Bar en la habitación");
 
@@ -331,16 +331,16 @@ public class ControllerHospedajes {
 		hospedajes.add(motel4);
 
 		/* Resort */
-		Resort resort1 = new Resort("Resort de Lujo", "Punta Cana", "Republica Dominicana", 5, 10,
+		Resort resort1 = new Resort("Resort de Lujo", "Punta Cana", "Republica Dominicana", 5, 
 				"Un resort de lujo en el centro de la ciudad",
 				"Urbano", "Spa de clase mundial", "Piscina en la azotea");
-		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4, 8,
+		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4,
 				"Perfecto para vacaciones en familia",
 				"Urbano", "Club infantil", "Parque acuático");
-		Resort resort3 = new Resort("Resort Wellness", "Santorini", "Grecia", 5, 12,
+		Resort resort3 = new Resort("Resort Wellness", "Santorini", "Grecia", 5, 
 				"Para quienes buscan bienestar y relajación",
 				"Urbano", "Yoga y meditación", "Circuitos de hidroterapia");
-		Resort resort4 = new Resort("Resort de Negocios", "Bali", "Indonesia", 4, 6,
+		Resort resort4 = new Resort("Resort de Negocios", "Bali", "Indonesia", 4, 
 				"Ideal para viajes de trabajo y eventos corporativos", "Urbano", "Salas de reuniones equipadas",
 				"Centro de convenciones");
 		hospedajes.add(resort1);

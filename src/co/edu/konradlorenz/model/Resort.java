@@ -5,7 +5,7 @@ public class Resort extends Hospedaje {
 	private String actividadesExtra;
 	private String espaciosExclusivos;
 
-	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
+	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
 			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion, String actividadesExtra,
 			String espaciosExclusivos) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
@@ -15,7 +15,7 @@ public class Resort extends Hospedaje {
 		sumaPorHabitacion();
 	}
 
-	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
+	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, 
 			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
 				precioAdicionalPorTipoHabitacion);
