@@ -237,10 +237,21 @@ public class ControllerHospedajes {
 		hospedajes.add(cabana1);
 		HabitacionBase habitacionBase1 = new HabitacionBase(2, true, "Wifi, TV, aire acondicionado");
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(4, true, 50000, "Queen");
-
-
 		cabana1.agregarHabitacion(habitacionBase1);
 		cabana1.agregarHabitacion(habitacionDoble1);
+
+		HabitacionBase habitacionBase2 = new HabitacionBase(3, true, "Wifi, TV, Minibar");
+		HabitacionBase habitacionBase3 = new HabitacionBase(4, false, "Wifi, TV, Balcón");
+		HabitacionBase habitacionBase4 = new HabitacionBase(2, true, "Wifi, TV, Vista al mar");
+		HabitacionBase habitacionBase5 = new HabitacionBase(3, false, "Wifi, TV, Escritorio");
+		HabitacionBase habitacionBase6 = new HabitacionBase(2, true, "Wifi, TV, Baño privado");
+		HabitacionBase habitacionBase7 = new HabitacionBase(4, true, "Wifi, TV, Cocina");
+		HabitacionBase habitacionBase8 = new HabitacionBase(2, false, "Wifi, TV, Aire acondicionado");
+		HabitacionBase habitacionBase9 = new HabitacionBase(3, true, "Wifi, TV, Caja fuerte");
+		HabitacionBase habitacionBase10 = new HabitacionBase(2, true, "Wifi, TV, Jacuzzi");
+		HabitacionBase habitacionBase11 = new HabitacionBase(4, false, "Wifi, TV, Chimenea");
+
+
 		Cabana cabana2 = new Cabana("Cabana de Montaña", "Monterrey", "Mexico", 5,
 				"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
 		hospedajes.add(cabana2);
