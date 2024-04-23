@@ -23,7 +23,7 @@ public class Cabana extends Hospedaje {
 	
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
 	String tipo, double precioAdicionalPorTipoHabitacion) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion); 
 		// TODO Auto-generated constructor stub
 	}
 	

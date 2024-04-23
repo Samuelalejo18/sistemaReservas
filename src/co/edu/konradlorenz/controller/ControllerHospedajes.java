@@ -258,49 +258,49 @@ public class ControllerHospedajes {
 		/* Camping */
 		hospedajes.add(
 				new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5, "Un camping rodeado de montañas",
-						"Rural", "Área de fogatas", "Senderismo"));
+						"Rural", 420000, "Área de fogatas", "Senderismo"));
 		hospedajes.add(new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
-				"Rural", "Zona de barbacoa", "Pesca"));
-		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural",
+				"Rural", 320000,  "Zona de barbacoa", "Pesca"));
+		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural", 170000,
 				"Piscina natural", "Observación de aves"));
-		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural",
+		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural", 720000,
 				"Zona de descanso", "Surf"));
 		hospedajes.add(
-				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",
+				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural", 230000,
 						"Parque infantil", "Excursiones"));
 		hospedajes.add(new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
-				"Un camping para los amantes de la adrenalina", "Rural", "Pared de escalada", "Rafting"));
+				"Un camping para los amantes de la adrenalina", "Rural", 130000,  "Pared de escalada", "Rafting"));
 		hospedajes.add(new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
-				"Un camping comprometido con el medio ambiente", "Rural", "Reciclaje", "Observación de estrellas"));
+				"Un camping comprometido con el medio ambiente", "Rural", 370000, "Reciclaje", "Observación de estrellas"));
 		hospedajes.add(new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
 				"Un camping para desconectar y relajarse",
-				"Rural", "Área de meditación", "Yoga"));
+				"Rural", 340000, "Área de meditación", "Yoga"));
 		hospedajes.add(new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
-				"Un camping para los más intrépidos", "Rural", "Tirolesa", "Escalada"));
+				"Un camping para los más intrépidos", "Rural", 250000, "Tirolesa", "Escalada"));
 		hospedajes.add(new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
-				"Un camping para parejas en busca de romance", "Rural", "Área de picnic", "Paseos nocturnos"));
+				"Un camping para parejas en busca de romance", "Rural", 1000000, "Área de picnic", "Paseos nocturnos"));
 		hospedajes.add(new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
-				"Camping con excelente ubicacion", "rural", "Cercano a parrillas comunitarias", "Yoga"));
+				"Camping con excelente ubicacion", "rural", 420000, "Cercano a parrillas comunitarias", "Yoga"));
 
 		/* Glampings */
 		hospedajes.add(new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
-				"Glamping perfecto para ir con tu pareja", "rural", "Vistas con mucha fauan", "Comida",
+				"Glamping perfecto para ir con tu pareja", "rural", 420000, "Vistas con mucha fauan", "Comida",
 				"Todo es reciclable"));
 		hospedajes.add(
 				new Glamping("Glamping de Montaña", "Monteverde", "CostaRica", 5,
 						"Una experiencia de lujo en la naturaleza",
-						"Rural", "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
+						"Rural", 320000, "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
 		hospedajes.add(new Glamping("Glamping Ecológico", "El Chalten ", "Argentina", 4,
-				"Un glamping comprometido con el medio ambiente", "Rural", "Senderismo guiado", "Cocina gourmet",
+				"Un glamping comprometido con el medio ambiente", "Rural", 230000, "Senderismo guiado", "Cocina gourmet",
 				"Reciclaje"));
-		hospedajes.add(new Glamping("Glamping Romántico", "Sapa", "Vietnam", 4, "Un refugio íntimo para parejas",
-				"Rural", "Paseos a caballo", "Baño de burbujas", "Energía renovable"));
+		hospedajes.add(new Glamping("Glamping Romántico", "Vietnam", "Vietnam", 4, "Un refugio íntimo para parejas",
+				"Rural", 375000, "Paseos a caballo", "Baño de burbujas", "Energía renovable"));
 		hospedajes.add(new Glamping("Glamping de Aventura", "Yosemite Valley", "Estados Unidos", 3,
-				"Una experiencia única para los aventureros", "Rural", "Rutas en quad", "Barbacoa privada",
+				"Una experiencia única para los aventureros", "Rural", 275000, "Rutas en quad", "Barbacoa privada",
 				"Gestión de residuos"));
 		hospedajes
 				.add(new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4, "Un glamping para disfrutar en familia",
-						"Rural", "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
+						"Rural", 1200000, "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
 
 		/* Hotel */
 		hospedajes.add(new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", 150000, true, true));
