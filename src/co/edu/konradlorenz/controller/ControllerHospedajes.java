@@ -284,23 +284,23 @@ public class ControllerHospedajes {
 
 		/* Glampings */
 		hospedajes.add(new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
-				"Glamping perfecto para ir con tu pareja", "rural", "Vistas con mucha fauan", "Comida",
+				"Glamping perfecto para ir con tu pareja", "rural",7000000, "Vistas con mucha fauan", "Comida",
 				"Todo es reciclable"));
 		hospedajes.add(
 				new Glamping("Glamping de Montaña", "Monteverde", "CostaRica", 5,
 						"Una experiencia de lujo en la naturaleza",
-						"Rural", "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
+						"Rural",750000, "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
 		hospedajes.add(new Glamping("Glamping Ecológico", "El Chalten ", "Argentina", 4,
-				"Un glamping comprometido con el medio ambiente", "Rural", "Senderismo guiado", "Cocina gourmet",
+				"Un glamping comprometido con el medio ambiente", "Rural", 550000, "Senderismo guiado", "Cocina gourmet",
 				"Reciclaje"));
 		hospedajes.add(new Glamping("Glamping Romántico", "Sapa", "Vietnam", 4, "Un refugio íntimo para parejas",
-				"Rural", "Paseos a caballo", "Baño de burbujas", "Energía renovable"));
+				"Rural",580000, "Paseos a caballo", "Baño de burbujas", "Energía renovable"));
 		hospedajes.add(new Glamping("Glamping de Aventura", "Yosemite Valley", "Estados Unidos", 3,
-				"Una experiencia única para los aventureros", "Rural", "Rutas en quad", "Barbacoa privada",
+				"Una experiencia única para los aventureros", "Rural", 400000, "Rutas en quad", "Barbacoa privada",
 				"Gestión de residuos"));
 		hospedajes
 				.add(new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4, "Un glamping para disfrutar en familia",
-						"Rural", "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
+						"Rural",4800000 ,"Visita a granja local", "Actividades para niños", "Reutilización de agua"));
 
 		/* Hotel */
 		hospedajes.add(new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", true, true));
