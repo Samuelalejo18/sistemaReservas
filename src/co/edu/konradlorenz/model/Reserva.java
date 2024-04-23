@@ -84,13 +84,12 @@ public class Reserva implements Pago {
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
 		double precioPorPersona = hospedajeReservado.sumaPorHabitacion();
 		double precio = 0;
-
 		if (numeroPersonas > 2) {
 			precio = precioPorPersona * numeroPersonas * numeroNoches;
-			precioTotal = precio * IMPUESTO;
+			precioTotal =precio + (precio* IMPUESTO);
 		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
 			precio = precioPorPersona * numeroNoches;
-			precioTotal = precio * IMPUESTO;
+			precioTotal = precio + (precio* IMPUESTO);
 		}
 
 		return precioTotal;

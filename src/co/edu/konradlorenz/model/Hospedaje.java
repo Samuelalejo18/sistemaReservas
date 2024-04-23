@@ -104,7 +104,7 @@ public abstract class Hospedaje {
 		double sumaPorHabitacion = 0;
 		for (Habitacion habitacion : habitaciones) {
 			if (habitacion instanceof HabitacionBase) {
-				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+				sumaPorHabitacion = habitacion.getPrecioAdicionalPorTipoHabitacion();
 			} else if (habitacion instanceof HabitacionDoble) {
 				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
 			} else if (habitacion instanceof HabitacionPresidencial) {

@@ -8,7 +8,8 @@ public class Resort extends Hospedaje {
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
 			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion, String actividadesExtra,
 			String espaciosExclusivos) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
+				precioAdicionalPorTipoHabitacion);
 		this.actividadesExtra = actividadesExtra;
 		this.espaciosExclusivos = espaciosExclusivos;
 		sumaPorHabitacion();
@@ -16,7 +17,8 @@ public class Resort extends Hospedaje {
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, int maximoDePisos,
 			String descripcion, String tipo, double precioAdicionalPorTipoHabitacion) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioAdicionalPorTipoHabitacion);
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
+				precioAdicionalPorTipoHabitacion);
 	}
 
 	public String getActividadesExtra() {
@@ -30,8 +32,6 @@ public class Resort extends Hospedaje {
 	public String getEspaciosExclusivos() {
 		return espaciosExclusivos;
 	}
-
-
 
 	public void setEspaciosExclusivos(String espaciosExclusivos) {
 		this.espaciosExclusivos = espaciosExclusivos;
