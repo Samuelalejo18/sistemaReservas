@@ -22,6 +22,13 @@ public class Habitacion {
 		this.precioAdicionalPorTipoHabitacion = precioAdicionalPorTipoHabitacion;
 	}
 
+	public Habitacion(int capacidad, boolean disponible) {
+		this.capacidad = capacidad;
+		this.disponible = disponible;
+		
+	}
+
+
 
 
 	public int getCapacidad() {

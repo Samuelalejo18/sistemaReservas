@@ -10,13 +10,13 @@ public class HabitacionBase extends Habitacion {
 
   
 
-    public HabitacionBase(int capacidad, boolean disponible,  double precioPorPersona, String comidadesBasicas) {
+    public HabitacionBase(int capacidad, boolean disponible, String comidadesBasicas) {
         super(capacidad, disponible,  precioPorPersona);
         this.comidadesBasicas = comidadesBasicas;
     }
 
-    public HabitacionBase(int capacidad, boolean disponible, double precioPorPersona) {
-        super(capacidad, disponible, precioPorPersona);
+    public HabitacionBase(int capacidad, boolean disponible) {
+        super(capacidad, disponible);
       
     }
 
