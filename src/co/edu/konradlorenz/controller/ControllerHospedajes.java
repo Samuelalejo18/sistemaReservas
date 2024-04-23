@@ -239,8 +239,18 @@ public class ControllerHospedajes {
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(4, true, 50000, "Queen");
 		cabana1.agregarHabitacion(habitacionBase1);
 		cabana1.agregarHabitacion(habitacionDoble1);
+		
+		Cabana cabana2 = new Cabana("Cabana de Montaña", "Monterrey", "Mexico", 5,
+		"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
+		hospedajes.add(cabana2);
+		HabitacionBase habitacionBase2 = new HabitacionBase(2, true, "Wifi, TV, Minibar");
+		HabitacionDoble habitacionDoble2 = new HabitacionDoble(4, true, 25.0, "King");
+		cabana2.agregarHabitacion(habitacionBase2);
+		cabana2.agregarHabitacion(habitacionDoble2);
+		
+				HabitacionDoble habitacionDoble3 = new HabitacionDoble(2, false, 18.0, "Matrimonial");
 
-		HabitacionBase habitacionBase2 = new HabitacionBase(3, true, "Wifi, TV, Minibar");
+
 		HabitacionBase habitacionBase3 = new HabitacionBase(4, false, "Wifi, TV, Balcón");
 		HabitacionBase habitacionBase4 = new HabitacionBase(2, true, "Wifi, TV, Vista al mar");
 		HabitacionBase habitacionBase5 = new HabitacionBase(3, false, "Wifi, TV, Escritorio");
@@ -251,10 +261,16 @@ public class ControllerHospedajes {
 		HabitacionBase habitacionBase10 = new HabitacionBase(2, true, "Wifi, TV, Jacuzzi");
 		HabitacionBase habitacionBase11 = new HabitacionBase(4, false, "Wifi, TV, Chimenea");
 
+		HabitacionDoble habitacionDoble4 = new HabitacionDoble(2, true, 30.0, "Queen");
+		HabitacionDoble habitacionDoble5 = new HabitacionDoble(2, false, 22.0, "King");
+		HabitacionDoble habitacionDoble6 = new HabitacionDoble(2, true, 20.0, "Matrimonial");
+		HabitacionDoble habitacionDoble7 = new HabitacionDoble(2, true, 35.0, "Queen");
+		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, false, 28.0, "King");
+		HabitacionDoble habitacionDoble9 = new HabitacionDoble(2, true, 25.0, "Matrimonial");
+		HabitacionDoble habitacionDoble10 = new HabitacionDoble(2, true, 40.0, "Queen");
+		HabitacionDoble habitacionDoble11 = new HabitacionDoble(2, false, 30.0, "King");
 
-		Cabana cabana2 = new Cabana("Cabana de Montaña", "Monterrey", "Mexico", 5,
-				"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
-		hospedajes.add(cabana2);
+
 
 		Cabana cabana3 = new Cabana("Cabana de Playa", "Cancun", "Mexico", 4,
 				"Un refugio junto al mar con vista panorámica", "Rural", 120000, "Tropical", false, "Surf");
