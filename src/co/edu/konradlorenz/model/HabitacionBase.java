@@ -11,7 +11,7 @@ public class HabitacionBase extends Habitacion {
   
 
     public HabitacionBase(int capacidad, boolean disponible, String comidadesBasicas) {
-        super(capacidad, disponible,  precioPorPersona);
+        super(capacidad, disponible);
         this.comidadesBasicas = comidadesBasicas;
     }
 

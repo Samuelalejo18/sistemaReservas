@@ -9,14 +9,14 @@ public class HabitacionPresidencial extends Habitacion {
     }
 
 
-    public HabitacionPresidencial(int capacidad, boolean disponible, double precioPorPersona,
+    public HabitacionPresidencial(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion,
             String serviciosExclusivos) {
-        super(capacidad, disponible, precioPorPersona);
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
         this.serviciosExclusivos = serviciosExclusivos;
     }
 
-    public HabitacionPresidencial(int capacidad, boolean disponible, double precioPorPersona) {
-        super(capacidad, disponible, precioPorPersona);
+    public HabitacionPresidencial(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
    
     }
 

@@ -8,14 +8,14 @@ public class HabitacionSuite extends Habitacion {
         super();
     }
 
-    public HabitacionSuite(int capacidad, boolean disponible, double precioPorPersona,
+    public HabitacionSuite(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion,
             String serviciosDeLujoIncluidos) {
-        super(capacidad, disponible, precioPorPersona);
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
         this.serviciosDeLujoIncluidos = serviciosDeLujoIncluidos;
     }
 
-    public HabitacionSuite(int capacidad, boolean disponible, double precioPorPersona) {
-        super(capacidad, disponible, precioPorPersona);
+    public HabitacionSuite(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
 
     }
 

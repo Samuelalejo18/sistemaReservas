@@ -8,13 +8,13 @@ public class HabitacionDoble extends Habitacion {
         super();
     }
 
-    public HabitacionDoble(int capacidad, boolean disponible, double precioPorPersona, String tipoCama) {
-        super(capacidad, disponible, precioPorPersona);
+    public HabitacionDoble(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion, String tipoCama) {
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
         this.tipoCama = tipoCama;
     }
 
-    public HabitacionDoble(int capacidad, boolean disponible, double precioPorPersona) {
-        super(capacidad, disponible, precioPorPersona);
+    public HabitacionDoble(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+        super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
     
     }
 

@@ -2,9 +2,10 @@ package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.Cabana;
+import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Glamping;
+import co.edu.konradlorenz.model.HabitacionBase;
 import co.edu.konradlorenz.model.Hospedaje;
 import co.edu.konradlorenz.model.Hotel;
 import co.edu.konradlorenz.model.Motel;
@@ -234,7 +235,12 @@ public class ControllerHospedajes {
 		Cabana cabana1 = new Cabana("Cabana las mercedes", "Villeta", "Colombia", 5, "Cabaña bonita", "Cabaña rural",
 				230000, "Luces bonitas amarillas", false, "Baño frente a la cascada");
 		hospedajes.add(cabana1);
+		HabitacionBase habitacionBase1 = new HabitacionBase(2, true, "Wifi, TV, aire acondicionado");
+		HabitacionDoble habitacionDoble1 = new HabitacionDoble(4, true, 50000, "Queen");
 
+
+		cabana1.agregarHabitacion(habitacionBase1);
+		cabana1.agregarHabitacion(habitacionDoble1);
 		Cabana cabana2 = new Cabana("Cabana de Montaña", "Monterrey", "Mexico", 5,
 				"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
 		hospedajes.add(cabana2);
