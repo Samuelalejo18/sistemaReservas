@@ -1,6 +1,7 @@
 package co.edu.konradlorenz.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Reserva implements Pago {
 	private Cliente cliente;
@@ -11,7 +12,8 @@ public class Reserva implements Pago {
 	private double precioTotal;
 	private int numeroNoches;
 
-	
+	ArrayList<Habitacion> habitacionesAReservar = hospedajeReservado.getHabitaciones();
+
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
 			int cantidadDePersonas, double precioTotal, int numeroNoches) {
 		this.cliente = cliente;
@@ -20,7 +22,6 @@ public class Reserva implements Pago {
 		this.hospedajeReservado = hospedajeReservado;
 		this.cantidadDePersonas = cantidadDePersonas;
 		this.precioTotal = precioTotal;
-	
 		this.numeroNoches = numeroNoches;
 	}
 
@@ -80,16 +81,30 @@ public class Reserva implements Pago {
 		this.numeroNoches = numeroNoches;
 	}
 
+
+
+	
+	public Habitacion reservarHabitacion(int numeroHabitacion) {
+
+		for (Habitacion habitacion : habitacionesAReservar) {
+			if (habitacion.getNumeroHabitacion() == numeroHabitacion) {
+				return habitacion;
+			}
+		}
+		return null;
+
+	}
+
 	@Override
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
 		double precioPorPersona = hospedajeReservado.sumaPorHabitacion();
 		double precio = 0;
 		if (numeroPersonas > 2) {
 			precio = precioPorPersona * numeroPersonas * numeroNoches;
-			precioTotal =precio + (precio* IMPUESTO);
+			precioTotal = precio + (precio * IMPUESTO);
 		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
 			precio = precioPorPersona * numeroNoches;
-			precioTotal = precio + (precio* IMPUESTO);
+			precioTotal = precio + (precio * IMPUESTO);
 		}
 
 		return precioTotal;
@@ -100,7 +115,8 @@ public class Reserva implements Pago {
 	public String realizarPago(boolean aceptar) {
 		String pagoRealizado = "";
 		if (aceptar) {
-			pagoRealizado = " Pago realizado por un total de : " + calcularPrecioTotal(cantidadDePersonas, numeroNoches);
+			pagoRealizado = " Pago realizado por un total de : "
+					+ calcularPrecioTotal(cantidadDePersonas, numeroNoches);
 		} else {
 			cancelarPago();
 		}
@@ -116,13 +132,18 @@ public class Reserva implements Pago {
 	public String toString() {
 		return "Reserva [cliente=" + cliente + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida
 				+ ", hospedajeReservado=" + hospedajeReservado + ", cantidadDePersonas=" + cantidadDePersonas
-				+ ", precioTotal=" + precioTotal  + ", numeroNoches="
+				+ ", precioTotal=" + precioTotal + ", numeroNoches="
 				+ numeroNoches + "]";
 	}
 
+	public ArrayList<Habitacion> getHabitacionesAReservar() {
+		return habitacionesAReservar;
+	}
 
+	public void setHabitacionesAReservar(ArrayList<Habitacion> habitacionesAReservar) {
+		this.habitacionesAReservar = habitacionesAReservar;
+	}
 
-	
 	/*
 	 * public double CalcularPrecio(String tipoDeHabitacion) {
 	 * 
