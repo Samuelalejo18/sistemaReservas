@@ -9,17 +9,19 @@ public class Reserva implements Pago {
 	private Hospedaje hospedajeReservado;
 	private int cantidadDePersonas;
 	private double precioTotal;
-	private int numeroPersonas;
 	private int numeroNoches;
 
+	
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
-			int cantidadDePersonas, double precioTotal) {
+			int cantidadDePersonas, double precioTotal, int numeroNoches) {
 		this.cliente = cliente;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.hospedajeReservado = hospedajeReservado;
 		this.cantidadDePersonas = cantidadDePersonas;
 		this.precioTotal = precioTotal;
+	
+		this.numeroNoches = numeroNoches;
 	}
 
 	public Cliente getCliente() {
@@ -70,6 +72,14 @@ public class Reserva implements Pago {
 		this.precioTotal = precioTotal;
 	}
 
+	public int getNumeroNoches() {
+		return numeroNoches;
+	}
+
+	public void setNumeroNoches(int numeroNoches) {
+		this.numeroNoches = numeroNoches;
+	}
+
 	@Override
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
 		double precioPorPersona = hospedajeReservado.sumaPorHabitacion();
@@ -91,7 +101,7 @@ public class Reserva implements Pago {
 	public String realizarPago(boolean aceptar) {
 		String pagoRealizado = "";
 		if (aceptar) {
-			pagoRealizado = " Pago realizado por un total de : " + calcularPrecioTotal(numeroPersonas, numeroNoches);
+			pagoRealizado = " Pago realizado por un total de : " + calcularPrecioTotal(cantidadDePersonas, numeroNoches);
 		} else {
 			cancelarPago();
 		}
@@ -103,6 +113,17 @@ public class Reserva implements Pago {
 		return " Pago Canselado";
 	}
 
+	@Override
+	public String toString() {
+		return "Reserva [cliente=" + cliente + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida
+				+ ", hospedajeReservado=" + hospedajeReservado + ", cantidadDePersonas=" + cantidadDePersonas
+				+ ", precioTotal=" + precioTotal  + ", numeroNoches="
+				+ numeroNoches + "]";
+	}
+
+
+
+	
 	/*
 	 * public double CalcularPrecio(String tipoDeHabitacion) {
 	 * 
