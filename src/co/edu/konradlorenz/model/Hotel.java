@@ -48,4 +48,6 @@ public class Hotel extends Hospedaje {
         return "Hotel [piscina=" + piscina + ", gimnasio=" + gimnasio + "]";
     }
 
+
+
 }

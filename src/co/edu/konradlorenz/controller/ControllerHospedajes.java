@@ -293,88 +293,125 @@ public class ControllerHospedajes {
 
 		HabitacionBase habitacionBase7 = new HabitacionBase(4, true, "Wifi, TV, Cocina");
 		HabitacionDoble habitacionDoble7 = new HabitacionDoble(2, true, 30000, "Queen");
-		cabana7.agregarHabitacion(habitacionBase7 );
+		cabana7.agregarHabitacion(habitacionBase7);
 		cabana7.agregarHabitacion(habitacionDoble7);
 
 		Cabana cabana8 = new Cabana("Cabana de Campo", "Capitanejo", "Colombia", 5,
-				"Un refugio campestre con todas las comodidades", "Rural", 230000);
+				"Un refugio campestre con todas las comodidades", "Rural", 300000);
 		hospedajes.add(cabana8);
 		HabitacionBase habitacionBase8 = new HabitacionBase(2, false, "Wifi, TV, Aire acondicionado");
-		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, false, 28.0, "King");
+		HabitacionDoble habitacionDoble8 = new HabitacionDoble(4, false, 45000, "King");
+		cabana8.agregarHabitacion(habitacionDoble8);
+		cabana8.agregarHabitacion(habitacionDoble8);
 
 		Cabana cabana9 = new Cabana("Cabana Ecológica", "Anapoima", "Colombia", 4,
-				"Una cabaña diseñada para minimizar su impacto ambiental", "Rural", 420000, "Sostenible", false,
+				"Una cabaña diseñada para minimizar su impacto ambiental", "Rural", 210000, "Sostenible", false,
 				"Reciclaje");
 		hospedajes.add(cabana9);
 
-		HabitacionBase habitacionBase9 = new HabitacionBase(3, true, "Wifi, TV, Caja fuerte");
-		HabitacionDoble habitacionDoble9 = new HabitacionDoble(2, true, 25.0, "Matrimonial");
+		HabitacionBase habitacionBase9 = new HabitacionBase(1, true, "Wifi, TV, Caja fuerte");
+		HabitacionDoble habitacionDoble9 = new HabitacionDoble(3, true, 40000, "Matrimonial");
+		cabana9.agregarHabitacion(habitacionDoble9);
+		cabana9.agregarHabitacion(habitacionDoble9);
 
 		Cabana cabana10 = new Cabana("Cabana Romántica", "Neusa", "Colombia", 3,
-				"Un rincón íntimo para parejas en busca de tranquilidad", "Rural", 320000, "Acogedora", true,
+				"Un rincón íntimo para parejas en busca de tranquilidad", "Rural", 150000, "Acogedora", true,
 				"Masajes");
 		hospedajes.add(cabana10);
 		HabitacionBase habitacionBase10 = new HabitacionBase(2, true, "Wifi, TV, Jacuzzi");
-		HabitacionDoble habitacionDoble10 = new HabitacionDoble(2, true, 40.0, "Queen");
+		HabitacionDoble habitacionDoble10 = new HabitacionDoble(4, true, 35000, "Queen");
+
+		cabana10.agregarHabitacion(habitacionDoble10);
+		cabana10.agregarHabitacion(habitacionBase10);
 
 		Cabana cabana11 = new Cabana("Cabana de Lujo", "Anapoima", "Colombia", 5,
-				"Una experiencia exclusiva con servicio de primera clase", "Rural", 230000, "Elegante", false,
+				"Una experiencia exclusiva con servicio de primera clase", "Rural", 400000, "Elegante", false,
 				"Gastronomía gourmet");
 		hospedajes.add(cabana11);
 
 		HabitacionBase habitacionBase11 = new HabitacionBase(2, true, "Wifi, TV, Jacuzzi");
-		HabitacionDoble habitacionDoble11 = new HabitacionDoble(2, false, 30.0, "King");
+		HabitacionDoble habitacionDoble11 = new HabitacionDoble(2, false, 90000, "King");
+		cabana11.agregarHabitacion(habitacionBase11);
+		cabana11.agregarHabitacion(habitacionDoble11);
 
 		/* Camping */
 		Camping camping1 = new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5,
 				"Un camping rodeado de montañas",
 				"Rural", 420000, "Área de fogatas", "Senderismo");
 
+		hospedajes.add(camping1);
+		HabitacionBase habitacion12 = new HabitacionBase(1, true, "Con vistas a  la montana");
+		HabitacionDoble habitacionDoble12 = new HabitacionDoble(4, true, 80000, "Queen");
+		camping1.agregarHabitacion(habitacion12);
+		camping1.agregarHabitacion(habitacionDoble12);
+
 		Camping camping2 = new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
 				"Rural", 320000, "Zona de barbacoa", "Pesca");
+		hospedajes.add(camping2);
+		HabitacionBase habitacion13 = new HabitacionBase(2, true, "Con escritorio");
+		HabitacionDoble habitacionDoble13 = new HabitacionDoble(3, true, 60000, "King");
 
+		camping1.agregarHabitacion(habitacionDoble13);
 		Camping camping3 = new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles",
 				"Rural",
 				170000, "Piscina natural", "Observación de aves");
+		hospedajes.add(camping3);
+		HabitacionBase habitacion14 = new HabitacionBase(3, false, "Con armario empotrado");
+		HabitacionDoble habitacionDoble14 = new HabitacionDoble(2, false, 25.0, "Matrimonial");
 
 		Camping camping4 = new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar",
 				"Rural",
 				720000, "Zona de descanso", "Surf");
+		hospedajes.add(camping4);
+		HabitacionBase habitacion15 = new HabitacionBase(5, true, "Con cama Queen Size");
+		HabitacionDoble habitacionDoble15 = new HabitacionDoble(2, true, 18.0, "Doble");
 
 		Camping camping5 = new Camping("Camping Familiar", "Moab", "Estados Unidos", 4,
 				"Un camping ideal para familias", "Rural",
 				230000, "Parque infantil", "Excursiones");
 
+		hospedajes.add(camping5);
+		HabitacionBase habitacion16 = new HabitacionBase(4, false, "Con balcón privado");
+		HabitacionDoble habitacionDoble16 = new HabitacionDoble(2, false, 22.0, "Individual");
+
 		Camping camping6 = new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
 				"Un camping para los amantes de la adrenalina", "Rural", 130000, "Pared de escalada", "Rafting");
+		hospedajes.add(camping6);
+		HabitacionBase habitacion17 = new HabitacionBase(2, true, "Con servicio de habitaciones 24 horas");
+		HabitacionDoble habitacionDoble17 = new HabitacionDoble(2, true, 30.0, "Estándar");
 
 		Camping camping7 = new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
 				"Un camping comprometido con el medio ambiente", "Rural", 370000, "Reciclaje",
 				"Observación de estrellas");
+		hospedajes.add(camping7);
+		HabitacionBase habitacion18 = new HabitacionBase(3, true, "Con cafetera");
+		HabitacionDoble habitacionDoble18 = new HabitacionDoble(2, true, 20.0, "Deluxe");
 
 		Camping camping8 = new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
 				"Un camping para desconectar y relajarse", "Rural", 340000, "Área de meditación", "Yoga");
+		hospedajes.add(camping8);
+		HabitacionBase habitacion19 = new HabitacionBase(4, true, "Con bañera de hidromasaje");
+		HabitacionDoble habitacionDoble19 = new HabitacionDoble(2, false, 18.0, "Junior");
 
 		Camping camping9 = new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
 				"Un camping para los más intrépidos", "Rural", 250000, "Tirolesa", "Escalada");
+		hospedajes.add(camping9);
+		HabitacionBase habitacion20 = new HabitacionBase(2, false, "Con acceso a la piscina");
+		HabitacionDoble habitacionDoble20 = new HabitacionDoble(2, true, 35.0, "Presidencial");
 
 		Camping camping10 = new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
 				"Un camping para parejas en busca de romance", "Rural", 1000000, "Área de picnic", "Paseos nocturnos");
 
+		hospedajes.add(camping10);
+
+		HabitacionBase habitacion21 = new HabitacionBase(6, true, "Con sauna privada");
+		HabitacionDoble habitacionDoble21 = new HabitacionDoble(2, true, 20.0, "Ejecutiva");
 		Camping camping11 = new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
 				"Camping con excelente ubicacion", "rural", 420000, "Cercano a parrillas comunitarias", "Yoga");
 
-		hospedajes.add(camping1);
-		hospedajes.add(camping2);
-		hospedajes.add(camping3);
-		hospedajes.add(camping4);
-		hospedajes.add(camping5);
-		hospedajes.add(camping6);
-		hospedajes.add(camping7);
-		hospedajes.add(camping8);
-		hospedajes.add(camping9);
-		hospedajes.add(camping10);
 		hospedajes.add(camping11);
+		HabitacionBase habitacion22 = new HabitacionBase(3, true, "Con vistas al río");
+		HabitacionDoble habitacionDoble22 = new HabitacionDoble(2, true, 20.0, "Familiar");
 
 		/* Glampings */
 

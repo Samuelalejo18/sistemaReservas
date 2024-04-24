@@ -105,17 +105,27 @@ public abstract class Hospedaje {
 		for (Habitacion habitacion : habitaciones) {
 			if (habitacion instanceof HabitacionBase) {
 				sumaPorHabitacion = precioPorPersona;
-			} else if (habitacion instanceof HabitacionDoble) {
-				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
-			} else if (habitacion instanceof HabitacionPresidencial) {
-				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
-			} else if (habitacion instanceof HabitacionPresidencial) {
-				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
-			} else if (habitacion instanceof HabitacionPresidencial) {
+
+			} else {
 				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
 			}
+			/*
+			 * } else if (habitacion instanceof HabitacionDoble) {
+			 * sumaPorHabitacion = precioPorPersona +
+			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
+			 * } else if (habitacion instanceof HabitacionPresidencial) {
+			 * sumaPorHabitacion = precioPorPersona +
+			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
+			 * } else if (habitacion instanceof HabitacionPresidencial) {
+			 * sumaPorHabitacion = precioPorPersona +
+			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
+			 * } else if (habitacion instanceof HabitacionPresidencial) {
+			 * sumaPorHabitacion = precioPorPersona +
+			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
+			 * }
+			 * }
+			 */
 		}
-
 		return sumaPorHabitacion;
 	}
 
