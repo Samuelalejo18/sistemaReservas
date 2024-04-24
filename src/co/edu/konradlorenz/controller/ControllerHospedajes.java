@@ -239,19 +239,21 @@ public class ControllerHospedajes {
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(4, true, 50000, "Queen");
 		cabana1.agregarHabitacion(habitacionBase1);
 		cabana1.agregarHabitacion(habitacionDoble1);
-		
+
 		Cabana cabana2 = new Cabana("Cabana de Montaña", "Monterrey", "Mexico", 5,
-		"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
+				"Una acogedora cabaña en medio de las montañas", "Rural", 330000, "Rústica", true, "Senderismo");
 		hospedajes.add(cabana2);
 		HabitacionBase habitacionBase2 = new HabitacionBase(2, true, "Wifi, TV, Minibar");
-		HabitacionDoble habitacionDoble2 = new HabitacionDoble(4, true, 25.0, "King");
+		HabitacionDoble habitacionDoble2 = new HabitacionDoble(4, true, 60000, "King");
 		cabana2.agregarHabitacion(habitacionBase2);
 		cabana2.agregarHabitacion(habitacionDoble2);
-		
-				HabitacionDoble habitacionDoble3 = new HabitacionDoble(2, false, 18.0, "Matrimonial");
 
+		Cabana cabana3 = new Cabana("Cabana de Playa", "Cancun", "Mexico", 4,
+				"Un refugio junto al mar con vista panorámica", "Rural", 120000, "Tropical", false, "Surf");
+		hospedajes.add(cabana3);
+		HabitacionBase habitacionBase3 = new HabitacionBase(1, false, "Wifi, TV, Balcón");
+		HabitacionDoble habitacionDoble3 = new HabitacionDoble(2, false, 700000, "Matrimonial");
 
-		HabitacionBase habitacionBase3 = new HabitacionBase(4, false, "Wifi, TV, Balcón");
 		HabitacionBase habitacionBase4 = new HabitacionBase(2, true, "Wifi, TV, Vista al mar");
 		HabitacionBase habitacionBase5 = new HabitacionBase(3, false, "Wifi, TV, Escritorio");
 		HabitacionBase habitacionBase6 = new HabitacionBase(2, true, "Wifi, TV, Baño privado");
@@ -269,12 +271,6 @@ public class ControllerHospedajes {
 		HabitacionDoble habitacionDoble9 = new HabitacionDoble(2, true, 25.0, "Matrimonial");
 		HabitacionDoble habitacionDoble10 = new HabitacionDoble(2, true, 40.0, "Queen");
 		HabitacionDoble habitacionDoble11 = new HabitacionDoble(2, false, 30.0, "King");
-
-
-
-		Cabana cabana3 = new Cabana("Cabana de Playa", "Cancun", "Mexico", 4,
-				"Un refugio junto al mar con vista panorámica", "Rural", 120000, "Tropical", false, "Surf");
-		hospedajes.add(cabana3);
 
 		Cabana cabana4 = new Cabana("Cabana en el Bosque", "Toronto", "Canada", 3,
 				"Un retiro tranquilo rodeado de árboles centenarios", "Rural", 80000, "Vintage", true,
@@ -314,67 +310,110 @@ public class ControllerHospedajes {
 		hospedajes.add(cabana11);
 
 		/* Camping */
-		hospedajes.add(
-				new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5, "Un camping rodeado de montañas",
-						"Rural", 420000, "Área de fogatas", "Senderismo"));
-		hospedajes.add(new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
-				"Rural", 320000, "Zona de barbacoa", "Pesca"));
-		hospedajes.add(new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles", "Rural",
-				170000,
-				"Piscina natural", "Observación de aves"));
-		hospedajes.add(new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar", "Rural",
-				720000,
-				"Zona de descanso", "Surf"));
-		hospedajes.add(
-				new Camping("Camping Familiar", "Moab", "Estados Unidos", 4, "Un camping ideal para familias", "Rural",
-						230000,
-						"Parque infantil", "Excursiones"));
-		hospedajes.add(new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
-				"Un camping para los amantes de la adrenalina", "Rural", 130000, "Pared de escalada", "Rafting"));
-		hospedajes.add(new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
+		Camping camping1 = new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5,
+				"Un camping rodeado de montañas",
+				"Rural", 420000, "Área de fogatas", "Senderismo");
+
+		Camping camping2 = new Camping("Camping junto al Río", "Banff", "Canada", 4, "Un camping con vista al río",
+				"Rural", 320000, "Zona de barbacoa", "Pesca");
+
+		Camping camping3 = new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles",
+				"Rural",
+				170000, "Piscina natural", "Observación de aves");
+
+		Camping camping4 = new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar",
+				"Rural",
+				720000, "Zona de descanso", "Surf");
+
+		Camping camping5 = new Camping("Camping Familiar", "Moab", "Estados Unidos", 4,
+				"Un camping ideal para familias", "Rural",
+				230000, "Parque infantil", "Excursiones");
+
+		Camping camping6 = new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
+				"Un camping para los amantes de la adrenalina", "Rural", 130000, "Pared de escalada", "Rafting");
+
+		Camping camping7 = new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
 				"Un camping comprometido con el medio ambiente", "Rural", 370000, "Reciclaje",
-				"Observación de estrellas"));
-		hospedajes.add(new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
-				"Un camping para desconectar y relajarse",
-				"Rural", 340000, "Área de meditación", "Yoga"));
-		hospedajes.add(new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
-				"Un camping para los más intrépidos", "Rural", 250000, "Tirolesa", "Escalada"));
-		hospedajes.add(new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
-				"Un camping para parejas en busca de romance", "Rural", 1000000, "Área de picnic", "Paseos nocturnos"));
-		hospedajes.add(new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
-				"Camping con excelente ubicacion", "rural", 420000, "Cercano a parrillas comunitarias", "Yoga"));
+				"Observación de estrellas");
+
+		Camping camping8 = new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
+				"Un camping para desconectar y relajarse", "Rural", 340000, "Área de meditación", "Yoga");
+
+		Camping camping9 = new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
+				"Un camping para los más intrépidos", "Rural", 250000, "Tirolesa", "Escalada");
+
+		Camping camping10 = new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
+				"Un camping para parejas en busca de romance", "Rural", 1000000, "Área de picnic", "Paseos nocturnos");
+
+		Camping camping11 = new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
+				"Camping con excelente ubicacion", "rural", 420000, "Cercano a parrillas comunitarias", "Yoga");
+
+		hospedajes.add(camping1);
+		hospedajes.add(camping2);
+		hospedajes.add(camping3);
+		hospedajes.add(camping4);
+		hospedajes.add(camping5);
+		hospedajes.add(camping6);
+		hospedajes.add(camping7);
+		hospedajes.add(camping8);
+		hospedajes.add(camping9);
+		hospedajes.add(camping10);
+		hospedajes.add(camping11);
 
 		/* Glampings */
-		hospedajes.add(new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
-				"Glamping perfecto para ir con tu pareja", "rural", 420000, "Vistas con mucha fauan", "Comida",
-				"Todo es reciclable"));
-		hospedajes.add(
-				new Glamping("Glamping de Montaña", "Monteverde", "CostaRica", 5,
-						"Una experiencia de lujo en la naturaleza",
-						"Rural", 320000, "Observación de estrellas", "Servicio de masajes", "Paneles solares"));
-		hospedajes.add(new Glamping("Glamping Ecológico", "El Chalten ", "Argentina", 4,
+
+		Glamping glamping1 = new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
+				"Glamping perfecto para ir con tu pareja", "rural", 420000, "Vistas con mucha fauna", "Comida",
+				"Todo es reciclable");
+
+		Glamping glamping2 = new Glamping("Glamping de Montaña", "Monteverde", "Costa Rica", 5,
+				"Una experiencia de lujo en la naturaleza",
+				"Rural", 320000, "Observación de estrellas", "Servicio de masajes", "Paneles solares");
+
+		Glamping glamping3 = new Glamping("Glamping Ecológico", "El Chalten", "Argentina", 4,
 				"Un glamping comprometido con el medio ambiente", "Rural", 230000, "Senderismo guiado",
-				"Cocina gourmet",
-				"Reciclaje"));
-		hospedajes.add(new Glamping("Glamping Romántico", "Vietnam", "Vietnam", 4, "Un refugio íntimo para parejas",
-				"Rural", 375000, "Paseos a caballo", "Baño de burbujas", "Energía renovable"));
-		hospedajes.add(new Glamping("Glamping de Aventura", "Yosemite Valley", "Estados Unidos", 3,
+				"Cocina gourmet", "Reciclaje");
+
+		Glamping glamping4 = new Glamping("Glamping Romántico", "Vietnam", "Vietnam", 4,
+				"Un refugio íntimo para parejas",
+				"Rural", 375000, "Paseos a caballo", "Baño de burbujas", "Energía renovable");
+
+		Glamping glamping5 = new Glamping("Glamping de Aventura", "Yosemite Valley", "Estados Unidos", 3,
 				"Una experiencia única para los aventureros", "Rural", 275000, "Rutas en quad", "Barbacoa privada",
-				"Gestión de residuos"));
-		hospedajes
-				.add(new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4, "Un glamping para disfrutar en familia",
-						"Rural", 1200000, "Visita a granja local", "Actividades para niños", "Reutilización de agua"));
+				"Gestión de residuos");
+
+		Glamping glamping6 = new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4,
+				"Un glamping para disfrutar en familia",
+				"Rural", 1200000, "Visita a granja local", "Actividades para niños", "Reutilización de agua");
+
+		hospedajes.add(glamping1);
+
+		hospedajes.add(glamping2);
+
+		hospedajes.add(glamping3);
+
+		hospedajes.add(glamping4);
+
+		hospedajes.add(glamping5);
+
+		hospedajes.add(glamping6);
 
 		/* Hotel */
-		hospedajes.add(
-				new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", 150000, true, true));
-		hospedajes.add(new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
-				"Una experiencia de alojamiento de primer nivel", "Urbano", 550000, true, true));
-		hospedajes.add(new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
-				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", 820000, true, true));
-		hospedajes.add(new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
-				"Un hotel exclusivo con atención personalizada", "Urbano", 450000, true, false));
+		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", 150000, true,
+				true);
 
+		Hotel hotel2 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
+				"Una experiencia de alojamiento de primer nivel", "Urbano", 550000, true, true);
+
+		Hotel hotel3 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
+				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", 820000, true, true);
+
+		Hotel hotel4 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
+				"Un hotel exclusivo con atención personalizada", "Urbano", 450000, true, false);
+		hospedajes.add(hotel1);
+		hospedajes.add(hotel2);
+		hospedajes.add(hotel3);
+		hospedajes.add(hotel4);
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3,
 				"Un motel para momentos especiales",
