@@ -2,7 +2,7 @@ package co.edu.konradlorenz.model;
 
 public class HabitacionBase extends Habitacion {
   
-    private String comidadesBasicas;
+    private String caracteristicas;
 
     public HabitacionBase() {
         super();
@@ -10,9 +10,9 @@ public class HabitacionBase extends Habitacion {
 
   
 
-    public HabitacionBase(int capacidad, boolean disponible, String comidadesBasicas) {
+    public HabitacionBase(int capacidad, boolean disponible, String caracteristicas) {
         super(capacidad, disponible);
-        this.comidadesBasicas = comidadesBasicas;
+        this.caracteristicas = caracteristicas;
     }
 
     public HabitacionBase(int capacidad, boolean disponible) {
@@ -22,21 +22,21 @@ public class HabitacionBase extends Habitacion {
 
 
 
-    public String getComidadesBasicas() {
-        return comidadesBasicas;
+    public String caracteristicas() {
+        return caracteristicas;
     }
 
 
 
-    public void setComidadesBasicas(String comidadesBasicas) {
-        this.comidadesBasicas = comidadesBasicas;
+    public void setcaracteristicas(String caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
 
 
 
     @Override
     public String toString() {
-        return "HabitacionBase [comidadesBasicas=" + comidadesBasicas + "]";
+        return "HabitacionBase [caracteristicas=" + caracteristicas + "]";
     }
 
 
