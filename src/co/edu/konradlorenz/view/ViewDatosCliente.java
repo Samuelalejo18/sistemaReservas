@@ -79,7 +79,7 @@ public class ViewDatosCliente {
 		return id;
 	}
 
-	public Long pedirNumeroTelefono() {
+	public long pedirNumeroTelefono() {
 		System.out.println("Ingrese el número de teléfono del usuario:");
 		Long numeroTelefono = sc.nextLong();
 		return numeroTelefono;

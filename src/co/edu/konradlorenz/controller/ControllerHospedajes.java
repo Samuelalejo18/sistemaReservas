@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import co.edu.konradlorenz.model.Cabana;
 import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Glamping;
+import co.edu.konradlorenz.model.Habitacion;
 import co.edu.konradlorenz.model.HabitacionBase;
 import co.edu.konradlorenz.model.HabitacionDoble;
+import co.edu.konradlorenz.model.HabitacionPresidencial;
+import co.edu.konradlorenz.model.HabitacionSuite;
 import co.edu.konradlorenz.model.Hospedaje;
 import co.edu.konradlorenz.model.Hotel;
 import co.edu.konradlorenz.model.Motel;
@@ -16,6 +19,8 @@ import co.edu.konradlorenz.view.ViewHospedaje;
 public class ControllerHospedajes {
 	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
 	ViewHospedaje viewHospedaje = new ViewHospedaje();
+	Hospedaje hospedajeAreservar = reservarHospedaje(viewHospedaje.pedirNombreHospedajeAreservar());
+	ArrayList<Habitacion> habitacionesAReservar = hospedajeAreservar.getHabitaciones();
 
 	public ControllerHospedajes() {
 	}
@@ -230,6 +235,27 @@ public class ControllerHospedajes {
 		}
 	}
 
+	public Hospedaje reservarHospedaje(String nombre) {
+		Hospedaje hospedajeAReservar = null;
+		for (Hospedaje hospedaje : hospedajes) {
+			if (hospedaje.getNombre() == nombre) {
+				hospedajeAReservar = hospedaje;
+
+			}
+		}
+		return hospedajeAReservar;
+
+	}
+
+	public Habitacion habitacionAreservar(Habitacion tipohHabitacion) {
+
+		for (Habitacion habitacion : habitacionesAReservar) {
+			
+		}
+
+		return null;
+	}
+
 	public void registrarHospedajes() {
 
 		/* Cabañas */
@@ -301,7 +327,7 @@ public class ControllerHospedajes {
 		hospedajes.add(cabana8);
 		HabitacionBase habitacionBase8 = new HabitacionBase(2, false, "Wifi, TV, Aire acondicionado");
 		HabitacionDoble habitacionDoble8 = new HabitacionDoble(4, false, 45000, "King");
-		cabana8.agregarHabitacion(habitacionDoble8);
+		cabana8.agregarHabitacion(habitacionBase8);
 		cabana8.agregarHabitacion(habitacionDoble8);
 
 		Cabana cabana9 = new Cabana("Cabana Ecológica", "Anapoima", "Colombia", 4,
@@ -311,7 +337,7 @@ public class ControllerHospedajes {
 
 		HabitacionBase habitacionBase9 = new HabitacionBase(1, true, "Wifi, TV, Caja fuerte");
 		HabitacionDoble habitacionDoble9 = new HabitacionDoble(3, true, 40000, "Matrimonial");
-		cabana9.agregarHabitacion(habitacionDoble9);
+		cabana9.agregarHabitacion(habitacionBase9);
 		cabana9.agregarHabitacion(habitacionDoble9);
 
 		Cabana cabana10 = new Cabana("Cabana Romántica", "Neusa", "Colombia", 3,
@@ -350,123 +376,264 @@ public class ControllerHospedajes {
 		hospedajes.add(camping2);
 		HabitacionBase habitacion13 = new HabitacionBase(2, true, "Con escritorio");
 		HabitacionDoble habitacionDoble13 = new HabitacionDoble(3, true, 60000, "King");
-
+		camping1.agregarHabitacion(habitacion13);
 		camping1.agregarHabitacion(habitacionDoble13);
 		Camping camping3 = new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles",
 				"Rural",
 				170000, "Piscina natural", "Observación de aves");
 		hospedajes.add(camping3);
-		HabitacionBase habitacion14 = new HabitacionBase(3, false, "Con armario empotrado");
-		HabitacionDoble habitacionDoble14 = new HabitacionDoble(2, false, 25.0, "Matrimonial");
-
+		HabitacionBase habitacion14 = new HabitacionBase(2, false, "Con armario empotrado");
+		HabitacionDoble habitacionDoble14 = new HabitacionDoble(4, false, 40000, "Matrimonial");
+		camping3.agregarHabitacion(habitacion14);
+		camping3.agregarHabitacion(habitacionDoble14);
 		Camping camping4 = new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar",
 				"Rural",
 				720000, "Zona de descanso", "Surf");
 		hospedajes.add(camping4);
-		HabitacionBase habitacion15 = new HabitacionBase(5, true, "Con cama Queen Size");
-		HabitacionDoble habitacionDoble15 = new HabitacionDoble(2, true, 18.0, "Doble");
+		HabitacionBase habitacion15 = new HabitacionBase(2, true, "Con cama Queen Size");
+		HabitacionDoble habitacionDoble15 = new HabitacionDoble(5, true, 70000, "Doble");
+		camping4.agregarHabitacion(habitacion15);
+		camping4.agregarHabitacion(habitacionDoble15);
 
 		Camping camping5 = new Camping("Camping Familiar", "Moab", "Estados Unidos", 4,
 				"Un camping ideal para familias", "Rural",
 				230000, "Parque infantil", "Excursiones");
 
 		hospedajes.add(camping5);
-		HabitacionBase habitacion16 = new HabitacionBase(4, false, "Con balcón privado");
-		HabitacionDoble habitacionDoble16 = new HabitacionDoble(2, false, 22.0, "Individual");
+		HabitacionBase habitacion16 = new HabitacionBase(2, false, "Con balcón privado");
+		HabitacionDoble habitacionDoble16 = new HabitacionDoble(3, false, 45000, "Individual");
+		camping5.agregarHabitacion(habitacion16);
+		camping5.agregarHabitacion(habitacionDoble16);
 
 		Camping camping6 = new Camping("Camping de Aventura", "San Carlos De bariloche", "Argentina", 3,
 				"Un camping para los amantes de la adrenalina", "Rural", 130000, "Pared de escalada", "Rafting");
 		hospedajes.add(camping6);
-		HabitacionBase habitacion17 = new HabitacionBase(2, true, "Con servicio de habitaciones 24 horas");
-		HabitacionDoble habitacionDoble17 = new HabitacionDoble(2, true, 30.0, "Estándar");
-
+		HabitacionBase habitacion17 = new HabitacionBase(1, true, "Con servicio de habitaciones 24 horas");
+		HabitacionDoble habitacionDoble17 = new HabitacionDoble(4, true, 35000, "Estándar");
+		camping6.agregarHabitacion(habitacion17);
+		camping6.agregarHabitacion(habitacionDoble17);
 		Camping camping7 = new Camping("Camping Eco-Friendly", "Cairns", "Australia", 5,
 				"Un camping comprometido con el medio ambiente", "Rural", 370000, "Reciclaje",
 				"Observación de estrellas");
 		hospedajes.add(camping7);
-		HabitacionBase habitacion18 = new HabitacionBase(3, true, "Con cafetera");
-		HabitacionDoble habitacionDoble18 = new HabitacionDoble(2, true, 20.0, "Deluxe");
+		HabitacionBase habitacion18 = new HabitacionBase(1, true, "Con cafetera");
+		HabitacionDoble habitacionDoble18 = new HabitacionDoble(2, true, 65000, "Deluxe");
+		camping7.agregarHabitacion(habitacion18);
+		camping7.agregarHabitacion(habitacionDoble18);
 
 		Camping camping8 = new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
 				"Un camping para desconectar y relajarse", "Rural", 340000, "Área de meditación", "Yoga");
 		hospedajes.add(camping8);
-		HabitacionBase habitacion19 = new HabitacionBase(4, true, "Con bañera de hidromasaje");
-		HabitacionDoble habitacionDoble19 = new HabitacionDoble(2, false, 18.0, "Junior");
+		HabitacionBase habitacion19 = new HabitacionBase(2, true, "Con bañera de hidromasaje");
+		HabitacionDoble habitacionDoble19 = new HabitacionDoble(4, false, 45000, "Junior");
+		camping8.agregarHabitacion(habitacion19);
+		camping8.agregarHabitacion(habitacionDoble19);
 
 		Camping camping9 = new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
 				"Un camping para los más intrépidos", "Rural", 250000, "Tirolesa", "Escalada");
 		hospedajes.add(camping9);
 		HabitacionBase habitacion20 = new HabitacionBase(2, false, "Con acceso a la piscina");
-		HabitacionDoble habitacionDoble20 = new HabitacionDoble(2, true, 35.0, "Presidencial");
+		HabitacionDoble habitacionDoble20 = new HabitacionDoble(4, true, 40000, "Presidencial");
+		camping9.agregarHabitacion(habitacion20);
+		camping9.agregarHabitacion(habitacionDoble20);
 
 		Camping camping10 = new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
 				"Un camping para parejas en busca de romance", "Rural", 1000000, "Área de picnic", "Paseos nocturnos");
 
 		hospedajes.add(camping10);
 
-		HabitacionBase habitacion21 = new HabitacionBase(6, true, "Con sauna privada");
-		HabitacionDoble habitacionDoble21 = new HabitacionDoble(2, true, 20.0, "Ejecutiva");
+		HabitacionBase habitacion21 = new HabitacionBase(2, true, "Con sauna privada");
+		HabitacionDoble habitacionDoble21 = new HabitacionDoble(4, true, 90000, "Ejecutiva");
+		camping10.agregarHabitacion(habitacion21);
+		camping10.agregarHabitacion(habitacionDoble21);
+
 		Camping camping11 = new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
-				"Camping con excelente ubicacion", "rural", 420000, "Cercano a parrillas comunitarias", "Yoga");
+				"Camping con excelente ubicacion", "rural", 180000, "Cercano a parrillas comunitarias", "Yoga");
 
 		hospedajes.add(camping11);
-		HabitacionBase habitacion22 = new HabitacionBase(3, true, "Con vistas al río");
-		HabitacionDoble habitacionDoble22 = new HabitacionDoble(2, true, 20.0, "Familiar");
+		HabitacionBase habitacion22 = new HabitacionBase(2, true, "Con vistas al río");
+		HabitacionDoble habitacionDoble22 = new HabitacionDoble(4, true, 40000, "Familiar");
+
+		camping11.agregarHabitacion(habitacion22);
+		camping11.agregarHabitacion(habitacionDoble22);
 
 		/* Glampings */
 
 		Glamping glamping1 = new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
-				"Glamping perfecto para ir con tu pareja", "rural", 420000, "Vistas con mucha fauna", "Comida",
+				"Glamping perfecto para ir con tu pareja", "rural", 450000, "Vistas con mucha fauna", "Comida",
 				"Todo es reciclable");
+		hospedajes.add(glamping1);
+		HabitacionBase habitacionBase23 = new HabitacionBase(3, true, "Con vistas al jardín");
+		HabitacionDoble habitacionDoble23 = new HabitacionDoble(2, true, 48000, "Queen");
+
+		glamping1.agregarHabitacion(habitacionBase23);
+		glamping1.agregarHabitacion(habitacionDoble23);
 
 		Glamping glamping2 = new Glamping("Glamping de Montaña", "Monteverde", "Costa Rica", 5,
 				"Una experiencia de lujo en la naturaleza",
 				"Rural", 320000, "Observación de estrellas", "Servicio de masajes", "Paneles solares");
+		hospedajes.add(glamping2);
+
+		HabitacionBase habitacionBase24 = new HabitacionBase(2, true, "Con baño privado");
+		HabitacionDoble habitacionDoble24 = new HabitacionDoble(2, true, 20.0, "King");
 
 		Glamping glamping3 = new Glamping("Glamping Ecológico", "El Chalten", "Argentina", 4,
 				"Un glamping comprometido con el medio ambiente", "Rural", 230000, "Senderismo guiado",
 				"Cocina gourmet", "Reciclaje");
+		hospedajes.add(glamping3);
+
+		HabitacionBase habitacionBase25 = new HabitacionBase(4, false, "Con aire acondicionado");
+		HabitacionDoble habitacionDoble25 = new HabitacionDoble(2, false, 30.0, "Matrimonial");
 
 		Glamping glamping4 = new Glamping("Glamping Romántico", "Vietnam", "Vietnam", 4,
 				"Un refugio íntimo para parejas",
 				"Rural", 375000, "Paseos a caballo", "Baño de burbujas", "Energía renovable");
+		hospedajes.add(glamping4);
+		HabitacionBase habitacionBase26 = new HabitacionBase(3, true, "Con televisor de pantalla plana");
+		HabitacionDoble habitacionDoble26 = new HabitacionDoble(2, true, 22.0, "Doble");
 
 		Glamping glamping5 = new Glamping("Glamping de Aventura", "Yosemite Valley", "Estados Unidos", 3,
 				"Una experiencia única para los aventureros", "Rural", 275000, "Rutas en quad", "Barbacoa privada",
 				"Gestión de residuos");
+		hospedajes.add(glamping5);
+		HabitacionBase habitacionBase27 = new HabitacionBase(2, true, "Con minibar");
+		HabitacionDoble habitacionDoble27 = new HabitacionDoble(2, false, 18.0, "Individual");
 
 		Glamping glamping6 = new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4,
 				"Un glamping para disfrutar en familia",
 				"Rural", 1200000, "Visita a granja local", "Actividades para niños", "Reutilización de agua");
-
-		hospedajes.add(glamping1);
-
-		hospedajes.add(glamping2);
-
-		hospedajes.add(glamping3);
-
-		hospedajes.add(glamping4);
-
-		hospedajes.add(glamping5);
-
 		hospedajes.add(glamping6);
 
-		/* Hotel */
-		Hotel hotel1 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", 150000, true,
-				true);
+		HabitacionBase habitacionBase28 = new HabitacionBase(4, false, "Con acceso para discapacitados");
+		HabitacionDoble habitacionDoble28 = new HabitacionDoble(2, true, 35.0, "Suite");
 
-		Hotel hotel2 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
-				"Una experiencia de alojamiento de primer nivel", "Urbano", 550000, true, true);
+		glamping2.agregarHabitacion(habitacionBase24);
+		glamping3.agregarHabitacion(habitacionBase25);
+		glamping4.agregarHabitacion(habitacionBase26);
+		glamping5.agregarHabitacion(habitacionBase27);
+		glamping6.agregarHabitacion(habitacionBase28);
+
+		glamping2.agregarHabitacion(habitacionDoble24);
+		glamping3.agregarHabitacion(habitacionDoble25);
+		glamping4.agregarHabitacion(habitacionDoble26);
+		glamping5.agregarHabitacion(habitacionDoble27);
+		glamping6.agregarHabitacion(habitacionDoble28);
+
+		/* Hotel */
+
+		Hotel hotel1 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
+				"Una experiencia de alojamiento de primer nivel", "Urbano", 2500000, true, true);
+		hospedajes.add(hotel1);
+		HabitacionBase habitacionBase29 = new HabitacionBase(2, true, "Con vistas al jardín");
+		HabitacionBase habitacionBase30 = new HabitacionBase(2, true, "Con baño privado");
+		HabitacionBase habitacionBase31 = new HabitacionBase(1, false, "Con aire acondicionado");
+		HabitacionBase habitacionBase32 = new HabitacionBase(2, true, "Con televisor de pantalla plana");
+		HabitacionBase habitacionBase33 = new HabitacionBase(1, true, "Con minibar");
+
+		HabitacionDoble habitacionDoble29 = new HabitacionDoble(4, true, 150000, "Queen");
+		HabitacionDoble habitacionDoble30 = new HabitacionDoble(5, true, 160000, "King");
+		HabitacionDoble habitacionDoble31 = new HabitacionDoble(3, false, 140000, "Matrimonial");
+		HabitacionDoble habitacionDoble32 = new HabitacionDoble(4, true, 150000, "Doble");
+		HabitacionDoble habitacionDoble33 = new HabitacionDoble(4, false, 150000, "Individual");
+
+		HabitacionPresidencial habitacionPresidencial1 = new HabitacionPresidencial(5, true, 350000,
+				"Mayordomo personal");
+		HabitacionPresidencial habitacionPresidencial2 = new HabitacionPresidencial(6, true, 350000, "Piscina privada");
+		HabitacionPresidencial habitacionPresidencial3 = new HabitacionPresidencial(4, false, 350000, "Cocina gourmet");
+		HabitacionPresidencial habitacionPresidencial4 = new HabitacionPresidencial(6, true, 350000,
+				"Terraza panorámica");
+		HabitacionPresidencial habitacionPresidencial5 = new HabitacionPresidencial(2, false, 350000, "Jacuzzi");
+
+		HabitacionSuite habitacionSuite1 = new HabitacionSuite(4, true, 250000, "Spa privado");
+		HabitacionSuite habitacionSuite2 = new HabitacionSuite(3, true, 250000, "Barra de bar");
+		HabitacionSuite habitacionSuite3 = new HabitacionSuite(2, false, 250000, "Sala de cine");
+		HabitacionSuite habitacionSuite4 = new HabitacionSuite(4, true, 250000, "Gimnasio privado");
+		HabitacionSuite habitacionSuite5 = new HabitacionSuite(5, false, 250000, "Servicio de mayordomo");
+
+		hotel1.agregarHabitacion(habitacionBase29);
+		hotel1.agregarHabitacion(habitacionBase30);
+		hotel1.agregarHabitacion(habitacionBase31);
+		hotel1.agregarHabitacion(habitacionBase32);
+		hotel1.agregarHabitacion(habitacionBase33);
+
+		hotel1.agregarHabitacion(habitacionDoble29);
+		hotel1.agregarHabitacion(habitacionDoble30);
+		hotel1.agregarHabitacion(habitacionDoble31);
+		hotel1.agregarHabitacion(habitacionDoble32);
+		hotel1.agregarHabitacion(habitacionDoble33);
+
+		hotel1.agregarHabitacion(habitacionPresidencial1);
+		hotel1.agregarHabitacion(habitacionPresidencial2);
+		hotel1.agregarHabitacion(habitacionPresidencial3);
+		hotel1.agregarHabitacion(habitacionPresidencial4);
+		hotel1.agregarHabitacion(habitacionPresidencial5);
+
+		hotel1.agregarHabitacion(habitacionSuite1);
+		hotel1.agregarHabitacion(habitacionSuite2);
+		hotel1.agregarHabitacion(habitacionSuite3);
+		hotel1.agregarHabitacion(habitacionSuite4);
+		hotel1.agregarHabitacion(habitacionSuite5);
+
+		Hotel hotel2 = new Hotel("Hotel Maximmo", "Melgar", "Colombia", 3, "Hotel hermoso", "urbano", 150000, true,
+				true);
+		hospedajes.add(hotel2);
+
+		HabitacionBase habitacionBase34 = new HabitacionBase(2, true, "Con vistas al jardín");
+		HabitacionBase habitacionBase35 = new HabitacionBase(2, true, "Con baño privado");
+		HabitacionBase habitacionBase36 = new HabitacionBase(1, false, "Con aire acondicionado");
+		HabitacionBase habitacionBase37 = new HabitacionBase(2, true, "Con televisor de pantalla plana");
+		HabitacionBase habitacionBase38 = new HabitacionBase(1, true, "Con minibar");
+
+		HabitacionDoble habitacionDoble34 = new HabitacionDoble(4, true, 40000, "Queen");
+		HabitacionDoble habitacionDoble35 = new HabitacionDoble(5, true, 40000, "King");
+		HabitacionDoble habitacionDoble36 = new HabitacionDoble(3, false, 40000, "Matrimonial");
+		HabitacionDoble habitacionDoble37 = new HabitacionDoble(4, true, 40000, "Doble");
+		HabitacionDoble habitacionDoble38 = new HabitacionDoble(4, false, 40000, "Individual");
+
+		hotel2.agregarHabitacion(habitacionBase34);
+		hotel2.agregarHabitacion(habitacionBase35);
+		hotel2.agregarHabitacion(habitacionBase36);
+		hotel2.agregarHabitacion(habitacionBase37);
+		hotel2.agregarHabitacion(habitacionBase38);
+
+		hotel2.agregarHabitacion(habitacionDoble34);
+		hotel2.agregarHabitacion(habitacionDoble35);
+		hotel2.agregarHabitacion(habitacionDoble36);
+		hotel2.agregarHabitacion(habitacionDoble37);
+		hotel2.agregarHabitacion(habitacionDoble38);
 
 		Hotel hotel3 = new Hotel("Hotel Ejecutivo", "Dubai", "Emiratos Arabes", 4,
-				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", 820000, true, true);
+				"Diseñado para satisfacer las necesidades de viajeros de negocios", "Urbano", 1500000, true, true);
+		hospedajes.add(hotel3);
+
+		HabitacionBase habitacionBase39 = new HabitacionBase(2, true, "Con vistas al mar");
+		HabitacionBase habitacionBase40 = new HabitacionBase(2, true, "Con terraza privada");
+		HabitacionBase habitacionBase41 = new HabitacionBase(1, false, "Con jacuzzi");
+		HabitacionBase habitacionBase42 = new HabitacionBase(2, true, "Con caja fuerte");
+		HabitacionBase habitacionBase43 = new HabitacionBase(1, true, "Con jacuzzi");
+
+		HabitacionDoble habitacionDoble39 = new HabitacionDoble(4, true, 250000, "Queen");
+		HabitacionDoble habitacionDoble40 = new HabitacionDoble(5, true, 260000, "King");
+		HabitacionDoble habitacionDoble41 = new HabitacionDoble(3, false, 240000, "Matrimonial");
+		HabitacionDoble habitacionDoble42 = new HabitacionDoble(4, true, 250000, "Doble");
+		HabitacionDoble habitacionDoble43 = new HabitacionDoble(4, false, 250000, "Individual");
+
+		hotel3.agregarHabitacion(habitacionBase39);
+		hotel3.agregarHabitacion(habitacionBase40);
+		hotel3.agregarHabitacion(habitacionBase41);
+		hotel3.agregarHabitacion(habitacionBase42);
+		hotel3.agregarHabitacion(habitacionBase43);
+
+		hotel3.agregarHabitacion(habitacionDoble39);
+		hotel3.agregarHabitacion(habitacionDoble40);
+		hotel3.agregarHabitacion(habitacionDoble41);
+		hotel3.agregarHabitacion(habitacionDoble42);
+		hotel3.agregarHabitacion(habitacionDoble43);
 
 		Hotel hotel4 = new Hotel("Hotel Boutique", "Sidney", "Australia", 4,
 				"Un hotel exclusivo con atención personalizada", "Urbano", 450000, true, false);
-		hospedajes.add(hotel1);
-		hospedajes.add(hotel2);
-		hospedajes.add(hotel3);
 		hospedajes.add(hotel4);
+
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3,
 				"Un motel para momentos especiales",

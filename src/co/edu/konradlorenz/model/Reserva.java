@@ -8,18 +8,22 @@ public class Reserva implements Pago {
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private Hospedaje hospedajeReservado;
+	private Habitacion habitacionReservada;
 	private int cantidadDePersonas;
 	private double precioTotal;
 	private int numeroNoches;
 
 	ArrayList<Habitacion> habitacionesAReservar = hospedajeReservado.getHabitaciones();
 
+	
+
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
-			int cantidadDePersonas, double precioTotal, int numeroNoches) {
+			Habitacion habitacionReservada, int cantidadDePersonas, double precioTotal, int numeroNoches) {
 		this.cliente = cliente;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.hospedajeReservado = hospedajeReservado;
+		this.habitacionReservada = habitacionReservada;
 		this.cantidadDePersonas = cantidadDePersonas;
 		this.precioTotal = precioTotal;
 		this.numeroNoches = numeroNoches;
