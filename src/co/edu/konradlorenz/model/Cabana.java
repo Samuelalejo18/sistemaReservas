@@ -1,7 +1,7 @@
 package co.edu.konradlorenz.model;
 
 //cabaña
-public class Cabana extends Hospedaje {
+public class Cabana extends Hospedaje  {
 
 	private String decoracion;
 	private boolean vistasExclusivas;
@@ -57,5 +57,7 @@ public class Cabana extends Hospedaje {
 		return "Cabana [decoracion=" + decoracion + ", vistasExclusivas=" + vistasExclusivas + ", actividadesExtra="
 		+ actividadesExtra + "]";
 	}
+
+	
 	
 }

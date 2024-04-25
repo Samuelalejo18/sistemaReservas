@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import co.edu.konradlorenz.model.Cabana;
 import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Glamping;
-import co.edu.konradlorenz.model.Habitacion;
 import co.edu.konradlorenz.model.HabitacionBase;
 import co.edu.konradlorenz.model.HabitacionDoble;
 import co.edu.konradlorenz.model.HabitacionPresidencial;
@@ -13,17 +12,15 @@ import co.edu.konradlorenz.model.HabitacionSuite;
 import co.edu.konradlorenz.model.Hospedaje;
 import co.edu.konradlorenz.model.Hotel;
 import co.edu.konradlorenz.model.Motel;
+import co.edu.konradlorenz.model.Reserva;
 import co.edu.konradlorenz.model.Resort;
 import co.edu.konradlorenz.view.ViewHospedaje;
 
 public class ControllerHospedajes {
-	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
-	ViewHospedaje viewHospedaje = new ViewHospedaje();
-	Hospedaje hospedajeAreservar = reservarHospedaje(viewHospedaje.pedirNombreHospedajeAreservar());
-	ArrayList<Habitacion> habitacionesAReservar = hospedajeAreservar.getHabitaciones();
+	Reserva reserva = new Reserva();
+	ArrayList<Hospedaje> hospedajes = reserva.getHospedajes();
 
-	public ControllerHospedajes() {
-	}
+	ViewHospedaje viewHospedaje = new ViewHospedaje();
 
 	public String hallarTipoHospedaje(Hospedaje hospedaje) {
 		String tipoHospedaje = "no existe";
@@ -231,29 +228,14 @@ public class ControllerHospedajes {
 
 	public void filtrarPorPrecio(int min, int max) {
 		for (Hospedaje hospedaje : hospedajes) {
-
-		}
-	}
-
-	public Hospedaje reservarHospedaje(String nombre) {
-		Hospedaje hospedajeAReservar = null;
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getNombre() == nombre) {
-				hospedajeAReservar = hospedaje;
-
+			if (hospedaje.getPrecioPorPersona() >= min && hospedaje.getPrecioPorPersona() <= max) {
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				viewHospedaje.mostrarTitulo();
+				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
+						hospedaje.getTipo());
 			}
 		}
-		return hospedajeAReservar;
-
-	}
-
-	public Habitacion habitacionAreservar(Habitacion tipohHabitacion) {
-
-		for (Habitacion habitacion : habitacionesAReservar) {
-			
-		}
-
-		return null;
 	}
 
 	public void registrarHospedajes() {

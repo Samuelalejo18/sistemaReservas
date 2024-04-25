@@ -8,9 +8,7 @@ public class Controller {
 	ViewDatosCliente viewDatosCliente = new ViewDatosCliente();
 	AuthCliente metodosCliente = new AuthCliente();
 	ControllerHospedajes controllerHospedajes = new ControllerHospedajes();
-
-	public Controller() {
-	}
+	ControllerReserva controllerReserva = new ControllerReserva();
 
 	public void funcionar() {
 		controllerHospedajes.registrarHospedajes();
@@ -107,7 +105,9 @@ public class Controller {
 					controllerHospedajes.filtralCabanas();
 					break;
 				case 14:
-					viewDatosCliente.nombreHospedajeReservar();
+					// Hospedaje hospedajeAreservar =
+					// reservarHospedaje(viewR.pedirNombreHospedajeAreservar());
+					controllerReserva.casosReserva();
 					break;
 				case 0:
 					viewDatosCliente.saliendoDelSistema();
@@ -118,5 +118,30 @@ public class Controller {
 			}
 		}
 	}
+
+	/*
+	 * public Hospedaje reservarHospedaje(String nombre) {
+	 * Hospedaje hospedajeAReservar = null;
+	 * boolean encontradoNombre = false;
+	 * for (Hospedaje hospedaje : hospedajes) {
+	 * if (hospedaje.getNombre() == nombre) {
+	 * hospedajeAReservar = hospedaje;
+	 * encontradoNombre = true;
+	 * }
+	 * }
+	 * if (!encontradoNombre) {
+	 * 
+	 * }
+	 * 
+	 * return hospedajeAReservar;
+	 * 
+	 * }
+	 * public Habitacion habitacionAreservar(Habitacion tipohHabitacion) {
+	 * for (Habitacion habitacion : habitacionesAReservar) {
+	 * }
+	 * 
+	 * return null;
+	 * }
+	 */
 
 }

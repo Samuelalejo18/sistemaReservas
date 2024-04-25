@@ -12,10 +12,11 @@ public class Reserva implements Pago {
 	private int cantidadDePersonas;
 	private double precioTotal;
 	private int numeroNoches;
-
-	ArrayList<Habitacion> habitacionesAReservar = hospedajeReservado.getHabitaciones();
-
+	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
 	
+	//ArrayList<Habitacion> habitacionesAReservar = hospedajeReservado.getHabitaciones();
+	public Reserva() {
+	}
 
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
 			Habitacion habitacionReservada, int cantidadDePersonas, double precioTotal, int numeroNoches) {
@@ -85,19 +86,33 @@ public class Reserva implements Pago {
 		this.numeroNoches = numeroNoches;
 	}
 
-
-
-	
-	public Habitacion reservarHabitacion(int numeroHabitacion) {
-
-		for (Habitacion habitacion : habitacionesAReservar) {
-			if (habitacion.getNumeroHabitacion() == numeroHabitacion) {
-				return habitacion;
-			}
-		}
-		return null;
-
+	public Habitacion getHabitacionReservada() {
+		return habitacionReservada;
 	}
+
+	public void setHabitacionReservada(Habitacion habitacionReservada) {
+		this.habitacionReservada = habitacionReservada;
+	}
+
+	/*public ArrayList<Habitacion> getHabitacionesAReservar() {
+		return habitacionesAReservar;
+	}
+
+	public void setHabitacionesAReservar(ArrayList<Habitacion> habitacionesAReservar) {
+		this.habitacionesAReservar = habitacionesAReservar;
+	}
+*/
+	public ArrayList<Hospedaje> getHospedajes() {
+		return hospedajes;
+	}
+
+	public void setHospedajes(ArrayList<Hospedaje> hospedajes) {
+		this.hospedajes = hospedajes;
+	}
+
+
+
+
 
 	@Override
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
@@ -114,6 +129,7 @@ public class Reserva implements Pago {
 		return precioTotal;
 
 	}
+
 
 	@Override
 	public String realizarPago(boolean aceptar) {
@@ -132,6 +148,38 @@ public class Reserva implements Pago {
 		return " Pago Cancelado";
 	}
 
+
+	public Hospedaje reservarHospedaje(String nombre) {
+		Hospedaje hospedajeReservado = null;
+		boolean encontradoNombre = false;
+		for (Hospedaje hospedaje : hospedajes) {
+			if (hospedaje.getNombre() == nombre) {
+				hospedajeReservado = hospedaje;
+				encontradoNombre = true;
+				break;
+				
+			}
+		}
+		if (!encontradoNombre) {
+
+		}
+
+		return hospedajeReservado;
+
+	}
+	
+	
+	/*public Habitacion habitacionAreservar(Habitacion tipohHabitacion) {
+		for (Habitacion habitacion : habitacionesAReservar) {
+		}
+
+		return null;
+	}
+*/
+
+
+
+
 	@Override
 	public String toString() {
 		return "Reserva [cliente=" + cliente + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida
@@ -140,50 +188,5 @@ public class Reserva implements Pago {
 				+ numeroNoches + "]";
 	}
 
-	public ArrayList<Habitacion> getHabitacionesAReservar() {
-		return habitacionesAReservar;
-	}
-
-	public void setHabitacionesAReservar(ArrayList<Habitacion> habitacionesAReservar) {
-		this.habitacionesAReservar = habitacionesAReservar;
-	}
-
-	/*
-	 * public double CalcularPrecio(String tipoDeHabitacion) {
-	 * 
-	 * if (hospedajeReservado instanceof Motel) {
-	 * Motel motel = (Motel) hospedajeReservado;
-	 * double precioMotel = motel.calcularPrecioPorNoche( tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return precioMotel;
-	 * } else if (hospedajeReservado instanceof Hotel) {
-	 * Hotel hotel = (Hotel) hospedajeReservado;
-	 * double precioHotel = hotel.calcularPrecioPorNoche( tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return precioHotel;
-	 * } else if (hospedajeReservado instanceof Cabana) {
-	 * Cabana cabana = (Cabana) hospedajeReservado;
-	 * double PrecioCabana = cabana.calcularPrecioPorNoche( tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return PrecioCabana;
-	 * } else if (hospedajeReservado instanceof Resort) {
-	 * Resort resort = (Resort) hospedajeReservado;
-	 * double precioResort = resort.calcularPrecioPorNoche(tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return precioResort;
-	 * } else if (hospedajeReservado instanceof Camping) {
-	 * Camping camping = (Camping) hospedajeReservado;
-	 * double precioCamping = camping.calcularPrecioPorNoche( tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return precioCamping;
-	 * } else if (hospedajeReservado instanceof Glamping) {
-	 * Glamping glamping = (Glamping) hospedajeReservado;
-	 * double precioGlamping = glamping.calcularPrecioPorNoche( tipoDeHabitacion) *
-	 * getCantidadDePersonas();
-	 * return precioGlamping;
-	 * }
-	 * return 0.0;
-	 * 
-	 * }
-	 */
+	
 }

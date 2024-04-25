@@ -1,5 +1,6 @@
 package co.edu.konradlorenz.view;
 
+
 import java.util.Scanner;
 
 public class ViewHospedaje {
@@ -34,9 +35,5 @@ public class ViewHospedaje {
 		System.out.println("No se encontro ningun resultado");
 	}
 
-	public static String pedirNombreHospedajeAreservar() {
-		System.out.println("Ingrese el hospedaje a reservar: ");
-		String nombreHospedajeAreservar = sc.next();
-		return nombreHospedajeAreservar;
-	}
+
 }

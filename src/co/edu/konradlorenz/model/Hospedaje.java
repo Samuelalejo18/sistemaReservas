@@ -129,6 +129,8 @@ public abstract class Hospedaje {
 		return sumaPorHabitacion;
 	}
 
+//ublic abstract double calcularPrecioTotal(int numeroPersonas, int numeroNoches);
+
 	@Override
 	public String toString() {
 		return "Hospedaje [nombre=" + nombre + ", ubicacionCiudad=" + ubicacionCiudad + ", ubicacionPais="
