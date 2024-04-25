@@ -1,8 +1,5 @@
 package co.edu.konradlorenz.controller;
 
-import java.util.ArrayList;
-
-import co.edu.konradlorenz.model.Habitacion;
 import co.edu.konradlorenz.model.Hospedaje;
 import co.edu.konradlorenz.model.Reserva;
 import co.edu.konradlorenz.view.ViewHospedaje;
@@ -14,22 +11,28 @@ public class ControllerReserva {
     ViewHospedaje viewHospedaje = new ViewHospedaje();
 
     public void casosReserva() {
-        viewReserva.graciasReserva();
-        Hospedaje hospedajeReservado = reserva.reservarHospedaje(viewReserva.pedirNombreHospedajeAreservar());
-        if (hospedajeReservado == null) {
-            viewReserva.hospedajeNoEncontrado();
-        }
 
-        viewHospedaje.mostrarTitulo();
-        ViewHospedaje.imprimirTabla("", hospedajeReservado.getNombre(), hospedajeReservado.getUbicacionCiudad(),
-                hospedajeReservado.getUbicacionPais(), hospedajeReservado.getNumeroEstrellas(),
-                hospedajeReservado.getDescripcion(), hospedajeReservado.getTipo());
+        String nombreHospedaje = viewReserva.pedirNombreHospedajeAreservar();
+        // Llama al método para reservar el hospedaje con el nombre proporcionado
+        Hospedaje hospedajeReservado = reserva.reservarHospedaje(nombreHospedaje);
 
-        ArrayList<Habitacion> habitacionesAReservar = hospedajeReservado.getHabitaciones();
+        System.out.println(hospedajeReservado);
 
-        for (Habitacion habitacion : habitacionesAReservar) {
+        /*
+         * viewHospedaje.mostrarTitulo();
+         * ViewHospedaje.imprimirTabla("", hospedajeReservado.getNombre(),
+         * hospedajeReservado.getUbicacionCiudad(),
+         * hospedajeReservado.getUbicacionPais(),
+         * hospedajeReservado.getNumeroEstrellas(),
+         * hospedajeReservado.getDescripcion(), hospedajeReservado.getTipo());
+         */
 
-        }
+        // ArrayList<Habitacion> habitacionesAReservar =
+        // hospedajeReservado.getHabitaciones();
+
+        // for (Habitacion habitacion : habitacionesAReservar) {
+
+        // }
 
         /*
          * if (hospedajeReservado == null) {
