@@ -57,9 +57,8 @@ public class TarjetaCredito extends MetodoPago {
     }
 
     @Override
-    public void Pagar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Pagar'");
+    public void Pagar(double precioTotal, long saldoCredito) {
+
     }
 
     @Override

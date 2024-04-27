@@ -65,7 +65,7 @@ public abstract class MetodoPago {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public abstract void Pagar();
+    public abstract void Pagar(double precioTotal, long saldo);
 
     public abstract void pagoRechazado();
 
