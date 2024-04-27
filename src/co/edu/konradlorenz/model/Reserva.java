@@ -111,11 +111,13 @@ public class Reserva implements Pago {
 	}
 
 	@Override
-	public String realizarPago(boolean aceptar) {
+	public String realizarPago(String respuestaUsuario, double precioTotal) {
 		String pagoRealizado = "";
+		boolean aceptar = respuestaUsuario.equals("si") || respuestaUsuario.equals("s");
+
 		if (aceptar) {
 			pagoRealizado = " Pago realizado por un total de : "
-					+ calcularPrecioTotal(cantidadDePersonas, numeroNoches);
+					+ precioTotal;
 		} else {
 			cancelarPago();
 		}

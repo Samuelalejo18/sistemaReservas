@@ -177,9 +177,18 @@ public class Controller {
 									hospedajeAReservar,
 									habitacionReservada, numeroPersonas, numeroNoches);
 
+							// double precio = hospedajeAReservar.getPrecioPorPersona()
+							// + habitacionReservada.getPrecioAdicionalPorTipoHabitacion();
+
 							double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
 
-							System.out.printf("%.2f%n", precioTotal);
+							viewReserva.mostrarPrecio(precioTotal);
+							String aceptarPago = ViewReserva.realizarpago();
+
+							viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
+
+							System.out.println(reserva);
+
 						} else {
 							System.out.println("capacidad insuficiente");
 						}

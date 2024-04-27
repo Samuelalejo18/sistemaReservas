@@ -20,8 +20,6 @@ public class ViewReserva {
         return nombre;
     }
 
-  
-
     public void hospedajeNoEncontrado() {
         System.out.println("El hospedaje no se encontro");
 
@@ -122,4 +120,18 @@ public class ViewReserva {
 
     }
 
+    public static String realizarpago() {
+        System.out.println("¿Desea realizar el pago? (si/no)");
+        String respuestaUsuario = sc.next();
+        return respuestaUsuario;
+    }
+
+    public void mostrarPrecio(double precioTotal) {
+        System.out.printf("Precio total de : %.2f%n", precioTotal);
+
+    }
+
+    public void mostrarPago(String pagoRealizado) {
+        System.out.println(pagoRealizado);
+    }
 }
