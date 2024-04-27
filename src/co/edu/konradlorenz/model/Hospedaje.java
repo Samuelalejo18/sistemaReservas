@@ -27,6 +27,7 @@ public abstract class Hospedaje {
 		this.precioPorPersona = precioPorPersona;
 		habitaciones = new ArrayList<>();
 		sumaPorHabitacion();
+		Habitacion.setContadorHabitacion(0);
 	}
 
 	public String getNombre() {
@@ -103,33 +104,15 @@ public abstract class Hospedaje {
 	public double sumaPorHabitacion() {
 		double sumaPorHabitacion = 0;
 		for (Habitacion habitacion : habitaciones) {
-			if (habitacion instanceof HabitacionBase) {
-				sumaPorHabitacion = precioPorPersona;
 
-			} else {
-				sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
-			}
-			/*
-			 * } else if (habitacion instanceof HabitacionDoble) {
-			 * sumaPorHabitacion = precioPorPersona +
-			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
-			 * } else if (habitacion instanceof HabitacionPresidencial) {
-			 * sumaPorHabitacion = precioPorPersona +
-			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
-			 * } else if (habitacion instanceof HabitacionPresidencial) {
-			 * sumaPorHabitacion = precioPorPersona +
-			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
-			 * } else if (habitacion instanceof HabitacionPresidencial) {
-			 * sumaPorHabitacion = precioPorPersona +
-			 * habitacion.getPrecioAdicionalPorTipoHabitacion();
-			 * }
-			 * }
-			 */
+			sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
+
 		}
 		return sumaPorHabitacion;
 	}
 
-//ublic abstract double calcularPrecioTotal(int numeroPersonas, int numeroNoches);
+	// ublic abstract double calcularPrecioTotal(int numeroPersonas, int
+	// numeroNoches);
 
 	@Override
 	public String toString() {

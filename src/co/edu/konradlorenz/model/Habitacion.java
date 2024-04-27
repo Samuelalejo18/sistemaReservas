@@ -8,26 +8,15 @@ public class Habitacion {
 	private static int contadorHabitacion;
 	private double precioAdicionalPorTipoHabitacion;
 
-
-
 	public Habitacion() {
 	}
-
-	
 
 	public Habitacion(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
 		this.capacidad = capacidad;
 		this.disponible = disponible;
-		
+		numeroHabitacion = ++Habitacion.contadorHabitacion;
 		this.precioAdicionalPorTipoHabitacion = precioAdicionalPorTipoHabitacion;
 	}
-
-	public Habitacion(int capacidad, boolean disponible) {
-		this.capacidad = capacidad;
-		this.disponible = disponible;
-		
-	}
-
 
 
 
@@ -63,24 +52,18 @@ public class Habitacion {
 		Habitacion.contadorHabitacion = contadorHabitacion;
 	}
 
-
 	public double getPrecioAdicionalPorTipoHabitacion() {
 		return precioAdicionalPorTipoHabitacion;
 	}
 
-
-
 	public void setPrecioAdicionalPorTipoHabitacion(double precioAdicionalPorTipoHabitacion) {
 		this.precioAdicionalPorTipoHabitacion = precioAdicionalPorTipoHabitacion;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Habitacion [, capacidad=" + capacidad + ", disponible=" + disponible
 				+ ", numeroHabitacion=" + numeroHabitacion + "]";
 	}
-
-
-
 
 }

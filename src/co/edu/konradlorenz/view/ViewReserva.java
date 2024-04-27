@@ -1,31 +1,26 @@
 package co.edu.konradlorenz.view;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class ViewReserva {
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-    public void graciasReserva() {
+    public void mostrarGraciasReserva() {
         System.out.println("Gracias por hacer la reserva con nostros");
     }
 
     public String pedirNombreHospedajeAreservar() {
         System.out.println("Ingrese el hospedaje a reservar: ");
-        String nombreHospedajeAreservar = sc.next();
-        return nombreHospedajeAreservar;
+        sc.nextLine();
+        String nombre = sc.nextLine();
+        return nombre;
     }
 
-    public int pedirNumeroPersonas() {
-        System.out.println("Ingrese el numero de Personas que se hospedan : ");
-        int numeroPersonas = sc.nextInt();
-        return numeroPersonas;
-    }
-
-    public int pedirNumeroDeNoches() {
-        System.out.println("Ingrese el numero de nochas que sea quedarse : ");
-        int numeroNoches = sc.nextInt();
-        return numeroNoches;
-    }
+  
 
     public void hospedajeNoEncontrado() {
         System.out.println("El hospedaje no se encontro");
@@ -35,7 +30,7 @@ public class ViewReserva {
     public void mostrarTitulo() {
 
         System.out.format("%-20s %-20s %-20s %-20s %-20s %-40s %-20s %n",
-                "Tipo Habitacion", "nombre", "ubicacion Ciudad", "ubicacion Pais",
+                "Tipo hospedaje", "nombre", "ubicacion Ciudad", "ubicacion Pais",
                 "numero Estrellas", "descripcion", "tipo");
 
     }
@@ -51,6 +46,80 @@ public class ViewReserva {
                 descripcion, tipo);
 
         System.out.println("\n");
+    }
+
+    public void mostrarHabitacionesDisponibles() {
+        System.out.println("Habitaciones disponibles: ");
+    }
+
+    public void mostrarTituloHabitacion() {
+
+        System.out.format("%-20s %-20s %-20s %-20s %-30s %n",
+                "Tipo Habitacion", " capacidad", "disponibilidad", "numero Habitacion",
+                " precio adicional por tipo habitacion");
+
+    }
+
+    public void imprimirTablaHabitacion(String tH, int capacidad, boolean disponibilidad, int numeroHabitacion,
+            double precioAdicionalPorTipoHabitacion) {
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.format("%-20s %-20d %-20s %-20d %-30f  %n", tH, capacidad, disponibilidad, numeroHabitacion,
+                precioAdicionalPorTipoHabitacion);
+        System.out.println("\n");
+    }
+
+    public int pedirNumeroHabitacionReservar() {
+        System.out.println("Ingrese el numero de la habitacion que desea reservar :  ");
+        int numeroReserva = sc.nextInt();
+        return numeroReserva;
+    }
+
+    public void mostrarHabitacionNoDisponible() {
+        System.out.println("Habitacion no disponible");
+    }
+
+    public void mostrarHabitacionNoEncontrada() {
+        System.out.println("La habitacion no existe");
+    }
+
+    public static Date ingresarFechaEntrada() {
+
+        System.out.print("Ingrese la fecha de entrada (dd/MM/yyyy): ");
+        String fechaStr = sc.nextLine();
+        try {
+            return (Date) dateFormat.parse(fechaStr);
+        } catch (ParseException e) {
+            System.out.println("Formato de fecha inválido. Por favor, ingrese la fecha en el formato dd/MM/yyyy.");
+            return ingresarFechaEntrada();
+        }
+    }
+
+    public Date ingresarFechaSalida() {
+
+        System.out.print("Ingrese la fecha de salida (dd/MM/yyyy): ");
+        String fechaStr = sc.nextLine();
+        try {
+            return (Date) dateFormat.parse(fechaStr);
+        } catch (ParseException e) {
+            System.out.println("Formato de fecha inválido. Por favor, ingrese la fecha en el formato dd/MM/yyyy.");
+            return ingresarFechaSalida();
+        }
+    }
+
+    public static int ingresarNumeroNoches() {
+
+        System.out.print("Ingrese el número de noches: ");
+        int numeroNoches = sc.nextInt();
+        return numeroNoches;
+    }
+
+    public static int ingresarNumeroPersonas() {
+
+        System.out.print("Ingrese el número de personas: ");
+        int numeroPersonas = sc.nextInt();
+        return numeroPersonas;
+
     }
 
 }

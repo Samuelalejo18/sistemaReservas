@@ -164,7 +164,7 @@ public class ViewDatosCliente {
 	}
 
 	public String pedirNombreHospedaje() {
-		System.out.println("Ingrese el nombre del hospedaje:  ");
+		System.out.println("Ingrese el hospedaje a reservar: ");
 		sc.nextLine();
 		String nombre = sc.nextLine();
 		return nombre;
@@ -181,7 +181,5 @@ public class ViewDatosCliente {
 
 	}
 
-	public String nombreHospedajeReservar() {
-		return "";
-	}
+	
 }

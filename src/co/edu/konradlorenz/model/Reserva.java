@@ -1,7 +1,7 @@
 package co.edu.konradlorenz.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
+
 
 public class Reserva implements Pago {
 	private Cliente cliente;
@@ -12,22 +12,18 @@ public class Reserva implements Pago {
 	private int cantidadDePersonas;
 	private double precioTotal;
 	private int numeroNoches;
-	ArrayList<Hospedaje> hospedajes = new ArrayList<>();
-
-	// ArrayList<Habitacion> habitacionesAReservar =
-	// hospedajeReservado.getHabitaciones();
 	public Reserva() {
 	}
 
 	public Reserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
-			Habitacion habitacionReservada, int cantidadDePersonas, double precioTotal, int numeroNoches) {
+			Habitacion habitacionReservada, int cantidadDePersonas, int numeroNoches) {
 		this.cliente = cliente;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.hospedajeReservado = hospedajeReservado;
 		this.habitacionReservada = habitacionReservada;
 		this.cantidadDePersonas = cantidadDePersonas;
-		this.precioTotal = precioTotal;
+		
 		this.numeroNoches = numeroNoches;
 	}
 
@@ -95,23 +91,8 @@ public class Reserva implements Pago {
 		this.habitacionReservada = habitacionReservada;
 	}
 
-	/*
-	 * public ArrayList<Habitacion> getHabitacionesAReservar() {
-	 * return habitacionesAReservar;
-	 * }
-	 * 
-	 * public void setHabitacionesAReservar(ArrayList<Habitacion>
-	 * habitacionesAReservar) {
-	 * this.habitacionesAReservar = habitacionesAReservar;
-	 * }
-	 */
-	public ArrayList<Hospedaje> getHospedajes() {
-		return hospedajes;
-	}
 
-	public void setHospedajes(ArrayList<Hospedaje> hospedajes) {
-		this.hospedajes = hospedajes;
-	}
+
 
 	@Override
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
@@ -146,35 +127,8 @@ public class Reserva implements Pago {
 		return " Pago Cancelado";
 	}
 
-	public Hospedaje reservarHospedaje(String nombre) {
-		Hospedaje hospedajeAReservar = null;
-		boolean encontradoNombre = false;
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
-				hospedajeAReservar = hospedaje;
-				setHospedajeReservado(hospedajeAReservar);
+	
 
-				encontradoNombre = true;
-				break;
-
-			}
-		}
-		if (!encontradoNombre) {
-
-		}
-
-		return hospedajeAReservar;
-
-	}
-
-	/*
-	 * public Habitacion habitacionAreservar(Habitacion tipohHabitacion) {
-	 * for (Habitacion habitacion : habitacionesAReservar) {
-	 * }
-	 * 
-	 * return null;
-	 * }
-	 */
 
 	@Override
 	public String toString() {
