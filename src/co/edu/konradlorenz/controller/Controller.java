@@ -187,7 +187,19 @@ public class Controller {
 
 							viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
 
-							System.out.println(reserva);
+							String nombreClaseHabitacon = habitacionReservada.getClass().getSimpleName();
+
+							String tipoHabitacion = nombreClaseHabitacon.substring("Habitacion".length());
+
+							String tipoHospedaje = controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
+							viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(),
+									usuarioAutenticado.getApellido(), usuarioAutenticado.getId(),
+									usuarioAutenticado.getEmail(), usuarioAutenticado.getNumeroTelefono(), fechaEntrada,
+									fechaSalida, tipoHospedaje, hospedajeAReservar.getNombre(),
+									hospedajeAReservar.getUbicacionCiudad(), hospedajeAReservar.getUbicacionPais(),
+									tipoHabitacion, habitacionReservada.getNumeroHabitacion(), numeroPersonas,
+									numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
+									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(), precioTotal);
 
 						} else {
 							System.out.println("capacidad insuficiente");

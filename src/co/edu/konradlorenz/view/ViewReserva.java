@@ -126,6 +126,38 @@ public class ViewReserva {
         return respuestaUsuario;
     }
 
+    public void imprimirTablaReserva(String nombre, String apellido, int id, String email, long numeroTelefono,
+            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHotel, String ciudad, String pais,
+            String tipoHabitacion,
+            int numeroHabitacion,
+            int cantidadPersonas,
+            int numeroNoches,
+            double precioPorPersona, double precioAdicionalPorTipoHabitacion, double precioTotal) {
+
+        System.out.println("|-----------------------------------------------------------------------|");
+        System.out.format("%-40s  %-29s %-1s  %n", "| Nombre:           ", nombre, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| Apellido:           ", apellido, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| Cedula:           ", id, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| email:           ", email, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| numero telefono:           ", numeroTelefono, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| Fecha entrada:           ", fechaEntrada, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| Fecha salida:           ", fechaSalida, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| Tipo hospedaje:           ", tipoHospedaje, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| nombre hospedaje:           ", nombreHotel, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| pais:           ", pais, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| ciudad:           ", ciudad, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| Tipo de habitacion :           ", tipoHabitacion, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| numero de habitacion:           ", numeroHabitacion, "|");
+        System.out.format("%-40s  %-29d %-1s%n", "| cantidad de Personas:           ", cantidadPersonas, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| numero de Noches:           ", numeroNoches, "|");
+        System.out.format("%-40s  %-29f %-1s %n", "| precio por persona:           ", precioPorPersona, "|");
+        System.out.format("%-20s  %-19f %-1s %n", "| precio adicional por tipo habitacion:           ",
+                precioAdicionalPorTipoHabitacion, "|");
+        System.out.println("|-----------------------------------------------------------------------|");
+        System.out.format("%-40s  %-29f %-1s%n", "| precio Total:           ", precioTotal, "|");
+        System.out.println("|-----------------------------------------------------------------------|");
+    }
+
     public void mostrarPrecio(double precioTotal) {
         System.out.printf("Precio total de : %.2f%n", precioTotal);
 
