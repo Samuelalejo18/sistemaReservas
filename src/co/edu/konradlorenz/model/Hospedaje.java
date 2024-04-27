@@ -2,7 +2,7 @@ package co.edu.konradlorenz.model;
 
 import java.util.ArrayList;
 
-public abstract class Hospedaje {
+public class Hospedaje {
 	protected String nombre;
 	protected String ubicacionCiudad;
 	protected String ubicacionPais;

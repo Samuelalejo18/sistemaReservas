@@ -62,33 +62,37 @@ public class ViewDatosCliente {
 	public String pedirNombre() {
 		System.out.println("\n");
 		System.out.println("Ingrese el nombre del usuario: ");
-		String nombre = sc.nextLine();
+		String nombre = sc.next();
 		return nombre;
 	}
 
 	public String pedirApellido() {
 		sc.nextLine();
+        System.out.println("\n");
 		System.out.println("Ingrese el apellido del usuario:");
 		String apellido = sc.next();
 		return apellido;
 	}
 
 	public int pedirId() {
+		System.out.println("\n");
 		System.out.println("Ingrese el ID del usuario:");
 		int id = sc.nextInt();
 		return id;
 	}
 
 	public long pedirNumeroTelefono() {
+		System.out.println("\n");
 		System.out.println("Ingrese el número de teléfono del usuario:");
 		Long numeroTelefono = sc.nextLong();
+		sc.nextLine();
 		return numeroTelefono;
 	}
 
 	public String pedirDireccion() {
+		System.out.println("\n");
 		System.out.println("Ingrese la dirección del usuario:");
-		sc.nextLine();
-		String direccion = sc.next();
+		String direccion = sc.nextLine();
 		return direccion;
 	}
 
@@ -136,14 +140,12 @@ public class ViewDatosCliente {
 	public String pedirCiudad() {
 
 		System.out.println("Ingrese nombre de la ciudad: ");
-		sc.nextLine();
 		String nombreCiudad = sc.next();
 		return nombreCiudad;
 	}
 
 	public String pedirPais() {
 		System.out.println("Ingrese nombre del pais: ");
-
 		String nombrePais = sc.next();
 		return nombrePais;
 
@@ -158,28 +160,19 @@ public class ViewDatosCliente {
 
 	public String pedirTipoHospedaje() {
 		System.out.println("Ingrese el tipo de hospedaje(urbano/rural): ");
-
 		String tipoHospedaje = sc.next();
+		
 		return tipoHospedaje;
 	}
 
 	public String pedirNombreHospedaje() {
-		System.out.println("Ingrese el hospedaje a reservar: ");
 		sc.nextLine();
+		System.out.println("Ingrese el hospedaje a reservar: ");
 		String nombre = sc.nextLine();
 		return nombre;
 	}
 
-	public String pedirTipoHabitacion() {
-		System.out.println("Ingrese el tipo de habitacion:  ");
-		sc.nextLine();
-		String tipo = sc.nextLine();
-		return tipo;
-	}
 
-	public void mostrarPrecio() {
-
-	}
 
 	
 }

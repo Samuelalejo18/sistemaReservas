@@ -1,7 +1,6 @@
 package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
-
 import co.edu.konradlorenz.model.Cabana;
 import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Glamping;
@@ -48,15 +47,15 @@ public class ControllerHospedajes {
 
 	public void buscarPorNombre(String nombre) {
 		boolean encontradoNombre = false;
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
 				// viewHospedaje.mostrarFiltros(hospedaje);
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 				encontradoNombre = true;
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
 		if (!encontradoNombre) {
@@ -67,14 +66,14 @@ public class ControllerHospedajes {
 
 	public void filtrarCiudad(String ubicacionCiudad) {
 		boolean encontradoCiudad = false;
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getUbicacionCiudad().equalsIgnoreCase(ubicacionCiudad)) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 				encontradoCiudad = true;
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
 
@@ -89,20 +88,20 @@ public class ControllerHospedajes {
 			String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 			ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 					hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-					hospedaje.getTipo());
+					hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 		}
 	}
 
 	public void filtrarPorPais(String ubicacionPais) {
 		boolean encontrado = false;
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getUbicacionPais().equalsIgnoreCase(ubicacionPais)) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 				encontrado = true;
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
 
@@ -114,13 +113,13 @@ public class ControllerHospedajes {
 
 	public void filtrarPorNumeroDeEstrellas(int numeroDeEstrellas) {
 		boolean encontradoEstrellas = false;
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNumeroEstrellas() == numeroDeEstrellas) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
 
@@ -134,14 +133,14 @@ public class ControllerHospedajes {
 
 	public void filtrarTipo(String tipo) {
 		boolean encontradoTipo = false;
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getTipo().equalsIgnoreCase(tipo)) {
 				encontradoTipo = true;
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
@@ -154,13 +153,13 @@ public class ControllerHospedajes {
 
 	public void filtrarHoteles() {
 
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Hotel) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
@@ -168,78 +167,78 @@ public class ControllerHospedajes {
 	}
 
 	public void filtrarMoteles() {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Motel) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
 	}
 
 	public void filtralResorts() {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Resort) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
 	}
 
 	public void filtralCampings() {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Camping) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
 	}
 
 	public void filtralGlampings() {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Glamping) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
 	}
 
 	public void filtralCabanas() {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Cabana) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 
 			}
 		}
 	}
 
 	public void filtrarPorPrecio(int min, int max) {
+		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getPrecioPorPersona() >= min && hospedaje.getPrecioPorPersona() <= max) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				viewHospedaje.mostrarTitulo();
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo());
+						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
 	}

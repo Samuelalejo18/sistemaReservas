@@ -48,12 +48,13 @@ public class AuthCliente {
 
 			}
 		}
-		if (!existeUsuario && !existeUsuario2) {
-			clientes.add(cliente);
-		} else {
+		if (existeUsuario && existeUsuario2) {
 			return false;
+		} else {
+			clientes.add(cliente);
+			return true;
 		}
-		return false;
+		
 
 	}
 

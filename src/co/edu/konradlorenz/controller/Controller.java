@@ -49,6 +49,7 @@ public class Controller {
 							viewDatosCliente.pedirId(), viewDatosCliente.pedirEmail(),
 							viewDatosCliente.pedirContrasena(),
 							viewDatosCliente.pedirNumeroTelefono(), viewDatosCliente.pedirDireccion());
+
 					if (!AuthCliente.registrar(cliente)) {
 						viewDatosCliente.registroFallido(cliente.getNombre());
 
@@ -139,14 +140,9 @@ public class Controller {
 
 						for (Habitacion habitacion : habitaciones) {
 							if (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
-								/*
-								 * String nombreClase = habitacion.getClass().getSimpleName();
-								 * // Eliminar el prefijo "Habitacion" para obtener solo "Base" o "Doble"
-								 * String tipoHabitacion = nombreClase.substring("Habitacion".length());
-								 * // Imprimir el tipo de habitación
-								 * System.out.println(tipoHabitacion);
-								 */
+								
 								if (habitacion.isDisponible()) {
+									
 									habitacionReservada = habitacion;
 									habitacionEncontrada = true;
 									String tipoHabitacion = controllerReserva.hallarTipoHabitacion(habitacion);
@@ -155,8 +151,8 @@ public class Controller {
 											habitacion.getPrecioAdicionalPorTipoHabitacion());
 									break;
 								} else {
+									habitacionReservada = habitacion;
 									viewReserva.mostrarHabitacionNoDisponible();
-
 								}
 							}
 						}
@@ -177,8 +173,6 @@ public class Controller {
 									hospedajeAReservar,
 									habitacionReservada, numeroPersonas, numeroNoches);
 
-							// double precio = hospedajeAReservar.getPrecioPorPersona()
-							// + habitacionReservada.getPrecioAdicionalPorTipoHabitacion();
 
 							double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
 
@@ -199,7 +193,7 @@ public class Controller {
 									hospedajeAReservar.getUbicacionCiudad(), hospedajeAReservar.getUbicacionPais(),
 									tipoHabitacion, habitacionReservada.getNumeroHabitacion(), numeroPersonas,
 									numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
-									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(), precioTotal);
+									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),hospedajeAReservar.sumaPorHabitacion(),precioTotal);
 
 						} else {
 							System.out.println("capacidad insuficiente");

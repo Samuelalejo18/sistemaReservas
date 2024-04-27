@@ -84,7 +84,7 @@ public class ViewReserva {
     public static Date ingresarFechaEntrada() {
 
         System.out.print("Ingrese la fecha de entrada (dd/MM/yyyy): ");
-        String fechaStr = sc.nextLine();
+        String fechaStr = sc.next();
         try {
             return (Date) dateFormat.parse(fechaStr);
         } catch (ParseException e) {
@@ -127,12 +127,12 @@ public class ViewReserva {
     }
 
     public void imprimirTablaReserva(String nombre, String apellido, int id, String email, long numeroTelefono,
-            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHotel, String ciudad, String pais,
+            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHospedaje, String ciudad, String pais,
             String tipoHabitacion,
             int numeroHabitacion,
             int cantidadPersonas,
             int numeroNoches,
-            double precioPorPersona, double precioAdicionalPorTipoHabitacion, double precioTotal) {
+            double precioPorPersona, double precioAdicionalPorTipoHabitacion,double subtotal, double precioTotal) {
 
         System.out.println("|-----------------------------------------------------------------------|");
         System.out.format("%-40s  %-29s %-1s  %n", "| Nombre:           ", nombre, "|");
@@ -140,21 +140,22 @@ public class ViewReserva {
         System.out.format("%-40s  %-29d %-1s %n", "| Cedula:           ", id, "|");
         System.out.format("%-40s  %-29s %-1s %n", "| email:           ", email, "|");
         System.out.format("%-40s  %-29d %-1s %n", "| numero telefono:           ", numeroTelefono, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| nombre hospedaje:           ", nombreHospedaje, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| Tipo hospedaje:           ", tipoHospedaje, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| ciudad:           ", ciudad, "|");
+        System.out.format("%-40s  %-29s %-1s %n", "| Pais:           ", pais, "|");
         System.out.format("%-40s  %-29d %-1s %n", "| Fecha entrada:           ", fechaEntrada, "|");
         System.out.format("%-40s  %-29d %-1s %n", "| Fecha salida:           ", fechaSalida, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Tipo hospedaje:           ", tipoHospedaje, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| nombre hospedaje:           ", nombreHotel, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| pais:           ", pais, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| ciudad:           ", ciudad, "|");
         System.out.format("%-40s  %-29s %-1s %n", "| Tipo de habitacion :           ", tipoHabitacion, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| numero de habitacion:           ", numeroHabitacion, "|");
-        System.out.format("%-40s  %-29d %-1s%n", "| cantidad de Personas:           ", cantidadPersonas, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| numero de Noches:           ", numeroNoches, "|");
-        System.out.format("%-40s  %-29f %-1s %n", "| precio por persona:           ", precioPorPersona, "|");
-        System.out.format("%-20s  %-19f %-1s %n", "| precio adicional por tipo habitacion:           ",
+        System.out.format("%-40s  %-29s %-1s %n", "| Numero de habitacion:           ", numeroHabitacion, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| Cantidad de Personas:           ", cantidadPersonas, "|");
+        System.out.format("%-40s  %-29d %-1s %n", "| Numero de Noches:           ", numeroNoches, "|");
+        System.out.format("%-40s  %-29f %-1s %n", "| Precio por persona:           ", precioPorPersona, "|");
+        System.out.format("%-20s  %-19f %-1s %n", "| Precio adicional por tipo habitacion:           ",
                 precioAdicionalPorTipoHabitacion, "|");
+        System.out.format("%-40s  %-29f %-1s %n", "| Subtotal:           ", subtotal, "|");
         System.out.println("|-----------------------------------------------------------------------|");
-        System.out.format("%-40s  %-29f %-1s%n", "| precio Total:           ", precioTotal, "|");
+        System.out.format("%-40s  %-29f %-1s%n", "| Precio Total:           ", precioTotal, "|");
         System.out.println("|-----------------------------------------------------------------------|");
     }
 
