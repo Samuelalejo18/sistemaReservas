@@ -3,21 +3,22 @@ package co.edu.konradlorenz.model;
 import java.util.Date;
 
 public abstract class MetodoPago {
-    
-    protected String tipoDetarjeta;
+
+    protected String tipoDetarjeta;// Mastercard, visa, american express, dinners
+    protected String banco;
     protected byte codigoSeguridad;
     protected String nombreTitular;
     protected long numeroDetarjeta;
     protected Date fechaExpiracion;
-    
-    
-    public MetodoPago(){
-        
+
+    public MetodoPago() {
+
     }
-    
-    public MetodoPago(String tipoDetarjeta, byte codigoSeguridad, String nombreTitular, long numeroDetarjeta,
-            Date fechaExpiracion) {
+
+    public MetodoPago(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular,
+            long numeroDetarjeta, Date fechaExpiracion) {
         this.tipoDetarjeta = tipoDetarjeta;
+        this.banco = banco;
         this.codigoSeguridad = codigoSeguridad;
         this.nombreTitular = nombreTitular;
         this.numeroDetarjeta = numeroDetarjeta;
@@ -64,15 +65,15 @@ public abstract class MetodoPago {
         this.fechaExpiracion = fechaExpiracion;
     }
 
+    public abstract void Pagar();
+
+    public abstract void pagoRechazado();
+
     @Override
     public String toString() {
         return "MetodoPago [tipoDetarjeta=" + tipoDetarjeta + ", codigoSeguridad=" + codigoSeguridad
                 + ", nombreTitular=" + nombreTitular + ", numeroDetarjeta=" + numeroDetarjeta + ", fechaExpiracion="
                 + fechaExpiracion + "]";
     }
-    
-    
 
-    
-    
 }
