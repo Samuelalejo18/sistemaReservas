@@ -12,7 +12,7 @@ public class Resort extends Hospedaje {
 				precioPorPersona);
 		this.actividadesExtra = actividadesExtra;
 		this.espaciosExclusivos = espaciosExclusivos;
-		sumaPorHabitacion();
+		
 	}
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, 

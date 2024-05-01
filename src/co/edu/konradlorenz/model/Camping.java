@@ -15,7 +15,7 @@ public class Camping extends Hospedaje {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
 		this.zonasComunes = zonasComunes;
 		this.actividadesAlAireLibre = actividadesAlAireLibre;
-		sumaPorHabitacion();
+		
 	}
 
 	public Camping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,

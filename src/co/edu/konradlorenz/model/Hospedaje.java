@@ -26,7 +26,7 @@ public class Hospedaje {
 		this.tipo = tipo;
 		this.precioPorPersona = precioPorPersona;
 		habitaciones = new ArrayList<>();
-		sumaPorHabitacion();
+	
 		Habitacion.setContadorHabitacion(0);
 	}
 
@@ -99,20 +99,6 @@ public class Hospedaje {
 
 	}
 
-	// Calcular precio por persona de acuerdo a la habitacion, dependiendo el tipo
-	// de habitacion el precio por persona aumenta
-	public double sumaPorHabitacion() {
-		double sumaPorHabitacion = 0;
-		for (Habitacion habitacion : habitaciones) {
-
-			sumaPorHabitacion = precioPorPersona + habitacion.getPrecioAdicionalPorTipoHabitacion();
-
-		}
-		return sumaPorHabitacion;
-	}
-
-	// ublic abstract double calcularPrecioTotal(int numeroPersonas, int
-	// numeroNoches);
 
 	@Override
 	public String toString() {

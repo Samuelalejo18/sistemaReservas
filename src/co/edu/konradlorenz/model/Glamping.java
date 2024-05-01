@@ -17,7 +17,7 @@ public class Glamping extends Hospedaje {
 		this.experienciasNaturales = experienciasNaturales;
 		this.servicios = servicios;
 		this.sostenibilidad = sostenibilidad;
-		sumaPorHabitacion();
+		
 	}
 	
 

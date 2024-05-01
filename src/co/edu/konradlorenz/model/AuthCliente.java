@@ -1,5 +1,6 @@
 package co.edu.konradlorenz.model;
 
+
 import java.util.ArrayList;
 
 public class AuthCliente {
@@ -28,10 +29,10 @@ public class AuthCliente {
 	}
 
 	public void registrarClientePrueba() {
-		
-		// Usuarios admin 
+
+		// Usuarios admin
 		// La letra L al final del numero especifica que es Long
-		Cliente clienteAdmin = new Cliente("Julian", "Homez", 289, "f", "j",  3161925274L, "Calle 5");
+		Cliente clienteAdmin = new Cliente("Julian", "Homez", 289, "f", "j", 3161925274L, "Calle 5");
 		clientes.add(clienteAdmin);
 	}
 
@@ -54,7 +55,6 @@ public class AuthCliente {
 			clientes.add(cliente);
 			return true;
 		}
-		
 
 	}
 
@@ -77,8 +77,9 @@ public class AuthCliente {
 		} else {
 			return null;
 		}
-		
+
 	}
+
 
 
 	@Override

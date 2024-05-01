@@ -18,7 +18,7 @@ public class Cabana extends Hospedaje  {
 		this.decoracion = decoracion;
 		this.vistasExclusivas = vistasExclusivas;
 		this.actividadesExtra = actividadesExtra;
-		sumaPorHabitacion();
+		
 	}
 	
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,

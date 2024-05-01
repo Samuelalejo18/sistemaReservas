@@ -8,6 +8,20 @@
             "type": "java",
             "name": "AplMain",
             "request": "launch",
+            "mainClass": "co.edu.konradlorenz.controller.AplMain",
+            "projectName": "sistemaReservas"
+        },
+        {
+            "type": "java",
+            "name": "Autenticacion",
+            "request": "launch",
+            "mainClass": "sistemaReservas/co.edu.konradlorenz.view.Autenticacion",
+            "projectName": "sistemaReservas"
+        },
+        {
+            "type": "java",
+            "name": "AplMain",
+            "request": "launch",
             "mainClass": "sistemaReservas/co.edu.konradlorenz.controller.AplMain",
             "projectName": "sistemaReservas"
         }

@@ -2,7 +2,6 @@ package co.edu.konradlorenz.model;
 
 import java.sql.Date;
 
-
 public class Reserva implements Pago {
 	private Cliente cliente;
 	private Date fechaEntrada;
@@ -12,6 +11,7 @@ public class Reserva implements Pago {
 	private int cantidadDePersonas;
 	private double precioTotal;
 	private int numeroNoches;
+
 	public Reserva() {
 	}
 
@@ -23,7 +23,7 @@ public class Reserva implements Pago {
 		this.hospedajeReservado = hospedajeReservado;
 		this.habitacionReservada = habitacionReservada;
 		this.cantidadDePersonas = cantidadDePersonas;
-		
+
 		this.numeroNoches = numeroNoches;
 	}
 
@@ -91,18 +91,22 @@ public class Reserva implements Pago {
 		this.habitacionReservada = habitacionReservada;
 	}
 
-
-
+	@Override
+	public double subtotal() {
+		double precioPorPersona = hospedajeReservado.getPrecioPorPersona()
+				+ habitacionReservada.getPrecioAdicionalPorTipoHabitacion();
+		return precioPorPersona;
+	}
 
 	@Override
 	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
-		double precioPorPersona = hospedajeReservado.sumaPorHabitacion();
+		double subTotal = subtotal();
 		double precio = 0;
 		if (numeroPersonas > 2) {
-			precio = precioPorPersona * numeroPersonas * numeroNoches;
+			precio = subTotal * numeroPersonas * numeroNoches;
 			precioTotal = precio + (precio * IMPUESTO);
 		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
-			precio = precioPorPersona * numeroNoches;
+			precio = subTotal * numeroNoches;
 			precioTotal = precio + (precio * IMPUESTO);
 		}
 
@@ -128,9 +132,6 @@ public class Reserva implements Pago {
 	public String cancelarPago() {
 		return " Pago Cancelado";
 	}
-
-	
-
 
 	@Override
 	public String toString() {

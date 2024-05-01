@@ -15,7 +15,7 @@ public class Motel extends Hospedaje  {
 		this.tematica = tematica;
 		this.jacuzzi = jacuzzi;
 		this.servicio = servicio;
-		sumaPorHabitacion();
+		
 	}
 
 

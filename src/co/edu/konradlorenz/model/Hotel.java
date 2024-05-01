@@ -16,7 +16,7 @@ public class Hotel extends Hospedaje {
         super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona );
         this.piscina = piscina;
         this.gimnasio = gimnasio;
-        sumaPorHabitacion();
+        
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,

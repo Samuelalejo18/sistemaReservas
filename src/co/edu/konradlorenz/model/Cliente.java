@@ -1,5 +1,7 @@
 package co.edu.konradlorenz.model;
 
+import java.util.ArrayList;
+
 public class Cliente {
 	private String nombre;
 	private String apellido;
@@ -8,7 +10,7 @@ public class Cliente {
 	private String contrasena;
 	private Long numeroTelefono;
 	private String direccion;
-
+	private ArrayList<Tarjeta> tarjetas;
 	
 	
 
@@ -21,6 +23,7 @@ public class Cliente {
 		this.contrasena = contrasena;
 		this.numeroTelefono = numeroTelefono;
 		this.direccion = direccion;
+		tarjetas= new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -81,10 +84,27 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
+
+	public ArrayList<Tarjeta> gettarjetas() {
+		return tarjetas;
+	}
+
+	public void settarjetas(ArrayList<Tarjeta> tarjetas) {
+		this.tarjetas = tarjetas;
+	}
+
+	public void agregarHabitacion(Tarjeta  Tarjeta) {
+		tarjetas.add(Tarjeta);
+
+	}
+
+
+	
 	@Override
 	public String toString() {
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", email=" + email
 				+ ", contrasena=" + contrasena + ", numeroTelefono=" + numeroTelefono + "]";
 	}
+
 
 }

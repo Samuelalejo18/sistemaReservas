@@ -3,6 +3,7 @@ package co.edu.konradlorenz.controller;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import co.edu.konradlorenz.model.Archivo;
 import co.edu.konradlorenz.model.AuthCliente;
 import co.edu.konradlorenz.model.Cliente;
 import co.edu.konradlorenz.model.Habitacion;
@@ -21,9 +22,11 @@ public class Controller {
 	ArrayList<Habitacion> habitaciones;
 	Hospedaje hospedajeAReservar;
 	Habitacion habitacionReservada;
+	Archivo archivo = new Archivo();
 
 	public void funcionar() {
 		controllerHospedajes.registrarHospedajes();
+		archivo.guardarArchivo(metodosCliente.getClientes());
 		int opcion = -1;
 		while (opcion != 0) {
 			viewDatosCliente.opcionesDisponibles();
@@ -123,6 +126,7 @@ public class Controller {
 					hospedajeAReservar = controllerReserva.reservarHospedaje(viewDatosCliente.pedirNombreHospedaje());
 					if (hospedajeAReservar == null) {
 						viewReserva.hospedajeNoEncontrado();
+						break;
 					} else {
 
 						habitaciones = hospedajeAReservar.getHabitaciones();
@@ -140,9 +144,9 @@ public class Controller {
 
 						for (Habitacion habitacion : habitaciones) {
 							if (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
-								
+
 								if (habitacion.isDisponible()) {
-									
+
 									habitacionReservada = habitacion;
 									habitacionEncontrada = true;
 									String tipoHabitacion = controllerReserva.hallarTipoHabitacion(habitacion);
@@ -173,7 +177,6 @@ public class Controller {
 									hospedajeAReservar,
 									habitacionReservada, numeroPersonas, numeroNoches);
 
-
 							double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
 
 							viewReserva.mostrarPrecio(precioTotal);
@@ -186,6 +189,9 @@ public class Controller {
 							String tipoHabitacion = nombreClaseHabitacon.substring("Habitacion".length());
 
 							String tipoHospedaje = controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
+
+
+							
 							viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(),
 									usuarioAutenticado.getApellido(), usuarioAutenticado.getId(),
 									usuarioAutenticado.getEmail(), usuarioAutenticado.getNumeroTelefono(), fechaEntrada,
@@ -193,7 +199,8 @@ public class Controller {
 									hospedajeAReservar.getUbicacionCiudad(), hospedajeAReservar.getUbicacionPais(),
 									tipoHabitacion, habitacionReservada.getNumeroHabitacion(), numeroPersonas,
 									numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
-									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),hospedajeAReservar.sumaPorHabitacion(),precioTotal);
+									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),
+									reserva.subtotal(), precioTotal);
 
 						} else {
 							System.out.println("capacidad insuficiente");
