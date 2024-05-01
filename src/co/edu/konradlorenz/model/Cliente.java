@@ -85,26 +85,30 @@ public class Cliente {
 	}
 
 
-	public ArrayList<Tarjeta> gettarjetas() {
+	public ArrayList<Tarjeta> getTarjetas() {
 		return tarjetas;
 	}
 
-	public void settarjetas(ArrayList<Tarjeta> tarjetas) {
+	public void setTarjetas(ArrayList<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
 	}
 
-	public void agregarHabitacion(Tarjeta  Tarjeta) {
+	public void agregarTarjeta(Tarjeta  Tarjeta) {
 		tarjetas.add(Tarjeta);
 
 	}
 
-
-	
 	@Override
 	public String toString() {
 		return "Cliente [nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", email=" + email
-				+ ", contrasena=" + contrasena + ", numeroTelefono=" + numeroTelefono + "]";
+				+ ", contrasena=" + contrasena + ", numeroTelefono=" + numeroTelefono + ", direccion=" + direccion
+				+ ", tarjetas=" + tarjetas + "]";
 	}
+	
+
+
+	
+
 
 
 }
