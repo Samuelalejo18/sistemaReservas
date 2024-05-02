@@ -8,7 +8,7 @@ public abstract class Tarjeta {
 
     protected String tipoDetarjeta;// Mastercard, visa, american express, dinners
     protected String banco;
-    protected byte codigoSeguridad;
+    protected short codigoSeguridad;
     protected String nombreTitular;
     protected long numeroDetarjeta;
     protected Date fechaExpiracion;
@@ -17,7 +17,7 @@ public abstract class Tarjeta {
 
     }
 
-    public Tarjeta(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular,
+    public Tarjeta(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
             long numeroDetarjeta, Date fechaExpiracion) {
         this.tipoDetarjeta = tipoDetarjeta;
         this.banco = banco;
@@ -35,11 +35,11 @@ public abstract class Tarjeta {
         this.tipoDetarjeta = tipoDetarjeta;
     }
 
-    public byte getCodigoSeguridad() {
+    public short getCodigoSeguridad() {
         return codigoSeguridad;
     }
 
-    public void setCodigoSeguridad(byte codigoSeguridad) {
+    public void setCodigoSeguridad(short codigoSeguridad) {
         this.codigoSeguridad = codigoSeguridad;
     }
 

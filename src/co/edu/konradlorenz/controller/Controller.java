@@ -130,18 +130,12 @@ public class Controller {
 					} else {
 
 						habitaciones = hospedajeAReservar.getHabitaciones();
-						viewReserva.mostrarHabitacionesDisponibles();
-						viewReserva.mostrarTituloHabitacion();
-						for (Habitacion habitacion : habitaciones) {
-							String tipoHabitacion = controllerReserva.hallarTipoHabitacion(habitacion);
-							viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
-									habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-									habitacion.getPrecioAdicionalPorTipoHabitacion());
-						}
+
+						controllerReserva.habitacionesDisponibles(habitaciones);
 
 						int numeroHabitacionReservar = viewReserva.pedirNumeroHabitacionReservar();
 						boolean habitacionEncontrada = false;
-
+						boolean habitacionDisponible = false;
 						for (Habitacion habitacion : habitaciones) {
 							if (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
 
@@ -153,10 +147,14 @@ public class Controller {
 									viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
 											habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
 											habitacion.getPrecioAdicionalPorTipoHabitacion());
+									habitacionDisponible = true;
 									break;
 								} else {
 									habitacionReservada = habitacion;
+									habitacionEncontrada = true;
+									habitacionDisponible = false;
 									viewReserva.mostrarHabitacionNoDisponible();
+									break;
 								}
 							}
 						}
@@ -166,44 +164,50 @@ public class Controller {
 							break;
 						}
 
-						Date fechaEntrada = null/* ViewReserva.ingresarFechaEntrada() */;
-						Date fechaSalida = null /* viewReserva.ingresarFechaSalida() */;
+						if (habitacionDisponible) {
+							Date fechaEntrada = null/* ViewReserva.ingresarFechaEntrada() */;
+							Date fechaSalida = null /* viewReserva.ingresarFechaSalida() */;
 
-						int numeroPersonas = ViewReserva.ingresarNumeroPersonas();
-						if (habitacionReservada.getCapacidad() >= numeroPersonas) {
-							int numeroNoches = ViewReserva.ingresarNumeroNoches();
+							int numeroPersonas = ViewReserva.ingresarNumeroPersonas();
+							if (habitacionReservada.getCapacidad() >= numeroPersonas) {
+								int numeroNoches = ViewReserva.ingresarNumeroNoches();
+								Reserva reserva = new Reserva(usuarioAutenticado, fechaEntrada, fechaSalida,
+										hospedajeAReservar,
+										habitacionReservada, numeroPersonas, numeroNoches);
 
-							Reserva reserva = new Reserva(usuarioAutenticado, fechaEntrada, fechaSalida,
-									hospedajeAReservar,
-									habitacionReservada, numeroPersonas, numeroNoches);
+								double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
 
-							double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
+								viewReserva.mostrarPrecio(precioTotal);
 
-							viewReserva.mostrarPrecio(precioTotal);
-							String aceptarPago = ViewReserva.realizarpago();
+								controllerReserva.metodosDepago(usuarioAutenticado, usuarioAutenticado.getTarjetas(),
+										precioTotal);
 
-							viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
+								String aceptarPago = ViewReserva.realizarpago();
 
-							String nombreClaseHabitacon = habitacionReservada.getClass().getSimpleName();
+								viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
 
-							String tipoHabitacion = nombreClaseHabitacon.substring("Habitacion".length());
+								String nombreClaseHabitacon = habitacionReservada.getClass().getSimpleName();
 
-							String tipoHospedaje = controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
+								String tipoHabitacion = nombreClaseHabitacon.substring("Habitacion".length());
 
+								String tipoHospedaje = controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
 
-							
-							viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(),
-									usuarioAutenticado.getApellido(), usuarioAutenticado.getId(),
-									usuarioAutenticado.getEmail(), usuarioAutenticado.getNumeroTelefono(), fechaEntrada,
-									fechaSalida, tipoHospedaje, hospedajeAReservar.getNombre(),
-									hospedajeAReservar.getUbicacionCiudad(), hospedajeAReservar.getUbicacionPais(),
-									tipoHabitacion, habitacionReservada.getNumeroHabitacion(), numeroPersonas,
-									numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
-									habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),
-									reserva.subtotal(), precioTotal);
+								viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(),
+										usuarioAutenticado.getApellido(), usuarioAutenticado.getId(),
+										usuarioAutenticado.getEmail(), usuarioAutenticado.getNumeroTelefono(),
+										fechaEntrada,
+										fechaSalida, tipoHospedaje, hospedajeAReservar.getNombre(),
+										hospedajeAReservar.getUbicacionCiudad(), hospedajeAReservar.getUbicacionPais(),
+										tipoHabitacion, habitacionReservada.getNumeroHabitacion(), numeroPersonas,
+										numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
+										habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),
+										reserva.subtotal(), precioTotal);
 
-						} else {
-							System.out.println("capacidad insuficiente");
+							} else {
+								viewReserva.mostrarCapacidadInsuficiente();
+								break;
+							}
+
 						}
 
 					}

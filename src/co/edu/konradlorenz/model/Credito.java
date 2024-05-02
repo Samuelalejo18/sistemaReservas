@@ -12,15 +12,15 @@ public class Credito extends Tarjeta {
         super();
     }
 
-    public Credito(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular,
+    public Credito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
             long numeroDetarjeta, Date fechaExpiracion, long saldoCredito, double intereses) {
         super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
         this.saldoCredito = saldoCredito;
-
+        this.cuota = cuota;
         this.interes = intereses;
     }
 
-    public Credito(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular,
+    public Credito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
             long numeroDetarjeta, Date fechaExpiracion) {
         super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
 
@@ -50,18 +50,13 @@ public class Credito extends Tarjeta {
         this.interes = intereses;
     }
 
-    @Override
-    public String toString() {
-        return "Credito [saldoCredito=" + saldoCredito + ", cuota=" + cuota + ", interes=" + interes
-                + "]";
-    }
-
-    public double calcularCredito(double precioTotal) {
-        double cuotas = precioTotal / this.cuota;
+    
+    public double calcularCredito(double precioTotal, int cuota) {
+        double cuotas = precioTotal / cuota;
 
         // multiplicar cada cuota resultante por interes y sumarlo a la cuota inicial, y
         // multiplicar al numero de cuptas
-        double intereces = ((cuotas * this.interes) + cuotas) * this.cuota;
+        double intereces = ((cuotas * this.interes) + cuotas) * cuota;
 
         double precioTotalConIntereses = intereces + precioTotal;
 
@@ -73,7 +68,7 @@ public class Credito extends Tarjeta {
     public String Pagar(double precioTotal) {
         String credito = "";
         if (saldoCredito > precioTotal) {
-            credito = "Saldo y credito aprobado por un total de :  " + calcularCredito(precioTotal);
+            credito = " credito aprobado por un total de :  " + calcularCredito(precioTotal, this.cuota);
         } else {
             credito = pagoRechazado();
         }
@@ -84,5 +79,10 @@ public class Credito extends Tarjeta {
     public String pagoRechazado() {
         return " pago cancelado, saldo insuficiente";
 
+    }
+    @Override
+    public String toString() {
+        return "Credito [saldoCredito=" + saldoCredito + ", cuota=" + cuota + ", interes=" + interes
+                + "]";
     }
 }

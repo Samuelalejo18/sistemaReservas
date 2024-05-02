@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import co.edu.konradlorenz.model.Cabana;
 import co.edu.konradlorenz.model.Camping;
+import co.edu.konradlorenz.model.Cliente;
+import co.edu.konradlorenz.model.Credito;
 import co.edu.konradlorenz.model.Glamping;
 import co.edu.konradlorenz.model.Habitacion;
 import co.edu.konradlorenz.model.HabitacionBase;
@@ -15,6 +17,7 @@ import co.edu.konradlorenz.model.Hotel;
 import co.edu.konradlorenz.model.Motel;
 import co.edu.konradlorenz.model.Reserva;
 import co.edu.konradlorenz.model.Resort;
+import co.edu.konradlorenz.model.Tarjeta;
 import co.edu.konradlorenz.view.ViewReserva;
 
 public class ControllerReserva {
@@ -74,7 +77,73 @@ public class ControllerReserva {
         return tipoHospedaje;
     }
 
+    public void habitacionesDisponibles(ArrayList<Habitacion> habitaciones) {
+        viewReserva.mostrarHabitacionesDisponibles();
+        viewReserva.mostrarTituloHabitacion();
+        for (Habitacion habitacion : habitaciones) {
+            String tipoHabitacion = hallarTipoHabitacion(habitacion);
+            viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
+                    habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
+                    habitacion.getPrecioAdicionalPorTipoHabitacion());
+        }
 
-   
+    }
+
+    public void metodosDepago(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
+        System.out.println("Metodos de pago");
+
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println(" 1.Tarjeta de credito");
+            System.out.println("2.Tarjeta Debito");
+            opcion = viewReserva.pedirOpcion();
+            switch (opcion) {
+                case 1:
+                    opcionesCredito(clienteAutenticado, tarjetas, precioTotal);
+                    opcion = 0;
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
+        System.out.println("Metodos de pago");
+
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println(" 1.Aregar Tareta");
+            System.out.println("2.Tarjetas ya registradas");
+            opcion = viewReserva.pedirOpcion();
+            switch (opcion) {
+                case 1:
+                    Credito tarjetaCredito = new Credito(viewReserva.pedirTipoTarjeta(), viewReserva.pedirBanco(),
+                            viewReserva.pedirCodigoDeseguridad(), viewReserva.pedirNombreTitular(),
+                            viewReserva.pedirNumeroDetarjeta(), null, viewReserva.pedirSaldo(),
+                            viewReserva.pedirItereses());
+                    clienteAutenticado.agregarTarjeta(tarjetaCredito);
+                    int numeroCuotas = viewReserva.pedirNumeroDeCuotas();
+                    tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
+                    tarjetaCredito.setCuotas(numeroCuotas);
+                    viewReserva.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+                    opcion = 0;
+                    break;
+                case 2:
+                    if (tarjetas.isEmpty()) {
+
+                        System.out.println("No hay ninguna tarjeta registrada");
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+    }
 
 }

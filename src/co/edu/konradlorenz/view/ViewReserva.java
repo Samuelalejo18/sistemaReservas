@@ -127,12 +127,13 @@ public class ViewReserva {
     }
 
     public void imprimirTablaReserva(String nombre, String apellido, int id, String email, long numeroTelefono,
-            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHospedaje, String ciudad, String pais,
+            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHospedaje, String ciudad,
+            String pais,
             String tipoHabitacion,
             int numeroHabitacion,
             int cantidadPersonas,
             int numeroNoches,
-            double precioPorPersona, double precioAdicionalPorTipoHabitacion,double subtotal, double precioTotal) {
+            double precioPorPersona, double precioAdicionalPorTipoHabitacion, double subtotal, double precioTotal) {
 
         System.out.println("|-----------------------------------------------------------------------|");
         System.out.format("%-40s  %-29s %-1s  %n", "| Nombre:           ", nombre, "|");
@@ -166,5 +167,67 @@ public class ViewReserva {
 
     public void mostrarPago(String pagoRealizado) {
         System.out.println(pagoRealizado);
+    }
+
+    public void mostrarCapacidadInsuficiente() {
+        System.out.println("capacidad insuficiente");
+    }
+
+    public int pedirOpcion() {
+
+        int opcion = sc.nextInt();
+        return opcion;
+    }
+
+    public String pedirTipoTarjeta() {
+        System.out.println("Ingrese el tipo de tarjeta: ");
+        String tipoTarjeta = sc.next();
+        return tipoTarjeta;
+    }
+
+    public String pedirBanco() {
+        System.out.println("Ingrese el banco ");
+        String banco = sc.next();
+        return banco;
+    }
+
+    public short pedirCodigoDeseguridad() {
+        System.out.println("Ingrese el codigo de seguridad ");
+        short cs = sc.nextShort();
+        return cs;
+    }
+
+    public String pedirNombreTitular() {
+        System.out.println("Ingrese nombre del titular");
+        String nombre = sc.next();
+        return nombre;
+    }
+
+    public long pedirNumeroDetarjeta() {
+        System.out.println("Ingrese el numero de la tarjeta ");
+        long numero = sc.nextLong();
+        return numero;
+    }
+
+    public long pedirSaldo() {
+        System.out.println("Ingrese el saldo ");
+        long saldo = sc.nextLong();
+        return saldo;
+    }
+
+    public double pedirItereses() {
+        System.out.println("Ingrese los intereses de la tarjeta: ");
+        double intereses = sc.nextDouble();
+        return intereses;
+    }
+
+    public int pedirNumeroDeCuotas() {
+        System.out.println("Ingrese el numero de cuotas");
+        int cuotas = sc.nextInt();
+        return cuotas;
+    }
+
+    public void mostrarCompraTarjeta(String valorCompra) {
+        System.out.println(valorCompra);
     }
 }

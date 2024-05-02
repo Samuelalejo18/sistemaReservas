@@ -9,13 +9,13 @@ public class Debito extends Tarjeta {
         super();
     }
 
-    public Debito(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular, long numeroDetarjeta,
+    public Debito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular, long numeroDetarjeta,
             Date fechaExpiracion, long saldo) {
         super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
         this.saldo = saldo;
     }
 
-    public Debito(String tipoDetarjeta, String banco, byte codigoSeguridad, String nombreTitular, long numeroDetarjeta,
+    public Debito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular, long numeroDetarjeta,
             Date fechaExpiracion) {
         super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
     }
