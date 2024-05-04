@@ -3,6 +3,7 @@ package co.edu.konradlorenz.view;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ViewReserva {
@@ -14,10 +15,26 @@ public class ViewReserva {
     }
 
     public String pedirNombreHospedajeAreservar() {
-        System.out.println("Ingrese el hospedaje a reservar: ");
-        sc.nextLine();
-        String nombre = sc.nextLine();
-        return nombre;
+        System.out.println("Ingrese el nombre del hospedaje a reservar :");
+        String nombreHospedaje = "";
+        boolean nombreHospedajeValido = false;
+
+        while (!nombreHospedajeValido) {
+            try {
+                nombreHospedaje = sc.next();
+
+                if (nombreHospedaje.matches("[a-zA-Z ]+")) {
+                    nombreHospedajeValido = true;
+                } else {
+                    System.out.println("Ingrese un nombre del Hospedaje válido (solo letras).");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+                sc.nextLine();
+            }
+        }
+
+        return nombreHospedaje;
     }
 
     public void hospedajeNoEncontrado() {
@@ -68,9 +85,22 @@ public class ViewReserva {
     }
 
     public int pedirNumeroHabitacionReservar() {
-        System.out.println("Ingrese el numero de la habitacion que desea reservar :  ");
-        int numeroReserva = sc.nextInt();
+        int numeroReserva = 0;
+        boolean opcionValida = false;
+        while (!opcionValida) {
+            try {
+
+                System.out.println("Ingrese el numero de la habitacion que desea reservar :  ");
+                numeroReserva = sc.nextInt();
+                opcionValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese dato valido");
+                sc.nextLine();
+            }
+        }
+
         return numeroReserva;
+
     }
 
     public void mostrarHabitacionNoDisponible() {
@@ -79,18 +109,6 @@ public class ViewReserva {
 
     public void mostrarHabitacionNoEncontrada() {
         System.out.println("La habitacion no existe");
-    }
-
-    public static Date ingresarFechaEntrada() {
-
-        System.out.print("Ingrese la fecha de entrada (dd/MM/yyyy): ");
-        String fechaStr = sc.next();
-        try {
-            return (Date) dateFormat.parse(fechaStr);
-        } catch (ParseException e) {
-            System.out.println("Formato de fecha inválido. Por favor, ingrese la fecha en el formato dd/MM/yyyy.");
-            return ingresarFechaEntrada();
-        }
     }
 
     public Date ingresarFechaSalida() {
@@ -106,24 +124,66 @@ public class ViewReserva {
     }
 
     public static int ingresarNumeroNoches() {
-
         System.out.print("Ingrese el número de noches: ");
-        int numeroNoches = sc.nextInt();
+        int numeroNoches = 0;
+        boolean numeroNochesValido = false;
+
+        while (!numeroNochesValido) {
+            try {
+                numeroNoches = sc.nextInt();
+                if (numeroNoches > 0) {
+                    numeroNochesValido = true;
+                } else {
+                    System.out.println("Ingrese un número de noches válido (mayor que 0).");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un dato valido");
+                sc.next();
+            }
+        }
         return numeroNoches;
     }
 
     public static int ingresarNumeroPersonas() {
-
         System.out.print("Ingrese el número de personas: ");
-        int numeroPersonas = sc.nextInt();
-        return numeroPersonas;
+        int numeroPersonas = 0;
+        boolean numeroPersonasValido = false;
 
+        while (!numeroPersonasValido) {
+            try {
+                numeroPersonas = sc.nextInt();
+                if (numeroPersonas > 0) {
+                    numeroPersonasValido = true;
+                } else {
+                    System.out.println("Ingrese un número de personas válido (mayor que 0).");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un dato valido");
+                sc.next();
+            }
+        }
+        return numeroPersonas;
     }
 
     public static String realizarpago() {
         System.out.println("¿Desea realizar el pago? (si/no)");
-        String respuestaUsuario = sc.next();
-        return respuestaUsuario;
+        String respuestaPago = "";
+        boolean respuestaValida = false;
+
+        while (!respuestaValida) {
+            try {
+                respuestaPago = sc.next().toLowerCase();
+                if (respuestaPago.equals("si") || respuestaPago.equals("no")) {
+                    respuestaValida = true;
+                } else {
+                    System.out.println("Ingrese una respuesta válida (si/no).");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+                sc.nextLine();
+            }
+        }
+        return respuestaPago;
     }
 
     public void imprimirTablaReserva(String nombre, String apellido, int id, String email, long numeroTelefono,
@@ -174,56 +234,158 @@ public class ViewReserva {
     }
 
     public int pedirOpcion() {
-
-        int opcion = sc.nextInt();
+        int opcion = 0;
+        boolean opcionValida = false;
+        while (!opcionValida) {
+            try {
+                System.out.println("Ingrese una opcion : ");
+                opcion = sc.nextInt();
+                opcionValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese dato valido");
+                sc.nextLine();
+            }
+        }
         return opcion;
     }
 
     public String pedirTipoTarjeta() {
         System.out.println("Ingrese el tipo de tarjeta: ");
-        String tipoTarjeta = sc.next();
+        String tipoTarjeta = "";
+        boolean tipoTarjetaValida = false;
+        while (!tipoTarjetaValida) {
+            try {
+                tipoTarjeta = sc.next();
+                if (tipoTarjeta.matches("[a-zA-Z ]+")) {
+                    tipoTarjetaValida = true;
+                } else {
+                    System.out.println("Ingrese un tipo de tarjeta válido (solo letras).");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+                sc.nextLine();
+            }
+        }
         return tipoTarjeta;
     }
 
     public String pedirBanco() {
-        System.out.println("Ingrese el banco ");
-        String banco = sc.next();
+        System.out.println("Ingrese el banco: ");
+        String banco = "";
+        boolean bancoValido = false;
+        while (!bancoValido) {
+            try {
+                banco = sc.next();
+                if (banco.matches("[a-zA-Z ]+")) {
+                    bancoValido = true;
+                } else {
+                    System.out.println("Ingrese un nombre de banco válido (solo letras).");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+                sc.nextLine();
+            }
+        }
         return banco;
     }
 
-    public short pedirCodigoDeseguridad() {
-        System.out.println("Ingrese el codigo de seguridad ");
-        short cs = sc.nextShort();
-        return cs;
-    }
-
     public String pedirNombreTitular() {
-        System.out.println("Ingrese nombre del titular");
-        String nombre = sc.next();
+        System.out.println("Ingrese nombre del titular: ");
+        String nombre = "";
+        boolean nombreValido = false;
+        while (!nombreValido) {
+            try {
+                nombre = sc.next();
+                if (nombre.matches("[a-zA-Z ]+")) {
+                    nombreValido = true;
+                } else {
+                    System.out.println("Ingrese un nombre válido (solo letras).");
+                }
+            } catch (Exception e) {
+                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+                sc.nextLine();
+            }
+        }
         return nombre;
     }
 
+    public short pedirCodigoDeseguridad() {
+        short cs = 0;
+        boolean codigoValido = false;
+        while (!codigoValido) {
+            try {
+                System.out.println("Ingrese el código de seguridad: ");
+                cs = sc.nextShort();
+                codigoValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un código de seguridad válido.");
+                sc.nextLine();
+            }
+        }
+        return cs;
+    }
+
     public long pedirNumeroDetarjeta() {
-        System.out.println("Ingrese el numero de la tarjeta ");
-        long numero = sc.nextLong();
+        long numero = 0;
+        boolean numeroValido = false;
+        while (!numeroValido) {
+            try {
+                System.out.println("Ingrese el número de la tarjeta: ");
+                numero = sc.nextLong();
+                numeroValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un número de tarjeta válido.");
+                sc.nextLine();
+            }
+        }
         return numero;
     }
 
     public long pedirSaldo() {
-        System.out.println("Ingrese el saldo ");
-        long saldo = sc.nextLong();
+        long saldo = 0;
+        boolean saldoValido = false;
+        while (!saldoValido) {
+            try {
+                System.out.println("Ingrese el saldo: ");
+                saldo = sc.nextLong();
+                saldoValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un saldo válido.");
+                sc.nextLine();
+            }
+        }
         return saldo;
     }
 
     public double pedirItereses() {
-        System.out.println("Ingrese los intereses de la tarjeta: ");
-        double intereses = sc.nextDouble();
+        double intereses = 0.0;
+        boolean interesesValidos = false;
+        while (!interesesValidos) {
+            try {
+                System.out.println("Ingrese los intereses de la tarjeta: ");
+                intereses = sc.nextDouble();
+                interesesValidos = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un valor válido para los intereses.");
+                sc.nextLine();
+            }
+        }
         return intereses;
     }
 
     public int pedirNumeroDeCuotas() {
-        System.out.println("Ingrese el numero de cuotas");
-        int cuotas = sc.nextInt();
+        int cuotas = 0;
+        boolean cuotasValidas = false;
+        while (!cuotasValidas) {
+            try {
+                System.out.println("Ingrese el número de cuotas: ");
+                cuotas = sc.nextInt();
+                cuotasValidas = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un número de cuotas válido.");
+                sc.nextLine();
+            }
+        }
         return cuotas;
     }
 

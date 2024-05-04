@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class AuthCliente {
 
+	private static ArrayList<Cliente> clientes = new ArrayList<>();
+	private static Cliente usuarioAutenticado;
 	public AuthCliente() {
 
 	}
 
-	private static ArrayList<Cliente> clientes = new ArrayList<>();
-	private static Cliente usuarioAutenticado;
 
 	public ArrayList<Cliente> getClientes() {
 		return clientes;
@@ -32,7 +32,7 @@ public class AuthCliente {
 
 		// Usuarios admin
 		// La letra L al final del numero especifica que es Long
-		Cliente clienteAdmin = new Cliente("Julian", "Homez", 289, "f", "j", 3161925274L, "Calle 5");
+		Cliente clienteAdmin = new Cliente("Julian", "Homez", 289, "julian@gmail.com", "j", 3161925274L, "Calle 5");
 		clientes.add(clienteAdmin);
 	}
 

@@ -1,6 +1,7 @@
 package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
+
 import co.edu.konradlorenz.model.Cabana;
 import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Glamping;
@@ -232,15 +233,22 @@ public class ControllerHospedajes {
 	}
 
 	public void filtrarPorPrecio(int min, int max) {
+		boolean encontradoPrecio = false;
 		viewHospedaje.mostrarTitulo();
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getPrecioPorPersona() >= min && hospedaje.getPrecioPorPersona() <= max) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				encontradoPrecio = true;
 				ViewHospedaje.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
 						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
 						hospedaje.getTipo(),hospedaje.getPrecioPorPersona());
 			}
 		}
+		if (!encontradoPrecio) {
+			ViewHospedaje.filtroFallido();
+		}
+
+		
 	}
 
 	public void registrarHospedajes() {
