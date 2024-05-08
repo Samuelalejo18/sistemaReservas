@@ -20,7 +20,7 @@ public class ViewDatosCliente {
 				opcion = sc.nextInt();
 				opcionValida = true;
 			} catch (InputMismatchException e) {
-				System.out.println("Ingrese dato valido");
+				System.out.println("Ingrese unn dato valido(solo numeros)");
 				sc.nextLine();
 			}
 		}

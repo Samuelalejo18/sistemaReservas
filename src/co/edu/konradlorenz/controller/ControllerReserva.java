@@ -2,22 +2,22 @@ package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.Cabana;
-import co.edu.konradlorenz.model.Camping;
 import co.edu.konradlorenz.model.Cliente;
-import co.edu.konradlorenz.model.Credito;
-import co.edu.konradlorenz.model.Glamping;
 import co.edu.konradlorenz.model.Habitacion;
-import co.edu.konradlorenz.model.HabitacionBase;
-import co.edu.konradlorenz.model.HabitacionDoble;
-import co.edu.konradlorenz.model.HabitacionPresidencial;
-import co.edu.konradlorenz.model.HabitacionSuite;
 import co.edu.konradlorenz.model.Hospedaje;
-import co.edu.konradlorenz.model.Hotel;
-import co.edu.konradlorenz.model.Motel;
 import co.edu.konradlorenz.model.Reserva;
-import co.edu.konradlorenz.model.Resort;
 import co.edu.konradlorenz.model.Tarjeta;
+import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
+import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
+import co.edu.konradlorenz.model.habitaciones.HabitacionPresidencial;
+import co.edu.konradlorenz.model.habitaciones.HabitacionSuite;
+import co.edu.konradlorenz.model.hospedajes.Cabana;
+import co.edu.konradlorenz.model.hospedajes.Camping;
+import co.edu.konradlorenz.model.hospedajes.Glamping;
+import co.edu.konradlorenz.model.hospedajes.Hotel;
+import co.edu.konradlorenz.model.hospedajes.Motel;
+import co.edu.konradlorenz.model.hospedajes.Resort;
+import co.edu.konradlorenz.model.metodosDePago.Credito;
 import co.edu.konradlorenz.view.ViewReserva;
 
 public class ControllerReserva {

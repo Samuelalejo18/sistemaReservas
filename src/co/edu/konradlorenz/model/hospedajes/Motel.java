@@ -1,5 +1,6 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.hospedajes;
 
+import co.edu.konradlorenz.model.Hospedaje;
 
 public class Motel extends Hospedaje  {
 	private String tematica;

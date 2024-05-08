@@ -1,4 +1,6 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.habitaciones;
+
+import co.edu.konradlorenz.model.Habitacion;
 
 public class HabitacionSuite extends Habitacion {
 
