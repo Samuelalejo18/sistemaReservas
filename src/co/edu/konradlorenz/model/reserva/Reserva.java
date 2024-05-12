@@ -1,6 +1,10 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.reserva;
 
 import java.sql.Date;
+
+import co.edu.konradlorenz.model.cliente.Cliente;
+import co.edu.konradlorenz.model.habitaciones.Habitacion;
+import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 
 public class Reserva implements Pago {
 	private Cliente cliente;

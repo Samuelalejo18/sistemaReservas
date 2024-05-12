@@ -1,4 +1,4 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.cliente;
 
 
 import java.util.ArrayList;

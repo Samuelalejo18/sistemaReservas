@@ -2,8 +2,6 @@ package co.edu.konradlorenz.model.metodosDePago;
 
 import java.util.Date;
 
-import co.edu.konradlorenz.model.Tarjeta;
-
 public class Debito extends Tarjeta {
     private long saldo;
 

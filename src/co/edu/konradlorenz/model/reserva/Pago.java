@@ -1,4 +1,4 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.reserva;
 
 public interface Pago {
     // Impuesto por reservar dentro de la aplicacion

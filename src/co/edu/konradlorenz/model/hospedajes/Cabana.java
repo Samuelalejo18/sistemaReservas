@@ -1,7 +1,5 @@
 package co.edu.konradlorenz.model.hospedajes;
 
-import co.edu.konradlorenz.model.Hospedaje;
-
 //cabaña
 public class Cabana extends Hospedaje  {
 

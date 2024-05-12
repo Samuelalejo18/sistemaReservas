@@ -1,22 +1,11 @@
 package co.edu.konradlorenz.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
-import javax.swing.JSeparator;
-import java.awt.Color;
-import javax.swing.JLayeredPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JMenuBar;
-import net.miginfocom.swing.MigLayout;
 
 public class Autenticacion extends JFrame {
 
@@ -63,6 +52,6 @@ public class Autenticacion extends JFrame {
 		panel.setBackground(new Color(49, 25, 103));
 		panel.setBounds(77, 101, 978, 516);
 		contentPane.add(panel);
-		panel.setLayout(new MigLayout("", "[]", "[]"));
+	//	panel.setLayout(new MigLayout("", "[]", "[]"));
 	}
 }

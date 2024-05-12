@@ -1,4 +1,4 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.metodosDePago;
 
 import java.util.Date;
 

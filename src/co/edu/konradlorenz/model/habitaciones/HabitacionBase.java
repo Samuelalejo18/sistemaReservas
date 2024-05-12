@@ -1,6 +1,6 @@
 package co.edu.konradlorenz.model.habitaciones;
 
-import co.edu.konradlorenz.model.Habitacion;
+
 
 public class HabitacionBase extends Habitacion {
 

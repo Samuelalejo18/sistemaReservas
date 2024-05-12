@@ -1,6 +1,8 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.cliente;
 
 import java.util.ArrayList;
+
+import co.edu.konradlorenz.model.metodosDePago.Tarjeta;
 
 public class Cliente {
 	private String nombre;

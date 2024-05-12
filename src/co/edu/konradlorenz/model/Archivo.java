@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import co.edu.konradlorenz.model.cliente.Cliente;
+
 public class Archivo {
     public void guardarArchivo(ArrayList<Cliente> clientes) {
 

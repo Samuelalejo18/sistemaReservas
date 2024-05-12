@@ -1,6 +1,8 @@
-package co.edu.konradlorenz.model;
+package co.edu.konradlorenz.model.hospedajes;
 
 import java.util.ArrayList;
+
+import co.edu.konradlorenz.model.habitaciones.Habitacion;
 
 public class Hospedaje {
 	protected String nombre;

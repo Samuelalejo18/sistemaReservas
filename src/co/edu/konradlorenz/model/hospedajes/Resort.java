@@ -1,7 +1,5 @@
 package co.edu.konradlorenz.model.hospedajes;
 
-import co.edu.konradlorenz.model.Hospedaje;
-
 public class Resort extends Hospedaje {
 
 	private String actividadesExtra;

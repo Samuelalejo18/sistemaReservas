@@ -2,8 +2,6 @@ package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.Hospedaje;
-import co.edu.konradlorenz.model.Reserva;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
 import co.edu.konradlorenz.model.habitaciones.HabitacionPresidencial;
@@ -11,9 +9,11 @@ import co.edu.konradlorenz.model.habitaciones.HabitacionSuite;
 import co.edu.konradlorenz.model.hospedajes.Cabana;
 import co.edu.konradlorenz.model.hospedajes.Camping;
 import co.edu.konradlorenz.model.hospedajes.Glamping;
+import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 import co.edu.konradlorenz.model.hospedajes.Hotel;
 import co.edu.konradlorenz.model.hospedajes.Motel;
 import co.edu.konradlorenz.model.hospedajes.Resort;
+import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewHospedaje;
 import co.edu.konradlorenz.view.ViewReserva;
 

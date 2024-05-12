@@ -4,11 +4,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import co.edu.konradlorenz.model.Archivo;
-import co.edu.konradlorenz.model.AuthCliente;
-import co.edu.konradlorenz.model.Cliente;
-import co.edu.konradlorenz.model.Habitacion;
-import co.edu.konradlorenz.model.Hospedaje;
-import co.edu.konradlorenz.model.Reserva;
+import co.edu.konradlorenz.model.cliente.AuthCliente;
+import co.edu.konradlorenz.model.cliente.Cliente;
+import co.edu.konradlorenz.model.habitaciones.Habitacion;
+import co.edu.konradlorenz.model.hospedajes.Hospedaje;
+import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewDatosCliente;
 import co.edu.konradlorenz.view.ViewReserva;
 
