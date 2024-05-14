@@ -1,16 +1,18 @@
 package co.edu.konradlorenz.model.cliente;
 
-
 import java.util.ArrayList;
+
+import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaExcepcion;
+import co.edu.konradlorenz.model.excepciones.RegistroFallidoExcepcion;
 
 public class AuthCliente {
 
 	private static ArrayList<Cliente> clientes = new ArrayList<>();
 	private static Cliente usuarioAutenticado;
+
 	public AuthCliente() {
 
 	}
-
 
 	public ArrayList<Cliente> getClientes() {
 		return clientes;
@@ -36,21 +38,21 @@ public class AuthCliente {
 		clientes.add(clienteAdmin);
 	}
 
-	public static boolean registrar(Cliente cliente) {
+	public static boolean registrar(Cliente cliente) throws RegistroFallidoExcepcion {
 		boolean existeUsuario = false;
 		boolean existeUsuario2 = false;
 
 		for (Cliente cliente1 : clientes) {
 			if (cliente1.getEmail().equals(cliente.getEmail())) {
-				existeUsuario = true;
+				throw new RegistroFallidoExcepcion(" El email ya existe");
 			}
 			if (cliente1.getId() == (cliente.getId())) {
-				existeUsuario2 = true;
+				throw new RegistroFallidoExcepcion(" El id ya existe");
 
 			}
 		}
 		if (existeUsuario && existeUsuario2) {
-			return false;
+			throw new RegistroFallidoExcepcion(" El usuario ya existe");
 		} else {
 			clientes.add(cliente);
 			return true;
@@ -58,7 +60,7 @@ public class AuthCliente {
 
 	}
 
-	public static Cliente autenticarse(String usuarioEmail, String contrasena) {
+	public static Cliente autenticarse(String usuarioEmail, String contrasena) throws AuntenticacionFallidaExcepcion {
 		Cliente usuarioEncontrado = null;
 		for (Cliente cliente : clientes) {
 			if (cliente.getEmail().equals(usuarioEmail)) {
@@ -72,15 +74,12 @@ public class AuthCliente {
 				usuarioAutenticado = usuarioEncontrado;
 				return usuarioAutenticado;
 			} else {
-				return null;
+				throw new AuntenticacionFallidaExcepcion(" Autenticacion fallida");
 			}
 		} else {
-			return null;
+			throw new AuntenticacionFallidaExcepcion(" El usuario no existe");
 		}
-
 	}
-
-
 
 	@Override
 	public String toString() {

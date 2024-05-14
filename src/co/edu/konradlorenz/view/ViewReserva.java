@@ -103,13 +103,7 @@ public class ViewReserva {
 
     }
 
-    public void mostrarHabitacionNoDisponible() {
-        System.out.println("Habitacion no disponible");
-    }
-
-    public void mostrarHabitacionNoEncontrada() {
-        System.out.println("La habitacion no existe");
-    }
+ 
 
     public Date ingresarFechaSalida() {
 

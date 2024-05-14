@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import co.edu.konradlorenz.model.Archivo;
 import co.edu.konradlorenz.model.cliente.AuthCliente;
 import co.edu.konradlorenz.model.cliente.Cliente;
+import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaExcepcion;
+import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoExcepcion;
+import co.edu.konradlorenz.model.excepciones.RegistroFallidoExcepcion;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 import co.edu.konradlorenz.model.reserva.Reserva;
@@ -33,34 +36,30 @@ public class Controller {
 			opcion = viewDatosCliente.pedirOpcion();
 			switch (opcion) {
 				case 1:
-
-					metodosCliente.registrarClientePrueba();
-					usuarioAutenticado = AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
-							viewDatosCliente.pedirContrasena());
-					if (usuarioAutenticado != null) {
-						viewDatosCliente.autenticacionExitosa();
+					try {
+						metodosCliente.registrarClientePrueba();
+						usuarioAutenticado = AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
+								viewDatosCliente.pedirContrasena());
 						opcionesReserva();
-
-					} else {
-						viewDatosCliente.autenticacionFallida();
+					} catch (AuntenticacionFallidaExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
 					}
 					break;
 
 				case 2:
-
-					Cliente cliente = new Cliente(viewDatosCliente.pedirNombre(), viewDatosCliente.pedirApellido(),
-							viewDatosCliente.pedirId(), viewDatosCliente.pedirEmail(),
-							viewDatosCliente.pedirContrasena(),
-							viewDatosCliente.pedirNumeroTelefono(), viewDatosCliente.pedirDireccion());
-
-					if (!AuthCliente.registrar(cliente)) {
-						viewDatosCliente.registroFallido(cliente.getNombre());
-
-					} else {
+					try {
+						Cliente cliente = new Cliente(viewDatosCliente.pedirNombre(), viewDatosCliente.pedirApellido(),
+								viewDatosCliente.pedirId(), viewDatosCliente.pedirEmail(),
+								viewDatosCliente.pedirContrasena(),
+								viewDatosCliente.pedirNumeroTelefono(), viewDatosCliente.pedirDireccion());
 						viewDatosCliente.registroExitoso(cliente.getNombre());
 						AuthCliente.registrar(cliente);
-
+					} catch (RegistroFallidoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
 					}
+
 					break;
 				case 0:
 					viewDatosCliente.saliendoDelSistema();
@@ -81,22 +80,48 @@ public class Controller {
 					controllerHospedajes.hospedajesDisponibles();
 					break;
 				case 2:
+					try {
+						controllerHospedajes.buscarPorNombre(viewDatosCliente.pedirNombreHospedaje());
 
-					controllerHospedajes.buscarPorNombre(viewDatosCliente.pedirNombreHospedaje());
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+					}
 					break;
 				case 3:
-
-					controllerHospedajes.filtrarCiudad(viewDatosCliente.pedirCiudad());
+					try {
+						controllerHospedajes.filtrarCiudad(viewDatosCliente.pedirCiudad());
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+					}
 					break;
 				case 4:
+					try {
 
-					controllerHospedajes.filtrarPorPais(viewDatosCliente.pedirPais());
+						controllerHospedajes.filtrarPorPais(viewDatosCliente.pedirPais());
+
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+					}
 					break;
 				case 5:
-					controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.pedirNumeroEstrellas());
+					try {
+						controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.pedirNumeroEstrellas());
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+					}
 					break;
 				case 6:
-					controllerHospedajes.filtrarTipo(viewDatosCliente.pedirTipoHospedaje());
+					try {
+
+						controllerHospedajes.filtrarTipo(viewDatosCliente.pedirTipoHospedaje());
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+					}
 					break;
 				case 7:
 					controllerHospedajes.filtrarPorPrecio(viewDatosCliente.pedirPrecioMinimo(),
@@ -123,11 +148,11 @@ public class Controller {
 				case 14:
 
 					viewReserva.mostrarGraciasReserva();
-					hospedajeAReservar = controllerReserva.reservarHospedaje(viewDatosCliente.pedirNombreHospedaje());
-					if (hospedajeAReservar == null) {
-						viewReserva.hospedajeNoEncontrado();
-						break;
-					} else {
+
+					try {
+
+						hospedajeAReservar = controllerReserva
+								.reservarHospedaje(viewDatosCliente.pedirNombreHospedaje());
 
 						habitaciones = hospedajeAReservar.getHabitaciones();
 
@@ -153,14 +178,14 @@ public class Controller {
 									habitacionReservada = habitacion;
 									habitacionEncontrada = true;
 									habitacionDisponible = false;
-									viewReserva.mostrarHabitacionNoDisponible();
+
 									break;
 								}
 							}
 						}
 
 						if (!habitacionEncontrada) {
-							viewReserva.mostrarHabitacionNoEncontrada();
+
 							break;
 						}
 
@@ -209,7 +234,10 @@ public class Controller {
 							}
 
 						}
-
+					} catch (HospedajeNoEncontradoExcepcion e) {
+						viewDatosCliente.mostrarMensaje(e.getMessage());
+						e.printStackTrace();
+						break;
 					}
 
 					break;

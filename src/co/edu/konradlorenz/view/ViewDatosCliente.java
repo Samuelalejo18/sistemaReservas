@@ -239,20 +239,12 @@ public class ViewDatosCliente {
 		System.out.println("\n");
 	}
 
-	public void autenticacionFallida() {
-		System.out.println("Autenticación fallida. Verifique su email y contraseña.");
-		System.out.println("\n");
-	}
-
+	
 	public void registroExitoso(String nombre) {
 		System.out.println("Registro exitoso para el usuario  " + nombre);
 		System.out.println("\n");
 	}
 
-	public void registroFallido(String nombre) {
-		System.out.println("Registro fallido, para   " + nombre);
-		System.out.println("\n");
-	}
 
 	public String pedirCiudad() {
 		String nombreCiudad = "";
@@ -305,13 +297,13 @@ public class ViewDatosCliente {
 	public int pedirNumeroEstrellas() {
 		int numeroEstrellas = 0;
 		boolean entradaValida = false;
-		
+
 		System.out.println("Ingrese el número de estrellas:");
-		
+
 		while (!entradaValida) {
 			try {
 				numeroEstrellas = sc.nextInt();
-				
+
 				if (numeroEstrellas >= 1 && numeroEstrellas <= 5) {
 					entradaValida = true;
 				} else {
@@ -319,23 +311,23 @@ public class ViewDatosCliente {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Ingrese un número entero válido.");
-				sc.nextLine(); 
+				sc.nextLine();
 			}
 		}
-		
+
 		return numeroEstrellas;
 	}
 
 	public String pedirTipoHospedaje() {
 		String tipoHospedaje = "";
 		boolean tipoValido = false;
-	
+
 		System.out.println("Ingrese el tipo de hospedaje (urbano/rural):");
-	
+
 		while (!tipoValido) {
 			try {
 				tipoHospedaje = sc.next();
-	
+
 				if (tipoHospedaje.equalsIgnoreCase("urbano") || tipoHospedaje.equalsIgnoreCase("rural")) {
 					tipoValido = true;
 				} else {
@@ -346,36 +338,41 @@ public class ViewDatosCliente {
 				sc.nextLine();
 			}
 		}
-	
+
 		return tipoHospedaje;
 	}
+
 	public String pedirNombreHospedaje() {
-		
-			sc.nextLine();
-			System.out.println("Ingrese el hospedaje a reservar: ");
-			String nombre = sc.nextLine();
-			return nombre;
-		
-	
-		/*String nombreHospedaje = "";
-		boolean nombreHospedajeValido = false;
 
-		while (!nombreHospedajeValido) {
-			try {
-				nombreHospedaje = sc.next();
+		sc.nextLine();
+		System.out.println("Ingrese el hospedaje a reservar: ");
+		String nombre = sc.nextLine();
+		return nombre;
 
-				if (nombreHospedaje.matches("[a-zA-Z ]+")) {
-					nombreHospedajeValido = true;
-				} else {
-					System.out.println("Ingrese un nombre del Hospedaje válido (solo letras).");
-				}
-			} catch (Exception e) {
-				System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-				sc.nextLine();
-			}
-		}*/
+		/*
+		 * String nombreHospedaje = "";
+		 * boolean nombreHospedajeValido = false;
+		 * 
+		 * while (!nombreHospedajeValido) {
+		 * try {
+		 * nombreHospedaje = sc.next();
+		 * 
+		 * if (nombreHospedaje.matches("[a-zA-Z ]+")) {
+		 * nombreHospedajeValido = true;
+		 * } else {
+		 * System.out.println("Ingrese un nombre del Hospedaje válido (solo letras).");
+		 * }
+		 * } catch (Exception e) {
+		 * System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
+		 * sc.nextLine();
+		 * }
+		 * }
+		 */
 
-		
+	}
+
+	public void mostrarMensaje(String mensaje) {
+		System.out.println(mensaje);
 	}
 
 }

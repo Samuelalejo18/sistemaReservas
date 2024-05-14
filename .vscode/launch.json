@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Autenticacion",
+            "request": "launch",
+            "mainClass": "co.edu.konradlorenz.view.Autenticacion",
+            "projectName": "sistemaReservas"
+        },
+        {
+            "type": "java",
             "name": "AplMain",
             "request": "launch",
             "mainClass": "co.edu.konradlorenz.controller.AplMain",
