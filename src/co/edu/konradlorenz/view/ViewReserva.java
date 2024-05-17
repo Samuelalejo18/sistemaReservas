@@ -103,8 +103,6 @@ public class ViewReserva {
 
     }
 
- 
-
     public Date ingresarFechaSalida() {
 
         System.out.print("Ingrese la fecha de salida (dd/MM/yyyy): ");
@@ -381,5 +379,10 @@ public class ViewReserva {
 
     public void mostrarCompraTarjeta(String valorCompra) {
         System.out.println(valorCompra);
+    }
+
+    public void mostrarMensaje(String message) {
+        System.out.println(message);
+
     }
 }

@@ -250,7 +250,7 @@ public class Controller {
 							reserva.subtotal(), precioTotal);
 
 				} else {
-					// viewReserva.mostrarCapacidadInsuficiente();
+				
 					throw new CapacidadInsuficienteExcepcion("Capacidad insuficiente");
 				}
 

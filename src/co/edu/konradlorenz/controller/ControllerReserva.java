@@ -3,9 +3,8 @@ package co.edu.konradlorenz.controller;
 import java.util.ArrayList;
 
 import co.edu.konradlorenz.model.cliente.Cliente;
-import co.edu.konradlorenz.model.excepciones.HabitacionNoDisponibleExcepcion;
-import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaExcepcion;
 import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoExcepcion;
+import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteExcepcion;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
@@ -83,47 +82,6 @@ public class ControllerReserva {
         return tipoHospedaje;
     }
 
-    public void reservarHabitacion(Hospedaje hospedajeAReservar)
-            throws HabitacionNoDisponibleExcepcion, HabitacionNoEncontradaExcepcion {
-        habitaciones = hospedajeAReservar.getHabitaciones();
-        Habitacion habitacionReservada = null;
-        habitacionesDisponibles(habitaciones);
-
-        int numeroHabitacionReservar = viewReserva.pedirNumeroHabitacionReservar();
-        boolean habitacionEncontrada = false;
-
-        for (Habitacion habitacion : habitaciones) {
-            if (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
-
-                if (habitacion.isDisponible()) {
-
-                    habitacionReservada = habitacion;
-                    habitacionEncontrada = true;
-                    String tipoHabitacion = hallarTipoHabitacion(habitacion);
-                    viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
-                            habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-                            habitacion.getPrecioAdicionalPorTipoHabitacion());
-
-                } else {
-                    habitacionReservada = habitacion;
-                    habitacionEncontrada = true;
-
-                    throw new HabitacionNoDisponibleExcepcion("Habitacion no disponible");
-
-                }
-            }
-        }
-
-        if (!habitacionEncontrada) {
-            throw new HabitacionNoEncontradaExcepcion("La habitacion no existe");
-        }
-
-    }
-
-
-
-
-
     public void habitacionesDisponibles(ArrayList<Habitacion> habitaciones) {
         viewReserva.mostrarHabitacionesDisponibles();
         viewReserva.mostrarTituloHabitacion();
@@ -176,7 +134,13 @@ public class ControllerReserva {
                     int numeroCuotas = viewReserva.pedirNumeroDeCuotas();
                     tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
                     tarjetaCredito.setCuotas(numeroCuotas);
-                    viewReserva.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+                    try {
+
+                        viewReserva.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+                    } catch (SaldoInsuficienteExcepcion e) {
+                       viewReserva.mostrarMensaje(e.getMessage());
+                        e.printStackTrace();
+                    }
                     opcion = 0;
                     break;
                 case 2:
