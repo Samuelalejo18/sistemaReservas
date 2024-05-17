@@ -223,10 +223,6 @@ public class ViewReserva {
         System.out.println(pagoRealizado);
     }
 
-    public void mostrarCapacidadInsuficiente() {
-        System.out.println("capacidad insuficiente");
-    }
-
     public int pedirOpcion() {
         int opcion = 0;
         boolean opcionValida = false;
