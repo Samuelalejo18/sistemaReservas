@@ -74,7 +74,7 @@ public class AuthCliente {
 				usuarioAutenticado = usuarioEncontrado;
 				return usuarioAutenticado;
 			} else {
-				throw new AuntenticacionFallidaExcepcion(" Autenticacion fallida");
+				throw new AuntenticacionFallidaExcepcion(" ViewAutenticacion fallida");
 			}
 		} else {
 			throw new AuntenticacionFallidaExcepcion(" El usuario no existe");

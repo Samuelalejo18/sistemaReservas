@@ -4,8 +4,6 @@ import java.util.Date;
 
 import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteExcepcion;
 
-
-
 public abstract class Tarjeta {
 
     protected String tipoDetarjeta;// Mastercard, visa, american express, dinners
@@ -69,7 +67,8 @@ public abstract class Tarjeta {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public abstract  String Pagar(double precioTotal) throws SaldoInsuficienteExcepcion;
+    public abstract String Pagar(double precioTotal) throws SaldoInsuficienteExcepcion;
+
     public abstract String pagoRechazado();
 
     @Override

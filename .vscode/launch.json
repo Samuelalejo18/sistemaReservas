@@ -8,7 +8,7 @@
             "type": "java",
             "name": "Autenticacion",
             "request": "launch",
-            "mainClass": "co.edu.konradlorenz.view.Autenticacion",
+            "mainClass": "co.edu.konradlorenz.view.ViewAutenticacion",
             "projectName": "sistemaReservas"
         },
         {
@@ -22,7 +22,7 @@
             "type": "java",
             "name": "Autenticacion",
             "request": "launch",
-            "mainClass": "sistemaReservas/co.edu.konradlorenz.view.Autenticacion",
+            "mainClass": "sistemaReservas/co.edu.konradlorenz.view.ViewAutenticacion",
             "projectName": "sistemaReservas"
         },
         {
