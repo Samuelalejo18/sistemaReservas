@@ -30,6 +30,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class ViewAutenticacion extends JFrame {
 
@@ -47,10 +50,12 @@ public class ViewAutenticacion extends JFrame {
 	private JLabel lblC;
 	private JPanel jpnBuscaComparaReserva;
 	private JLabel lblNewLabel;
-	private JButton btnRegistrar;
+	private RoundButton btnRegistrar;
 	private JButton btnReservar;
 	private JButton btnNosotros;
 	private JButton btnContactanos;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_4;
 
 	/*
 	 * public static void main(String[] args) { EventQueue.invokeLater(new
@@ -67,8 +72,9 @@ public class ViewAutenticacion extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(16, 6, 38));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		this.setSize(1280, 720);
+		
+		 this.setResizable(false);
+		this.setSize(1280, 800);
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -79,47 +85,77 @@ public class ViewAutenticacion extends JFrame {
 		contentPane.add(jpnInfo);
 		jpnInfo.setLayout(null);
 
-		btnRegistrar = new JButton("Registrarse");
+		btnRegistrar = new RoundButton("Registrarse");
+		btnRegistrar.setBorderPainted(false);
+		btnRegistrar.setBackground(new Color(255, 255, 255));
+		btnRegistrar.setForeground(new Color(16, 6, 38));
+		btnRegistrar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRegistrar.setBounds(1034, 43, 89, 23);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
+		lblNewLabel_3.setBounds(440, 461, 244, 96);
+		jpnInfo.add(lblNewLabel_3);
+		btnRegistrar.setBounds(903, 38, 207, 48);
 		jpnInfo.add(btnRegistrar);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
-		lblNewLabel_2.setBounds(94, 30, 293, 61);
-		jpnInfo.add(lblNewLabel_2);
 		
 		JPanel jpnSuperiorCentro = new JPanel();
 		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
 		jpnSuperiorCentro.setBounds(430, 0, 408, 120);
 		jpnInfo.add(jpnSuperiorCentro);
-		jpnSuperiorCentro.setLayout(new MigLayout("", "[][][][][][][][][][][]", "[][][][]"));
+		jpnSuperiorCentro.setLayout(null);
 		
 		btnReservar = new JButton("Reservar");
-		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnReservar, "cell 1 3");
+		btnReservar.setFocusPainted(false);
+		btnReservar.setBackground(new Color(16, 6, 38));
+		btnReservar.setBorderPainted(false);
+		btnReservar.setForeground(new Color(255, 255, 255));
+		btnReservar.setBounds(25, 64, 105, 23);
+		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnReservar);
 		
 		btnContactanos = new JButton("Contáctanos");
-		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnContactanos, "cell 5 3");
+		btnContactanos.setBackground(new Color(16, 6, 38));
+		btnContactanos.setForeground(new Color(255, 255, 255));
+		btnContactanos.setBorderPainted(false);
+		btnContactanos.setBounds(140, 64, 128, 23);
+		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnContactanos);
 		
 		btnNosotros = new JButton("Nosotros");
-		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnNosotros, "cell 10 3");
+		btnNosotros.setBackground(new Color(16, 6, 38));
+		btnNosotros.setForeground(new Color(255, 255, 255));
+		btnNosotros.setBorderPainted(false);
+		btnNosotros.setBounds(278, 64, 105, 23);
+		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnNosotros);
+		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(1120, 0, 101, 120);
+		jpnInfo.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
+		
+		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
+		lblNewLabel_4.setBounds(100, 0, 331, 120);
+		jpnInfo.add(lblNewLabel_4);
+		
+		
+		
 
 		jpnLogin = new RoundedPanel(50) ;
 		jpnLogin.setBackground(new Color(51, 26, 108));
-		jpnLogin.setBounds(99, 118, 1065, 523);
+		jpnLogin.setBounds(99, 118, 1065, 613);
 
 		contentPane.add(jpnLogin);
 		jpnLogin.setLayout(null);
 
 		jpnFormulario =  new RoundedPanel(50) ;
-		jpnFormulario.setBounds(334, 67, 402, 396);
+		jpnFormulario.setBounds(333, 116, 402, 396);
 		jpnFormulario.setBackground(new Color(255, 255, 255));
 		jpnLogin.add(jpnFormulario);
 
@@ -230,17 +266,17 @@ public class ViewAutenticacion extends JFrame {
         		        isPasswordVisible = !isPasswordVisible;
         		    }
         		});
-		jpnBuscaComparaReserva = new RoundedPanel(20);
-		jpnBuscaComparaReserva.setBounds(811, 480, 244, 32);
-		jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
-		jpnLogin.add(jpnBuscaComparaReserva);
-		jpnBuscaComparaReserva.setLayout(null);
-
-		lblNewLabel = new JLabel("#BuscaComparaReserva");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
-		lblNewLabel.setBounds(0, 0, 244, 32);
-		jpnBuscaComparaReserva.add(lblNewLabel);
+		
+				lblNewLabel = new JLabel("#BuscaComparaReserva");
+				lblNewLabel.setBounds(788, 554, 244, 32);
+				jpnLogin.add(lblNewLabel);
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+				jpnBuscaComparaReserva = new RoundedPanel(20);
+				jpnBuscaComparaReserva.setBounds(788, 554, 244, 32);
+				jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
+				jpnLogin.add(jpnBuscaComparaReserva);
+				jpnBuscaComparaReserva.setLayout(null);
 		
 		/*
 		this.btnRegistrar.addActionListener(new ActionListener() {
@@ -280,11 +316,11 @@ public class ViewAutenticacion extends JFrame {
 		this.passwordField = passwordField;
 	}
 
-	public JButton getBtnRegistrar() {
+	public RoundButton getBtnRegistrar() {
 		return btnRegistrar;
 	}
 
-	public void setBtnRegistrar(JButton btnRegistrar) {
+	public void setBtnRegistrar(RoundButton btnRegistrar) {
 		this.btnRegistrar = btnRegistrar;
 	}
 

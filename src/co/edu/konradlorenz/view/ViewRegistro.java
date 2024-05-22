@@ -25,6 +25,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 
 
@@ -44,7 +47,7 @@ public class ViewRegistro extends JFrame {
 	private JLabel lblApellido;
 	private JPanel jpnBuscaComparaReserva;
 	private JLabel lblNewLabel;
-	private JButton btnLogin;
+	private RoundButton btnLogin;
 	private JTextField txtNombre;
 	private JLabel lblId;
 	private JTextField txtId;
@@ -59,6 +62,7 @@ public class ViewRegistro extends JFrame {
 	private JButton btnReservar;
 	private JButton btnContactanos;
 	private JButton btnNosotros;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -88,7 +92,7 @@ public class ViewRegistro extends JFrame {
 		contentPane.setBackground(new Color(16, 6, 38));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		this.setSize(1280, 790);
+		this.setSize(1280, 800);
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -99,12 +103,17 @@ public class ViewRegistro extends JFrame {
 		contentPane.add(jpnInfo);
 		jpnInfo.setLayout(null);
 
-		btnLogin = new JButton("Autentificate");
+		btnLogin = new RoundButton("Iniciar Sesión");
+		btnLogin.setText("Iniciar Sesión ");
+		btnLogin.setBorderPainted(false);
+		btnLogin.setBackground(new Color(255, 255, 255));
+		btnLogin.setForeground(new Color(16, 6, 38));
+		btnLogin.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnLogin.setBounds(1034, 43, 89, 23);
+		btnLogin.setBounds(902, 41, 207, 48);
 		jpnInfo.add(btnLogin);
 
 		JLabel lblNewLabel_2 = new JLabel("");
@@ -112,7 +121,7 @@ public class ViewRegistro extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon(ViewRegistro.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
 		lblNewLabel_2.setBounds(94, 30, 293, 61);
 		jpnInfo.add(lblNewLabel_2);
-
+		 this.setResizable(false);
 		jpnRegistro =  new RoundedPanel(50) ;
 		jpnRegistro.setBackground(new Color(51, 26, 108));
 		jpnRegistro.setBounds(99, 118, 1065, 611);
@@ -287,35 +296,53 @@ public class ViewRegistro extends JFrame {
 		btnRegister.setForeground(new Color(255, 255, 255));
 
 		jpnBuscaComparaReserva =  new RoundedPanel(20) ;
-		jpnBuscaComparaReserva.setBounds(811, 557, 244, 32);
+		jpnBuscaComparaReserva.setBounds(799, 557, 244, 32);
 		jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
 		jpnRegistro.add(jpnBuscaComparaReserva);
 		jpnBuscaComparaReserva.setLayout(null);
-		
-				lblNewLabel = new JLabel("#BuscaComparaReserva");
-				lblNewLabel.setBounds(10, 0, 244, 32);
-				jpnBuscaComparaReserva.add(lblNewLabel);
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+				
+						lblNewLabel = new JLabel("#BuscaComparaReserva");
+						lblNewLabel.setBounds(0, 0, 244, 32);
+						jpnBuscaComparaReserva.add(lblNewLabel);
+						lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+						lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 		
 		
 		JPanel jpnSuperiorCentro = new JPanel();
 		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
 		jpnSuperiorCentro.setBounds(430, 0, 408, 120);
 		jpnInfo.add(jpnSuperiorCentro);
-		jpnSuperiorCentro.setLayout(new MigLayout("", "[][][][][][][][][][][]", "[][][][]"));
+		jpnSuperiorCentro.setLayout(null);
 		
 		btnReservar = new JButton("Reservar");
-		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnReservar, "cell 1 3");
+		btnReservar.setFocusPainted(false);
+		btnReservar.setBackground(new Color(16, 6, 38));
+		btnReservar.setBorderPainted(false);
+		btnReservar.setForeground(new Color(255, 255, 255));
+		btnReservar.setBounds(25, 64, 105, 23);
+		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnReservar);
 		
 		btnContactanos = new JButton("Contáctanos");
-		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnContactanos, "cell 5 3");
+		btnContactanos.setBackground(new Color(16, 6, 38));
+		btnContactanos.setForeground(new Color(255, 255, 255));
+		btnContactanos.setBorderPainted(false);
+		btnContactanos.setBounds(140, 64, 128, 23);
+		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnContactanos);
 		
 		btnNosotros = new JButton("Nosotros");
-		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 12));
-		jpnSuperiorCentro.add(btnNosotros, "cell 10 3");
+		btnNosotros.setBackground(new Color(16, 6, 38));
+		btnNosotros.setForeground(new Color(255, 255, 255));
+		btnNosotros.setBorderPainted(false);
+		btnNosotros.setBounds(278, 64, 105, 23);
+		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
+		jpnSuperiorCentro.add(btnNosotros);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ViewRegistro.class.getResource("/imagenes/flechas-a-la-derecha.png")));
+		lblNewLabel_1.setBounds(1119, 0, 94, 120);
+		jpnInfo.add(lblNewLabel_1);
 
 	        // Cargar y redimensionar la imagen
 	        try {
@@ -358,11 +385,11 @@ public class ViewRegistro extends JFrame {
 	public void setTxtApellido(JTextField txtApellido) {
 		this.txtApellido = txtApellido;
 	}
-	public JButton getBtnLogin() {
+	public RoundButton getBtnLogin() {
 		return btnLogin;
 	}
 
-	public void setBtnLogin(JButton btnLogin) {
+	public void setBtnLogin(RoundButton btnLogin) {
 		this.btnLogin = btnLogin;
 	}
 
