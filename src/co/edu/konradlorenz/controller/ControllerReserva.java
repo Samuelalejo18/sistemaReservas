@@ -3,8 +3,8 @@ package co.edu.konradlorenz.controller;
 import java.util.ArrayList;
 
 import co.edu.konradlorenz.model.cliente.Cliente;
-import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoExcepcion;
-import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteExcepcion;
+import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
+import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
@@ -28,7 +28,7 @@ public class ControllerReserva {
     ArrayList<Habitacion> habitaciones;
     ArrayList<Hospedaje> hospedajes = ControllerHospedajes.getHospedajes();
 
-    public Hospedaje reservarHospedaje(String nombre) throws HospedajeNoEncontradoExcepcion {
+    public Hospedaje reservarHospedaje(String nombre) throws HospedajeNoEncontradoException {
         Hospedaje hospedajeAReservar = null;
         boolean encontradoNombre = false;
         for (Hospedaje hospedaje : hospedajes) {
@@ -44,7 +44,7 @@ public class ControllerReserva {
             }
         }
         if (!encontradoNombre) {
-            throw new HospedajeNoEncontradoExcepcion("Hospedaje no encontrado");
+            throw new HospedajeNoEncontradoException("Hospedaje no encontrado");
         }
 
         return hospedajeAReservar;
@@ -137,7 +137,7 @@ public class ControllerReserva {
                     try {
 
                         viewReserva.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
-                    } catch (SaldoInsuficienteExcepcion e) {
+                    } catch (SaldoInsuficienteException e) {
                        viewReserva.mostrarMensaje(e.getMessage());
                         e.printStackTrace();
                     }

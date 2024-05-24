@@ -11,6 +11,10 @@ public class RoundButton extends javax.swing.JButton {
 	public RoundButton(String label) {
 		super(label);
 		setContentAreaFilled(false);
+		setOpaque(false);
+        setContentAreaFilled(false);
+        setFocusPainted(false);
+        setBorderPainted(false);
 	}
 
 	@Override

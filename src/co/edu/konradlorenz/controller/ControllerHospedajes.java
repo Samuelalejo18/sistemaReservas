@@ -1,8 +1,16 @@
 package co.edu.konradlorenz.controller;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoExcepcion;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
 import co.edu.konradlorenz.model.habitaciones.HabitacionPresidencial;
@@ -14,20 +22,207 @@ import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 import co.edu.konradlorenz.model.hospedajes.Hotel;
 import co.edu.konradlorenz.model.hospedajes.Motel;
 import co.edu.konradlorenz.model.hospedajes.Resort;
-import co.edu.konradlorenz.model.reserva.Reserva;
-import co.edu.konradlorenz.view.ViewHospedajePrueba;
-import co.edu.konradlorenz.view.ViewReserva;
+import co.edu.konradlorenz.view.RoundButton;
+import co.edu.konradlorenz.view.RoundButtonCircle;
+import co.edu.konradlorenz.view.RoundedPanel;
+import co.edu.konradlorenz.view.ViewAutenticacion;
+import co.edu.konradlorenz.view.ViewHospedaje;
+import co.edu.konradlorenz.view.ViewRegistro;
 
-public class ControllerHospedajes {
-	Reserva reserva = new Reserva();
+public class ControllerHospedajes implements ActionListener {
+
+	JPanel jpnCardHospedaje;
+	ViewHospedaje viewHospedaje;
+	RoundButtonCircle btnBuscarNombre;
+	RoundButtonCircle btnBuscarPais;
+	RoundButtonCircle btnBuscarCiudad;
+	RoundButton btnCabanas;
+	RoundButton btnHoteles;
+	RoundButton btnResorts;
+	RoundButton btnMoteles;
+	RoundButton btnCampings;
+	RoundButton btnGlamping;
+	RoundButtonCircle btnBuscarPrecio;
+	JComboBox<String> cboTipo;
+	JComboBox<String> cboEstrellas;
+	RoundButtonCircle btnAll;
+	RoundButton btnReservar;
+	RoundButton btnLogin;
+	RoundButton btnRegistrarse;
+	ViewAutenticacion viewAutenticacion;
+	ViewRegistro viewRegistro;
+
+	public ControllerHospedajes() {
+		registrarHospedajes();
+		viewHospedaje = new ViewHospedaje();
+		viewAutenticacion = new ViewAutenticacion();
+		viewRegistro = new ViewRegistro();
+		btnBuscarNombre = viewHospedaje.getBtnBuscarNombre();
+		btnBuscarPais = viewHospedaje.getBtnBuscarPais();
+		btnBuscarCiudad = viewHospedaje.getBtnBuscarCiudad();
+		btnBuscarNombre.addActionListener(this);
+		btnBuscarPais.addActionListener(this);
+		btnBuscarCiudad.addActionListener(this);
+		btnHoteles = viewHospedaje.getBtnHoteles();
+		btnResorts = viewHospedaje.getBtnResorts();
+		btnMoteles = viewHospedaje.getBtnMoteles();
+		btnCabanas = viewHospedaje.getBtnCabanas();
+		btnCampings = viewHospedaje.getBtnCampings();
+		btnGlamping = viewHospedaje.getBtnGlamping();
+		btnBuscarPrecio = viewHospedaje.getBtnBuscarPrecio();
+		btnAll = viewHospedaje.getBtnAll();
+		btnRegistrarse = viewHospedaje.getBtnRegistrarse();
+		btnLogin = viewHospedaje.getBtnLogin();
+		btnReservar = viewHospedaje.getBtnReservar();
+
+		btnHoteles.addActionListener(this);
+		btnResorts.addActionListener(this);
+		btnMoteles.addActionListener(this);
+		btnCabanas.addActionListener(this);
+		btnCampings.addActionListener(this);
+		btnGlamping.addActionListener(this);
+		btnBuscarPrecio.addActionListener(this);
+		btnAll.addActionListener(this);
+		btnReservar.addActionListener(this);
+		btnLogin.addActionListener(this);
+		btnRegistrarse.addActionListener(this);
+		cboTipo = viewHospedaje.getCboTipo();
+		cboEstrellas = viewHospedaje.getCboEstrellas();
+		cboTipo.addActionListener(this);
+		cboEstrellas.addActionListener(this);
+
+		mostrarVentanaHospedaje(true);
+		hospedajesDisponibles();
+	}
+
 	static ArrayList<Hospedaje> hospedajes = new ArrayList<>();
 
 	public static ArrayList<Hospedaje> getHospedajes() {
 		return hospedajes;
 	}
 
-	ViewReserva viewReserva = new ViewReserva();
-	ViewHospedajePrueba viewHospedajePrueba = new ViewHospedajePrueba();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == btnAll) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			hospedajesDisponibles();
+		}
+
+		if (e.getSource() == btnBuscarNombre) {
+			try {
+
+				viewHospedaje.getJpnHospedajes().removeAll();
+				buscarPorNombre(viewHospedaje.pedirNombreHospedaje());
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == btnBuscarPais) {
+			try {
+				viewHospedaje.getJpnHospedajes().removeAll();
+				filtrarPorPais(viewHospedaje.pedirPais());
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == btnBuscarCiudad) {
+			try {
+				viewHospedaje.getJpnHospedajes().removeAll();
+				filtrarCiudad(viewHospedaje.pedirCiudad());
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == btnHoteles) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtrarHoteles();
+		}
+
+		if (e.getSource() == btnMoteles) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtrarMoteles();
+		}
+
+		if (e.getSource() == btnResorts) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtralResorts();
+		}
+
+		if (e.getSource() == btnCabanas) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtrarCabanas();
+		}
+
+		if (e.getSource() == btnCampings) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtrarCampings();
+		}
+
+		if (e.getSource() == btnGlamping) {
+			viewHospedaje.getJpnHospedajes().removeAll();
+			filtrarGlampings();
+		}
+
+		if (e.getSource() == btnBuscarPrecio) {
+
+			try {
+				viewHospedaje.getJpnHospedajes().removeAll();
+				filtrarPorPrecio(viewHospedaje.pedirPrecioMinimo(), viewHospedaje.pedirPrecioMaximo());
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+
+		}
+
+		if (e.getSource() == cboTipo) {
+			try {
+				viewHospedaje.getJpnHospedajes().removeAll();
+				String opcionTipo = (String) cboTipo.getSelectedItem();
+				filtrarTipo(opcionTipo);
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == cboEstrellas) {
+			int opcionEstrellas = (int) cboEstrellas.getSelectedIndex() + 1;
+
+			try {
+				viewHospedaje.getJpnHospedajes().removeAll();
+				filtrarPorNumeroDeEstrellas(opcionEstrellas);
+			} catch (HospedajeNoEncontradoException e1) {
+				JOptionPane.showMessageDialog(viewHospedaje, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	public void mostrarVentanaHospedaje(boolean visible) {
+		viewHospedaje.setVisible(true);
+		viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void mostrarVentanaRegistro(boolean visible) {
+		viewRegistro.setVisible(true);
+		viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void mostrarVentanaAutenticacion(boolean visible) {
+		viewAutenticacion.setVisible(true);
+		viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
 
 	public String hallarTipoHospedaje(Hospedaje hospedaje) {
 		String tipoHospedaje = "no existe";
@@ -47,107 +242,182 @@ public class ControllerHospedajes {
 		return tipoHospedaje;
 	}
 
-	public void buscarPorNombre(String nombre) throws HospedajeNoEncontradoExcepcion {
-		boolean encontradoNombre = false;
-		viewHospedajePrueba.mostrarTitulo();
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
-				// viewHospedajePrueba.mostrarFiltros(hospedaje);
-				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				encontradoNombre = true;
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
-			}
-		}
-		if (!encontradoNombre) {
-			throw new HospedajeNoEncontradoExcepcion("Su busqueda no fue reconocida");
-		}
-
-	}
-
-	public void filtrarCiudad(String ubicacionCiudad) throws HospedajeNoEncontradoExcepcion {
-		boolean encontradoCiudad = false;
-		viewHospedajePrueba.mostrarTitulo();
-		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getUbicacionCiudad().equalsIgnoreCase(ubicacionCiudad)) {
-				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				encontradoCiudad = true;
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
-			}
-		}
-
-		if (!encontradoCiudad) {
-			throw new HospedajeNoEncontradoExcepcion("Su busqueda no fue reconocida");
-		}
-	}
-
 	public void hospedajesDisponibles() {
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
+
 		for (Hospedaje hospedaje : hospedajes) {
 			String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-			ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-					hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-					hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+			RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+					hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+					hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+					"/imagenes/dolar.png");
+			card.setBounds(x, y, 280, 325);
+			viewHospedaje.getJpnHospedajes().add(card);
+			x += 335;
+
+			if (x >= 1362) {
+				x = 70;
+				y += 360;
+
+			}
+
+		}
+
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 20));
+	}
+
+	public void buscarPorNombre(String nombre) throws HospedajeNoEncontradoException {
+		boolean encontradoNombre = false;
+		int x = 70;
+		int y = 40;
+
+		for (Hospedaje hospedaje : hospedajes) {
+			if (hospedaje.getNombre().equalsIgnoreCase(nombre)) {
+				encontradoNombre = true;
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+
+			}
+		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 20));
+
+		if (!encontradoNombre) {
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
+		}
+
+	}
+
+	public void filtrarCiudad(String ubicacionCiudad) throws HospedajeNoEncontradoException {
+		boolean encontradoCiudad = false;
+		int x = 70;
+		int y = 40;
+
+		for (Hospedaje hospedaje : hospedajes) {
+			if (hospedaje.getUbicacionCiudad().equalsIgnoreCase(ubicacionCiudad)) {
+				encontradoCiudad = true;
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
+			}
+		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
+
+		if (!encontradoCiudad) {
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
 		}
 	}
 
-	public void filtrarPorPais(String ubicacionPais) throws HospedajeNoEncontradoExcepcion {
+	public void filtrarPorPais(String ubicacionPais) throws HospedajeNoEncontradoException {
 		boolean encontrado = false;
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getUbicacionPais().equalsIgnoreCase(ubicacionPais)) {
-				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 				encontrado = true;
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
+				encontrado = true;
+
 			}
+
 		}
 
 		if (!encontrado) {
-			throw new HospedajeNoEncontradoExcepcion("Su busqueda no fue reconocida");
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
 		}
-
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
-	public void filtrarPorNumeroDeEstrellas(int numeroDeEstrellas) throws HospedajeNoEncontradoExcepcion {
+	public void filtrarPorNumeroDeEstrellas(int numeroDeEstrellas) throws HospedajeNoEncontradoException {
 		boolean encontradoEstrellas = false;
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
+
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getNumeroEstrellas() == numeroDeEstrellas) {
+				encontradoEstrellas = true;
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
+
 			}
 		}
-
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 		if (!encontradoEstrellas) {
-			throw new HospedajeNoEncontradoExcepcion("Su busqueda no fue reconocida");
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
 		}
 
 	}
 
 	// Tipo urbano o rural
 
-	public void filtrarTipo(String tipo) throws HospedajeNoEncontradoExcepcion {
+	public void filtrarTipo(String tipo) throws HospedajeNoEncontradoException {
 		boolean encontradoTipo = false;
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje.getTipo().equalsIgnoreCase(tipo)) {
 				encontradoTipo = true;
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 		if (!encontradoTipo) {
-			throw new HospedajeNoEncontradoExcepcion("Su busqueda no fue reconocida");
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
 		}
 	}
 
@@ -155,98 +425,184 @@ public class ControllerHospedajes {
 
 	public void filtrarHoteles() {
 
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Hotel) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 
 	}
 
 	public void filtrarMoteles() {
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Motel) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
 	public void filtralResorts() {
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Resort) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
-	public void filtralCampings() {
-		viewHospedajePrueba.mostrarTitulo();
+	public void filtrarCampings() {
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Camping) {
-				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
 
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
-	public void filtralGlampings() {
-		viewHospedajePrueba.mostrarTitulo();
+	public void filtrarGlampings() {
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Glamping) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
-	public void filtralCabanas() {
-		viewHospedajePrueba.mostrarTitulo();
+	public void filtrarCabanas() {
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
 			if (hospedaje instanceof Cabana) {
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 	}
 
-	public void filtrarPorPrecio(int min, int max) {
+	public void filtrarPorPrecio(int min, int max) throws HospedajeNoEncontradoException {
 		boolean encontradoPrecio = false;
-		viewHospedajePrueba.mostrarTitulo();
+		int x = 70;
+		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getPrecioPorPersona() >= min && hospedaje.getPrecioPorPersona() <= max) {
-				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+			if (hospedaje.getPrecioPorPersona() >= min || hospedaje.getPrecioPorPersona() <= max) {
+
 				encontradoPrecio = true;
-				ViewHospedajePrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-						hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-						hospedaje.getTipo(), hospedaje.getPrecioPorPersona());
+				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
+						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
+						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
+						"/imagenes/dolar.png");
+				card.setBounds(x, y, 280, 325);
+				viewHospedaje.getJpnHospedajes().add(card);
+
+				x += 335;
+
+				if (x >= 1362) {
+					x = 70;
+					y += 360;
+
+				}
 			}
 		}
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 500));
 		if (!encontradoPrecio) {
-
+			throw new HospedajeNoEncontradoException("Su busqueda no fue reconocida");
 		}
 
 	}
@@ -254,8 +610,9 @@ public class ControllerHospedajes {
 	public void registrarHospedajes() {
 
 		/* Cabañas */
-		Cabana cabana1 = new Cabana("Cabana las mercedes", "Villeta", "Colombia", 5, "Cabaña bonita", "Cabaña rural",
-				230000, "Luces bonitas amarillas", false, "Baño frente a la cascada");
+		Cabana cabana1 = new Cabana("Cabana las mercedes", "Villeta", "Colombia", 5, "Cabaña bonita", "rural", 230000,
+				"Luces bonitas amarillas", false, "Baño frente a la cascada");
+
 		hospedajes.add(cabana1);
 		HabitacionBase habitacionBase1 = new HabitacionBase(2, true, 0, "Wifi, TV, aire acondicionado");
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(4, true, 50000, "Queen");
@@ -357,8 +714,7 @@ public class ControllerHospedajes {
 
 		/* Camping */
 		Camping camping1 = new Camping("Camping de Montaña", "Ciudad del cabo", "Sudafrica", 5,
-				"Un camping rodeado de montañas",
-				"Rural", 420000, "Área de fogatas", "Senderismo");
+				"Un camping rodeado de montañas", "Rural", 420000, "Área de fogatas", "Senderismo");
 
 		hospedajes.add(camping1);
 		HabitacionBase habitacion12 = new HabitacionBase(1, true, 0, "Con vistas a  la montana");
@@ -374,16 +730,14 @@ public class ControllerHospedajes {
 		camping1.agregarHabitacion(habitacion13);
 		camping1.agregarHabitacion(habitacionDoble13);
 		Camping camping3 = new Camping("Camping en el Bosque", "Berguen", "Noruega", 3, "Un camping entre árboles",
-				"Rural",
-				170000, "Piscina natural", "Observación de aves");
+				"Rural", 170000, "Piscina natural", "Observación de aves");
 		hospedajes.add(camping3);
 		HabitacionBase habitacion14 = new HabitacionBase(2, false, 0, "Con armario empotrado");
 		HabitacionDoble habitacionDoble14 = new HabitacionDoble(4, false, 40000, "Matrimonial");
 		camping3.agregarHabitacion(habitacion14);
 		camping3.agregarHabitacion(habitacionDoble14);
 		Camping camping4 = new Camping("Camping en la Playa", "Interlaken", "Suiza", 5, "Un camping cerca del mar",
-				"Rural",
-				720000, "Zona de descanso", "Surf");
+				"Rural", 720000, "Zona de descanso", "Surf");
 		hospedajes.add(camping4);
 		HabitacionBase habitacion15 = new HabitacionBase(2, true, 0, "Con cama Queen Size");
 		HabitacionDoble habitacionDoble15 = new HabitacionDoble(5, true, 70000, "Doble");
@@ -391,8 +745,7 @@ public class ControllerHospedajes {
 		camping4.agregarHabitacion(habitacionDoble15);
 
 		Camping camping5 = new Camping("Camping Familiar", "Moab", "Estados Unidos", 4,
-				"Un camping ideal para familias", "Rural",
-				230000, "Parque infantil", "Excursiones");
+				"Un camping ideal para familias", "Rural", 230000, "Parque infantil", "Excursiones");
 
 		hospedajes.add(camping5);
 		HabitacionBase habitacion16 = new HabitacionBase(2, false, 0, "Con balcón privado");
@@ -465,8 +818,8 @@ public class ControllerHospedajes {
 		glamping1.agregarHabitacion(habitacionDoble23);
 
 		Glamping glamping2 = new Glamping("Glamping de Montaña", "Monteverde", "Costa Rica", 5,
-				"Una experiencia de lujo en la naturaleza",
-				"Rural", 320000, "Observación de estrellas", "Servicio de masajes", "Paneles solares");
+				"Una experiencia de lujo en la naturaleza", "Rural", 320000, "Observación de estrellas",
+				"Servicio de masajes", "Paneles solares");
 		hospedajes.add(glamping2);
 
 		HabitacionBase habitacionBase24 = new HabitacionBase(2, true, 0, "Con baño privado");
@@ -481,8 +834,8 @@ public class ControllerHospedajes {
 		HabitacionDoble habitacionDoble25 = new HabitacionDoble(2, false, 30.0, "Matrimonial");
 
 		Glamping glamping4 = new Glamping("Glamping Romántico", "Vietnam", "Vietnam", 4,
-				"Un refugio íntimo para parejas",
-				"Rural", 375000, "Paseos a caballo", "Baño de burbujas", "Energía renovable");
+				"Un refugio íntimo para parejas", "Rural", 375000, "Paseos a caballo", "Baño de burbujas",
+				"Energía renovable");
 		hospedajes.add(glamping4);
 		HabitacionBase habitacionBase26 = new HabitacionBase(3, true, 0, "Con televisor de pantalla plana");
 		HabitacionDoble habitacionDoble26 = new HabitacionDoble(2, true, 22.0, "Doble");
@@ -495,8 +848,8 @@ public class ControllerHospedajes {
 		HabitacionDoble habitacionDoble27 = new HabitacionDoble(2, false, 18.0, "Individual");
 
 		Glamping glamping6 = new Glamping("Glamping Familiar", "Lofoten", "Noruega", 4,
-				"Un glamping para disfrutar en familia",
-				"Rural", 1200000, "Visita a granja local", "Actividades para niños", "Reutilización de agua");
+				"Un glamping para disfrutar en familia", "Rural", 1200000, "Visita a granja local",
+				"Actividades para niños", "Reutilización de agua");
 		hospedajes.add(glamping6);
 
 		HabitacionBase habitacionBase28 = new HabitacionBase(4, false, 0, "Con acceso para discapacitados");
@@ -630,17 +983,14 @@ public class ControllerHospedajes {
 		hospedajes.add(hotel4);
 
 		/* Moteles */
-		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3,
-				"Un motel para momentos especiales",
+		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, "Un motel para momentos especiales",
 				"Urbano", 200000, "Romántica", true, "Servicio a la habitación");
-		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3,
-				"Cada habitación con una temática diferente", "Urbano", 5000000, "Fantassía", true,
-				"Desayuno incluido");
+		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, "Cada habitación con una temática diferente",
+				"Urbano", 5000000, "Fantassía", true, "Desayuno incluido");
 		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, "Con instalaciones de primer nivel",
 				"Urbano", 230000, "Elegante", true, "Spa privado");
-		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, "Con un estilo retro y acogedor",
-				"Urbano", 240000,
-				"Clásica", false, "Bar en la habitación");
+		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, "Con un estilo retro y acogedor", "Urbano",
+				240000, "Clásica", false, "Bar en la habitación");
 
 		hospedajes.add(motel1);
 		hospedajes.add(motel2);
@@ -649,14 +999,13 @@ public class ControllerHospedajes {
 
 		/* Resort */
 		Resort resort1 = new Resort("Resort de Lujo", "Punta Cana", "Republica Dominicana", 5,
-				"Un resort de lujo en el centro de la ciudad",
-				"Urbano", 420000, "Spa de clase mundial", "Piscina en la azotea");
-		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4,
-				"Perfecto para vacaciones en familia",
+				"Un resort de lujo en el centro de la ciudad", "Urbano", 420000, "Spa de clase mundial",
+				"Piscina en la azotea");
+		Resort resort2 = new Resort("Resort Familiar", "Maldivas", "Maldivas", 4, "Perfecto para vacaciones en familia",
 				"Urbano", 380000, "Club infantil", "Parque acuático");
 		Resort resort3 = new Resort("Resort Wellness", "Santorini", "Grecia", 5,
-				"Para quienes buscan bienestar y relajación",
-				"Urbano", 540000, "Yoga y meditación", "Circuitos de hidroterapia");
+				"Para quienes buscan bienestar y relajación", "Urbano", 540000, "Yoga y meditación",
+				"Circuitos de hidroterapia");
 		Resort resort4 = new Resort("Resort de Negocios", "Bali", "Indonesia", 4,
 				"Ideal para viajes de trabajo y eventos corporativos", "Urbano", 920000, "Salas de reuniones equipadas",
 				"Centro de convenciones");
@@ -666,4 +1015,5 @@ public class ControllerHospedajes {
 		hospedajes.add(resort4);
 
 	}
+
 }

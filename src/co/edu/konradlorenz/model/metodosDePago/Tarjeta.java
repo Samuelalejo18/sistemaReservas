@@ -2,7 +2,7 @@ package co.edu.konradlorenz.model.metodosDePago;
 
 import java.util.Date;
 
-import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteExcepcion;
+import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteException;
 
 public abstract class Tarjeta {
 
@@ -67,7 +67,7 @@ public abstract class Tarjeta {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public abstract String Pagar(double precioTotal) throws SaldoInsuficienteExcepcion;
+    public abstract String Pagar(double precioTotal) throws SaldoInsuficienteException;
 
     public abstract String pagoRechazado();
 

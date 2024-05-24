@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ViewHospedaje",
+            "request": "launch",
+            "mainClass": "co.edu.konradlorenz.view.ViewHospedaje",
+            "projectName": "sistemaReservas"
+        },
+        {
+            "type": "java",
             "name": "Autenticacion",
             "request": "launch",
             "mainClass": "co.edu.konradlorenz.view.ViewAutenticacion",

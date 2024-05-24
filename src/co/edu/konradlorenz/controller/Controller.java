@@ -12,21 +12,21 @@ import javax.swing.JOptionPane;
 import co.edu.konradlorenz.model.Archivo;
 import co.edu.konradlorenz.model.cliente.AuthCliente;
 import co.edu.konradlorenz.model.cliente.Cliente;
-import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaExcepcion;
-import co.edu.konradlorenz.model.excepciones.CapacidadInsuficienteExcepcion;
-import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaExcepcion;
-import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoExcepcion;
-import co.edu.konradlorenz.model.excepciones.RegistroFallidoExcepcion;
+import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaException;
+import co.edu.konradlorenz.model.excepciones.CapacidadInsuficienteException;
+import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaException;
+import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
+import co.edu.konradlorenz.model.excepciones.RegistroFallidoException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewAutenticacion;
-import co.edu.konradlorenz.view.ViewDatosCliente;
+
 import co.edu.konradlorenz.view.ViewRegistro;
 import co.edu.konradlorenz.view.ViewReserva;
 
 public class Controller implements ActionListener {
-	ViewDatosCliente viewDatosCliente = new ViewDatosCliente();
+
 	AuthCliente metodosCliente = new AuthCliente();
 	ControllerHospedajes controllerHospedajes = new ControllerHospedajes();
 	ControllerReserva controllerReserva = new ControllerReserva();
@@ -45,7 +45,7 @@ public class Controller implements ActionListener {
 
 	public Controller() {
 		viewAutenticacion = new ViewAutenticacion();
-		viewRegistro= new ViewRegistro();
+		viewRegistro = new ViewRegistro();
 		btnLoginAutenticacion = viewAutenticacion.getBtnLogin();
 		btnLoginAutenticacion.addActionListener(this);
 		mostrarVentanaAutenticacion(true);
@@ -55,18 +55,17 @@ public class Controller implements ActionListener {
 
 		btnRegisterRegistro = viewRegistro.getBtnRegister();
 		btnRegisterRegistro.addActionListener(this);
-		btnRegisterLogin= viewRegistro.getBtnLogin();
+		btnRegisterLogin = viewRegistro.getBtnLogin();
 		btnRegisterLogin.addActionListener(this);
 
 	}
 
-	
-	
-	private void mostrarVentanaRegistro(boolean visible) {
+	public void mostrarVentanaRegistro(boolean visible) {
 		viewRegistro.setVisible(true);
 		viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	private void mostrarVentanaAutenticacion(boolean visible) {
+
+	public void mostrarVentanaAutenticacion(boolean visible) {
 		viewAutenticacion.setVisible(true);
 		viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -78,10 +77,11 @@ public class Controller implements ActionListener {
 				metodosCliente.registrarClientePrueba();
 				usuarioAutenticado = AuthCliente.autenticarse(viewAutenticacion.pedirEmail(),
 						viewAutenticacion.pedirContrasena());
-				JOptionPane.showMessageDialog(viewAutenticacion, "Autenticacion exitosa para "+ usuarioAutenticado.getNombre(), "Éxito",
-                        JOptionPane.INFORMATION_MESSAGE);
-				opcionesReserva();
-			} catch (AuntenticacionFallidaExcepcion excepcion) {
+				JOptionPane.showMessageDialog(viewAutenticacion,
+						"Autenticacion exitosa para " + usuarioAutenticado.getNombre(), "Éxito",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (AuntenticacionFallidaException excepcion) {
 				JOptionPane.showMessageDialog(viewAutenticacion, excepcion.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				excepcion.printStackTrace();
@@ -91,9 +91,10 @@ public class Controller implements ActionListener {
 		if (e.getSource() == btnLoginRegistro) {
 			viewAutenticacion.dispose();
 			mostrarVentanaRegistro(true);
+			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		
-		if(e.getSource()==btnRegisterLogin) {
+
+		if (e.getSource() == btnRegisterLogin) {
 			viewRegistro.dispose();
 			viewAutenticacion.setVisible(true);
 			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,10 +105,10 @@ public class Controller implements ActionListener {
 				Cliente cliente = new Cliente(viewRegistro.pedirNombre(), viewRegistro.pedirApellido(),
 						viewRegistro.pedirId(), viewRegistro.pedirEmail(), viewRegistro.pedirContrasena(),
 						viewRegistro.pedirNumeroTelefono(), viewRegistro.pedirDireccion());
-				JOptionPane.showMessageDialog(viewRegistro, "Registro exitoso para el usuario "+ cliente.getNombre(), "Éxito",
-                        JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(viewRegistro, "Registro exitoso para el usuario " + cliente.getNombre(),
+						"Éxito", JOptionPane.INFORMATION_MESSAGE);
 				AuthCliente.registrar(cliente);
-			} catch (RegistroFallidoExcepcion e2) {
+			} catch (RegistroFallidoException e2) {
 				JOptionPane.showMessageDialog(viewRegistro, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				e2.printStackTrace();
 			}
@@ -115,232 +116,158 @@ public class Controller implements ActionListener {
 
 	}
 
-	public void funcionar() {
-		controllerHospedajes.registrarHospedajes();
-
-		int opcion = -1;
-		while (opcion != 0) {
-			viewDatosCliente.opcionesDisponibles();
-			opcion = viewDatosCliente.pedirOpcion();
-			switch (opcion) {
-			case 1:
-				try {
-					metodosCliente.registrarClientePrueba();
-					usuarioAutenticado = AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
-							viewDatosCliente.pedirContrasena());
-					opcionesReserva();
-				} catch (AuntenticacionFallidaExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-
-			case 2:
-				try {
-					Cliente cliente = new Cliente(viewDatosCliente.pedirNombre(), viewDatosCliente.pedirApellido(),
-							viewDatosCliente.pedirId(), viewDatosCliente.pedirEmail(),
-							viewDatosCliente.pedirContrasena(), viewDatosCliente.pedirNumeroTelefono(),
-							viewDatosCliente.pedirDireccion());
-					viewDatosCliente.registroExitoso(cliente.getNombre());
-					AuthCliente.registrar(cliente);
-				} catch (RegistroFallidoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-
-				break;
-			case 0:
-				viewDatosCliente.saliendoDelSistema();
-				break;
-			default:
-				viewDatosCliente.opcionInvalida();
-			}
-		}
-	}
-
-	public void opcionesReserva() {
-		int opcion = -1;
-		while (opcion != 0) {
-			viewDatosCliente.opcionesDeHospedaje();
-			opcion = viewDatosCliente.pedirOpcion();
-			switch (opcion) {
-			case 1:
-				controllerHospedajes.hospedajesDisponibles();
-				break;
-			case 2:
-				try {
-					controllerHospedajes.buscarPorNombre(viewDatosCliente.pedirNombreHospedaje());
-
-				} catch (HospedajeNoEncontradoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 3:
-				try {
-					controllerHospedajes.filtrarCiudad(viewDatosCliente.pedirCiudad());
-				} catch (HospedajeNoEncontradoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 4:
-				try {
-
-					controllerHospedajes.filtrarPorPais(viewDatosCliente.pedirPais());
-
-				} catch (HospedajeNoEncontradoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 5:
-				try {
-					controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.pedirNumeroEstrellas());
-				} catch (HospedajeNoEncontradoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 6:
-				try {
-
-					controllerHospedajes.filtrarTipo(viewDatosCliente.pedirTipoHospedaje());
-				} catch (HospedajeNoEncontradoExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 7:
-				controllerHospedajes.filtrarPorPrecio(viewDatosCliente.pedirPrecioMinimo(),
-						viewDatosCliente.pedirPrecioMaximo());
-				break;
-			case 8:
-				controllerHospedajes.filtrarHoteles();
-				break;
-			case 9:
-				controllerHospedajes.filtrarMoteles();
-				break;
-			case 10:
-				controllerHospedajes.filtralResorts();
-				break;
-			case 11:
-				controllerHospedajes.filtralCampings();
-				break;
-			case 12:
-				controllerHospedajes.filtralGlampings();
-				break;
-			case 13:
-				controllerHospedajes.filtralCabanas();
-				break;
-			case 14:
-
-				viewReserva.mostrarGraciasReserva();
-				try {
-					realizarReserva();
-
-				} catch (HabitacionNoEncontradaExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				} catch (CapacidadInsuficienteExcepcion e) {
-					viewDatosCliente.mostrarMensaje(e.getMessage());
-					e.printStackTrace();
-				}
-				break;
-			case 0:
-				viewDatosCliente.saliendoDelSistema();
-				break;
-			default:
-				viewDatosCliente.opcionInvalida();
-
-			}
-		}
-	}
-
-	public void realizarReserva() throws HabitacionNoEncontradaExcepcion, CapacidadInsuficienteExcepcion {
-		try {
-			hospedajeAReservar = controllerReserva.reservarHospedaje(viewDatosCliente.pedirNombreHospedaje());
-
-			habitaciones = hospedajeAReservar.getHabitaciones();
-
-			controllerReserva.habitacionesDisponibles(habitaciones);
-
-			int numeroHabitacionReservar = viewReserva.pedirNumeroHabitacionReservar();
-			boolean habitacionEncontrada = false;
-			boolean habitacionDisponible = false;
-			for (Habitacion habitacion : habitaciones) {
-				if (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
-
-					if (habitacion.isDisponible()) {
-
-						habitacionReservada = habitacion;
-						habitacionEncontrada = true;
-						String tipoHabitacion = controllerReserva.hallarTipoHabitacion(habitacion);
-						viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
-								habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-								habitacion.getPrecioAdicionalPorTipoHabitacion());
-						habitacionDisponible = true;
-						break;
-					} else {
-						habitacionReservada = habitacion;
-						habitacionEncontrada = true;
-						habitacionDisponible = false;
-
-						break;
-					}
-				}
-			}
-
-			if (!habitacionEncontrada) {
-				throw new HabitacionNoEncontradaExcepcion("La habitacion no existe");
-			}
-
-			if (habitacionDisponible) {
-				Date fechaEntrada = null/* ViewReserva.ingresarFechaEntrada() */;
-				Date fechaSalida = null /* viewReserva.ingresarFechaSalida() */;
-
-				int numeroPersonas = ViewReserva.ingresarNumeroPersonas();
-				if (habitacionReservada.getCapacidad() >= numeroPersonas) {
-					int numeroNoches = ViewReserva.ingresarNumeroNoches();
-					Reserva reserva = new Reserva(usuarioAutenticado, fechaEntrada, fechaSalida, hospedajeAReservar,
-							habitacionReservada, numeroPersonas, numeroNoches);
-
-					double precioTotal = reserva.calcularPrecioTotal(numeroPersonas, numeroNoches);
-
-					viewReserva.mostrarPrecio(precioTotal);
-
-					controllerReserva.metodosDepago(usuarioAutenticado, usuarioAutenticado.getTarjetas(), precioTotal);
-
-					String aceptarPago = ViewReserva.realizarpago();
-
-					viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
-
-					String nombreClaseHabitacon = habitacionReservada.getClass().getSimpleName();
-
-					String tipoHabitacion = nombreClaseHabitacon.substring("Habitacion".length());
-
-					String tipoHospedaje = controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
-
-					viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(), usuarioAutenticado.getApellido(),
-							usuarioAutenticado.getId(), usuarioAutenticado.getEmail(),
-							usuarioAutenticado.getNumeroTelefono(), fechaEntrada, fechaSalida, tipoHospedaje,
-							hospedajeAReservar.getNombre(), hospedajeAReservar.getUbicacionCiudad(),
-							hospedajeAReservar.getUbicacionPais(), tipoHabitacion,
-							habitacionReservada.getNumeroHabitacion(), numeroPersonas, numeroNoches,
-							hospedajeAReservar.getPrecioPorPersona(),
-							habitacionReservada.getPrecioAdicionalPorTipoHabitacion(), reserva.subtotal(), precioTotal);
-
-				} else {
-
-					throw new CapacidadInsuficienteExcepcion("Capacidad insuficiente");
-				}
-
-			}
-
-		} catch (HospedajeNoEncontradoExcepcion e) {
-			viewDatosCliente.mostrarMensaje(e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
+	/*
+	 * public void funcionar() {
+	 * 
+	 * 
+	 * int opcion = -1; while (opcion != 0) {
+	 * viewDatosCliente.opcionesDisponibles(); opcion =
+	 * viewDatosCliente.pedirOpcion(); switch (opcion) { case 1: try {
+	 * metodosCliente.registrarClientePrueba(); usuarioAutenticado =
+	 * AuthCliente.autenticarse(viewDatosCliente.pedirEmail(),
+	 * viewDatosCliente.pedirContrasena()); opcionesReserva(); } catch
+	 * (AuntenticacionFallidaException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break;
+	 * 
+	 * case 2: try { Cliente cliente = new Cliente(viewDatosCliente.pedirNombre(),
+	 * viewDatosCliente.pedirApellido(), viewDatosCliente.pedirId(),
+	 * viewDatosCliente.pedirEmail(), viewDatosCliente.pedirContrasena(),
+	 * viewDatosCliente.pedirNumeroTelefono(), viewDatosCliente.pedirDireccion());
+	 * viewDatosCliente.registroExitoso(cliente.getNombre());
+	 * AuthCliente.registrar(cliente); } catch (RegistroFallidoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * 
+	 * break; case 0: viewDatosCliente.saliendoDelSistema(); break; default:
+	 * viewDatosCliente.opcionInvalida(); } } }
+	 * 
+	 * public void opcionesReserva() { int opcion = -1; while (opcion != 0) {
+	 * viewDatosCliente.opcionesDeHospedaje(); opcion =
+	 * viewDatosCliente.pedirOpcion(); switch (opcion) { case 1:
+	 * controllerHospedajes.hospedajesDisponibles(); break; case 2: try {
+	 * controllerHospedajes.buscarPorNombre(viewDatosCliente.pedirNombreHospedaje())
+	 * ;
+	 * 
+	 * } catch (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 3: try {
+	 * controllerHospedajes.filtrarCiudad(viewDatosCliente.pedirCiudad()); } catch
+	 * (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 4: try {
+	 * 
+	 * controllerHospedajes.filtrarPorPais(viewDatosCliente.pedirPais());
+	 * 
+	 * } catch (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 5: try {
+	 * controllerHospedajes.filtrarPorNumeroDeEstrellas(viewDatosCliente.
+	 * pedirNumeroEstrellas()); } catch (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 6: try {
+	 * 
+	 * controllerHospedajes.filtrarTipo(viewDatosCliente.pedirTipoHospedaje()); }
+	 * catch (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 7:
+	 * controllerHospedajes.filtrarPorPrecio(viewDatosCliente.pedirPrecioMinimo(),
+	 * viewDatosCliente.pedirPrecioMaximo()); break; case 8:
+	 * controllerHospedajes.filtrarHoteles(); break; case 9:
+	 * controllerHospedajes.filtrarMoteles(); break; case 10:
+	 * controllerHospedajes.filtralResorts(); break; case 11:
+	 * controllerHospedajes.filtralCampings(); break; case 12:
+	 * controllerHospedajes.filtralGlampings(); break; case 13:
+	 * controllerHospedajes.filtralCabanas(); break; case 14:
+	 * 
+	 * viewReserva.mostrarGraciasReserva(); try { realizarReserva();
+	 * 
+	 * } catch (HabitacionNoEncontradaException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); } catch
+	 * (CapacidadInsuficienteException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); }
+	 * break; case 0: viewDatosCliente.saliendoDelSistema(); break; default:
+	 * viewDatosCliente.opcionInvalida();
+	 * 
+	 * } } }
+	 * 
+	 * public void realizarReserva() throws HabitacionNoEncontradaException,
+	 * CapacidadInsuficienteException { try { hospedajeAReservar =
+	 * controllerReserva.reservarHospedaje(viewDatosCliente.pedirNombreHospedaje());
+	 * 
+	 * habitaciones = hospedajeAReservar.getHabitaciones();
+	 * 
+	 * controllerReserva.habitacionesDisponibles(habitaciones);
+	 * 
+	 * int numeroHabitacionReservar = viewReserva.pedirNumeroHabitacionReservar();
+	 * boolean habitacionEncontrada = false; boolean habitacionDisponible = false;
+	 * for (Habitacion habitacion : habitaciones) { if
+	 * (habitacion.getNumeroHabitacion() == numeroHabitacionReservar) {
+	 * 
+	 * if (habitacion.isDisponible()) {
+	 * 
+	 * habitacionReservada = habitacion; habitacionEncontrada = true; String
+	 * tipoHabitacion = controllerReserva.hallarTipoHabitacion(habitacion);
+	 * viewReserva.imprimirTablaHabitacion(tipoHabitacion,
+	 * habitacion.getCapacidad(), habitacion.isDisponible(),
+	 * habitacion.getNumeroHabitacion(),
+	 * habitacion.getPrecioAdicionalPorTipoHabitacion()); habitacionDisponible =
+	 * true; break; } else { habitacionReservada = habitacion; habitacionEncontrada
+	 * = true; habitacionDisponible = false;
+	 * 
+	 * break; } } }
+	 * 
+	 * if (!habitacionEncontrada) { throw new
+	 * HabitacionNoEncontradaException("La habitacion no existe"); }
+	 *//*
+		 * if (habitacionDisponible) { Date fechaEntrada = null/*
+		 * ViewReserva.ingresarFechaEntrada()
+		 */;
+	// Date fechaSalida = null /* viewReserva.ingresarFechaSalida() */;
+	/*
+	 * int numeroPersonas = ViewReserva.ingresarNumeroPersonas(); if
+	 * (habitacionReservada.getCapacidad() >= numeroPersonas) { int numeroNoches =
+	 * ViewReserva.ingresarNumeroNoches(); Reserva reserva = new
+	 * Reserva(usuarioAutenticado, fechaEntrada, fechaSalida, hospedajeAReservar,
+	 * habitacionReservada, numeroPersonas, numeroNoches);
+	 * 
+	 * double precioTotal = reserva.calcularPrecioTotal(numeroPersonas,
+	 * numeroNoches);
+	 * 
+	 * viewReserva.mostrarPrecio(precioTotal);
+	 * 
+	 * controllerReserva.metodosDepago(usuarioAutenticado,
+	 * usuarioAutenticado.getTarjetas(), precioTotal);
+	 * 
+	 * String aceptarPago = ViewReserva.realizarpago();
+	 * 
+	 * viewReserva.mostrarPago(reserva.realizarPago(aceptarPago, precioTotal));
+	 * 
+	 * String nombreClaseHabitacon = habitacionReservada.getClass().getSimpleName();
+	 * 
+	 * String tipoHabitacion =
+	 * nombreClaseHabitacon.substring("Habitacion".length());
+	 * 
+	 * String tipoHospedaje =
+	 * controllerReserva.hallarTipoHospedaje(hospedajeAReservar);
+	 * 
+	 * viewReserva.imprimirTablaReserva(usuarioAutenticado.getNombre(),
+	 * usuarioAutenticado.getApellido(), usuarioAutenticado.getId(),
+	 * usuarioAutenticado.getEmail(), usuarioAutenticado.getNumeroTelefono(),
+	 * fechaEntrada, fechaSalida, tipoHospedaje, hospedajeAReservar.getNombre(),
+	 * hospedajeAReservar.getUbicacionCiudad(),
+	 * hospedajeAReservar.getUbicacionPais(), tipoHabitacion,
+	 * habitacionReservada.getNumeroHabitacion(), numeroPersonas, numeroNoches,
+	 * hospedajeAReservar.getPrecioPorPersona(),
+	 * habitacionReservada.getPrecioAdicionalPorTipoHabitacion(),
+	 * reserva.subtotal(), precioTotal);
+	 * 
+	 * } else {
+	 * 
+	 * throw new CapacidadInsuficienteException("Capacidad insuficiente"); }
+	 * 
+	 * }
+	 * 
+	 * } catch (HospedajeNoEncontradoException e) {
+	 * viewDatosCliente.mostrarMensaje(e.getMessage()); e.printStackTrace(); } }
+	 */
 }

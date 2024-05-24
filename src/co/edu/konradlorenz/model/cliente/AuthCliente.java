@@ -2,8 +2,8 @@ package co.edu.konradlorenz.model.cliente;
 
 import java.util.ArrayList;
 
-import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaExcepcion;
-import co.edu.konradlorenz.model.excepciones.RegistroFallidoExcepcion;
+import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaException;
+import co.edu.konradlorenz.model.excepciones.RegistroFallidoException;
 
 public class AuthCliente {
 
@@ -38,21 +38,21 @@ public class AuthCliente {
 		clientes.add(clienteAdmin);
 	}
 
-	public static boolean registrar(Cliente cliente) throws RegistroFallidoExcepcion {
+	public static boolean registrar(Cliente cliente) throws RegistroFallidoException {
 		boolean existeUsuario = false;
 		boolean existeUsuario2 = false;
 
 		for (Cliente cliente1 : clientes) {
 			if (cliente1.getEmail().equals(cliente.getEmail())) {
-				throw new RegistroFallidoExcepcion(" El email ya existe");
+				throw new RegistroFallidoException(" El email ya existe");
 			}
 			if (cliente1.getId() == (cliente.getId())) {
-				throw new RegistroFallidoExcepcion(" El id ya existe");
+				throw new RegistroFallidoException(" El id ya existe");
 
 			}
 		}
 		if (existeUsuario && existeUsuario2) {
-			throw new RegistroFallidoExcepcion(" El usuario ya existe");
+			throw new RegistroFallidoException(" El usuario ya existe");
 		} else {
 			clientes.add(cliente);
 			return true;
@@ -60,7 +60,7 @@ public class AuthCliente {
 
 	}
 
-	public static Cliente autenticarse(String usuarioEmail, String contrasena) throws AuntenticacionFallidaExcepcion {
+	public static Cliente autenticarse(String usuarioEmail, String contrasena) throws AuntenticacionFallidaException {
 		Cliente usuarioEncontrado = null;
 		for (Cliente cliente : clientes) {
 			if (cliente.getEmail().equals(usuarioEmail)) {
@@ -74,10 +74,10 @@ public class AuthCliente {
 				usuarioAutenticado = usuarioEncontrado;
 				return usuarioAutenticado;
 			} else {
-				throw new AuntenticacionFallidaExcepcion(" ViewAutenticacion fallida");
+				throw new AuntenticacionFallidaException(" ViewAutenticacion fallida");
 			}
 		} else {
-			throw new AuntenticacionFallidaExcepcion(" El usuario no existe");
+			throw new AuntenticacionFallidaException(" El usuario no existe");
 		}
 	}
 

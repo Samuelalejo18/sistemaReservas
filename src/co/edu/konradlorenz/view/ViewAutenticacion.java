@@ -36,7 +36,6 @@ import com.jgoodies.forms.layout.RowSpec;
 
 public class ViewAutenticacion extends JFrame {
 
-
 	private JPanel contentPane;
 	private JPanel jpnInfo;
 	private RoundedPanel jpnLogin;
@@ -72,8 +71,8 @@ public class ViewAutenticacion extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(16, 6, 38));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		 this.setResizable(false);
+
+		this.setResizable(false);
 		this.setSize(1280, 800);
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
@@ -90,25 +89,25 @@ public class ViewAutenticacion extends JFrame {
 		btnRegistrar.setBackground(new Color(255, 255, 255));
 		btnRegistrar.setForeground(new Color(16, 6, 38));
 		btnRegistrar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
-		
+
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
 		lblNewLabel_3.setBounds(440, 461, 244, 96);
 		jpnInfo.add(lblNewLabel_3);
 		btnRegistrar.setBounds(903, 38, 207, 48);
 		jpnInfo.add(btnRegistrar);
-		
+
 		JPanel jpnSuperiorCentro = new JPanel();
 		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
 		jpnSuperiorCentro.setBounds(430, 0, 408, 120);
 		jpnInfo.add(jpnSuperiorCentro);
 		jpnSuperiorCentro.setLayout(null);
-		
+
 		btnReservar = new JButton("Reservar");
 		btnReservar.setFocusPainted(false);
 		btnReservar.setBackground(new Color(16, 6, 38));
@@ -117,7 +116,7 @@ public class ViewAutenticacion extends JFrame {
 		btnReservar.setBounds(25, 64, 105, 23);
 		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
 		jpnSuperiorCentro.add(btnReservar);
-		
+
 		btnContactanos = new JButton("Contáctanos");
 		btnContactanos.setBackground(new Color(16, 6, 38));
 		btnContactanos.setForeground(new Color(255, 255, 255));
@@ -125,7 +124,7 @@ public class ViewAutenticacion extends JFrame {
 		btnContactanos.setBounds(140, 64, 128, 23);
 		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
 		jpnSuperiorCentro.add(btnContactanos);
-		
+
 		btnNosotros = new JButton("Nosotros");
 		btnNosotros.setBackground(new Color(16, 6, 38));
 		btnNosotros.setForeground(new Color(255, 255, 255));
@@ -133,28 +132,26 @@ public class ViewAutenticacion extends JFrame {
 		btnNosotros.setBounds(278, 64, 105, 23);
 		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
 		jpnSuperiorCentro.add(btnNosotros);
-		
+
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(1120, 0, 101, 120);
 		jpnInfo.add(lblNewLabel_2);
 		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
-		
+
 		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
+		lblNewLabel_4.setIcon(new ImageIcon(
+				ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
 		lblNewLabel_4.setBounds(100, 0, 331, 120);
 		jpnInfo.add(lblNewLabel_4);
-		
-		
-		
 
-		jpnLogin = new RoundedPanel(50) ;
+		jpnLogin = new RoundedPanel(50);
 		jpnLogin.setBackground(new Color(51, 26, 108));
 		jpnLogin.setBounds(99, 118, 1065, 613);
 
 		contentPane.add(jpnLogin);
 		jpnLogin.setLayout(null);
 
-		jpnFormulario =  new RoundedPanel(50) ;
+		jpnFormulario = new RoundedPanel(50);
 		jpnFormulario.setBounds(333, 116, 402, 396);
 		jpnFormulario.setBackground(new Color(255, 255, 255));
 		jpnLogin.add(jpnFormulario);
@@ -185,9 +182,8 @@ public class ViewAutenticacion extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(54, 244, 297, 34);
 		jpnFormulario.add(passwordField);
-		   
-		   
-		   jpnFormulario.setComponentZOrder(passwordField, 1); // Poner passwordField detrás
+
+		jpnFormulario.setComponentZOrder(passwordField, 1); // Poner passwordField detrás
 		lblNewLabel_1 = new JLabel("Iniciar Sesión para continuar");
 		lblNewLabel_1.setBounds(0, 85, 402, 14);
 		lblNewLabel_1.setFont(new Font("Open Sans", Font.PLAIN, 11));
@@ -205,92 +201,86 @@ public class ViewAutenticacion extends JFrame {
 		lblC.setFont(new Font("Open Sans", Font.BOLD, 11));
 		lblC.setHorizontalAlignment(SwingConstants.LEFT);
 		jpnFormulario.add(lblC);
-		
-		   // Crear el JLabel
-        JLabel lblEye = new JLabel("");
-        lblEye.setBounds(124, 289, 33, 23); // Establecer el tamaño y la posición del JLabel
 
-        // Cargar y redimensionar la imagen
-        try {
-            BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
-            
-            Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(), Image.SCALE_SMOOTH);
-            lblEye.setIcon(new ImageIcon(resizedImage));
-           
-        } catch (IOException e2) {
-            e2.printStackTrace();
-        }
+		// Crear el JLabel
+		JLabel lblEye = new JLabel("");
+		lblEye.setBounds(124, 289, 33, 23); // Establecer el tamaño y la posición del JLabel
 
-       
-        jpnFormulario.add(lblEye);
-        
-     
+		// Cargar y redimensionar la imagen
+		try {
+			BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
 
+			Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(),
+					Image.SCALE_SMOOTH);
+			lblEye.setIcon(new ImageIcon(resizedImage));
 
-        JButton toggleButton = new JButton("Mostrar");
-        
-        		toggleButton.setBackground(new Color(255, 255, 255));
-        		toggleButton.setBounds(158, 289, 90, 23);
-        		jpnFormulario.add(toggleButton);
-        	
-        		toggleButton.setBorderPainted(false);
-        		
-        		
-        		toggleButton.addActionListener(new ActionListener() {
-        		    private boolean isPasswordVisible = false;
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 
-        		    @Override
-        		    public void actionPerformed(ActionEvent e) {
-        		        if (isPasswordVisible) {
-        		            passwordField.setEchoChar('•'); // Ocultar contraseña
-        		            toggleButton.setText("Mostrar");
-        		            try {
-        		                BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
-        		                Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(), Image.SCALE_SMOOTH);
-        		                lblEye.setIcon(new ImageIcon(resizedImage));
-        		            } catch (IOException e2) {
-        		                e2.printStackTrace();
-        		            }
+		jpnFormulario.add(lblEye);
 
-        		        } else {
-        		            passwordField.setEchoChar((char) 0); // Mostrar contraseña
-        		            toggleButton.setText("Ocultar");
-        		            try {
-        		                BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/hide.png"));
-        		                Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(), Image.SCALE_SMOOTH);
-        		                lblEye.setIcon(new ImageIcon(resizedImage));
-        		            } catch (IOException e2) {
-        		                e2.printStackTrace();
-        		            }
-        		        }
-        		        isPasswordVisible = !isPasswordVisible;
-        		    }
-        		});
-		
-				lblNewLabel = new JLabel("#BuscaComparaReserva");
-				lblNewLabel.setBounds(788, 554, 244, 32);
-				jpnLogin.add(lblNewLabel);
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
-				jpnBuscaComparaReserva = new RoundedPanel(20);
-				jpnBuscaComparaReserva.setBounds(788, 554, 244, 32);
-				jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
-				jpnLogin.add(jpnBuscaComparaReserva);
-				jpnBuscaComparaReserva.setLayout(null);
-		
+		JButton toggleButton = new JButton("Mostrar");
+
+		toggleButton.setBackground(new Color(255, 255, 255));
+		toggleButton.setBounds(158, 289, 90, 23);
+		jpnFormulario.add(toggleButton);
+
+		toggleButton.setBorderPainted(false);
+
+		toggleButton.addActionListener(new ActionListener() {
+			private boolean isPasswordVisible = false;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (isPasswordVisible) {
+					passwordField.setEchoChar('•'); // Ocultar contraseña
+					toggleButton.setText("Mostrar");
+					try {
+						BufferedImage originalImage = ImageIO
+								.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
+						Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(),
+								Image.SCALE_SMOOTH);
+						lblEye.setIcon(new ImageIcon(resizedImage));
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					}
+
+				} else {
+					passwordField.setEchoChar((char) 0); // Mostrar contraseña
+					toggleButton.setText("Ocultar");
+					try {
+						BufferedImage originalImage = ImageIO
+								.read(ViewAutenticacion.class.getResource("/imagenes/hide.png"));
+						Image resizedImage = originalImage.getScaledInstance(lblEye.getWidth(), lblEye.getHeight(),
+								Image.SCALE_SMOOTH);
+						lblEye.setIcon(new ImageIcon(resizedImage));
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					}
+				}
+				isPasswordVisible = !isPasswordVisible;
+			}
+		});
+
+		lblNewLabel = new JLabel("#BuscaComparaReserva");
+		lblNewLabel.setBounds(788, 554, 244, 32);
+		jpnLogin.add(lblNewLabel);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		jpnBuscaComparaReserva = new RoundedPanel(20);
+		jpnBuscaComparaReserva.setBounds(788, 554, 244, 32);
+		jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
+		jpnLogin.add(jpnBuscaComparaReserva);
+		jpnBuscaComparaReserva.setLayout(null);
+
 		/*
-		this.btnRegistrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	ViewAutenticacion.this.dispose();
-            	ViewRegistro viewRegistro= new ViewRegistro();
-            	viewRegistro.setVisible(true);
-            	viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            }
-        });
-        */
+		 * this.btnRegistrar.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent e) { ViewAutenticacion.this.dispose();
+		 * ViewRegistro viewRegistro= new ViewRegistro(); viewRegistro.setVisible(true);
+		 * viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); } });
+		 */
 	}
-		
-	
 
 	public JButton getBtnLogin() {
 		return btnLogin;
@@ -324,6 +314,7 @@ public class ViewAutenticacion extends JFrame {
 		this.btnRegistrar = btnRegistrar;
 	}
 
+	
 	public String pedirEmail() {
 		boolean emailValido = false;
 
@@ -337,42 +328,42 @@ public class ViewAutenticacion extends JFrame {
 			String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(email);
+			if (email.isEmpty()) {
+				throw new Exception("El campo de email no puede estar vacío.");
+
+			}
 
 			// Verificar si el email coincide con el formato esperado
 			if (matcher.matches()) {
 				emailValido = true;
-			} else if(email.isEmpty()) {
-				JOptionPane.showMessageDialog(this, "El campo de email no puede estar vacío.", "Error",
-	                    JOptionPane.ERROR_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(this, "El correo electrónico no tiene un formato válido.", "Error",
-						JOptionPane.ERROR_MESSAGE);
-
 				emailValido = false;
+				throw new Exception("El correo electrónico no tiene un formato válido.");
+
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
 
 		}
 
 		return email;
 	}
+	
 	public String pedirContrasena() {
-	    char[] passwordChars = passwordField.getPassword();
-	    String contrasena = new String(passwordChars);
+		char[] passwordChars = passwordField.getPassword();
+		String contrasena = new String(passwordChars);
 
-	    if (contrasena.isEmpty()) {
-	        JOptionPane.showMessageDialog(this, "El campo de contraseña no puede estar vacío.", "Error",
-	                JOptionPane.ERROR_MESSAGE);
-	    
-	        java.util.Arrays.fill(passwordChars, ' ');
-	        
-	    }
+		try {
+			if (contrasena.isEmpty()) {
+				java.util.Arrays.fill(passwordChars, ' ');
+				throw new Exception("El campo de contraseña no puede estar vacío.");
 
-	  
-	    java.util.Arrays.fill(passwordChars, ' ');
+			}
+			java.util.Arrays.fill(passwordChars, ' ');
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 
-	    return contrasena;
+		return contrasena;
 	}
 }

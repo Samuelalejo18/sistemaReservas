@@ -7,7 +7,7 @@ import java.awt.geom.RoundRectangle2D;
 
 
 
-class RoundedPanel extends javax.swing.JPanel {
+public class RoundedPanel extends javax.swing.JPanel {
 	private static final long serialVersionUID = 1L;
 	private int radius;
 
