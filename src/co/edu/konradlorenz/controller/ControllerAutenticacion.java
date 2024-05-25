@@ -23,15 +23,13 @@ import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewAutenticacion;
 
 import co.edu.konradlorenz.view.ViewRegistro;
-import co.edu.konradlorenz.view.ViewReserva;
+import co.edu.konradlorenz.view.ViewReservaPrueba;
 
-public class Controller implements ActionListener {
+public class ControllerAutenticacion implements ActionListener {
 
 	AuthCliente metodosCliente = new AuthCliente();
-	ControllerHospedajes controllerHospedajes = new ControllerHospedajes();
-	ControllerReserva controllerReserva = new ControllerReserva();
-	ViewReserva viewReserva = new ViewReserva();
-	Cliente usuarioAutenticado;
+
+	static Cliente usuarioAutenticado;
 	ArrayList<Habitacion> habitaciones;
 	Hospedaje hospedajeAReservar;
 	Habitacion habitacionReservada;
@@ -40,10 +38,15 @@ public class Controller implements ActionListener {
 	JButton btnLoginRegistro;
 	ViewAutenticacion viewAutenticacion;
 	ViewRegistro viewRegistro;
+
 	JButton btnRegisterRegistro;
 	JButton btnRegisterLogin;
+	ControllerHospedajes controlHospedajes;
+	JButton btnHospedajesLogin;
+	JButton btnNosotrosLogin;
+	JButton btnContactanosLogin;
 
-	public Controller() {
+	public ControllerAutenticacion() {
 		viewAutenticacion = new ViewAutenticacion();
 		viewRegistro = new ViewRegistro();
 		btnLoginAutenticacion = viewAutenticacion.getBtnLogin();
@@ -58,6 +61,12 @@ public class Controller implements ActionListener {
 		btnRegisterLogin = viewRegistro.getBtnLogin();
 		btnRegisterLogin.addActionListener(this);
 
+		btnHospedajesLogin= viewAutenticacion.getBtnHospedajes();
+		btnContactanosLogin = viewAutenticacion.getBtnContactanos();
+		btnNosotrosLogin = viewAutenticacion.getBtnNosotros();
+		btnHospedajesLogin.addActionListener(this);
+		btnContactanosLogin.addActionListener(this);
+		btnNosotrosLogin.addActionListener(this);
 	}
 
 	public void mostrarVentanaRegistro(boolean visible) {
@@ -72,6 +81,7 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if (e.getSource() == btnLoginAutenticacion) {
 			try {
 				metodosCliente.registrarClientePrueba();
@@ -80,6 +90,8 @@ public class Controller implements ActionListener {
 				JOptionPane.showMessageDialog(viewAutenticacion,
 						"Autenticacion exitosa para " + usuarioAutenticado.getNombre(), "Éxito",
 						JOptionPane.INFORMATION_MESSAGE);
+				viewAutenticacion.dispose();
+				controlHospedajes = new ControllerHospedajes();
 
 			} catch (AuntenticacionFallidaException excepcion) {
 				JOptionPane.showMessageDialog(viewAutenticacion, excepcion.getMessage(), "Error",
@@ -113,6 +125,23 @@ public class Controller implements ActionListener {
 				e2.printStackTrace();
 			}
 		}
+		
+		if(e.getSource()==btnHospedajesLogin) {
+			viewAutenticacion.dispose();
+			controlHospedajes = new ControllerHospedajes();
+			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		if(e.getSource()==btnContactanosLogin) {
+			viewAutenticacion.dispose();
+			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		if(e.getSource()== btnNosotrosLogin) {
+			viewAutenticacion.dispose();
+			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
 
 	}
 

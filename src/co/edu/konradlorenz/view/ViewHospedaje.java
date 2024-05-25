@@ -62,9 +62,10 @@ public class ViewHospedaje extends JFrame {
 	private RoundButtonCircle btnAll;
 	private JLabel lblTodos;
 	private RoundButton btnLogin;
-	private  RoundButton  btnRegistrarse;
 	private RoundedPanel jpnFiltrosCiudades_1;
-	
+	private JPanel jpnUsuario;
+	private JLabel lblNameUsuario;
+
 
 	/**
 	 * Create the frame.
@@ -156,14 +157,14 @@ public class ViewHospedaje extends JFrame {
 		lblNewLabel_4.setBounds(58, 0, 719, 120);
 		jpnInfo.add(lblNewLabel_4);
 
-		JPanel jpnUsuario = new JPanel();
+		jpnUsuario = new JPanel();
 		jpnUsuario.setBackground(new Color(16, 6, 38));
 		jpnUsuario.setBounds(1003, 1, 505, 120);
 		jpnInfo.add(jpnUsuario);
 		jpnUsuario.setLayout(null);
 
 		btnLogin = new RoundButton("Iniciar Sesión");
-		btnLogin.setBounds(29, 38, 207, 48);
+		btnLogin.setBounds(137, 38, 207, 48);
 		jpnUsuario.add(btnLogin);
 		btnLogin.setText("Iniciar Sesión ");
 		btnLogin.setForeground(new Color(16, 6, 38));
@@ -171,14 +172,10 @@ public class ViewHospedaje extends JFrame {
 		btnLogin.setBorderPainted(false);
 		btnLogin.setBackground(Color.WHITE);
 
-		btnRegistrarse = new RoundButton("Iniciar Sesión");
-		btnRegistrarse.setBounds(269, 38, 207, 48);
-		jpnUsuario.add(btnRegistrarse);
-		btnRegistrarse.setText("Registrarse");
-		btnRegistrarse.setBorderPainted(false);
-		btnRegistrarse.setBackground(new Color(255, 255, 255));
-		btnRegistrarse.setForeground(new Color(16, 6, 38));
-		btnRegistrarse.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		JLabel lblNewLabel_9 = new JLabel("New label");
+		lblNewLabel_9.setIcon(new ImageIcon(ViewHospedaje.class.getResource("/imagenes/user-interface.png")));
+		lblNewLabel_9.setBounds(52, 28, 64, 64);
+		jpnUsuario.add(lblNewLabel_9);
 
 		jpnBackGround = new RoundedPanel(50);
 		jpnBackGround.setBackground(new Color(51, 26, 108));
@@ -714,9 +711,6 @@ public class ViewHospedaje extends JFrame {
 	public void setBtnAll(RoundButtonCircle btnAll) {
 		this.btnAll = btnAll;
 	}
-	
-	
-	
 
 	public RoundButton getBtnReservar() {
 		return btnReservar;
@@ -750,13 +744,15 @@ public class ViewHospedaje extends JFrame {
 		this.btnLogin = btnLogin;
 	}
 
-	public RoundButton getBtnRegistrarse() {
-		return btnRegistrarse;
+	public JPanel getJpnUsuario() {
+		return jpnUsuario;
 	}
 
-	public void setBtnRegistrarse(RoundButton btnRegistrarse) {
-		this.btnRegistrarse = btnRegistrarse;
+	public void setJpnUsuario(JPanel jpnUsuario) {
+		this.jpnUsuario = jpnUsuario;
 	}
+
+	
 
 	public RoundedPanel mostrarPanelHospedaje(String tH, String nombre, String ubicacionCiudad, String ubicacionPais,
 			int numeroEstrellas, String descripcion, String tipo, double precioPorPersona, String imagen) {
@@ -832,6 +828,19 @@ public class ViewHospedaje extends JFrame {
 		lblPrecioPorPersonaTexto_1.setBounds(2, 277, 238, 45);
 		jpnCardHospedaje.add(lblPrecioPorPersonaTexto_1);
 		return jpnCardHospedaje;
+	}
+
+	public void mostrarNameUsuario(String name) {
+		lblNameUsuario = new JLabel(name);
+		lblNameUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameUsuario.setForeground(Color.WHITE);
+		lblNameUsuario.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 26));
+		lblNameUsuario.setBackground(Color.WHITE);
+		lblNameUsuario.setBounds(0, 0, 505, 120);
+		jpnUsuario.add(lblNameUsuario);
+
+		
+
 	}
 
 	public int pedirPrecioMinimo() {

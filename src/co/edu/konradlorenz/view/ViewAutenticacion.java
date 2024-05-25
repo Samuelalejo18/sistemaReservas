@@ -50,12 +50,10 @@ public class ViewAutenticacion extends JFrame {
 	private JPanel jpnBuscaComparaReserva;
 	private JLabel lblNewLabel;
 	private RoundButton btnRegistrar;
-	private JButton btnReservar;
+	private JLabel lblNewLabel_2;
+	private JButton btnHospedajes;
 	private JButton btnNosotros;
 	private JButton btnContactanos;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_4;
-
 	/*
 	 * public static void main(String[] args) { EventQueue.invokeLater(new
 	 * Runnable() { public void run() { try { ViewAutenticacion frame = new
@@ -90,59 +88,52 @@ public class ViewAutenticacion extends JFrame {
 		btnRegistrar.setForeground(new Color(16, 6, 38));
 		btnRegistrar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
 
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
-		lblNewLabel_3.setBounds(440, 461, 244, 96);
-		jpnInfo.add(lblNewLabel_3);
+	
 		btnRegistrar.setBounds(903, 38, 207, 48);
 		jpnInfo.add(btnRegistrar);
-
-		JPanel jpnSuperiorCentro = new JPanel();
-		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
-		jpnSuperiorCentro.setBounds(430, 0, 408, 120);
-		jpnInfo.add(jpnSuperiorCentro);
-		jpnSuperiorCentro.setLayout(null);
-
-		btnReservar = new JButton("Reservar");
-		btnReservar.setFocusPainted(false);
-		btnReservar.setBackground(new Color(16, 6, 38));
-		btnReservar.setBorderPainted(false);
-		btnReservar.setForeground(new Color(255, 255, 255));
-		btnReservar.setBounds(25, 64, 105, 23);
-		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnReservar);
-
-		btnContactanos = new JButton("Contáctanos");
-		btnContactanos.setBackground(new Color(16, 6, 38));
-		btnContactanos.setForeground(new Color(255, 255, 255));
-		btnContactanos.setBorderPainted(false);
-		btnContactanos.setBounds(140, 64, 128, 23);
-		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnContactanos);
-
-		btnNosotros = new JButton("Nosotros");
-		btnNosotros.setBackground(new Color(16, 6, 38));
-		btnNosotros.setForeground(new Color(255, 255, 255));
-		btnNosotros.setBorderPainted(false);
-		btnNosotros.setBounds(278, 64, 105, 23);
-		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnNosotros);
 
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(1120, 0, 101, 120);
 		jpnInfo.add(lblNewLabel_2);
 		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
-
-		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(
-				ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
-		lblNewLabel_4.setBounds(100, 0, 331, 120);
-		jpnInfo.add(lblNewLabel_4);
+		
+		JPanel jpnSuperiorCentro = new JPanel();
+		jpnSuperiorCentro.setLayout(null);
+		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
+		jpnSuperiorCentro.setBounds(309, 0, 584, 120);
+		jpnInfo.add(jpnSuperiorCentro);
+		
+		 btnContactanos = new JButton("Contáctanos");
+		btnContactanos.setForeground(Color.WHITE);
+		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnContactanos.setFocusable(false);
+		btnContactanos.setBorderPainted(false);
+		btnContactanos.setBackground(new Color(16, 6, 38));
+		btnContactanos.setBounds(205, 47, 172, 37);
+		jpnSuperiorCentro.add(btnContactanos);
+		
+		 btnNosotros = new JButton("Nosotros");
+		btnNosotros.setForeground(Color.WHITE);
+		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnNosotros.setFocusable(false);
+		btnNosotros.setBorderPainted(false);
+		btnNosotros.setBackground(new Color(16, 6, 38));
+		btnNosotros.setBounds(411, 47, 172, 37);
+		jpnSuperiorCentro.add(btnNosotros);
+		
+		 btnHospedajes = new JButton("Hospedajes");
+		btnHospedajes.setForeground(Color.WHITE);
+		btnHospedajes.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnHospedajes.setFocusable(false);
+		btnHospedajes.setBorderPainted(false);
+		btnHospedajes.setBackground(new Color(16, 6, 38));
+		btnHospedajes.setBounds(0, 47, 172, 37);
+		jpnSuperiorCentro.add(btnHospedajes);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
+		lblNewLabel_3.setBounds(26, 0, 312, 120);
+		jpnInfo.add(lblNewLabel_3);
 
 		jpnLogin = new RoundedPanel(50);
 		jpnLogin.setBackground(new Color(51, 26, 108));
@@ -315,6 +306,33 @@ public class ViewAutenticacion extends JFrame {
 	}
 
 	
+	
+	
+	
+	public JButton getBtnHospedajes() {
+		return btnHospedajes;
+	}
+
+	public void setBtnHospedajes(JButton btnHospedajes) {
+		this.btnHospedajes = btnHospedajes;
+	}
+
+	public JButton getBtnNosotros() {
+		return btnNosotros;
+	}
+
+	public void setBtnNosotros(JButton btnNosotros) {
+		this.btnNosotros = btnNosotros;
+	}
+
+	public JButton getBtnContactanos() {
+		return btnContactanos;
+	}
+
+	public void setBtnContactanos(JButton btnContactanos) {
+		this.btnContactanos = btnContactanos;
+	}
+
 	public String pedirEmail() {
 		boolean emailValido = false;
 

@@ -57,10 +57,11 @@ public class ViewRegistro extends JFrame {
 	private JLabel lblNumeroDeTelefono;
 	private JLabel lblDireccion;
 	private JTextField txtDireccion;
-	private JButton btnReservar;
+	private JLabel lblNewLabel_1;
+	private JPanel jpnSuperiorCentro;
 	private JButton btnContactanos;
 	private JButton btnNosotros;
-	private JLabel lblNewLabel_1;
+	private JButton btnHospedajes;
 
 	/**
 	 * Launch the application.
@@ -297,41 +298,43 @@ public class ViewRegistro extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 
-		JPanel jpnSuperiorCentro = new JPanel();
-		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
-		jpnSuperiorCentro.setBounds(430, 0, 408, 120);
-		jpnInfo.add(jpnSuperiorCentro);
-		jpnSuperiorCentro.setLayout(null);
-
-		btnReservar = new JButton("Reservar");
-		btnReservar.setFocusPainted(false);
-		btnReservar.setBackground(new Color(16, 6, 38));
-		btnReservar.setBorderPainted(false);
-		btnReservar.setForeground(new Color(255, 255, 255));
-		btnReservar.setBounds(25, 64, 105, 23);
-		btnReservar.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnReservar);
-
-		btnContactanos = new JButton("Contáctanos");
-		btnContactanos.setBackground(new Color(16, 6, 38));
-		btnContactanos.setForeground(new Color(255, 255, 255));
-		btnContactanos.setBorderPainted(false);
-		btnContactanos.setBounds(140, 64, 128, 23);
-		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnContactanos);
-
-		btnNosotros = new JButton("Nosotros");
-		btnNosotros.setBackground(new Color(16, 6, 38));
-		btnNosotros.setForeground(new Color(255, 255, 255));
-		btnNosotros.setBorderPainted(false);
-		btnNosotros.setBounds(278, 64, 105, 23);
-		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 14));
-		jpnSuperiorCentro.add(btnNosotros);
-
 		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(ViewRegistro.class.getResource("/imagenes/flechas-a-la-derecha.png")));
 		lblNewLabel_1.setBounds(1119, 0, 94, 120);
 		jpnInfo.add(lblNewLabel_1);
+		
+		jpnSuperiorCentro = new JPanel();
+		jpnSuperiorCentro.setLayout(null);
+		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
+		jpnSuperiorCentro.setBounds(308, 0, 584, 120);
+		jpnInfo.add(jpnSuperiorCentro);
+		
+		btnContactanos = new JButton("Contáctanos");
+		btnContactanos.setForeground(Color.WHITE);
+		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnContactanos.setFocusable(false);
+		btnContactanos.setBorderPainted(false);
+		btnContactanos.setBackground(new Color(16, 6, 38));
+		btnContactanos.setBounds(205, 47, 172, 37);
+		jpnSuperiorCentro.add(btnContactanos);
+		
+		btnNosotros = new JButton("Nosotros");
+		btnNosotros.setForeground(Color.WHITE);
+		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnNosotros.setFocusable(false);
+		btnNosotros.setBorderPainted(false);
+		btnNosotros.setBackground(new Color(16, 6, 38));
+		btnNosotros.setBounds(411, 47, 172, 37);
+		jpnSuperiorCentro.add(btnNosotros);
+		
+		btnHospedajes = new JButton("Hospedajes");
+		btnHospedajes.setForeground(Color.WHITE);
+		btnHospedajes.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnHospedajes.setFocusable(false);
+		btnHospedajes.setBorderPainted(false);
+		btnHospedajes.setBackground(new Color(16, 6, 38));
+		btnHospedajes.setBounds(0, 47, 172, 37);
+		jpnSuperiorCentro.add(btnHospedajes);
 
 		// Cargar y redimensionar la imagen
 		try {
@@ -422,30 +425,7 @@ public class ViewRegistro extends JFrame {
 		this.txtDireccion = txtDireccion;
 	}
 
-	public JButton getBtnReservar() {
-		return btnReservar;
-	}
-
-	public void setBtnReservar(JButton btnReservar) {
-		this.btnReservar = btnReservar;
-	}
-
-	public JButton getBtnContactanos() {
-		return btnContactanos;
-	}
-
-	public void setBtnContactanos(JButton btnContactanos) {
-		this.btnContactanos = btnContactanos;
-	}
-
-	public JButton getBtnNosotros() {
-		return btnNosotros;
-	}
-
-	public void setBtnNosotros(JButton btnNosotros) {
-		this.btnNosotros = btnNosotros;
-	}
-
+	
 	public String pedirNombre() {
 		String nombre = "";
 		boolean nombreValido = false;

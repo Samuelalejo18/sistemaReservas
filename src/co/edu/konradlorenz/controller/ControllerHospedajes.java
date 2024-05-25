@@ -5,11 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import co.edu.konradlorenz.model.cliente.Cliente;
 import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
@@ -48,15 +50,17 @@ public class ControllerHospedajes implements ActionListener {
 	RoundButtonCircle btnAll;
 	RoundButton btnReservar;
 	RoundButton btnLogin;
-	RoundButton btnRegistrarse;
-	ViewAutenticacion viewAutenticacion;
-	ViewRegistro viewRegistro;
+	ControllerAutenticacion controllerAutenticacion;
+	Cliente usuarioAutenticado;
+	JButton btnNosotros;
+	JButton btnContactanos;
+	ControllerReserva controllerReserva;
+
 
 	public ControllerHospedajes() {
 		registrarHospedajes();
 		viewHospedaje = new ViewHospedaje();
-		viewAutenticacion = new ViewAutenticacion();
-		viewRegistro = new ViewRegistro();
+
 		btnBuscarNombre = viewHospedaje.getBtnBuscarNombre();
 		btnBuscarPais = viewHospedaje.getBtnBuscarPais();
 		btnBuscarCiudad = viewHospedaje.getBtnBuscarCiudad();
@@ -71,7 +75,7 @@ public class ControllerHospedajes implements ActionListener {
 		btnGlamping = viewHospedaje.getBtnGlamping();
 		btnBuscarPrecio = viewHospedaje.getBtnBuscarPrecio();
 		btnAll = viewHospedaje.getBtnAll();
-		btnRegistrarse = viewHospedaje.getBtnRegistrarse();
+
 		btnLogin = viewHospedaje.getBtnLogin();
 		btnReservar = viewHospedaje.getBtnReservar();
 
@@ -85,7 +89,7 @@ public class ControllerHospedajes implements ActionListener {
 		btnAll.addActionListener(this);
 		btnReservar.addActionListener(this);
 		btnLogin.addActionListener(this);
-		btnRegistrarse.addActionListener(this);
+		
 		cboTipo = viewHospedaje.getCboTipo();
 		cboEstrellas = viewHospedaje.getCboEstrellas();
 		cboTipo.addActionListener(this);
@@ -93,6 +97,21 @@ public class ControllerHospedajes implements ActionListener {
 
 		mostrarVentanaHospedaje(true);
 		hospedajesDisponibles();
+		Cliente usuarioAutenticado = ControllerAutenticacion.usuarioAutenticado;
+
+		btnContactanos = viewHospedaje.getBtnContactanos();
+		btnNosotros = viewHospedaje.getBtnNosotros();
+
+		btnContactanos.addActionListener(this);
+		btnNosotros.addActionListener(this);
+
+		if (usuarioAutenticado != null) {
+			viewHospedaje.getJpnUsuario().removeAll();
+			viewHospedaje.mostrarNameUsuario(usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido());
+		} else {
+			usuarioAutenticado = null;
+		}
+
 	}
 
 	static ArrayList<Hospedaje> hospedajes = new ArrayList<>();
@@ -103,6 +122,26 @@ public class ControllerHospedajes implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnLogin) {
+			viewHospedaje.dispose();
+			ControllerAutenticacion controllerAutenticacion = new ControllerAutenticacion();
+			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		}
+
+		if (e.getSource() == btnReservar) {
+			Cliente usuarioAutenticado = ControllerAutenticacion.usuarioAutenticado;
+			if (usuarioAutenticado != null) {
+				viewHospedaje.dispose();
+				
+				viewHospedaje.setVisible(false);
+			} else {
+				JOptionPane.showMessageDialog(viewHospedaje, "Autentificate para reservar", "Error",
+						JOptionPane.ERROR_MESSAGE);
+
+			}
+
+		}
 
 		if (e.getSource() == btnAll) {
 			viewHospedaje.getJpnHospedajes().removeAll();
@@ -206,23 +245,26 @@ public class ControllerHospedajes implements ActionListener {
 			}
 		}
 
+		if (e.getSource() == btnContactanos) {
+			viewHospedaje.dispose();
+			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		}
+
+		if (e.getSource() == btnNosotros) {
+			viewHospedaje.dispose();
+			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		}
+
+	
+
 	}
 
 	public void mostrarVentanaHospedaje(boolean visible) {
 		viewHospedaje.setVisible(true);
 		viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public void mostrarVentanaRegistro(boolean visible) {
-		viewRegistro.setVisible(true);
-		viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-	public void mostrarVentanaAutenticacion(boolean visible) {
-		viewAutenticacion.setVisible(true);
-		viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
 
 	public String hallarTipoHospedaje(Hospedaje hospedaje) {
 		String tipoHospedaje = "no existe";

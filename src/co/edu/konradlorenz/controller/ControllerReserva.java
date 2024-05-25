@@ -21,13 +21,22 @@ import co.edu.konradlorenz.model.metodosDePago.Credito;
 import co.edu.konradlorenz.model.metodosDePago.Tarjeta;
 import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewReserva;
+import co.edu.konradlorenz.view.ViewReservaPrueba;
 
 public class ControllerReserva {
     Reserva reserva = new Reserva();
-    ViewReserva viewReserva = new ViewReserva();
+    ViewReservaPrueba viewReservaPrueba = new ViewReservaPrueba();
     ArrayList<Habitacion> habitaciones;
     ArrayList<Hospedaje> hospedajes = ControllerHospedajes.getHospedajes();
 
+    ViewReserva viewReserva;
+    public ControllerReserva() {
+    	viewReserva= new ViewReserva();
+    	viewReserva.setVisible(true);
+    }
+    
+    
+    
     public Hospedaje reservarHospedaje(String nombre) throws HospedajeNoEncontradoException {
         Hospedaje hospedajeAReservar = null;
         boolean encontradoNombre = false;
@@ -36,8 +45,8 @@ public class ControllerReserva {
                 encontradoNombre = true;
                 hospedajeAReservar = hospedaje;
                 String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-                viewReserva.mostrarTitulo();
-                viewReserva.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+                viewReservaPrueba.mostrarTitulo();
+                viewReservaPrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
                         hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
                         hospedaje.getTipo());
 
@@ -83,11 +92,11 @@ public class ControllerReserva {
     }
 
     public void habitacionesDisponibles(ArrayList<Habitacion> habitaciones) {
-        viewReserva.mostrarHabitacionesDisponibles();
-        viewReserva.mostrarTituloHabitacion();
+        viewReservaPrueba.mostrarHabitacionesDisponibles();
+        viewReservaPrueba.mostrarTituloHabitacion();
         for (Habitacion habitacion : habitaciones) {
             String tipoHabitacion = hallarTipoHabitacion(habitacion);
-            viewReserva.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
+            viewReservaPrueba.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
                     habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
                     habitacion.getPrecioAdicionalPorTipoHabitacion());
         }
@@ -101,7 +110,7 @@ public class ControllerReserva {
         while (opcion != 0) {
             System.out.println(" 1.Tarjeta de credito");
             System.out.println("2.Tarjeta Debito");
-            opcion = viewReserva.pedirOpcion();
+            opcion = viewReservaPrueba.pedirOpcion();
             switch (opcion) {
                 case 1:
                     opcionesCredito(clienteAutenticado, tarjetas, precioTotal);
@@ -123,22 +132,22 @@ public class ControllerReserva {
         while (opcion != 0) {
             System.out.println(" 1.Aregar Tareta");
             System.out.println("2.Tarjetas ya registradas");
-            opcion = viewReserva.pedirOpcion();
+            opcion = viewReservaPrueba.pedirOpcion();
             switch (opcion) {
                 case 1:
-                    Credito tarjetaCredito = new Credito(viewReserva.pedirTipoTarjeta(), viewReserva.pedirBanco(),
-                            viewReserva.pedirCodigoDeseguridad(), viewReserva.pedirNombreTitular(),
-                            viewReserva.pedirNumeroDetarjeta(), null, viewReserva.pedirSaldo(),
-                            viewReserva.pedirItereses());
+                    Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(), viewReservaPrueba.pedirBanco(),
+                            viewReservaPrueba.pedirCodigoDeseguridad(), viewReservaPrueba.pedirNombreTitular(),
+                            viewReservaPrueba.pedirNumeroDetarjeta(), null, viewReservaPrueba.pedirSaldo(),
+                            viewReservaPrueba.pedirItereses());
                     clienteAutenticado.agregarTarjeta(tarjetaCredito);
-                    int numeroCuotas = viewReserva.pedirNumeroDeCuotas();
+                    int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
                     tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
                     tarjetaCredito.setCuotas(numeroCuotas);
                     try {
 
-                        viewReserva.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+                        viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
                     } catch (SaldoInsuficienteException e) {
-                       viewReserva.mostrarMensaje(e.getMessage());
+                       viewReservaPrueba.mostrarMensaje(e.getMessage());
                         e.printStackTrace();
                     }
                     opcion = 0;
