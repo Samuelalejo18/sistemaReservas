@@ -1,388 +1,292 @@
 package co.edu.konradlorenz.view;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-public class ViewReserva {
-    static Scanner sc = new Scanner(System.in);
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
-    public void mostrarGraciasReserva() {
-        System.out.println("Gracias por hacer la reserva con nostros");
-    }
+import co.edu.konradlorenz.controller.ControllerAutenticacion;
+import co.edu.konradlorenz.model.cliente.Cliente;
 
-    public String pedirNombreHospedajeAreservar() {
-        System.out.println("Ingrese el nombre del hospedaje a reservar :");
-        String nombreHospedaje = "";
-        boolean nombreHospedajeValido = false;
+public class ViewReserva extends JFrame {
 
-        while (!nombreHospedajeValido) {
-            try {
-                nombreHospedaje = sc.next();
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
 
-                if (nombreHospedaje.matches("[a-zA-Z ]+")) {
-                    nombreHospedajeValido = true;
-                } else {
-                    System.out.println("Ingrese un nombre del Hospedaje válido (solo letras).");
-                }
-            } catch (Exception e) {
-                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-                sc.nextLine();
-            }
-        }
+	private JPanel jpnInfo;
+	private RoundedPanel jpnBackGround;
+	private RoundButton btnCerrarSesion;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_4;
+	private RoundedTextField txtNombreHospedajeAReservar;
+	private RoundedPanel jpnHospedajeAReservar;
+	private RoundedPanel jpnHospedajes;
+	private RoundButtonCircle btnBuscarNombre;
+	private JScrollPane scrollPaneHospedajes;
+	private RoundedPanel jpnFiltrosCiudades_1;
+	private JPanel jpnUsuario;
+	private JLabel lblNameUsuario;
+	private JLabel lblHabitacionesDisponibles;
+	private JLabel lblNumeroDeLa;
 
-        return nombreHospedaje;
-    }
+	public ViewReserva() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(16, 6, 38));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-    public void hospedajeNoEncontrado() {
-        System.out.println("El hospedaje no se encontro");
+		this.setResizable(false);
+		this.setSize(1920, 1080);
+		setLocationRelativeTo(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-    }
+		jpnInfo = new JPanel();
+		jpnInfo.setBackground(new Color(16, 6, 38));
+		jpnInfo.setBounds(0, 0, 1904, 120);
+		contentPane.add(jpnInfo);
+		jpnInfo.setLayout(null);
 
-    public void mostrarTitulo() {
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
+		lblNewLabel_3.setBounds(440, 461, 244, 96);
+		jpnInfo.add(lblNewLabel_3);
 
-        System.out.format("%-20s %-20s %-20s %-20s %-20s %-40s %-20s %n",
-                "Tipo hospedaje", "nombre", "ubicacion Ciudad", "ubicacion Pais",
-                "numero Estrellas", "descripcion", "tipo");
+		JPanel jpnSuperiorCentro = new JPanel();
+		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
+		jpnSuperiorCentro.setBounds(419, 0, 584, 120);
+		jpnInfo.add(jpnSuperiorCentro);
+		jpnSuperiorCentro.setLayout(null);
 
-    }
+		jpnFiltrosCiudades_1 = new RoundedPanel(20);
+		jpnFiltrosCiudades_1.setBounds(123, 72, 340, 7);
+		jpnSuperiorCentro.add(jpnFiltrosCiudades_1);
+		jpnFiltrosCiudades_1.setLayout(null);
+		jpnFiltrosCiudades_1.setBackground(Color.WHITE);
 
-    public void imprimirTabla(String tH, String nombre, String ubicacionCiudad, String ubicacionPais,
-            int numeroEstrellas,
-            String descripcion, String tipo) {
+		JLabel lblNewLabel_8 = new JLabel("Gracias por reservar con nosotros");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setForeground(new Color(255, 255, 255));
+		lblNewLabel_8.setBackground(new Color(255, 255, 255));
+		lblNewLabel_8.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		lblNewLabel_8.setBounds(0, 0, 584, 120);
+		jpnSuperiorCentro.add(lblNewLabel_8);
 
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.format("%-20s %-20s %-20s %-20s %-10d %30s %20s %n", tH, nombre, ubicacionCiudad, ubicacionPais,
-                numeroEstrellas,
-                descripcion, tipo);
+		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(
+				new ImageIcon(ViewHospedaje.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
+		lblNewLabel_4.setBounds(58, 0, 719, 120);
+		jpnInfo.add(lblNewLabel_4);
 
-        System.out.println("\n");
-    }
+		jpnUsuario = new JPanel();
+		jpnUsuario.setBackground(new Color(16, 6, 38));
+		jpnUsuario.setBounds(1003, 1, 505, 120);
+		jpnInfo.add(jpnUsuario);
+		jpnUsuario.setLayout(null);
 
-    public void mostrarHabitacionesDisponibles() {
-        System.out.println("Habitaciones disponibles: ");
-    }
+		btnCerrarSesion = new RoundButton("Registrarse");
+		btnCerrarSesion.setBounds(128, 37, 207, 48);
+		jpnUsuario.add(btnCerrarSesion);
+		btnCerrarSesion.setText("Cerrar Sesión");
+		btnCerrarSesion.setBorderPainted(false);
+		btnCerrarSesion.setBackground(new Color(255, 255, 255));
+		btnCerrarSesion.setForeground(new Color(16, 6, 38));
+		btnCerrarSesion.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
 
-    public void mostrarTituloHabitacion() {
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(372, 0, 101, 120);
+		jpnUsuario.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
 
-        System.out.format("%-20s %-20s %-20s %-20s %-30s %n",
-                "Tipo Habitacion", " capacidad", "disponibilidad", "numero Habitacion",
-                " precio adicional por tipo habitacion");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
-    }
+		jpnBackGround = new RoundedPanel(50);
+		jpnBackGround.setBackground(new Color(51, 26, 108));
+		jpnBackGround.setBounds(55, 130, 1779, 884);
 
-    public void imprimirTablaHabitacion(String tH, int capacidad, boolean disponibilidad, int numeroHabitacion,
-            double precioAdicionalPorTipoHabitacion) {
-        System.out.println(
-                "----------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.format("%-20s %-20d %-20s %-20d %-30f  %n", tH, capacidad, disponibilidad, numeroHabitacion,
-                precioAdicionalPorTipoHabitacion);
-        System.out.println("\n");
-    }
+		contentPane.add(jpnBackGround);
+		jpnBackGround.setLayout(null);
+		Color colorBorde = new Color(255, 255, 255);
 
-    public int pedirNumeroHabitacionReservar() {
-        int numeroReserva = 0;
-        boolean opcionValida = false;
-        while (!opcionValida) {
-            try {
+		try {
+			BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/lupa.png"));
 
-                System.out.println("Ingrese el numero de la habitacion que desea reservar :  ");
-                numeroReserva = sc.nextInt();
-                opcionValida = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese dato valido");
-                sc.nextLine();
-            }
-        }
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		jpnHospedajeAReservar = new RoundedPanel(50);
+		jpnHospedajeAReservar.setBackground(new Color(179, 170, 255));
+		jpnHospedajeAReservar.setBounds(40, 34, 307, 819);
+		jpnBackGround.add(jpnHospedajeAReservar);
+		jpnHospedajeAReservar.setLayout(null);
+				
+						btnBuscarNombre = new RoundButtonCircle("");
+						btnBuscarNombre.setBounds(245, 63, 36, 36);
+						jpnHospedajeAReservar.add(btnBuscarNombre);
+						btnBuscarNombre.setIcon(new ImageIcon(ViewHospedaje.class.getResource("/imagenes/lupa.png")));
+						btnBuscarNombre.setBackground(new Color(16, 6, 38));
+						
+								txtNombreHospedajeAReservar = new RoundedTextField(50, 50);
+								txtNombreHospedajeAReservar.setBounds(10, 57, 287, 47);
+								jpnHospedajeAReservar.add(txtNombreHospedajeAReservar);
+								txtNombreHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
+								txtNombreHospedajeAReservar.setFont(new Font("Open Sans", Font.PLAIN, 16));
+								txtNombreHospedajeAReservar.setColumns(10);
+								
+								JLabel lblBuscaElNombre = new JLabel("Nombre del hospedaje a reservar");
+								lblBuscaElNombre.setBounds(0, 11, 307, 48);
+								jpnHospedajeAReservar.add(lblBuscaElNombre);
+								lblBuscaElNombre.setHorizontalAlignment(SwingConstants.CENTER);
+								lblBuscaElNombre.setForeground(new Color(0, 0, 0));
+								lblBuscaElNombre.setFont(new Font("Open Sans SemiBold", Font.BOLD, 18));
+								
+								lblNumeroDeLa = new JLabel("Número de la habitacion ");
+								lblNumeroDeLa.setHorizontalAlignment(SwingConstants.CENTER);
+								lblNumeroDeLa.setForeground(new Color(0, 0, 0));
+								lblNumeroDeLa.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+								lblNumeroDeLa.setBounds(10, 110, 307, 48);
+								jpnHospedajeAReservar.add(lblNumeroDeLa);
+								
+								JComboBox cboEstrellas = new JComboBox();
+								cboEstrellas.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "28", "29", "30"}));
+								cboEstrellas.setOpaque(false);
+								cboEstrellas.setForeground(Color.WHITE);
+								cboEstrellas.setFont(new Font("Open Sans", Font.BOLD, 20));
+								cboEstrellas.setFocusable(false);
+								cboEstrellas.setFocusTraversalKeysEnabled(false);
+								cboEstrellas.setBackground(new Color(51, 26, 108));
+								cboEstrellas.setBounds(46, 166, 217, 47);
+								jpnHospedajeAReservar.add(cboEstrellas);
+								
+								JLabel lblNumeroDePersonas = new JLabel("Número de personas");
+								lblNumeroDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
+								lblNumeroDePersonas.setForeground(Color.BLACK);
+								lblNumeroDePersonas.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+								lblNumeroDePersonas.setBounds(0, 224, 307, 48);
+								jpnHospedajeAReservar.add(lblNumeroDePersonas);
+								
+								JComboBox cboEstrellas_1 = new JComboBox();
+								cboEstrellas_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
+								cboEstrellas_1.setOpaque(false);
+								cboEstrellas_1.setForeground(Color.WHITE);
+								cboEstrellas_1.setFont(new Font("Open Sans", Font.BOLD, 20));
+								cboEstrellas_1.setFocusable(false);
+								cboEstrellas_1.setFocusTraversalKeysEnabled(false);
+								cboEstrellas_1.setBackground(new Color(51, 26, 108));
+								cboEstrellas_1.setBounds(46, 284, 217, 47);
+								jpnHospedajeAReservar.add(cboEstrellas_1);
+								
+								JLabel lblNumeroDeNoches = new JLabel("Número de noches");
+								lblNumeroDeNoches.setHorizontalAlignment(SwingConstants.CENTER);
+								lblNumeroDeNoches.setForeground(Color.BLACK);
+								lblNumeroDeNoches.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+								lblNumeroDeNoches.setBounds(0, 347, 307, 48);
+								jpnHospedajeAReservar.add(lblNumeroDeNoches);
+								
+								JComboBox cboEstrellas_1_1 = new JComboBox();
+								cboEstrellas_1_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+								cboEstrellas_1_1.setOpaque(false);
+								cboEstrellas_1_1.setForeground(Color.WHITE);
+								cboEstrellas_1_1.setFont(new Font("Open Sans", Font.BOLD, 20));
+								cboEstrellas_1_1.setFocusable(false);
+								cboEstrellas_1_1.setFocusTraversalKeysEnabled(false);
+								cboEstrellas_1_1.setBackground(new Color(51, 26, 108));
+								cboEstrellas_1_1.setBounds(46, 395, 217, 47);
+								jpnHospedajeAReservar.add(cboEstrellas_1_1);
+		// Main panel with rounded corners inside the scroll pane
+		jpnHospedajes = new RoundedPanel(50);
+		jpnHospedajes.setBackground(new Color(255, 255, 255));
+		jpnHospedajes.setLayout(null);
 
-        return numeroReserva;
+		// Scroll pane containing the main panel
+		scrollPaneHospedajes = new CustomScrollPane(jpnHospedajes, 50);
+		;
+		scrollPaneHospedajes.setBorder(null);
+		scrollPaneHospedajes.setBounds(368, 34, 1368, 400); // Set bounds for the scroll pane
+		scrollPaneHospedajes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPaneHospedajes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		jpnBackGround.add(scrollPaneHospedajes);
+		
+		RoundedPanel jpnHospedajeAReservar_1 = new RoundedPanel(50);
+		jpnHospedajeAReservar_1.setLayout(null);
+		jpnHospedajeAReservar_1.setBackground(new Color(179, 170, 255));
+		jpnHospedajeAReservar_1.setBounds(368, 453, 327, 400);
+		jpnBackGround.add(jpnHospedajeAReservar_1);
+		
+		JLabel lblHospedajeAReservar_1_1_1 = new JLabel("Hospedaje a reservar");
+		lblHospedajeAReservar_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1_1_1.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar_1_1_1.setBounds(0, 0, 327, 48);
+		jpnHospedajeAReservar_1.add(lblHospedajeAReservar_1_1_1);
+		
+		RoundedPanel jpnHospedajeAReservar_1_1 = new RoundedPanel(50);
+		jpnHospedajeAReservar_1_1.setLayout(null);
+		jpnHospedajeAReservar_1_1.setBackground(new Color(179, 170, 255));
+		jpnHospedajeAReservar_1_1.setBounds(723, 453, 327, 400);
+		jpnBackGround.add(jpnHospedajeAReservar_1_1);
+		
+		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitacion a reservar");
+		lblHospedajeAReservar_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1_1.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar_1_1.setBounds(0, 0, 327, 48);
+		jpnHospedajeAReservar_1_1.add(lblHospedajeAReservar_1_1);
 
-    }
+		// Example card panel with rounded corners inside the main panel
 
-    public Date ingresarFechaSalida() {
+		// Set preferred size for jpnHospedajes to enable scrolling
+		jpnHospedajes.setPreferredSize(new Dimension(1432, 4000));
+		
+		lblHabitacionesDisponibles = new JLabel("Habitaciones disponibles");
+		lblHabitacionesDisponibles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHabitacionesDisponibles.setForeground(new Color(0, 0, 0));
+		lblHabitacionesDisponibles.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHabitacionesDisponibles.setBounds(0, 0, 1366, 48);
+		jpnHospedajes.add(lblHabitacionesDisponibles);
+		
+		RoundedPanel jpnHospedajeAReservar_2 = new RoundedPanel(50);
+		jpnHospedajeAReservar_2.setLayout(null);
+		jpnHospedajeAReservar_2.setBackground(new Color(179, 170, 255));
+		jpnHospedajeAReservar_2.setBounds(28, 47, 307, 328);
+		jpnHospedajes.add(jpnHospedajeAReservar_2);
+		
+		JLabel lblHospedajeAReservar_1 = new JLabel("Hospedaje a reservar");
+		lblHospedajeAReservar_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar_1.setBounds(0, 0, 307, 48);
+		jpnHospedajeAReservar_2.add(lblHospedajeAReservar_1);
 
-        System.out.print("Ingrese la fecha de salida (dd/MM/yyyy): ");
-        String fechaStr = sc.nextLine();
-        try {
-            return (Date) dateFormat.parse(fechaStr);
-        } catch (ParseException e) {
-            System.out.println("Formato de fecha inválido. Por favor, ingrese la fecha en el formato dd/MM/yyyy.");
-            return ingresarFechaSalida();
-        }
-    }
+		// Cargar y redimensionar la imagen
+		try {
+			BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
 
-    public static int ingresarNumeroNoches() {
-        System.out.print("Ingrese el número de noches: ");
-        int numeroNoches = 0;
-        boolean numeroNochesValido = false;
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 
-        while (!numeroNochesValido) {
-            try {
-                numeroNoches = sc.nextInt();
-                if (numeroNoches > 0) {
-                    numeroNochesValido = true;
-                } else {
-                    System.out.println("Ingrese un número de noches válido (mayor que 0).");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un dato valido");
-                sc.next();
-            }
-        }
-        return numeroNoches;
-    }
-
-    public static int ingresarNumeroPersonas() {
-        System.out.print("Ingrese el número de personas: ");
-        int numeroPersonas = 0;
-        boolean numeroPersonasValido = false;
-
-        while (!numeroPersonasValido) {
-            try {
-                numeroPersonas = sc.nextInt();
-                if (numeroPersonas > 0) {
-                    numeroPersonasValido = true;
-                } else {
-                    System.out.println("Ingrese un número de personas válido (mayor que 0).");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un dato valido");
-                sc.next();
-            }
-        }
-        return numeroPersonas;
-    }
-
-    public static String realizarpago() {
-        System.out.println("¿Desea realizar el pago? (si/no)");
-        String respuestaPago = "";
-        boolean respuestaValida = false;
-
-        while (!respuestaValida) {
-            try {
-                respuestaPago = sc.next().toLowerCase();
-                if (respuestaPago.equals("si") || respuestaPago.equals("no")) {
-                    respuestaValida = true;
-                } else {
-                    System.out.println("Ingrese una respuesta válida (si/no).");
-                }
-            } catch (Exception e) {
-                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-                sc.nextLine();
-            }
-        }
-        return respuestaPago;
-    }
-
-    public void imprimirTablaReserva(String nombre, String apellido, int id, String email, long numeroTelefono,
-            Date fechaEntrada, Date fechaSalida, String tipoHospedaje, String nombreHospedaje, String ciudad,
-            String pais,
-            String tipoHabitacion,
-            int numeroHabitacion,
-            int cantidadPersonas,
-            int numeroNoches,
-            double precioPorPersona, double precioAdicionalPorTipoHabitacion, double subtotal, double precioTotal) {
-
-        System.out.println("|-----------------------------------------------------------------------|");
-        System.out.format("%-40s  %-29s %-1s  %n", "| Nombre:           ", nombre, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Apellido:           ", apellido, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| Cedula:           ", id, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| email:           ", email, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| numero telefono:           ", numeroTelefono, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| nombre hospedaje:           ", nombreHospedaje, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Tipo hospedaje:           ", tipoHospedaje, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| ciudad:           ", ciudad, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Pais:           ", pais, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| Fecha entrada:           ", fechaEntrada, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| Fecha salida:           ", fechaSalida, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Tipo de habitacion :           ", tipoHabitacion, "|");
-        System.out.format("%-40s  %-29s %-1s %n", "| Numero de habitacion:           ", numeroHabitacion, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| Cantidad de Personas:           ", cantidadPersonas, "|");
-        System.out.format("%-40s  %-29d %-1s %n", "| Numero de Noches:           ", numeroNoches, "|");
-        System.out.format("%-40s  %-29f %-1s %n", "| Precio por persona:           ", precioPorPersona, "|");
-        System.out.format("%-20s  %-19f %-1s %n", "| Precio adicional por tipo habitacion:           ",
-                precioAdicionalPorTipoHabitacion, "|");
-        System.out.format("%-40s  %-29f %-1s %n", "| Subtotal:           ", subtotal, "|");
-        System.out.println("|-----------------------------------------------------------------------|");
-        System.out.format("%-40s  %-29f %-1s%n", "| Precio Total:           ", precioTotal, "|");
-        System.out.println("|-----------------------------------------------------------------------|");
-    }
-
-    public void mostrarPrecio(double precioTotal) {
-        System.out.printf("Precio total de : %.2f%n", precioTotal);
-
-    }
-
-    public void mostrarPago(String pagoRealizado) {
-        System.out.println(pagoRealizado);
-    }
-
-    public int pedirOpcion() {
-        int opcion = 0;
-        boolean opcionValida = false;
-        while (!opcionValida) {
-            try {
-                System.out.println("Ingrese una opcion : ");
-                opcion = sc.nextInt();
-                opcionValida = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese dato valido");
-                sc.nextLine();
-            }
-        }
-        return opcion;
-    }
-
-    public String pedirTipoTarjeta() {
-        System.out.println("Ingrese el tipo de tarjeta: ");
-        String tipoTarjeta = "";
-        boolean tipoTarjetaValida = false;
-        while (!tipoTarjetaValida) {
-            try {
-                tipoTarjeta = sc.next();
-                if (tipoTarjeta.matches("[a-zA-Z ]+")) {
-                    tipoTarjetaValida = true;
-                } else {
-                    System.out.println("Ingrese un tipo de tarjeta válido (solo letras).");
-                }
-            } catch (Exception e) {
-                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-                sc.nextLine();
-            }
-        }
-        return tipoTarjeta;
-    }
-
-    public String pedirBanco() {
-        System.out.println("Ingrese el banco: ");
-        String banco = "";
-        boolean bancoValido = false;
-        while (!bancoValido) {
-            try {
-                banco = sc.next();
-                if (banco.matches("[a-zA-Z ]+")) {
-                    bancoValido = true;
-                } else {
-                    System.out.println("Ingrese un nombre de banco válido (solo letras).");
-                }
-            } catch (Exception e) {
-                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-                sc.nextLine();
-            }
-        }
-        return banco;
-    }
-
-    public String pedirNombreTitular() {
-        System.out.println("Ingrese nombre del titular: ");
-        String nombre = "";
-        boolean nombreValido = false;
-        while (!nombreValido) {
-            try {
-                nombre = sc.next();
-                if (nombre.matches("[a-zA-Z ]+")) {
-                    nombreValido = true;
-                } else {
-                    System.out.println("Ingrese un nombre válido (solo letras).");
-                }
-            } catch (Exception e) {
-                System.out.println("Ha ocurrido un error. Inténtelo de nuevo.");
-                sc.nextLine();
-            }
-        }
-        return nombre;
-    }
-
-    public short pedirCodigoDeseguridad() {
-        short cs = 0;
-        boolean codigoValido = false;
-        while (!codigoValido) {
-            try {
-                System.out.println("Ingrese el código de seguridad: ");
-                cs = sc.nextShort();
-                codigoValido = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un código de seguridad válido.");
-                sc.nextLine();
-            }
-        }
-        return cs;
-    }
-
-    public long pedirNumeroDetarjeta() {
-        long numero = 0;
-        boolean numeroValido = false;
-        while (!numeroValido) {
-            try {
-                System.out.println("Ingrese el número de la tarjeta: ");
-                numero = sc.nextLong();
-                numeroValido = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un número de tarjeta válido.");
-                sc.nextLine();
-            }
-        }
-        return numero;
-    }
-
-    public long pedirSaldo() {
-        long saldo = 0;
-        boolean saldoValido = false;
-        while (!saldoValido) {
-            try {
-                System.out.println("Ingrese el saldo: ");
-                saldo = sc.nextLong();
-                saldoValido = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un saldo válido.");
-                sc.nextLine();
-            }
-        }
-        return saldo;
-    }
-
-    public double pedirItereses() {
-        double intereses = 0.0;
-        boolean interesesValidos = false;
-        while (!interesesValidos) {
-            try {
-                System.out.println("Ingrese los intereses de la tarjeta: ");
-                intereses = sc.nextDouble();
-                interesesValidos = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un valor válido para los intereses.");
-                sc.nextLine();
-            }
-        }
-        return intereses;
-    }
-
-    public int pedirNumeroDeCuotas() {
-        int cuotas = 0;
-        boolean cuotasValidas = false;
-        while (!cuotasValidas) {
-            try {
-                System.out.println("Ingrese el número de cuotas: ");
-                cuotas = sc.nextInt();
-                cuotasValidas = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Ingrese un número de cuotas válido.");
-                sc.nextLine();
-            }
-        }
-        return cuotas;
-    }
-
-    public void mostrarCompraTarjeta(String valorCompra) {
-        System.out.println(valorCompra);
-    }
-
-    public void mostrarMensaje(String message) {
-        System.out.println(message);
-
-    }
+	}
 }

@@ -2,7 +2,7 @@ package co.edu.konradlorenz.model.metodosDePago;
 
 import java.util.Date;
 
-import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteExcepcion;
+import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteException;
 
 public class Credito extends Tarjeta {
 
@@ -67,13 +67,13 @@ public class Credito extends Tarjeta {
     }
 
     @Override
-    public String Pagar(double precioTotal) throws SaldoInsuficienteExcepcion {
+    public String Pagar(double precioTotal) throws SaldoInsuficienteException {
         String credito = "";
         if (saldoCredito > precioTotal) {
             credito = " credito aprobado por un total de :  " + calcularCredito(precioTotal, this.cuota);
         } else {
             credito = pagoRechazado();
-            throw new SaldoInsuficienteExcepcion("Saldo insuficiente");
+            throw new SaldoInsuficienteException("Saldo insuficiente");
         }
         return credito;
     }
