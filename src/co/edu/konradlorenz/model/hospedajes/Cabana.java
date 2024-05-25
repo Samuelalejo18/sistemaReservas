@@ -13,7 +13,7 @@ public class Cabana extends Hospedaje  {
 	}
 
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo,double precioPorPersona,String url, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
+			String descripcion, String tipo,double precioPorPersona, String url, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url);
 		this.decoracion = decoracion;
 		this.vistasExclusivas = vistasExclusivas;

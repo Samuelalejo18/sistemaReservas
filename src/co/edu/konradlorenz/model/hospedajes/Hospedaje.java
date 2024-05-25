@@ -28,6 +28,7 @@ public class Hospedaje {
 		this.descripcion = descripcion;
 		this.tipo = tipo;
 		this.precioPorPersona = precioPorPersona;
+		this.url = url;
 		habitaciones = new ArrayList<>();
 	
 		Habitacion.setContadorHabitacion(0);
