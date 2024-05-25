@@ -12,12 +12,12 @@ public class HabitacionPresidencial extends Habitacion {
 
 
     public HabitacionPresidencial(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion,
-            String serviciosExclusivos) {
+            String serviciosExclusivos /*,String url*/ ) {
         super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
         this.serviciosExclusivos = serviciosExclusivos;
     }
 
-    public HabitacionPresidencial(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+    public HabitacionPresidencial(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion /*,String url*/) {
         super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
    
     }

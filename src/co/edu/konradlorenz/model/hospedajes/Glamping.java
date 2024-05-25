@@ -12,18 +12,17 @@ public class Glamping extends Hospedaje {
 	}
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona,String experienciasNaturales, String servicios, String sostenibilidad) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo, double precioPorPersona, String url,String experienciasNaturales, String servicios, String sostenibilidad) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url);
 		this.experienciasNaturales = experienciasNaturales;
 		this.servicios = servicios;
 		this.sostenibilidad = sostenibilidad;
-		
 	}
 	
 
 	public Glamping(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo, double precioPorPersona, String url) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url);
 
 	}
 

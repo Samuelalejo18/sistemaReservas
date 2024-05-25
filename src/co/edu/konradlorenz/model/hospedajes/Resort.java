@@ -6,19 +6,19 @@ public class Resort extends Hospedaje {
 	private String espaciosExclusivos;
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona, String actividadesExtra,
+			String descripcion, String tipo, double precioPorPersona,String url, String actividadesExtra,
 			String espaciosExclusivos) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
-				precioPorPersona);
+				precioPorPersona, url);
 		this.actividadesExtra = actividadesExtra;
 		this.espaciosExclusivos = espaciosExclusivos;
 		
 	}
 
 	public Resort(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, 
-			String descripcion, String tipo, double precioPorPersona) {
+			String descripcion, String tipo, double precioPorPersona, String url) {
 		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo,
-				precioPorPersona);
+				precioPorPersona, url);
 	}
 
 	public String getActividadesExtra() {

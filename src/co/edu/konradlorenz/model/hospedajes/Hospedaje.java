@@ -12,6 +12,7 @@ public class Hospedaje {
 	protected String descripcion;
 	protected String tipo;
 	protected double precioPorPersona;
+	private String url;
 	private ArrayList<Habitacion> habitaciones;
 
 	public Hospedaje() {
@@ -19,7 +20,7 @@ public class Hospedaje {
 	}
 
 	public Hospedaje(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo, double precioPorPersona) {
+			String descripcion, String tipo, double precioPorPersona, String url) {
 		this.nombre = nombre;
 		this.ubicacionCiudad = ubicacionCiudad;
 		this.ubicacionPais = ubicacionPais;
@@ -101,12 +102,21 @@ public class Hospedaje {
 
 	}
 
+	public String getUrl() {
+		return url;
+	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Hospedaje [nombre=" + nombre + ", ubicacionCiudad=" + ubicacionCiudad + ", ubicacionPais="
 				+ ubicacionPais + ", numeroEstrellas=" + numeroEstrellas + ", descripcion=" + descripcion + ", tipo="
 				+ tipo + ", precioPorPersona=" + precioPorPersona + ", habitaciones=" + habitaciones + "]";
 	}
+
 
 }

@@ -10,16 +10,16 @@ public class Hotel extends Hospedaje {
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-            String descripcion, String tipo,double precioPorPersona, Boolean piscina, boolean gimnasio) {
-        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona );
+            String descripcion, String tipo,double precioPorPersona, String url, Boolean piscina, boolean gimnasio) {
+        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url );
         this.piscina = piscina;
         this.gimnasio = gimnasio;
         
     }
 
     public Hotel(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-            String descripcion, String tipo, double precioPorPersona) {
-        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+            String descripcion, String tipo, double precioPorPersona, String url) {
+        super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url);
 
     }
     

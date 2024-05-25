@@ -11,7 +11,7 @@ public class Habitacion {
 	public Habitacion() {
 	}
 
-	public Habitacion(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+	public Habitacion(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion /*,String url*/) {
 		this.capacidad = capacidad;
 		this.disponible = disponible;
 		numeroHabitacion = ++Habitacion.contadorHabitacion;

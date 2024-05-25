@@ -13,7 +13,7 @@ public class Credito extends Tarjeta {
     public Credito() {
         super();
     }
-
+    
     public Credito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
             long numeroDetarjeta, Date fechaExpiracion, long saldoCredito, double intereses) {
         super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);

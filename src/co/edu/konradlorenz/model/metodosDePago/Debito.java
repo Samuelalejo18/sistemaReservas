@@ -22,6 +22,7 @@ public class Debito extends Tarjeta {
 
     @Override
     public String Pagar(double precioTotal) {
+        
         String compra = "";
         if (this.saldo > precioTotal) {
             compra = "Saldo y compra aprobada, por un total de :  " + precioTotal;

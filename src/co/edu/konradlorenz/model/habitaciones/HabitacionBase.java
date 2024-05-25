@@ -11,12 +11,12 @@ public class HabitacionBase extends Habitacion {
     }
 
     public HabitacionBase(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion,
-            String caracteristicas) {
+            String caracteristicas/*,String url/* */) {
         super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
         this.caracteristicas = caracteristicas;
     }
 
-    public HabitacionBase(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion) {
+    public HabitacionBase(int capacidad, boolean disponible, double precioAdicionalPorTipoHabitacion  /*,String url*/) {
         super(capacidad, disponible, precioAdicionalPorTipoHabitacion);
 
     }
