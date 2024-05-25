@@ -284,7 +284,7 @@ public class ControllerHospedajes implements ActionListener {
 	public void hospedajesDisponibles() {
 		int x = 70;
 		int y = 40;
-try {
+
 		for (Hospedaje hospedaje : hospedajes) {
 			String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 			RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
@@ -306,6 +306,7 @@ try {
 		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 20));
 	}
 
+	
 	public void buscarPorNombre(String nombre) throws HospedajeNoEncontradoException {
 		boolean encontradoNombre = false;
 		int x = 70;
