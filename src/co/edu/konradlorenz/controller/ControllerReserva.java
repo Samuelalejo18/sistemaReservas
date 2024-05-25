@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import co.edu.konradlorenz.model.cliente.Cliente;
 import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
-import co.edu.konradlorenz.model.excepciones.SaldoInsuficienteException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
@@ -17,15 +16,14 @@ import co.edu.konradlorenz.model.hospedajes.Hospedaje;
 import co.edu.konradlorenz.model.hospedajes.Hotel;
 import co.edu.konradlorenz.model.hospedajes.Motel;
 import co.edu.konradlorenz.model.hospedajes.Resort;
-import co.edu.konradlorenz.model.metodosDePago.Credito;
 import co.edu.konradlorenz.model.metodosDePago.Tarjeta;
 import co.edu.konradlorenz.model.reserva.Reserva;
 import co.edu.konradlorenz.view.ViewReserva;
-import co.edu.konradlorenz.view.ViewReservaPrueba;
+
 
 public class ControllerReserva {
     Reserva reserva = new Reserva();
-    ViewReservaPrueba viewReservaPrueba = new ViewReservaPrueba();
+   // ViewReservaPrueba viewReservaPrueba = new ViewReservaPrueba();
     ArrayList<Habitacion> habitaciones;
     ArrayList<Hospedaje> hospedajes = ControllerHospedajes.getHospedajes();
 
@@ -45,10 +43,10 @@ public class ControllerReserva {
                 encontradoNombre = true;
                 hospedajeAReservar = hospedaje;
                 String tipoHospedaje = hallarTipoHospedaje(hospedaje);
-                viewReservaPrueba.mostrarTitulo();
-                viewReservaPrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
-                        hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
-                        hospedaje.getTipo());
+           
+              //  viewReservaPrueba.imprimirTabla(tipoHospedaje, hospedaje.getNombre(), hospedaje.getUbicacionCiudad(),
+                //        hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(), hospedaje.getDescripcion(),
+                  //      hospedaje.getTipo());
 
             }
         }
@@ -92,13 +90,13 @@ public class ControllerReserva {
     }
 
     public void habitacionesDisponibles(ArrayList<Habitacion> habitaciones) {
-        viewReservaPrueba.mostrarHabitacionesDisponibles();
-        viewReservaPrueba.mostrarTituloHabitacion();
+      //  viewReservaPrueba.mostrarHabitacionesDisponibles();
+       // viewReservaPrueba.mostrarTituloHabitacion();
         for (Habitacion habitacion : habitaciones) {
-            String tipoHabitacion = hallarTipoHabitacion(habitacion);
-            viewReservaPrueba.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
-                    habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-                    habitacion.getPrecioAdicionalPorTipoHabitacion());
+          //  String tipoHabitacion = hallarTipoHabitacion(habitacion);
+         //   viewReservaPrueba.imprimirTablaHabitacion(tipoHabitacion, habitacion.getCapacidad(),
+            //        habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
+              //      habitacion.getPrecioAdicionalPorTipoHabitacion());
         }
 
     }
@@ -110,7 +108,7 @@ public class ControllerReserva {
         while (opcion != 0) {
             System.out.println(" 1.Tarjeta de credito");
             System.out.println("2.Tarjeta Debito");
-            opcion = viewReservaPrueba.pedirOpcion();
+           // opcion = viewReservaPrueba.pedirOpcion();
             switch (opcion) {
                 case 1:
                     opcionesCredito(clienteAutenticado, tarjetas, precioTotal);
@@ -132,24 +130,24 @@ public class ControllerReserva {
         while (opcion != 0) {
             System.out.println(" 1.Aregar Tareta");
             System.out.println("2.Tarjetas ya registradas");
-            opcion = viewReservaPrueba.pedirOpcion();
+       //     opcion = viewReservaPrueba.pedirOpcion();
             switch (opcion) {
                 case 1:
-                    Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(), viewReservaPrueba.pedirBanco(),
-                            viewReservaPrueba.pedirCodigoDeseguridad(), viewReservaPrueba.pedirNombreTitular(),
-                            viewReservaPrueba.pedirNumeroDetarjeta(), null, viewReservaPrueba.pedirSaldo(),
-                            viewReservaPrueba.pedirItereses());
-                    clienteAutenticado.agregarTarjeta(tarjetaCredito);
-                    int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
-                    tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
-                    tarjetaCredito.setCuotas(numeroCuotas);
-                    try {
+         //           Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(), viewReservaPrueba.pedirBanco(),
+           //                 viewReservaPrueba.pedirCodigoDeseguridad(), viewReservaPrueba.pedirNombreTitular(),
+             //               viewReservaPrueba.pedirNumeroDetarjeta(), null, viewReservaPrueba.pedirSaldo(),
+               //             viewReservaPrueba.pedirItereses());
+                 //   clienteAutenticado.agregarTarjeta(tarjetaCredito);
+                   // int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
+                    //tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
+                    //tarjetaCredito.setCuotas(numeroCuotas);
+                    //try {
 
-                        viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
-                    } catch (SaldoInsuficienteException e) {
-                       viewReservaPrueba.mostrarMensaje(e.getMessage());
-                        e.printStackTrace();
-                    }
+                     //   viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+                    //} catch (SaldoInsuficienteException e) {
+                       //viewReservaPrueba.mostrarMensaje(e.getMessage());
+                      //  e.printStackTrace();
+                    //}
                     opcion = 0;
                     break;
                 case 2:
