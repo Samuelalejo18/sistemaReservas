@@ -29,6 +29,7 @@ import co.edu.konradlorenz.view.RoundButtonCircle;
 import co.edu.konradlorenz.view.RoundedPanel;
 import co.edu.konradlorenz.view.ViewAutenticacion;
 import co.edu.konradlorenz.view.ViewHospedaje;
+import co.edu.konradlorenz.view.ViewNosotrosPrueba;
 import co.edu.konradlorenz.view.ViewRegistro;
 
 public class ControllerHospedajes implements ActionListener {
@@ -55,7 +56,7 @@ public class ControllerHospedajes implements ActionListener {
 	JButton btnNosotros;
 	JButton btnContactanos;
 	ControllerReserva controllerReserva;
-
+	ViewNosotrosPrueba viewNosotrosPrueba;
 
 	public ControllerHospedajes() {
 		registrarHospedajes();
@@ -253,7 +254,9 @@ public class ControllerHospedajes implements ActionListener {
 
 		if (e.getSource() == btnNosotros) {
 			viewHospedaje.dispose();
-			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 viewNosotrosPrueba= new ViewNosotrosPrueba() ;
+		 viewNosotrosPrueba.setVisible(true);
+		 viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}
 
