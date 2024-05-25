@@ -884,7 +884,7 @@ public class ViewHospedaje extends JFrame {
 			}
 
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "Ingrese un precio minimo valido, Solo numeros", "Error",
+			JOptionPane.showMessageDialog(this, "Ingrese un precio maximo valido, Solo numeros", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -908,7 +908,7 @@ public class ViewHospedaje extends JFrame {
 				ciudadValida = true;
 
 			} else {
-				throw new Exception("Ingrese un  pais válido (solo letras).");
+				throw new Exception("Ingrese una ciudad válida (solo letras).");
 
 			}
 		} catch (Exception e) {
@@ -965,7 +965,7 @@ public class ViewHospedaje extends JFrame {
 				nombreValido = true;
 
 			} else {
-				throw new Exception("Ingrese un  pais válido (solo letras).");
+				throw new Exception("Ingrese un  nombre válido (solo letras).");
 
 			}
 		} catch (Exception e) {

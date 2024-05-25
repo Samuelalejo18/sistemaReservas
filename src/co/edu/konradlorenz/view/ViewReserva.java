@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -37,15 +38,33 @@ public class ViewReserva extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
 	private RoundedTextField txtNombreHospedajeAReservar;
-	private RoundedPanel jpnHospedajeAReservar;
+	private RoundedPanel jpnSeccionReserva;
 	private RoundedPanel jpnHospedajes;
 	private RoundButtonCircle btnBuscarNombre;
 	private JScrollPane scrollPaneHospedajes;
-	private RoundedPanel jpnFiltrosCiudades_1;
 	private JPanel jpnUsuario;
 	private JLabel lblNameUsuario;
 	private JLabel lblHabitacionesDisponibles;
 	private JLabel lblNumeroDeLa;
+	private RoundedPanel jpnHospedajeAReservar;
+	private RoundedPanel jpnHabitacionAreservar;
+	private JComboBox<String> cboNumeroHabitacion;
+	private JComboBox<String> cboNumeroPersonas;
+	private JComboBox<String> cboNumeroNoches;
+	private JLabel lblHospedajeAReservar;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewReserva frame = new ViewReserva();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public ViewReserva() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,40 +85,53 @@ public class ViewReserva extends JFrame {
 		contentPane.add(jpnInfo);
 		jpnInfo.setLayout(null);
 
+		JPanel jpnSuperiorCentro_1 = new JPanel();
+		jpnSuperiorCentro_1.setLayout(null);
+		jpnSuperiorCentro_1.setBackground(new Color(16, 6, 38));
+		jpnSuperiorCentro_1.setBounds(510, 0, 547, 120);
+		jpnInfo.add(jpnSuperiorCentro_1);
+
+		JButton btnContactanos = new JButton("Contáctanos");
+		btnContactanos.setForeground(Color.WHITE);
+		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnContactanos.setFocusable(false);
+		btnContactanos.setBorderPainted(false);
+		btnContactanos.setBackground(new Color(16, 6, 38));
+		btnContactanos.setBounds(182, 47, 172, 37);
+		jpnSuperiorCentro_1.add(btnContactanos);
+
+		JButton btnNosotros = new JButton("Nosotros");
+		btnNosotros.setForeground(Color.WHITE);
+		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnNosotros.setFocusable(false);
+		btnNosotros.setBorderPainted(false);
+		btnNosotros.setBackground(new Color(16, 6, 38));
+		btnNosotros.setBounds(375, 47, 172, 37);
+		jpnSuperiorCentro_1.add(btnNosotros);
+
+		JButton btnHospedajes = new JButton("Hospedajes");
+		btnHospedajes.setForeground(Color.WHITE);
+		btnHospedajes.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
+		btnHospedajes.setFocusable(false);
+		btnHospedajes.setBorderPainted(false);
+		btnHospedajes.setBackground(new Color(16, 6, 38));
+		btnHospedajes.setBounds(0, 47, 172, 37);
+		jpnSuperiorCentro_1.add(btnHospedajes);
+
+		RoundedPanel jpnFiltrosCiudades_1_1 = new RoundedPanel(20);
+		jpnFiltrosCiudades_1_1.setLayout(null);
+		jpnFiltrosCiudades_1_1.setBackground(Color.WHITE);
+		jpnFiltrosCiudades_1_1.setBounds(390, 87, 140, 7);
+		jpnSuperiorCentro_1.add(jpnFiltrosCiudades_1_1);
+
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
 		lblNewLabel_3.setBounds(440, 461, 244, 96);
 		jpnInfo.add(lblNewLabel_3);
 
-		JPanel jpnSuperiorCentro = new JPanel();
-		jpnSuperiorCentro.setBackground(new Color(16, 6, 38));
-		jpnSuperiorCentro.setBounds(419, 0, 584, 120);
-		jpnInfo.add(jpnSuperiorCentro);
-		jpnSuperiorCentro.setLayout(null);
-
-		jpnFiltrosCiudades_1 = new RoundedPanel(20);
-		jpnFiltrosCiudades_1.setBounds(123, 72, 340, 7);
-		jpnSuperiorCentro.add(jpnFiltrosCiudades_1);
-		jpnFiltrosCiudades_1.setLayout(null);
-		jpnFiltrosCiudades_1.setBackground(Color.WHITE);
-
-		JLabel lblNewLabel_8 = new JLabel("Gracias por reservar con nosotros");
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8.setForeground(new Color(255, 255, 255));
-		lblNewLabel_8.setBackground(new Color(255, 255, 255));
-		lblNewLabel_8.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
-		lblNewLabel_8.setBounds(0, 0, 584, 120);
-		jpnSuperiorCentro.add(lblNewLabel_8);
-
-		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(
-				new ImageIcon(ViewHospedaje.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
-		lblNewLabel_4.setBounds(58, 0, 719, 120);
-		jpnInfo.add(lblNewLabel_4);
-
 		jpnUsuario = new JPanel();
 		jpnUsuario.setBackground(new Color(16, 6, 38));
-		jpnUsuario.setBounds(1003, 1, 505, 120);
+		jpnUsuario.setBounds(1330, 11, 505, 120);
 		jpnInfo.add(jpnUsuario);
 		jpnUsuario.setLayout(null);
 
@@ -116,6 +148,12 @@ public class ViewReserva extends JFrame {
 		lblNewLabel_2.setBounds(372, 0, 101, 120);
 		jpnUsuario.add(lblNewLabel_2);
 		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
+
+		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(
+				new ImageIcon(ViewHospedaje.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
+		lblNewLabel_4.setBounds(0, 0, 393, 120);
+		jpnInfo.add(lblNewLabel_4);
 
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,85 +174,90 @@ public class ViewReserva extends JFrame {
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
-		jpnHospedajeAReservar = new RoundedPanel(50);
-		jpnHospedajeAReservar.setBackground(new Color(179, 170, 255));
-		jpnHospedajeAReservar.setBounds(40, 34, 307, 819);
-		jpnBackGround.add(jpnHospedajeAReservar);
-		jpnHospedajeAReservar.setLayout(null);
-				
-						btnBuscarNombre = new RoundButtonCircle("");
-						btnBuscarNombre.setBounds(245, 63, 36, 36);
-						jpnHospedajeAReservar.add(btnBuscarNombre);
-						btnBuscarNombre.setIcon(new ImageIcon(ViewHospedaje.class.getResource("/imagenes/lupa.png")));
-						btnBuscarNombre.setBackground(new Color(16, 6, 38));
-						
-								txtNombreHospedajeAReservar = new RoundedTextField(50, 50);
-								txtNombreHospedajeAReservar.setBounds(10, 57, 287, 47);
-								jpnHospedajeAReservar.add(txtNombreHospedajeAReservar);
-								txtNombreHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
-								txtNombreHospedajeAReservar.setFont(new Font("Open Sans", Font.PLAIN, 16));
-								txtNombreHospedajeAReservar.setColumns(10);
-								
-								JLabel lblBuscaElNombre = new JLabel("Nombre del hospedaje a reservar");
-								lblBuscaElNombre.setBounds(0, 11, 307, 48);
-								jpnHospedajeAReservar.add(lblBuscaElNombre);
-								lblBuscaElNombre.setHorizontalAlignment(SwingConstants.CENTER);
-								lblBuscaElNombre.setForeground(new Color(0, 0, 0));
-								lblBuscaElNombre.setFont(new Font("Open Sans SemiBold", Font.BOLD, 18));
-								
-								lblNumeroDeLa = new JLabel("Número de la habitacion ");
-								lblNumeroDeLa.setHorizontalAlignment(SwingConstants.CENTER);
-								lblNumeroDeLa.setForeground(new Color(0, 0, 0));
-								lblNumeroDeLa.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
-								lblNumeroDeLa.setBounds(10, 110, 307, 48);
-								jpnHospedajeAReservar.add(lblNumeroDeLa);
-								
-								JComboBox cboEstrellas = new JComboBox();
-								cboEstrellas.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "28", "29", "30"}));
-								cboEstrellas.setOpaque(false);
-								cboEstrellas.setForeground(Color.WHITE);
-								cboEstrellas.setFont(new Font("Open Sans", Font.BOLD, 20));
-								cboEstrellas.setFocusable(false);
-								cboEstrellas.setFocusTraversalKeysEnabled(false);
-								cboEstrellas.setBackground(new Color(51, 26, 108));
-								cboEstrellas.setBounds(46, 166, 217, 47);
-								jpnHospedajeAReservar.add(cboEstrellas);
-								
-								JLabel lblNumeroDePersonas = new JLabel("Número de personas");
-								lblNumeroDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
-								lblNumeroDePersonas.setForeground(Color.BLACK);
-								lblNumeroDePersonas.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
-								lblNumeroDePersonas.setBounds(0, 224, 307, 48);
-								jpnHospedajeAReservar.add(lblNumeroDePersonas);
-								
-								JComboBox cboEstrellas_1 = new JComboBox();
-								cboEstrellas_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
-								cboEstrellas_1.setOpaque(false);
-								cboEstrellas_1.setForeground(Color.WHITE);
-								cboEstrellas_1.setFont(new Font("Open Sans", Font.BOLD, 20));
-								cboEstrellas_1.setFocusable(false);
-								cboEstrellas_1.setFocusTraversalKeysEnabled(false);
-								cboEstrellas_1.setBackground(new Color(51, 26, 108));
-								cboEstrellas_1.setBounds(46, 284, 217, 47);
-								jpnHospedajeAReservar.add(cboEstrellas_1);
-								
-								JLabel lblNumeroDeNoches = new JLabel("Número de noches");
-								lblNumeroDeNoches.setHorizontalAlignment(SwingConstants.CENTER);
-								lblNumeroDeNoches.setForeground(Color.BLACK);
-								lblNumeroDeNoches.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
-								lblNumeroDeNoches.setBounds(0, 347, 307, 48);
-								jpnHospedajeAReservar.add(lblNumeroDeNoches);
-								
-								JComboBox cboEstrellas_1_1 = new JComboBox();
-								cboEstrellas_1_1.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
-								cboEstrellas_1_1.setOpaque(false);
-								cboEstrellas_1_1.setForeground(Color.WHITE);
-								cboEstrellas_1_1.setFont(new Font("Open Sans", Font.BOLD, 20));
-								cboEstrellas_1_1.setFocusable(false);
-								cboEstrellas_1_1.setFocusTraversalKeysEnabled(false);
-								cboEstrellas_1_1.setBackground(new Color(51, 26, 108));
-								cboEstrellas_1_1.setBounds(46, 395, 217, 47);
-								jpnHospedajeAReservar.add(cboEstrellas_1_1);
+		jpnSeccionReserva = new RoundedPanel(50);
+		jpnSeccionReserva.setBackground(new Color(179, 170, 255));
+		jpnSeccionReserva.setBounds(40, 34, 307, 819);
+		jpnBackGround.add(jpnSeccionReserva);
+		jpnSeccionReserva.setLayout(null);
+
+		btnBuscarNombre = new RoundButtonCircle("");
+		btnBuscarNombre.setBounds(245, 63, 36, 36);
+		jpnSeccionReserva.add(btnBuscarNombre);
+		btnBuscarNombre.setIcon(new ImageIcon(ViewHospedaje.class.getResource("/imagenes/lupa.png")));
+		btnBuscarNombre.setBackground(new Color(16, 6, 38));
+
+		txtNombreHospedajeAReservar = new RoundedTextField(50, 50);
+		txtNombreHospedajeAReservar.setBounds(10, 57, 287, 47);
+		jpnSeccionReserva.add(txtNombreHospedajeAReservar);
+		txtNombreHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNombreHospedajeAReservar.setFont(new Font("Open Sans", Font.PLAIN, 16));
+		txtNombreHospedajeAReservar.setColumns(10);
+
+		JLabel lblBuscaElNombre = new JLabel("Nombre del hospedaje a reservar");
+		lblBuscaElNombre.setBounds(0, 11, 307, 48);
+		jpnSeccionReserva.add(lblBuscaElNombre);
+		lblBuscaElNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBuscaElNombre.setForeground(new Color(0, 0, 0));
+		lblBuscaElNombre.setFont(new Font("Open Sans SemiBold", Font.BOLD, 18));
+
+		lblNumeroDeLa = new JLabel("Número de la habitacion ");
+		lblNumeroDeLa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumeroDeLa.setForeground(new Color(0, 0, 0));
+		lblNumeroDeLa.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+		lblNumeroDeLa.setBounds(10, 110, 307, 48);
+		jpnSeccionReserva.add(lblNumeroDeLa);
+
+		cboNumeroHabitacion = new JComboBox();
+		cboNumeroHabitacion.setModel(new DefaultComboBoxModel(
+				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+						"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "28", "29", "30" }));
+		cboNumeroHabitacion.setOpaque(false);
+		cboNumeroHabitacion.setForeground(Color.WHITE);
+		cboNumeroHabitacion.setFont(new Font("Open Sans", Font.BOLD, 20));
+		cboNumeroHabitacion.setFocusable(false);
+		cboNumeroHabitacion.setFocusTraversalKeysEnabled(false);
+		cboNumeroHabitacion.setBackground(new Color(51, 26, 108));
+		cboNumeroHabitacion.setBounds(46, 166, 217, 47);
+		jpnSeccionReserva.add(cboNumeroHabitacion);
+
+		JLabel lblNumeroDePersonas = new JLabel("Número de personas");
+		lblNumeroDePersonas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumeroDePersonas.setForeground(Color.BLACK);
+		lblNumeroDePersonas.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+		lblNumeroDePersonas.setBounds(0, 224, 307, 48);
+		jpnSeccionReserva.add(lblNumeroDePersonas);
+
+		cboNumeroPersonas = new JComboBox();
+		cboNumeroPersonas
+				.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "10" }));
+		cboNumeroPersonas.setOpaque(false);
+		cboNumeroPersonas.setForeground(Color.WHITE);
+		cboNumeroPersonas.setFont(new Font("Open Sans", Font.BOLD, 20));
+		cboNumeroPersonas.setFocusable(false);
+		cboNumeroPersonas.setFocusTraversalKeysEnabled(false);
+		cboNumeroPersonas.setBackground(new Color(51, 26, 108));
+		cboNumeroPersonas.setBounds(46, 284, 217, 47);
+		jpnSeccionReserva.add(cboNumeroPersonas);
+
+		JLabel lblNumeroDeNoches = new JLabel("Número de noches");
+		lblNumeroDeNoches.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumeroDeNoches.setForeground(Color.BLACK);
+		lblNumeroDeNoches.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+		lblNumeroDeNoches.setBounds(0, 347, 307, 48);
+		jpnSeccionReserva.add(lblNumeroDeNoches);
+
+		cboNumeroNoches = new JComboBox();
+		cboNumeroNoches.setModel(new DefaultComboBoxModel(
+				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+						"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
+		cboNumeroNoches.setOpaque(false);
+		cboNumeroNoches.setForeground(Color.WHITE);
+		cboNumeroNoches.setFont(new Font("Open Sans", Font.BOLD, 20));
+		cboNumeroNoches.setFocusable(false);
+		cboNumeroNoches.setFocusTraversalKeysEnabled(false);
+		cboNumeroNoches.setBackground(new Color(51, 26, 108));
+		cboNumeroNoches.setBounds(46, 395, 217, 47);
+		jpnSeccionReserva.add(cboNumeroNoches);
 		// Main panel with rounded corners inside the scroll pane
 		jpnHospedajes = new RoundedPanel(50);
 		jpnHospedajes.setBackground(new Color(255, 255, 255));
@@ -224,62 +267,150 @@ public class ViewReserva extends JFrame {
 		scrollPaneHospedajes = new CustomScrollPane(jpnHospedajes, 50);
 		;
 		scrollPaneHospedajes.setBorder(null);
-		scrollPaneHospedajes.setBounds(368, 34, 1368, 400); // Set bounds for the scroll pane
+		scrollPaneHospedajes.setBounds(368, 34, 1350, 400); // Set bounds for the scroll pane
 		scrollPaneHospedajes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneHospedajes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jpnBackGround.add(scrollPaneHospedajes);
-		
-		RoundedPanel jpnHospedajeAReservar_1 = new RoundedPanel(50);
-		jpnHospedajeAReservar_1.setLayout(null);
-		jpnHospedajeAReservar_1.setBackground(new Color(179, 170, 255));
-		jpnHospedajeAReservar_1.setBounds(368, 453, 327, 400);
-		jpnBackGround.add(jpnHospedajeAReservar_1);
-		
-		JLabel lblHospedajeAReservar_1_1_1 = new JLabel("Hospedaje a reservar");
-		lblHospedajeAReservar_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHospedajeAReservar_1_1_1.setForeground(Color.WHITE);
-		lblHospedajeAReservar_1_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
-		lblHospedajeAReservar_1_1_1.setBounds(0, 0, 327, 48);
-		jpnHospedajeAReservar_1.add(lblHospedajeAReservar_1_1_1);
-		
-		RoundedPanel jpnHospedajeAReservar_1_1 = new RoundedPanel(50);
-		jpnHospedajeAReservar_1_1.setLayout(null);
-		jpnHospedajeAReservar_1_1.setBackground(new Color(179, 170, 255));
-		jpnHospedajeAReservar_1_1.setBounds(723, 453, 327, 400);
-		jpnBackGround.add(jpnHospedajeAReservar_1_1);
-		
-		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitacion a reservar");
+
+		jpnHabitacionAreservar = new RoundedPanel(50);
+		jpnHabitacionAreservar.setLayout(null);
+		jpnHabitacionAreservar.setBackground(new Color(179, 170, 255));
+		jpnHabitacionAreservar.setBounds(723, 453, 327, 400);
+		jpnBackGround.add(jpnHabitacionAreservar);
+
+		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitación a reservar");
 		lblHospedajeAReservar_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHospedajeAReservar_1_1.setForeground(Color.WHITE);
 		lblHospedajeAReservar_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
 		lblHospedajeAReservar_1_1.setBounds(0, 0, 327, 48);
-		jpnHospedajeAReservar_1_1.add(lblHospedajeAReservar_1_1);
+		jpnHabitacionAreservar.add(lblHospedajeAReservar_1_1);
+
+		RoundedPanel jpnCardHabitacionAreservar = new RoundedPanel(50);
+		jpnCardHabitacionAreservar.setLayout(null);
+		jpnCardHabitacionAreservar.setBackground(new Color(255, 255, 255));
+		jpnCardHabitacionAreservar.setBounds(30, 41, 269, 336);
+		jpnHabitacionAreservar.add(jpnCardHabitacionAreservar);
+
+		JPanel jpnImagenHabitacion = new JPanel();
+		jpnImagenHabitacion.setBounds(10, 46, 249, 96);
+		jpnCardHabitacionAreservar.add(jpnImagenHabitacion);
+		jpnImagenHabitacion.setLayout(null);
+
+		JLabel lblImagenHabitacion = new JLabel("");
+
+		lblImagenHabitacion.setBounds(0, 0, 249, 96);
+		jpnImagenHabitacion.add(lblImagenHabitacion);
+
+		JLabel lblTipoHabitacion = new JLabel("Tipo habitación");
+		lblTipoHabitacion.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
+		lblTipoHabitacion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoHabitacion.setBounds(0, 0, 269, 47);
+		jpnCardHabitacionAreservar.add(lblTipoHabitacion);
+
+		JLabel lblCapacidad = new JLabel("Capacidad:");
+		lblCapacidad.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCapacidad.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblCapacidad.setBounds(10, 140, 249, 47);
+		jpnCardHabitacionAreservar.add(lblCapacidad);
+
+		JLabel lblDisponible = new JLabel("Disponible:");
+		lblDisponible.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisponible.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblDisponible.setBounds(10, 183, 249, 47);
+		jpnCardHabitacionAreservar.add(lblDisponible);
+
+		JLabel lblNumeroDeHabitacion = new JLabel("Numero de habitación:");
+		lblNumeroDeHabitacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNumeroDeHabitacion.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblNumeroDeHabitacion.setBounds(10, 231, 249, 47);
+		jpnCardHabitacionAreservar.add(lblNumeroDeHabitacion);
+
+		JLabel lblPrecioAdicional = new JLabel("Precio adicional: $");
+		lblPrecioAdicional.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioAdicional.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblPrecioAdicional.setBounds(10, 278, 259, 47);
+		jpnCardHabitacionAreservar.add(lblPrecioAdicional);
+
+		jpnHospedajeAReservar = new RoundedPanel(50);
+		jpnHospedajeAReservar.setLayout(null);
+		jpnHospedajeAReservar.setBackground(new Color(179, 170, 255));
+		jpnHospedajeAReservar.setBounds(368, 453, 327, 400);
+		jpnBackGround.add(jpnHospedajeAReservar);
+
+		lblHospedajeAReservar = new JLabel("Hospedaje  a reservar");
+		lblHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar.setForeground(Color.WHITE);
+		lblHospedajeAReservar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar.setBounds(0, 0, 327, 48);
+		jpnHospedajeAReservar.add(lblHospedajeAReservar);
 
 		// Example card panel with rounded corners inside the main panel
 
 		// Set preferred size for jpnHospedajes to enable scrolling
 		jpnHospedajes.setPreferredSize(new Dimension(1432, 4000));
-		
+
 		lblHabitacionesDisponibles = new JLabel("Habitaciones disponibles");
 		lblHabitacionesDisponibles.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHabitacionesDisponibles.setForeground(new Color(0, 0, 0));
 		lblHabitacionesDisponibles.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
-		lblHabitacionesDisponibles.setBounds(0, 0, 1366, 48);
+		lblHabitacionesDisponibles.setBounds(0, 0, 684, 48);
 		jpnHospedajes.add(lblHabitacionesDisponibles);
-		
-		RoundedPanel jpnHospedajeAReservar_2 = new RoundedPanel(50);
-		jpnHospedajeAReservar_2.setLayout(null);
-		jpnHospedajeAReservar_2.setBackground(new Color(179, 170, 255));
-		jpnHospedajeAReservar_2.setBounds(28, 47, 307, 328);
-		jpnHospedajes.add(jpnHospedajeAReservar_2);
-		
-		JLabel lblHospedajeAReservar_1 = new JLabel("Hospedaje a reservar");
-		lblHospedajeAReservar_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHospedajeAReservar_1.setForeground(Color.WHITE);
-		lblHospedajeAReservar_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
-		lblHospedajeAReservar_1.setBounds(0, 0, 307, 48);
-		jpnHospedajeAReservar_2.add(lblHospedajeAReservar_1);
 
+		RoundedPanel jpnCardHabitacionesDisponibles = new RoundedPanel(50);
+		jpnCardHabitacionesDisponibles.setLayout(null);
+		jpnCardHabitacionesDisponibles.setBackground(new Color(51, 26, 108));
+		jpnCardHabitacionesDisponibles.setBounds(21, 47, 269, 336);
+		jpnHospedajes.add(jpnCardHabitacionesDisponibles);
+
+		JPanel jpnImagen = new JPanel();
+		jpnImagen.setLayout(null);
+		jpnImagen.setBounds(10, 46, 249, 96);
+		jpnCardHabitacionesDisponibles.add(jpnImagen);
+
+		JLabel lblImagenHabitacion_1 = new JLabel("");
+		lblImagenHabitacion_1.setIcon(new ImageIcon(ViewReserva.class.getResource("/imagenes2/Cabana-10.png")));
+		lblImagenHabitacion_1.setBounds(0, 0, 249, 96);
+		jpnImagen.add(lblImagenHabitacion_1);
+
+		JLabel lblTipoHabitacion_1 = new JLabel("Tipo habitación");
+		lblTipoHabitacion_1.setForeground(new Color(255, 255, 255));
+		lblTipoHabitacion_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
+		lblTipoHabitacion_1.setBounds(0, 0, 269, 47);
+		jpnCardHabitacionesDisponibles.add(lblTipoHabitacion_1);
+
+		JLabel lblCapacidad_1 = new JLabel("Capacidad:");
+		lblCapacidad_1.setForeground(new Color(255, 255, 255));
+		lblCapacidad_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCapacidad_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblCapacidad_1.setBounds(10, 140, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblCapacidad_1);
+
+		JLabel lblDisponible_1 = new JLabel("Disponible:");
+		lblDisponible_1.setForeground(new Color(255, 255, 255));
+		lblDisponible_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisponible_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblDisponible_1.setBounds(10, 183, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblDisponible_1);
+
+		JLabel lblNumeroDeHabitacion_1 = new JLabel("Numero de habitación:");
+		lblNumeroDeHabitacion_1.setForeground(new Color(255, 255, 255));
+		lblNumeroDeHabitacion_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNumeroDeHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblNumeroDeHabitacion_1.setBounds(10, 231, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblNumeroDeHabitacion_1);
+
+		JLabel lblPrecioAdicional_1 = new JLabel("Precio adicional: $");
+		lblPrecioAdicional_1.setForeground(new Color(255, 255, 255));
+		lblPrecioAdicional_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioAdicional_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblPrecioAdicional_1.setBounds(10, 278, 259, 47);
+		jpnCardHabitacionesDisponibles.add(lblPrecioAdicional_1);
+
+		
+		
+		
+		
 		// Cargar y redimensionar la imagen
 		try {
 			BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
@@ -288,5 +419,319 @@ public class ViewReserva extends JFrame {
 			e2.printStackTrace();
 		}
 
+	}
+
+	public RoundButton getBtnCerrarSesion() {
+		return btnCerrarSesion;
+	}
+
+	public void setBtnCerrarSesion(RoundButton btnCerrarSesion) {
+		this.btnCerrarSesion = btnCerrarSesion;
+	}
+
+	public RoundedTextField getTxtNombreHospedajeAReservar() {
+		return txtNombreHospedajeAReservar;
+	}
+
+	public void setTxtNombreHospedajeAReservar(RoundedTextField txtNombreHospedajeAReservar) {
+		this.txtNombreHospedajeAReservar = txtNombreHospedajeAReservar;
+	}
+
+	public RoundButtonCircle getBtnBuscarNombre() {
+		return btnBuscarNombre;
+	}
+
+	public void setBtnBuscarNombre(RoundButtonCircle btnBuscarNombre) {
+		this.btnBuscarNombre = btnBuscarNombre;
+	}
+
+	public JScrollPane getScrollPaneHospedajes() {
+		return scrollPaneHospedajes;
+	}
+
+	public void setScrollPaneHospedajes(JScrollPane scrollPaneHospedajes) {
+		this.scrollPaneHospedajes = scrollPaneHospedajes;
+	}
+
+	public RoundedPanel getJpnHospedajeAReservar() {
+		return jpnHospedajeAReservar;
+	}
+
+	public void setJpnHospedajeAReservar(RoundedPanel jpnHospedajeAReservar) {
+		this.jpnHospedajeAReservar = jpnHospedajeAReservar;
+	}
+
+	public RoundedPanel getJpnHabitacionAreservar() {
+		return jpnHabitacionAreservar;
+	}
+
+	public void setJpnHabitacionAreservar(RoundedPanel jpnHabitacionAreservar) {
+		this.jpnHabitacionAreservar = jpnHabitacionAreservar;
+	}
+
+	public JComboBox<String> getCboNumeroHabitacion() {
+		return cboNumeroHabitacion;
+	}
+
+	public void setCboNumeroHabitacion(JComboBox<String> cboNumeroHabitacion) {
+		this.cboNumeroHabitacion = cboNumeroHabitacion;
+	}
+
+	public JComboBox<String> getCboNumeroPersonas() {
+		return cboNumeroPersonas;
+	}
+
+	public void setCboNumeroPersonas(JComboBox<String> cboNumeroPersonas) {
+		this.cboNumeroPersonas = cboNumeroPersonas;
+	}
+
+	public JComboBox<String> getCboNumeroNoches() {
+		return cboNumeroNoches;
+	}
+
+	public void setCboNumeroNoches(JComboBox<String> cboNumeroNoches) {
+		this.cboNumeroNoches = cboNumeroNoches;
+	}
+
+	public RoundedPanel mostrarPanelHabitacionesDisponibles(String tH, int capacidad, boolean disponibilidad,
+			int numeroHabitacion, double precioAdicionalPorTipoHabitacion, String imagen) {
+		
+		RoundedPanel jpnCardHabitacionesDisponibles = new RoundedPanel(50);
+		jpnCardHabitacionesDisponibles.setLayout(null);
+		jpnCardHabitacionesDisponibles.setBackground(new Color(51, 26, 108));
+		jpnCardHabitacionesDisponibles.setBounds(21, 47, 269, 336);
+		jpnHospedajes.add(jpnCardHabitacionesDisponibles);
+
+		JPanel jpnImagen = new JPanel();
+		jpnImagen.setLayout(null);
+		jpnImagen.setBounds(10, 46, 249, 96);
+		jpnCardHabitacionesDisponibles.add(jpnImagen);
+
+		JLabel lblImagenHabitacion_1 = new JLabel("");
+		lblImagenHabitacion_1.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
+		lblImagenHabitacion_1.setBounds(0, 0, 249, 96);
+		jpnImagen.add(lblImagenHabitacion_1);
+
+		JLabel lblTipoHabitacion_1 = new JLabel("Tipo habitación: "+ tH);
+		lblTipoHabitacion_1.setForeground(new Color(255, 255, 255));
+		lblTipoHabitacion_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
+		lblTipoHabitacion_1.setBounds(0, 0, 269, 47);
+		jpnCardHabitacionesDisponibles.add(lblTipoHabitacion_1);
+
+		JLabel lblCapacidad_1 = new JLabel("Capacidad: "+ capacidad);
+		lblCapacidad_1.setForeground(new Color(255, 255, 255));
+		lblCapacidad_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCapacidad_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblCapacidad_1.setBounds(10, 140, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblCapacidad_1);
+		String disponibilidad1 = "";
+		if (disponibilidad) {
+			disponibilidad1 = "Si";
+		} else {
+			disponibilidad1 = "No";
+		}
+		JLabel lblDisponible_1 = new JLabel("Disponible: "+ disponibilidad1);
+		lblDisponible_1.setForeground(new Color(255, 255, 255));
+		lblDisponible_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisponible_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblDisponible_1.setBounds(10, 183, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblDisponible_1);
+
+		JLabel lblNumeroDeHabitacion_1 = new JLabel("Numero de habitación:");
+		lblNumeroDeHabitacion_1.setForeground(new Color(255, 255, 255));
+		lblNumeroDeHabitacion_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNumeroDeHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblNumeroDeHabitacion_1.setBounds(10, 231, 249, 47);
+		jpnCardHabitacionesDisponibles.add(lblNumeroDeHabitacion_1);
+
+		JLabel lblPrecioAdicional_1 = new JLabel("Precio adicional: $");
+		lblPrecioAdicional_1.setForeground(new Color(255, 255, 255));
+		lblPrecioAdicional_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioAdicional_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblPrecioAdicional_1.setBounds(10, 278, 259, 47);
+		jpnCardHabitacionesDisponibles.add(lblPrecioAdicional_1);
+		
+		
+		return null;
+	}
+
+	public RoundedPanel mostrarPanelHabitacionAreservar(String tH, int capacidad, boolean disponibilidad,
+			int numeroHabitacion, double precioAdicionalPorTipoHabitacion, String imagen) {
+		RoundedPanel jpnCardHabitacionAreservar = new RoundedPanel(50);
+		jpnCardHabitacionAreservar.setLayout(null);
+		jpnCardHabitacionAreservar.setBackground(new Color(255, 255, 255));
+		jpnCardHabitacionAreservar.setBounds(30, 41, 269, 336);
+		jpnHabitacionAreservar.add(jpnCardHabitacionAreservar);
+		
+		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitación a reservar");
+		lblHospedajeAReservar_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1_1.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar_1_1.setBounds(0, 0, 327, 48);
+		jpnHabitacionAreservar.add(lblHospedajeAReservar_1_1);
+		
+		JPanel jpnImagenHabitacion = new JPanel();
+		jpnImagenHabitacion.setBounds(10, 46, 249, 96);
+		jpnCardHabitacionAreservar.add(jpnImagenHabitacion);
+		jpnImagenHabitacion.setLayout(null);
+
+		JLabel lblImagenHabitacion = new JLabel("");
+		lblImagenHabitacion.setBounds(0, 0, 249, 96);
+		jpnImagenHabitacion.add(lblImagenHabitacion);
+
+		lblImagenHabitacion.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
+		
+		JLabel lblTipoHabitacion = new JLabel("Tipo habitación : " + tH);
+		lblTipoHabitacion.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
+		lblTipoHabitacion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoHabitacion.setBounds(0, 0, 269, 47);
+		jpnCardHabitacionAreservar.add(lblTipoHabitacion);
+
+		JLabel lblCapacidad = new JLabel("Capacidad: " + capacidad);
+		lblCapacidad.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCapacidad.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblCapacidad.setBounds(10, 140, 249, 47);
+		jpnCardHabitacionAreservar.add(lblCapacidad);
+		String disponibilidad1 = "";
+		if (disponibilidad) {
+			disponibilidad1 = "Si";
+		} else {
+			disponibilidad1 = "No";
+		}
+
+		JLabel lblDisponible = new JLabel("Disponible:"+ disponibilidad1);
+		lblDisponible.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisponible.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblDisponible.setBounds(10, 183, 249, 47);
+		jpnCardHabitacionAreservar.add(lblDisponible);
+
+		JLabel lblNumeroDeHabitacion = new JLabel("Numero de habitación:" + numeroHabitacion);
+		lblNumeroDeHabitacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNumeroDeHabitacion.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblNumeroDeHabitacion.setBounds(10, 231, 249, 47);
+		jpnCardHabitacionAreservar.add(lblNumeroDeHabitacion);
+
+		JLabel lblPrecioAdicional = new JLabel("Precio adicional: $" + precioAdicionalPorTipoHabitacion);
+		lblPrecioAdicional.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioAdicional.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		lblPrecioAdicional.setBounds(10, 278, 259, 47);
+		jpnCardHabitacionAreservar.add(lblPrecioAdicional);
+
+		return jpnCardHabitacionAreservar;
+	}
+
+	public RoundedPanel mostrarPanelHospedaje(String tH, String nombre, String ubicacionCiudad, String ubicacionPais,
+			int numeroEstrellas, String descripcion, String tipo, double precioPorPersona, String imagen) {
+		RoundedPanel jpnCardHospedaje = new RoundedPanel(50);
+
+		jpnCardHospedaje.setBackground(new Color(230, 230, 230));
+		jpnCardHospedaje.setLayout(null);
+		
+		
+
+		lblHospedajeAReservar = new JLabel("Hospedaje  a reservar");
+		lblHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar.setForeground(Color.WHITE);
+		lblHospedajeAReservar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar.setBounds(0, 0, 327, 48);
+		jpnHospedajeAReservar.add(lblHospedajeAReservar);
+
+		JPanel jpnImagen = new JPanel();
+		jpnImagen.setBounds(20, 28, 238, 130);
+		jpnCardHospedaje.add(jpnImagen);
+		jpnImagen.setLayout(null);
+
+		JLabel lblImagenHospedaje = new JLabel("");
+		lblImagenHospedaje.setIcon(new ImageIcon(ViewHospedaje.class.getResource(imagen)));
+		lblImagenHospedaje.setBounds(0, 0, 238, 130);
+		jpnImagen.add(lblImagenHospedaje);
+
+		JLabel lblTipoHospedaje = new JLabel(tH);
+		lblTipoHospedaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoHospedaje.setForeground(Color.BLACK);
+		lblTipoHospedaje.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 16));
+		lblTipoHospedaje.setBounds(0, 0, 127, 31);
+		jpnCardHospedaje.add(lblTipoHospedaje);
+
+		JLabel lblNombreHospedaje = new JLabel(nombre);
+		lblNombreHospedaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreHospedaje.setForeground(Color.BLACK);
+		lblNombreHospedaje.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 16));
+		lblNombreHospedaje.setBounds(0, 153, 258, 31);
+		jpnCardHospedaje.add(lblNombreHospedaje);
+
+		JLabel lblPais = new JLabel(ubicacionPais);
+		lblPais.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPais.setForeground(Color.BLACK);
+		lblPais.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 12));
+		lblPais.setBounds(2, 181, 100, 31);
+		jpnCardHospedaje.add(lblPais);
+
+		JLabel lblCiudad = new JLabel(ubicacionCiudad);
+		lblCiudad.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCiudad.setForeground(Color.BLACK);
+		lblCiudad.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 12));
+		lblCiudad.setBounds(96, 181, 105, 31);
+		jpnCardHospedaje.add(lblCiudad);
+
+		JLabel lblCantidadDeEstrellas = new JLabel(" Cantidad de estrellas: " + numeroEstrellas);
+		lblCantidadDeEstrellas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCantidadDeEstrellas.setForeground(Color.BLACK);
+		lblCantidadDeEstrellas.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 12));
+		lblCantidadDeEstrellas.setBounds(2, 211, 155, 31);
+		jpnCardHospedaje.add(lblCantidadDeEstrellas);
+
+		JLabel lblDescripcion = new JLabel(descripcion);
+		lblDescripcion.setVerticalAlignment(SwingConstants.TOP);
+		lblDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDescripcion.setForeground(Color.BLACK);
+		lblDescripcion.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 10));
+		lblDescripcion.setBounds(0, 235, 260, 45);
+		jpnCardHospedaje.add(lblDescripcion);
+
+		JLabel lblTipo1 = new JLabel("tipo: " + tipo);
+		lblTipo1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipo1.setForeground(Color.BLACK);
+		lblTipo1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 16));
+		lblTipo1.setBounds(160, 0, 100, 31);
+		jpnCardHospedaje.add(lblTipo1);
+
+		JLabel lblPrecioPorPersonaTexto_1 = new JLabel("Precio por persona: $" + precioPorPersona);
+		lblPrecioPorPersonaTexto_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioPorPersonaTexto_1.setForeground(Color.BLACK);
+		lblPrecioPorPersonaTexto_1.setFont(new Font("Open Sans SemiBold", Font.BOLD, 14));
+		lblPrecioPorPersonaTexto_1.setBounds(2, 277, 238, 45);
+		jpnCardHospedaje.add(lblPrecioPorPersonaTexto_1);
+		return jpnCardHospedaje;
+	}
+
+	public String pedirNombreHospedaje() {
+
+		String nombre = "";
+		boolean nombreValido = false;
+
+		try {
+
+			nombre = txtNombreHospedajeAReservar.getText();
+
+			if (nombre.isEmpty()) {
+				throw new Exception("El campo de nombre  no puede estar vacío.");
+
+			}
+
+			if (nombre.matches("[a-zA-Z ]+")) {
+				nombreValido = true;
+
+			} else {
+				throw new Exception("Ingrese un  nombre válido (solo letras).");
+
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+		}
+
+		return nombre;
 	}
 }
