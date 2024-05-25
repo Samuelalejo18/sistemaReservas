@@ -27,10 +27,7 @@ import co.edu.konradlorenz.model.hospedajes.Resort;
 import co.edu.konradlorenz.view.RoundButton;
 import co.edu.konradlorenz.view.RoundButtonCircle;
 import co.edu.konradlorenz.view.RoundedPanel;
-import co.edu.konradlorenz.view.ViewAutenticacion;
 import co.edu.konradlorenz.view.ViewHospedaje;
-
-import co.edu.konradlorenz.view.ViewRegistro;
 
 public class ControllerHospedajes implements ActionListener {
 
@@ -284,7 +281,7 @@ public class ControllerHospedajes implements ActionListener {
 	public void hospedajesDisponibles() {
 		int x = 70;
 		int y = 40;
-try {
+
 		for (Hospedaje hospedaje : hospedajes) {
 			String tipoHospedaje = hallarTipoHospedaje(hospedaje);
 			RoundedPanel card = viewHospedaje.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
@@ -303,11 +300,9 @@ try {
 
 		}
 
-		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 20));
+		viewHospedaje.getJpnHospedajes().setPreferredSize(new Dimension(1432, y + 400));
 			
-} catch (NullPointerException e) {
-	System.out.println(e.getMessage());
-	}
+
 }
 
 	public void buscarPorNombre(String nombre) throws HospedajeNoEncontradoException {
@@ -623,7 +618,7 @@ try {
 		int x = 70;
 		int y = 40;
 		for (Hospedaje hospedaje : hospedajes) {
-			if (hospedaje.getPrecioPorPersona() >= min || hospedaje.getPrecioPorPersona() <= max) {
+			if (hospedaje.getPrecioPorPersona() >= min && hospedaje.getPrecioPorPersona() <= max) {
 
 				encontradoPrecio = true;
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
