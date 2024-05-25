@@ -245,6 +245,14 @@ public class ControllerHospedajes implements ActionListener {
 
 		if (e.getSource() == btnContactanos) {
 			viewHospedaje.dispose();
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
+			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		}
+
+		if (e.getSource() == btnNosotros) {
+			viewHospedaje.dispose();
+			ControllerNosotros controllerNosotros= new ControllerNosotros();
 			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}

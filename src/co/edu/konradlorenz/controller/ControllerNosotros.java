@@ -47,7 +47,7 @@ public class ControllerNosotros implements ActionListener {
 		
 		if(e.getSource()== btnContactanos) {
 			viewNosotros.dispose();
-			
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
 			viewNosotros.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		if (e.getSource() == btnIniciarSesion) {

@@ -143,6 +143,7 @@ public class ControllerAutenticacion implements ActionListener {
 
 		if (e.getSource() == btnContactanosLogin) {
 			viewAutenticacion.dispose();
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
 			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
@@ -161,7 +162,7 @@ public class ControllerAutenticacion implements ActionListener {
 		
 		if(e.getSource()== btnContactanosRegister) {
 			viewRegistro.dispose();
-	
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
 			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		

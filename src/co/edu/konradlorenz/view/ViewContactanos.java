@@ -14,33 +14,31 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class ViewNosotros extends JFrame {
+public class ViewContactanos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
 	private JPanel jpnInfo;
 	private RoundedPanel jpnLogin;
 	private JPanel jpnBuscaComparaReserva;
 	private JLabel lblNewLabel;
-	private RoundButton btnRegistrar;
+	private RoundButton btnWhats;
 	private JLabel lblNewLabel_2;
 	private JButton btnHospedajes;
 	private JButton btnNosotros;
 	private JButton btnContactanos;
-	private JLabel lblFirstxt;
-	private JLabel lblTextInfo;
-	private JLabel lblNewLabel_1;
 	private RoundButton btnIniciarSesion;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
 
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the frame.
 	 */
-	public ViewNosotros() {
+	public ViewContactanos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -96,12 +94,12 @@ public class ViewNosotros extends JFrame {
 		btnHospedajes.setBackground(new Color(16, 6, 38));
 		btnHospedajes.setBounds(0, 47, 172, 37);
 		jpnSuperiorCentro.add(btnHospedajes);
-
-		RoundedPanel jpnFiltrosCiudades_1 = new RoundedPanel(20);
-		jpnFiltrosCiudades_1.setLayout(null);
-		jpnFiltrosCiudades_1.setBackground(Color.WHITE);
-		jpnFiltrosCiudades_1.setBounds(390, 87, 140, 7);
-		jpnSuperiorCentro.add(jpnFiltrosCiudades_1);
+		
+		RoundedPanel jpnFiltrosCiudades_1_1 = new RoundedPanel(20);
+		jpnFiltrosCiudades_1_1.setLayout(null);
+		jpnFiltrosCiudades_1_1.setBackground(Color.WHITE);
+		jpnFiltrosCiudades_1_1.setBounds(203, 87, 140, 7);
+		jpnSuperiorCentro.add(jpnFiltrosCiudades_1_1);
 
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(
@@ -132,55 +130,71 @@ public class ViewNosotros extends JFrame {
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
-
-		lblNewLabel = new JLabel("#BuscaComparaReserva");
-		lblNewLabel.setBounds(49, 72, 244, 32);
-		jpnLogin.add(lblNewLabel);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		
+		lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(ViewContactanos.class.getResource("/imagenes/imgContactanos.png")));
+		lblNewLabel_6.setBounds(573, 0, 492, 613);
+		jpnLogin.add(lblNewLabel_6);
+		
+		lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(ViewContactanos.class.getResource("/imagenes/FacebookLogo.png")));
+		lblNewLabel_5.setBounds(190, 342, 46, 35);
+		jpnLogin.add(lblNewLabel_5);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ViewContactanos.class.getResource("/imagenes/IgLogo.png")));
+		lblNewLabel_1.setBounds(343, 260, 30, 38);
+		jpnLogin.add(lblNewLabel_1);
 		jpnBuscaComparaReserva = new RoundedPanel(20);
 		jpnBuscaComparaReserva.setBounds(69, 72, 244, 32);
 		jpnBuscaComparaReserva.setBackground(new Color(179, 170, 255));
 		jpnLogin.add(jpnBuscaComparaReserva);
 		jpnBuscaComparaReserva.setLayout(null);
-
-		lblFirstxt = new JLabel(
-				"<html>Viaja Ligero--------------------<br>--------------------Vive la aventura</html>");
+		
+				lblNewLabel = new JLabel("#BuscaComparaReserva");
+				lblNewLabel.setBounds(0, 0, 244, 32);
+				jpnBuscaComparaReserva.add(lblNewLabel);
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
+		
+		JLabel lblFirstxt = new JLabel("<html>Nuestros Canales --------------<br>-------------- De Comunicación</html>");
 		lblFirstxt.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstxt.setForeground(Color.WHITE);
 		lblFirstxt.setFont(new Font("Open Sans", Font.BOLD, 30));
-		lblFirstxt.setBounds(20, 115, 500, 90);
+		lblFirstxt.setBounds(0, 120, 500, 90);
 		jpnLogin.add(lblFirstxt);
-
-		lblTextInfo = new JLabel(
-				"<html>Buscamos ofrecer una solución integral para las reservas de alojamiento y servicios de viaje.<br>Buscar, comparar y reservar, asi de fácil, con una amplia gama de opciones, desde hoteles hasta vuelos y cruceros. Simplificamos la planificación de viajes, ahorrando tiempo y reduciendo errores en las reservas. Es una herramienta completa para viajeros, ofreciendo una experiencia completamente satisfactoria</html>");
-		lblTextInfo.setForeground(Color.WHITE);
-		lblTextInfo.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 20));
-		lblTextInfo.setBackground(new Color(16, 6, 38));
-		lblTextInfo.setBounds(20, 168, 500, 358);
-		jpnLogin.add(lblTextInfo);
-
-		lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(ViewNosotros.class.getResource("/imagenes/principal.jpg")));
-		lblNewLabel_1.setBounds(472, 0, 537, 613);
-		jpnLogin.add(lblNewLabel_1);
-
-		btnRegistrar = new RoundButton("Registrarse");
-		btnRegistrar.setText("Inicia hoy mismo");
-		btnRegistrar.setBounds(49, 510, 278, 48);
-		jpnLogin.add(btnRegistrar);
-		btnRegistrar.setBorderPainted(false);
-		btnRegistrar.setBackground(new Color(255, 255, 255));
-		btnRegistrar.setForeground(new Color(16, 6, 38));
-		btnRegistrar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
-	}
-
-	public RoundButton getBtnRegistrar() {
-		return btnRegistrar;
-	}
-
-	public void setBtnRegistrar(RoundButton btnRegistrar) {
-		this.btnRegistrar = btnRegistrar;
+		
+		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(ViewContactanos.class.getResource("/imagenes/WhatsAppLogo.png")));
+		lblNewLabel_4.setBounds(45, 260, 30, 38);
+		jpnLogin.add(lblNewLabel_4);
+		
+		RoundButton btnFace = new RoundButton("Registrarse");
+		btnFace.setText("@JCA HOTELS S.A.S");
+		btnFace.setForeground(new Color(16, 6, 38));
+		btnFace.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		btnFace.setBorderPainted(false);
+		btnFace.setBackground(Color.WHITE);
+		btnFace.setBounds(173, 336, 278, 48);
+		jpnLogin.add(btnFace);
+		
+				btnWhats = new RoundButton("Registrarse");
+				btnWhats.setText("+57 310 5028796");
+				btnWhats.setBounds(24, 255, 252, 48);
+				jpnLogin.add(btnWhats);
+				btnWhats.setBorderPainted(false);
+				btnWhats.setBackground(new Color(255, 255, 255));
+				btnWhats.setForeground(new Color(16, 6, 38));
+				btnWhats.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+				
+				RoundButton btnInsta = new RoundButton("Registrarse");
+				btnInsta.setText("@JCAHOTELS_");
+				btnInsta.setForeground(new Color(16, 6, 38));
+				btnInsta.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+				btnInsta.setBorderPainted(false);
+				btnInsta.setBackground(Color.WHITE);
+				btnInsta.setBounds(329, 255, 234, 48);
+				jpnLogin.add(btnInsta);
 	}
 
 	public JButton getBtnHospedajes() {
@@ -191,12 +205,12 @@ public class ViewNosotros extends JFrame {
 		this.btnHospedajes = btnHospedajes;
 	}
 
-	public JButton getBtnContactanos() {
-		return btnContactanos;
+	public JButton getBtnNosotros() {
+		return btnNosotros;
 	}
 
-	public void setBtnContactanos(JButton btnContactanos) {
-		this.btnContactanos = btnContactanos;
+	public void setBtnNosotros(JButton btnNosotros) {
+		this.btnNosotros = btnNosotros;
 	}
 
 	public RoundButton getBtnIniciarSesion() {
@@ -206,8 +220,6 @@ public class ViewNosotros extends JFrame {
 	public void setBtnIniciarSesion(RoundButton btnIniciarSesion) {
 		this.btnIniciarSesion = btnIniciarSesion;
 	}
-	
-	
 	
 	
 }
