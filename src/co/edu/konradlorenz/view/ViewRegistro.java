@@ -426,6 +426,31 @@ public class ViewRegistro extends JFrame {
 	}
 
 	
+	
+	public JButton getBtnContactanos() {
+		return btnContactanos;
+	}
+
+	public void setBtnContactanos(JButton btnContactanos) {
+		this.btnContactanos = btnContactanos;
+	}
+
+	public JButton getBtnNosotros() {
+		return btnNosotros;
+	}
+
+	public void setBtnNosotros(JButton btnNosotros) {
+		this.btnNosotros = btnNosotros;
+	}
+
+	public JButton getBtnHospedajes() {
+		return btnHospedajes;
+	}
+
+	public void setBtnHospedajes(JButton btnHospedajes) {
+		this.btnHospedajes = btnHospedajes;
+	}
+
 	public String pedirNombre() {
 		String nombre = "";
 		boolean nombreValido = false;

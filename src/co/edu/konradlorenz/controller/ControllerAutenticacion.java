@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 import co.edu.konradlorenz.model.cliente.AuthCliente;
 import co.edu.konradlorenz.model.cliente.Cliente;
 import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaException;
@@ -46,6 +45,10 @@ public class ControllerAutenticacion implements ActionListener {
 	JButton btnNosotrosLogin;
 	JButton btnContactanosLogin;
 
+	JButton btnHospedajesRegister;
+	JButton btnNosotrosRegister;
+	JButton btnContactanosRegister;
+
 	public ControllerAutenticacion() {
 		viewAutenticacion = new ViewAutenticacion();
 		viewRegistro = new ViewRegistro();
@@ -61,12 +64,18 @@ public class ControllerAutenticacion implements ActionListener {
 		btnRegisterLogin = viewRegistro.getBtnLogin();
 		btnRegisterLogin.addActionListener(this);
 
-		btnHospedajesLogin= viewAutenticacion.getBtnHospedajes();
+		btnHospedajesLogin = viewAutenticacion.getBtnHospedajes();
 		btnContactanosLogin = viewAutenticacion.getBtnContactanos();
 		btnNosotrosLogin = viewAutenticacion.getBtnNosotros();
 		btnHospedajesLogin.addActionListener(this);
 		btnContactanosLogin.addActionListener(this);
 		btnNosotrosLogin.addActionListener(this);
+		btnHospedajesRegister = viewRegistro.getBtnHospedajes();
+		btnNosotrosRegister = viewRegistro.getBtnNosotros();
+		btnContactanosRegister = viewRegistro.getBtnContactanos();
+		btnHospedajesRegister.addActionListener(this);
+		btnNosotrosRegister.addActionListener(this);
+		btnContactanosRegister.addActionListener(this);
 	}
 
 	public void mostrarVentanaRegistro(boolean visible) {
@@ -125,21 +134,42 @@ public class ControllerAutenticacion implements ActionListener {
 				e2.printStackTrace();
 			}
 		}
-		
-		if(e.getSource()==btnHospedajesLogin) {
+
+		if (e.getSource() == btnHospedajesLogin) {
 			viewAutenticacion.dispose();
 			controlHospedajes = new ControllerHospedajes();
 			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		
-		if(e.getSource()==btnContactanosLogin) {
+
+		if (e.getSource() == btnContactanosLogin) {
 			viewAutenticacion.dispose();
 			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		
-		if(e.getSource()== btnNosotrosLogin) {
+
+		if (e.getSource() == btnNosotrosLogin) {
 			viewAutenticacion.dispose();
+			ControllerNosotros controllerNosotros = new ControllerNosotros();
 			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		
+		if(e.getSource()==btnHospedajesRegister){
+			viewRegistro.dispose();
+			controlHospedajes = new ControllerHospedajes();
+			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		if(e.getSource()== btnContactanosRegister) {
+			viewRegistro.dispose();
+	
+			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+		
+		if(e.getSource()==btnNosotrosRegister) {
+			ControllerNosotros controllerNosotros = new ControllerNosotros();
+			viewRegistro.dispose();
+			
+			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		
 
