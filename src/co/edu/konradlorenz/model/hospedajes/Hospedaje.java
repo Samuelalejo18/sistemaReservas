@@ -27,6 +27,7 @@ public class Hospedaje {
 		this.numeroEstrellas = numeroEstrellas;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
+		this.url= url;
 		this.precioPorPersona = precioPorPersona;
 		habitaciones = new ArrayList<>();
 	
