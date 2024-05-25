@@ -13,17 +13,16 @@ public class Cabana extends Hospedaje  {
 	}
 
 	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas,
-			String descripcion, String tipo,double precioPorPersona, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona);
+			String descripcion, String tipo,double precioPorPersona,String url, String decoracion, boolean vistasExclusivas, String actividadesExtra) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url);
 		this.decoracion = decoracion;
 		this.vistasExclusivas = vistasExclusivas;
 		this.actividadesExtra = actividadesExtra;
 		
 	}
 	
-	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion,
-	String tipo, double precioPorPersona) {
-		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona); 
+	public Cabana(String nombre, String ubicacionCiudad, String ubicacionPais, int numeroEstrellas, String descripcion, String tipo, double precioPorPersona, String url) {
+		super(nombre, ubicacionCiudad, ubicacionPais, numeroEstrellas, descripcion, tipo, precioPorPersona, url); 
 		// TODO Auto-generated constructor stub
 	}
 	
