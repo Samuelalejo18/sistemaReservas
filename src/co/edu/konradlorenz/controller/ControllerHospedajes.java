@@ -650,7 +650,7 @@ public class ControllerHospedajes implements ActionListener {
 	public void registrarHospedajes() {
 
 		/* Cabañas */
-		Cabana cabana1 = new Cabana("Cabaña las mercedes", "Villeta", "Colombia", 2, "Cabaña bonita", "Cabaña rural",
+		Cabana cabana1 = new Cabana("Cabaña las mercedes", "Villeta", "Colombia", 2, "Cabaña bonita", "rural",
 				230000, "/imagenes2/Cabana-1.png", "Luces bonitas amarillas", true, "Baño frente a la cascada");
 		hospedajes.add(cabana1);
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(2, true, 50000,
@@ -717,12 +717,12 @@ public class ControllerHospedajes implements ActionListener {
 		cabana7.agregarHabitacion(habitacionDoble7);
 
 		Cabana cabana8 = new Cabana("Cabana de Campo", "Capitanejo", "Colombia", 5,
-				"Un refugio campestre con todas las comodidades", "Rural", 300000, "/imagenes2/Cabana-8.png", "", false,
+				"Un refugio campestre con todas las comodidades", "Rural", 300000, "/imagenes2/Cabana-8.png", "", true,
 				"");
 
 		hospedajes.add(cabana8);
-		HabitacionBase habitacionBase8 = new HabitacionBase(4, false, 0, "Wifi, TV, Aire acondicionado");
-		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, false, 45000, "King");
+		HabitacionBase habitacionBase8 = new HabitacionBase(4, true, 0, "Wifi, TV, Aire acondicionado");
+		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, true, 45000, "King");
 		cabana8.agregarHabitacion(habitacionBase8);
 		cabana8.agregarHabitacion(habitacionDoble8);
 

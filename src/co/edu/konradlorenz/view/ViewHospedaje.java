@@ -904,7 +904,7 @@ public class ViewHospedaje extends JFrame {
 				throw new Exception("El campo de pais no puede estar vacío.");
 
 			}
-			if (ciudad.matches("[a-zA-Z ]+")) {
+			if (ciudad.matches("[a-zA-ZñÑ ]+")) {
 				ciudadValida = true;
 
 			} else {
@@ -932,7 +932,7 @@ public class ViewHospedaje extends JFrame {
 				throw new Exception("El campo de pais no puede estar vacío.");
 
 			}
-			if (pais.matches("[a-zA-Z ]+")) {
+			if (pais.matches("[a-zA-ZñÑ ]+")) {
 				paisValido = true;
 
 			} else {
@@ -961,7 +961,7 @@ public class ViewHospedaje extends JFrame {
 
 			}
 
-			if (nombre.matches("[a-zA-Z ]+")) {
+			if (nombre.matches("[a-zA-ZñÑ ]+")) {
 				nombreValido = true;
 
 			} else {

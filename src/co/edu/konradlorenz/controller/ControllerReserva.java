@@ -4,10 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import co.edu.konradlorenz.model.cliente.Cliente;
+import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaException;
 import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
@@ -34,12 +36,18 @@ public class ControllerReserva implements ActionListener {
 	ArrayList<Hospedaje> hospedajes = ControllerHospedajes.getHospedajes();
 	ViewReserva viewReserva;
 	Hospedaje hospedajeAReservar;
+	Habitacion habitacionAReservar;
 	RoundButtonCircle btnBuscarNombre;
+	JComboBox<String> cboNumeroHabitacion;
+	JComboBox<String> cboNumeroPersonas;
+	JComboBox<String> cboNumeroNoches;
 
 	public ControllerReserva() {
 		viewReserva = new ViewReserva();
 		btnBuscarNombre = viewReserva.getBtnBuscarNombre();
-		
+		cboNumeroHabitacion = viewReserva.getCboNumeroHabitacion();
+
+		cboNumeroHabitacion.addActionListener(this);
 		btnBuscarNombre.addActionListener(this);
 		mostrarVentanaReserva(true);
 	}
@@ -52,14 +60,34 @@ public class ControllerReserva implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnBuscarNombre) {
+			viewReserva.getJpnHabitaciones().removeAll();
 			viewReserva.getJpnHospedajeAReservar().removeAll();
+	;
 			try {
 
 				hospedajeAReservar = reservarHospedaje(viewReserva.pedirNombreHospedaje());
+				habitacionesDisponibles(hospedajeAReservar.getHabitaciones());
+
 			} catch (HospedajeNoEncontradoException e1) {
 				JOptionPane.showMessageDialog(viewReserva, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				e1.printStackTrace();
 			}
+		}
+
+		if (e.getSource() == cboNumeroHabitacion) {
+			viewReserva.getJpnHabitacionAreservar().removeAll();
+			if (hospedajeAReservar != null) {
+				try {
+					int opcionNumeroHabitacion = (int) cboNumeroHabitacion.getSelectedIndex() + 1;
+					habitacionAReservar = habitacionAreservar(opcionNumeroHabitacion, hospedajeAReservar.getHabitaciones());
+				} catch (HabitacionNoEncontradaException e1) {
+					JOptionPane.showMessageDialog(viewReserva, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+			}else {
+				JOptionPane.showMessageDialog(viewReserva, "Primero busca el hospedaje a reservar", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+
 		}
 
 	}
@@ -126,13 +154,52 @@ public class ControllerReserva implements ActionListener {
 	public void habitacionesDisponibles(ArrayList<Habitacion> habitaciones) {
 		// viewReservaPrueba.mostrarHabitacionesDisponibles();
 		// viewReservaPrueba.mostrarTituloHabitacion();
+		int x = 21;
+		int y = 47;
 		for (Habitacion habitacion : habitaciones) {
-			// String tipoHabitacion = hallarTipoHabitacion(habitacion);
+			String tipoHabitacion = hallarTipoHabitacion(habitacion);
+			RoundedPanel card = viewReserva.mostrarPanelHabitacionesDisponibles(tipoHabitacion,
+					habitacion.getCapacidad(), habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
+					habitacion.getPrecioAdicionalPorTipoHabitacion(), "/imagenes/cabana.png");
+			card.setBounds(x, y, 269, 336);
+			viewReserva.getJpnHabitaciones().add(card);
+			x += 320;
+
+			if (x >= 1250) {
+				x = 21;
+				y += 380;
+
+			}
+
 			// viewReservaPrueba.imprimirTablaHabitacion(tipoHabitacion,
 			// habitacion.getCapacidad(),
 			// habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
 			// habitacion.getPrecioAdicionalPorTipoHabitacion());
 		}
+
+	}
+
+	public Habitacion habitacionAreservar(int numeroDeLaHabitacionAReservar, ArrayList<Habitacion> habitacionesAreservar) throws HabitacionNoEncontradaException {
+		boolean habitacionEncontrada = false;
+
+		for (Habitacion habitacion : habitacionesAreservar) {
+			if (habitacion.getNumeroHabitacion() == numeroDeLaHabitacionAReservar) {
+				habitacionAReservar = habitacion;
+				habitacionEncontrada = true;
+				String tipoHabitacion = hallarTipoHabitacion(habitacion);
+				RoundedPanel card = viewReserva.mostrarPanelHabitacionAreservar(tipoHabitacion,
+						habitacion.getCapacidad(), habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
+						habitacion.getPrecioAdicionalPorTipoHabitacion(), "/imagenes/cabana.png");
+				viewReserva.getJpnHabitacionAreservar().add(card);
+				
+			}
+
+		}
+
+		if (!habitacionEncontrada) {
+			throw new HabitacionNoEncontradaException("La habitacion no existe");
+		}
+		return habitacionAReservar;
 
 	}
 
