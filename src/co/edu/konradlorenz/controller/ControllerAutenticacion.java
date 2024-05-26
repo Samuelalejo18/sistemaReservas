@@ -284,7 +284,8 @@ public class ControllerAutenticacion implements ActionListener {
 	/*
 	 * int numeroPersonas = ViewReserva.ingresarNumeroPersonas(); if
 	 * (habitacionReservada.getCapacidad() >= numeroPersonas) { int numeroNoches =
-	 * ViewReserva.ingresarNumeroNoches(); Reserva reserva = new
+	 * ViewReserva.ingresarNumeroNoches(); 
+	 * Reserva reserva = new
 	 * Reserva(usuarioAutenticado, fechaEntrada, fechaSalida, hospedajeAReservar,
 	 * habitacionReservada, numeroPersonas, numeroNoches);
 	 * 
