@@ -369,28 +369,25 @@ public class ControllerReserva implements ActionListener {
 		}
 	}
 
-	public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
-		System.out.println("Metodos de pago");
-
-		int opcion = -1;
-		while (opcion != 0) {
-			System.out.println(" 1.Aregar Tareta");
-			System.out.println("2.Tarjetas ya registradas");
-			// opcion = viewReservaPrueba.pedirOpcion();
-			switch (opcion) {
-			case 1:
-				// Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(),
-				// viewReservaPrueba.pedirBanco(),
-				// viewReservaPrueba.pedirCodigoDeseguridad(),
-				// viewReservaPrueba.pedirNombreTitular(),
-				// viewReservaPrueba.pedirNumeroDetarjeta(), null,
-				// viewReservaPrueba.pedirSaldo(),
-				// viewReservaPrueba.pedirItereses());
-				// clienteAutenticado.agregarTarjeta(tarjetaCredito);
-				// int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
-				// tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
-				// tarjetaCredito.setCuotas(numeroCuotas);
-				// try {
+    public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
+        System.out.println("Metodos de pago");
+/* 
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println(" 1.Aregar Tareta");
+            System.out.println("2.Tarjetas ya registradas");
+            opcion = viewReservaPrueba.pedirOpcion();
+            switch (opcion) {
+                case 1:
+                    Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(), viewReservaPrueba.pedirBanco(),
+                            viewReservaPrueba.pedirCodigoDeseguridad(), viewReservaPrueba.pedirNombreTitular(),
+                            viewReservaPrueba.pedirNumeroDetarjeta(), null, viewReservaPrueba.pedirSaldo(),
+                            viewReservaPrueba.pedirItereses());
+                    clienteAutenticado.agregarTarjeta(tarjetaCredito);
+                    int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
+                    tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
+                    tarjetaCredito.setCuotas(numeroCuotas);
+                    try {
 
 				// viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
 				// } catch (SaldoInsuficienteException e) {
@@ -410,7 +407,7 @@ public class ControllerReserva implements ActionListener {
 			}
 
 		}
-
+*/
 	}
 
 }
