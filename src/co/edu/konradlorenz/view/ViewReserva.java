@@ -57,6 +57,7 @@ public class ViewReserva extends JFrame {
 	private JDateChooser dataChooserIngreso;
 	
 	private RoundButton btnFecha;
+	private JLabel lblHospedajeAReservar_1_1_2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -339,13 +340,20 @@ public class ViewReserva extends JFrame {
 		jpnHabitacionAreservar_1.add(lblHospedajeAReservar_1_1_1);
 		
 		RoundButton btnCerrarSesion_1 = new RoundButton("Registrarse");
-		btnCerrarSesion_1.setText("Cerrar Sesión");
+		btnCerrarSesion_1.setText("Crear reserva");
 		btnCerrarSesion_1.setForeground(new Color(16, 6, 38));
 		btnCerrarSesion_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
 		btnCerrarSesion_1.setBorderPainted(false);
 		btnCerrarSesion_1.setBackground(Color.WHITE);
-		btnCerrarSesion_1.setBounds(164, 47, 207, 48);
+		btnCerrarSesion_1.setBounds(159, 104, 207, 48);
 		jpnHabitacionAreservar_1.add(btnCerrarSesion_1);
+		
+		lblHospedajeAReservar_1_1_2 = new JLabel("Para crear la reserva, debes llenar todos los datos");
+		lblHospedajeAReservar_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1_1_2.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1_1_2.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 20));
+		lblHospedajeAReservar_1_1_2.setBounds(0, 45, 525, 48);
+		jpnHabitacionAreservar_1.add(lblHospedajeAReservar_1_1_2);
 
 		// Example card panel with rounded corners inside the main panel
 
