@@ -17,6 +17,7 @@ import co.edu.konradlorenz.model.excepciones.CapacidadInsuficienteException;
 import co.edu.konradlorenz.model.excepciones.HabitacionNoDisponibleException;
 import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaException;
 import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
+import co.edu.konradlorenz.model.excepciones.ReservaNoCreadaException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.habitaciones.HabitacionBase;
 import co.edu.konradlorenz.model.habitaciones.HabitacionDoble;
@@ -55,6 +56,9 @@ public class ControllerReserva implements ActionListener {
 	RoundButton btnFecha;
 	Date fechaDeIngreso;
 	Date fechaSalida;
+	RoundButton btnPagar;
+
+	RoundButton btnCrearReserva;
 
 	public ControllerReserva() {
 		viewReserva = new ViewReserva();
@@ -62,9 +66,11 @@ public class ControllerReserva implements ActionListener {
 		cboNumeroHabitacion = viewReserva.getCboNumeroHabitacion();
 		cboNumeroPersonas = viewReserva.getCboNumeroPersonas();
 		cboNumeroNoches = viewReserva.getCboNumeroNoches();
-
 		dataChooserIngreso = viewReserva.getDataChooserIngreso();
 		btnFecha = viewReserva.getBtnFecha();
+
+		btnCrearReserva = viewReserva.getBtnCrearReserva();
+		btnCrearReserva.addActionListener(this);
 		cboNumeroHabitacion.addActionListener(this);
 		cboNumeroPersonas.addActionListener(this);
 		cboNumeroNoches.addActionListener(this);
@@ -179,8 +185,9 @@ public class ControllerReserva implements ActionListener {
 			 * JOptionPane.ERROR_MESSAGE); } else {
 			 */
 			fechaDeIngreso = dataChooserIngreso.getDate();
+			
 
-			if (fechaDeIngreso != null || numeroDeNoches > 0) {
+			if (fechaDeIngreso != null && numeroDeNoches > 0) {
 				JOptionPane.showMessageDialog(viewReserva, "Fecha de ingreso : " + fechaDeIngreso, "Información",
 						JOptionPane.INFORMATION_MESSAGE);
 
@@ -203,6 +210,18 @@ public class ControllerReserva implements ActionListener {
 			}
 			// }
 
+		}
+
+		if (e.getSource() == btnCrearReserva) {
+			Cliente usuarioAutenticado = ControllerAutenticacion.usuarioAutenticado;
+			try {
+				crearReserva(usuarioAutenticado, fechaDeIngreso, fechaSalida, hospedajeAReservar, habitacionAReservar,
+						numeroDePersonas, numeroDeNoches);
+			} catch (ReservaNoCreadaException e1) {
+
+				JOptionPane.showMessageDialog(viewReserva, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
 		}
 
 	}
@@ -340,11 +359,41 @@ public class ControllerReserva implements ActionListener {
 	}
 
 	public void crearReserva(Cliente cliente, Date fechaEntrada, Date fechaSalida, Hospedaje hospedajeReservado,
-			Habitacion habitacionReservada, int cantidadDePersonas, int numeroNoches)  {
-		Reserva reserva = new Reserva(cliente, fechaEntrada, fechaSalida, hospedajeReservado, habitacionReservada,cantidadDePersonas, numeroNoches);
-		double precioTotal = reserva.calcularPrecioTotal(cantidadDePersonas, numeroNoches);
-		
-		
+			Habitacion habitacionReservada, int cantidadDePersonas, int numeroNoches) throws ReservaNoCreadaException {
+		if (cliente == null) {
+			throw new ReservaNoCreadaException(" el cliente no esta auntenticado");
+		} else if (hospedajeReservado == null) {
+			throw new ReservaNoCreadaException(" EL hospedaje no ha sido agregado");
+		} else if (habitacionReservada == null) {
+			throw new ReservaNoCreadaException(" La habitacion no ha sido agregado");
+		} else if (cantidadDePersonas == 0) {
+			throw new ReservaNoCreadaException(" La cantidad de personas  no ha sido agregada");
+		} else if (numeroNoches == 0) {
+			throw new ReservaNoCreadaException(" La cantidad de noches no ha sido agregada");
+		} else {
+			Reserva reserva = new Reserva(cliente, fechaEntrada, fechaSalida, hospedajeReservado, habitacionReservada,
+					cantidadDePersonas, numeroNoches);
+
+			String tipoHospedaje = hallarTipoHospedaje(hospedajeReservado);
+			String tipoHabitacion = hallarTipoHabitacion(habitacionReservada);
+			double precioTotal = reserva.calcularPrecioTotal(cantidadDePersonas, numeroNoches);
+			RoundedPanel  jpnReserva= viewReserva.crearReserva(cliente.getNombre(), cliente.getApellido(), cliente.getId(), cliente.getEmail(),
+					cliente.getNumeroTelefono(), fechaEntrada, fechaSalida, tipoHospedaje,
+					hospedajeAReservar.getNombre(), hospedajeAReservar.getUbicacionCiudad(),
+					hospedajeAReservar.getUbicacionPais(), tipoHabitacion, habitacionReservada.getNumeroHabitacion(),
+					cantidadDePersonas, numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
+					habitacionReservada.getPrecioAdicionalPorTipoHabitacion(), reserva.subtotal(), precioTotal);
+			viewReserva.getJpnReservaDeFondo().add(jpnReserva);
+			
+			/*
+			else if (fechaEntrada == null) {
+				throw new ReservaNoCreadaException(" La fecha de entrada no ha sido agregada");
+			} else if (fechaSalida == null) {
+				throw new ReservaNoCreadaException(" La fecha de salida no ha sido agregada");
+			} 
+			*/
+		}
+
 	}
 
 	public void metodosDepago(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
@@ -369,45 +418,33 @@ public class ControllerReserva implements ActionListener {
 		}
 	}
 
-    public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
-        System.out.println("Metodos de pago");
-/* 
-        int opcion = -1;
-        while (opcion != 0) {
-            System.out.println(" 1.Aregar Tareta");
-            System.out.println("2.Tarjetas ya registradas");
-            opcion = viewReservaPrueba.pedirOpcion();
-            switch (opcion) {
-                case 1:
-                    Credito tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(), viewReservaPrueba.pedirBanco(),
-                            viewReservaPrueba.pedirCodigoDeseguridad(), viewReservaPrueba.pedirNombreTitular(),
-                            viewReservaPrueba.pedirNumeroDetarjeta(), null, viewReservaPrueba.pedirSaldo(),
-                            viewReservaPrueba.pedirItereses());
-                    clienteAutenticado.agregarTarjeta(tarjetaCredito);
-                    int numeroCuotas = viewReservaPrueba.pedirNumeroDeCuotas();
-                    tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
-                    tarjetaCredito.setCuotas(numeroCuotas);
-                    try {
-
-				// viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
-				// } catch (SaldoInsuficienteException e) {
-				// viewReservaPrueba.mostrarMensaje(e.getMessage());
-				// e.printStackTrace();
-				// }
-				opcion = 0;
-				break;
-			case 2:
-				if (tarjetas.isEmpty()) {
-
-					System.out.println("No hay ninguna tarjeta registrada");
-				}
-				break;
-			default:
-				break;
-			}
-
-		}
-*/
+	public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
+		System.out.println("Metodos de pago");
+		/*
+		 * int opcion = -1; while (opcion != 0) {
+		 * System.out.println(" 1.Aregar Tareta");
+		 * System.out.println("2.Tarjetas ya registradas"); opcion =
+		 * viewReservaPrueba.pedirOpcion(); switch (opcion) { case 1: Credito
+		 * tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(),
+		 * viewReservaPrueba.pedirBanco(), viewReservaPrueba.pedirCodigoDeseguridad(),
+		 * viewReservaPrueba.pedirNombreTitular(),
+		 * viewReservaPrueba.pedirNumeroDetarjeta(), null,
+		 * viewReservaPrueba.pedirSaldo(), viewReservaPrueba.pedirItereses());
+		 * clienteAutenticado.agregarTarjeta(tarjetaCredito); int numeroCuotas =
+		 * viewReservaPrueba.pedirNumeroDeCuotas();
+		 * tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
+		 * tarjetaCredito.setCuotas(numeroCuotas); try {
+		 * 
+		 * // viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
+		 * // } catch (SaldoInsuficienteException e) { //
+		 * viewReservaPrueba.mostrarMensaje(e.getMessage()); // e.printStackTrace(); //
+		 * } opcion = 0; break; case 2: if (tarjetas.isEmpty()) {
+		 * 
+		 * System.out.println("No hay ninguna tarjeta registrada"); } break; default:
+		 * break; }
+		 * 
+		 * }
+		 */
 	}
 
 }
