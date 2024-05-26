@@ -327,16 +327,25 @@ public class ViewReserva extends JFrame {
 		
 		RoundedPanel jpnHabitacionAreservar_1 = new RoundedPanel(50);
 		jpnHabitacionAreservar_1.setLayout(null);
-		jpnHabitacionAreservar_1.setBackground(new Color(179, 170, 255));
-		jpnHabitacionAreservar_1.setBounds(1197, 34, 525, 400);
+		jpnHabitacionAreservar_1.setBackground(new Color(16, 6, 38));
+		jpnHabitacionAreservar_1.setBounds(1197, 34, 525, 819);
 		jpnBackGround.add(jpnHabitacionAreservar_1);
 		
-		JLabel lblHospedajeAReservar_1_1_1 = new JLabel("Habitación a reservar");
+		JLabel lblHospedajeAReservar_1_1_1 = new JLabel("Reserva");
 		lblHospedajeAReservar_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHospedajeAReservar_1_1_1.setForeground(Color.WHITE);
 		lblHospedajeAReservar_1_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
-		lblHospedajeAReservar_1_1_1.setBounds(0, 0, 327, 48);
+		lblHospedajeAReservar_1_1_1.setBounds(0, 0, 525, 48);
 		jpnHabitacionAreservar_1.add(lblHospedajeAReservar_1_1_1);
+		
+		RoundButton btnCerrarSesion_1 = new RoundButton("Registrarse");
+		btnCerrarSesion_1.setText("Cerrar Sesión");
+		btnCerrarSesion_1.setForeground(new Color(16, 6, 38));
+		btnCerrarSesion_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		btnCerrarSesion_1.setBorderPainted(false);
+		btnCerrarSesion_1.setBackground(Color.WHITE);
+		btnCerrarSesion_1.setBounds(164, 47, 207, 48);
+		jpnHabitacionAreservar_1.add(btnCerrarSesion_1);
 
 		// Example card panel with rounded corners inside the main panel
 
@@ -453,6 +462,12 @@ public class ViewReserva extends JFrame {
 
 	public RoundedPanel mostrarPanelHabitacionesDisponibles(String tH, int capacidad, boolean disponibilidad,
 			int numeroHabitacion, double precioAdicionalPorTipoHabitacion, String imagen) {
+		 JLabel lblHabitacionesDisponibles = new JLabel("Habitaciones disponibles");
+		lblHabitacionesDisponibles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHabitacionesDisponibles.setForeground(new Color(0, 0, 0));
+		lblHabitacionesDisponibles.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHabitacionesDisponibles.setBounds(0, 0, 801, 48);
+		jpnHabitaciones.add(lblHabitacionesDisponibles);
 
 		RoundedPanel jpnCardHabitacionesDisponibles = new RoundedPanel(50);
 		jpnCardHabitacionesDisponibles.setLayout(null);
