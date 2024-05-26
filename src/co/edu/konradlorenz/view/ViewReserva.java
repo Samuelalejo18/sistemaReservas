@@ -474,7 +474,7 @@ public class ViewReserva extends JFrame {
 
 		JLabel lblImagenHabitacion_1 = new JLabel("");
 		lblImagenHabitacion_1.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
-		lblImagenHabitacion_1.setBounds(0, 0, 249, 96);
+		lblImagenHabitacion_1.setBounds(124, 0, 64, 64);
 		jpnImagen.add(lblImagenHabitacion_1);
 
 		JLabel lblTipoHabitacion_1 = new JLabel("Tipo: " + tH);

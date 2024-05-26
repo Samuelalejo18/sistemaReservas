@@ -128,18 +128,17 @@ public class ControllerHospedajes implements ActionListener {
 
 		if (e.getSource() == btnReservar) {
 			Cliente usuarioAutenticado = ControllerAutenticacion.usuarioAutenticado;
-			// if (usuarioAutenticado != null) {
-			viewHospedaje.dispose();
+			if (usuarioAutenticado != null) {
+				viewHospedaje.dispose();
+				ControllerReserva controllerReserva = new ControllerReserva();
 
-			viewHospedaje.setVisible(false);
-			// } else {
+				viewHospedaje.setVisible(false);
+			} else {
 
-			ControllerReserva controllerReserva = new ControllerReserva();
-			// JOptionPane.showMessageDialog(viewHospedaje, "Autentificate para reservar",
-			// "Error",
-			// JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(viewHospedaje, "Autentificate para reservar", "Error",
+						JOptionPane.ERROR_MESSAGE);
 
-			// }
+			}
 
 		}
 

@@ -76,10 +76,10 @@ public class ControllerReserva implements ActionListener {
 		cboNumeroNoches.addActionListener(this);
 		btnBuscarNombre.addActionListener(this);
 		btnFecha.addActionListener(this);
-		rndbtnHospedajes.btnFecha.addActionListener(this);
+		rndbtnHospedajes.addActionListener(this);
 		mostrarVentanaReserva(true);
 	}
-	
+
 	public void mostrarVentanaReserva(boolean visible) {
 		viewReserva.setVisible(true);
 		viewReserva.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -236,6 +236,7 @@ public class ControllerReserva implements ActionListener {
 				encontradoNombre = true;
 				hospedajeAReservar = hospedaje;
 				String tipoHospedaje = hallarTipoHospedaje(hospedaje);
+				
 				RoundedPanel card = viewReserva.mostrarPanelHospedaje(tipoHospedaje, hospedaje.getNombre(),
 						hospedaje.getUbicacionCiudad(), hospedaje.getUbicacionPais(), hospedaje.getNumeroEstrellas(),
 						hospedaje.getDescripcion(), hospedaje.getTipo(), hospedaje.getPrecioPorPersona(),
@@ -270,16 +271,19 @@ public class ControllerReserva implements ActionListener {
 
 		String tipoUrl = "";
 		if (habitacion instanceof HabitacionBase) {
-			tipoUrl = "/imagenes2/Cama4.png";
+			tipoUrl = "/imagenes/base.png";
 		} else if (habitacion instanceof HabitacionDoble) {
-			tipoUrl = "/imagenes2/Cama3.png";
+			tipoUrl = "/imagenes/doble.png";
 		} else if (habitacion instanceof HabitacionPresidencial) {
-			tipoUrl = "/imagenes2/Cama2.png";
+			tipoUrl = "/imagenes/precidencial.png";
 		} else if (habitacion instanceof HabitacionSuite) {
-			tipoUrl = "/imagenes2/Cama1.png";
+			tipoUrl = "/imagenes/suite.png";
 		}
 		return tipoUrl;
+		
 	}
+	
+	
 	public String hallarTipoHospedaje(Hospedaje hospedaje) {
 		String tipoHospedaje = "no existe";
 		if (hospedaje instanceof Hotel) {
@@ -303,13 +307,12 @@ public class ControllerReserva implements ActionListener {
 		// viewReservaPrueba.mostrarTituloHabitacion();
 		int x = 21;
 		int y = 47;
-		
 		for (Habitacion habitacion : habitaciones) {
-			String urlHabitacion= hallarTipoHablitacionUrl(habitacion);
 			String tipoHabitacion = hallarTipoHabitacion(habitacion);
+			String url= hallarTipoHablitacionUrl(habitacion);
 			RoundedPanel card = viewReserva.mostrarPanelHabitacionesDisponibles(tipoHabitacion,
 					habitacion.getCapacidad(), habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-					habitacion.getPrecioAdicionalPorTipoHabitacion(),urlHabitacion);
+					habitacion.getPrecioAdicionalPorTipoHabitacion(), url);
 			card.setBounds(x, y, 269, 336);
 			viewReserva.getJpnHabitaciones().add(card);
 			x += 320;
@@ -335,15 +338,14 @@ public class ControllerReserva implements ActionListener {
 		boolean habitacionEstaDiponible = false;
 
 		for (Habitacion habitacion : habitacionesAreservar) {
-			String urlHabitacion = hallarTipoHablitacionUrl(habitacion);
 			if (habitacion.getNumeroHabitacion() == numeroDeLaHabitacionAReservar) {
 				habitacionAReservar = habitacion;
 				habitacionEncontrada = true;
-				
+				String url= hallarTipoHablitacionUrl(habitacion);
 				String tipoHabitacion = hallarTipoHabitacion(habitacion);
 				RoundedPanel card = viewReserva.mostrarPanelHabitacionAreservar(tipoHabitacion,
 						habitacion.getCapacidad(), habitacion.isDisponible(), habitacion.getNumeroHabitacion(),
-						habitacion.getPrecioAdicionalPorTipoHabitacion(), urlHabitacion);
+						habitacion.getPrecioAdicionalPorTipoHabitacion(), url);
 				viewReserva.getJpnHabitacionAreservar().add(card);
 
 				if (habitacion.isDisponible()) {
