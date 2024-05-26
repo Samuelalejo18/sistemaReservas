@@ -1,0 +1,54 @@
+setBounds(120, 100, 1280, 800);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Configuración del contentpane
+        contentPane = new JPanel();
+        setContentPane(contentPane);
+        contentPane.setBackground(new Color(16, 6, 38));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(new BorderLayout());
+
+        //Configuración logo
+        if (new java.io.File(logoPath).exists()) {
+            ImageIcon originalLogo = new ImageIcon(logoPath);
+            Image scaledImage = originalLogo.getImage().getScaledInstance(200, 25, Image.SCALE_SMOOTH); 
+            lblImg = new JLabel(new ImageIcon(scaledImage));
+            lblImg.setBorder(new EmptyBorder(20, 50, 0, 0));
+            topPanel.add(lblImg);
+        } else {
+            System.out.println("La imagen del logo no se encuentra en la ruta especificada");
+        }
+
+        // COnfiguración del panel con contenido
+        mainPanel = new JPanel();
+        mainPanel.setLayout(null);
+        mainPanel.setBackground(new Color(16, 6, 38));
+        mainPanel.setBorder(new EmptyBorder(400, 0, 0, 0));
+
+        String imgPath = "/home/julian-homez/reservas/sistemaReservas/card.png";
+
+        if (new java.io.File(imgPath).exists()) {
+            lblImgCard = new JLabel(new ImageIcon(imgPath));
+            lblImgCard.setBounds(780, 10, 500, 500);
+            mainPanel.add(lblImgCard);
+        } else {
+            System.out.println("Imagen no encontrada en la ruta especifica");
+        }
+
+        getContentPane().add(mainPanel);
+    }
+          
+    // Metodo para validar si los campos tienen los datos ingresados, devuelve un booleano
+    private boolean validateInput(String cardNumber, String expirationDate, String cvv, String cardHolder,String identificationType, String identificationNumberField) {
+        return !cardNumber.isEmpty() && !expirationDate.isEmpty() && !cvv.isEmpty() && !cardHolder.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ViewPago().setVisible(true);
+            }
+        });
+    }

@@ -51,7 +51,6 @@ public class ControllerReserva implements ActionListener {
 	JComboBox<String> cboNumeroNoches;
 	int numeroDePersonas = 0;
 	int numeroDeNoches = 0;
-
 	JDateChooser dataChooserIngreso;
 	RoundButton btnFecha;
 	Date fechaDeIngreso;

@@ -1064,27 +1064,27 @@ public class ControllerHospedajes implements ActionListener {
 
 		/* Moteles */
 		Motel motel1 = new Motel("Motel Íntimo", "Las Vegas", "Estados Unidos", 3, "Un motel para momentos especiales",
-				"Urbano", 200000, "/imagenes2/Hotel-2.png", "Romántica", true, "Servicio a la habitación");
+				"Urbano", 200000, "/imagenes2/Motel-1.png", "Romántica", true, "Servicio a la habitación");
 
 		HabitacionBase habitacionBaseMotel = new HabitacionBase(2, true, 500000, "Cama 4k");
 
 		motel1.agregarHabitacion(habitacionBaseMotel);
 		Motel motel2 = new Motel("Motel Temático", "Cancun", "Mexico", 3, "Cada habitación con una temática diferente",
-				"Urbano", 5000000, "/imagenes2/Hotel-2.png", "Fantassía", true, "Desayuno incluido");
+				"Urbano", 5000000, "/imagenes2/Motel-2.png", "Fantassía", true, "Desayuno incluido");
 
 		HabitacionSuite habitacionSuiteMotel = new HabitacionSuite(2, true, 100000, "null");
 
 		motel2.agregarHabitacion(habitacionSuiteMotel);
 
 		Motel motel3 = new Motel("Motel de Lujo", "Bangkok", "Tailandia", 4, "Con instalaciones de primer nivel",
-				"Urbano", 230000, "/imagenes2/Hotel-2.png", "Elegante", true, "Spa privado");
+				"Urbano", 230000, "/imagenes2/Motel-3.png", "Elegante", true, "Spa privado");
 
 		HabitacionDoble habitacionDobleMotel = new HabitacionDoble(2, true, 90000, "null");
 
 		motel3.agregarHabitacion(habitacionDobleMotel);
 
 		Motel motel4 = new Motel("Motel Clásico", "Berlin", "Alemania", 3, "Con un estilo retro y acogedor", "Urbano",
-				240000, "/imagenes2/Hotel-2.png", "Clásica", false, "Bar en la habitación");
+				240000, "/imagenes2/Motel-4.png", "Clásica", false, "Bar en la habitación");
 
 		HabitacionPresidencial habitacionPresidencialMotel = new HabitacionPresidencial(2, true, 50000, "null");
 
