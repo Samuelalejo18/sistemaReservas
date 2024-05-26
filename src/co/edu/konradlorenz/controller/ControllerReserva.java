@@ -127,7 +127,6 @@ public class ControllerReserva {
 
     public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
         System.out.println("Metodos de pago");
-
         int opcion = -1;
         while (opcion != 0) {
             System.out.println(" 1.Aregar Tareta");
