@@ -58,6 +58,7 @@ public class ControllerReserva implements ActionListener {
 	RoundButton btnPagar;
 
 	RoundButton btnCrearReserva;
+	RoundButton rndbtnHospedajes;
 
 	public ControllerReserva() {
 		viewReserva = new ViewReserva();
@@ -67,7 +68,7 @@ public class ControllerReserva implements ActionListener {
 		cboNumeroNoches = viewReserva.getCboNumeroNoches();
 		dataChooserIngreso = viewReserva.getDataChooserIngreso();
 		btnFecha = viewReserva.getBtnFecha();
-
+		rndbtnHospedajes = viewReserva.getRndbtnHospedajes();
 		btnCrearReserva = viewReserva.getBtnCrearReserva();
 		btnCrearReserva.addActionListener(this);
 		cboNumeroHabitacion.addActionListener(this);
@@ -75,6 +76,7 @@ public class ControllerReserva implements ActionListener {
 		cboNumeroNoches.addActionListener(this);
 		btnBuscarNombre.addActionListener(this);
 		btnFecha.addActionListener(this);
+		rndbtnHospedajes.btnFecha.addActionListener(this);
 		mostrarVentanaReserva(true);
 	}
 
@@ -184,7 +186,6 @@ public class ControllerReserva implements ActionListener {
 			 * JOptionPane.ERROR_MESSAGE); } else {
 			 */
 			fechaDeIngreso = dataChooserIngreso.getDate();
-			
 
 			if (fechaDeIngreso != null && numeroDeNoches > 0) {
 				JOptionPane.showMessageDialog(viewReserva, "Fecha de ingreso : " + fechaDeIngreso, "Información",
@@ -195,7 +196,7 @@ public class ControllerReserva implements ActionListener {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(fechaDeIngreso);
 				cal.add(Calendar.DATE, nightsToAdd);
-				Date fechaSalida = cal.getTime();
+				fechaSalida = cal.getTime();
 
 				JOptionPane
 						.showMessageDialog(viewReserva,
@@ -369,6 +370,10 @@ public class ControllerReserva implements ActionListener {
 			throw new ReservaNoCreadaException(" La cantidad de personas  no ha sido agregada");
 		} else if (numeroNoches == 0) {
 			throw new ReservaNoCreadaException(" La cantidad de noches no ha sido agregada");
+		} else if (fechaSalida == null) {
+			throw new ReservaNoCreadaException(" La fecha de salida no ha sido agregada");
+		} else if (fechaEntrada == null) {
+			throw new ReservaNoCreadaException(" La fecha de ingreso no ha sido agregada");
 		} else {
 			Reserva reserva = new Reserva(cliente, fechaEntrada, fechaSalida, hospedajeReservado, habitacionReservada,
 					cantidadDePersonas, numeroNoches);
@@ -376,74 +381,23 @@ public class ControllerReserva implements ActionListener {
 			String tipoHospedaje = hallarTipoHospedaje(hospedajeReservado);
 			String tipoHabitacion = hallarTipoHabitacion(habitacionReservada);
 			double precioTotal = reserva.calcularPrecioTotal(cantidadDePersonas, numeroNoches);
-			RoundedPanel  jpnReserva= viewReserva.crearReserva(cliente.getNombre(), cliente.getApellido(), cliente.getId(), cliente.getEmail(),
-					cliente.getNumeroTelefono(), fechaEntrada, fechaSalida, tipoHospedaje,
-					hospedajeAReservar.getNombre(), hospedajeAReservar.getUbicacionCiudad(),
+
+			RoundedPanel jpnReserva = viewReserva.crearReserva(cliente.getNombre(), cliente.getApellido(),
+					cliente.getId(), cliente.getEmail(), cliente.getNumeroTelefono(), fechaEntrada, fechaSalida,
+					tipoHospedaje, hospedajeAReservar.getNombre(), hospedajeAReservar.getUbicacionCiudad(),
 					hospedajeAReservar.getUbicacionPais(), tipoHabitacion, habitacionReservada.getNumeroHabitacion(),
 					cantidadDePersonas, numeroNoches, hospedajeAReservar.getPrecioPorPersona(),
 					habitacionReservada.getPrecioAdicionalPorTipoHabitacion(), reserva.subtotal(), precioTotal);
 			viewReserva.getJpnReservaDeFondo().add(jpnReserva);
-			
+
 			/*
-			else if (fechaEntrada == null) {
-				throw new ReservaNoCreadaException(" La fecha de entrada no ha sido agregada");
-			} else if (fechaSalida == null) {
-				throw new ReservaNoCreadaException(" La fecha de salida no ha sido agregada");
-			} 
-			*/
+			 * else if (fechaEntrada == null) { throw new
+			 * ReservaNoCreadaException(" La fecha de entrada no ha sido agregada"); } else
+			 * if (fechaSalida == null) { throw new
+			 * ReservaNoCreadaException(" La fecha de salida no ha sido agregada"); }
+			 */
 		}
 
-	}
-
-	public void metodosDepago(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
-		System.out.println("Metodos de pago");
-
-		int opcion = -1;
-		while (opcion != 0) {
-			System.out.println(" 1.Tarjeta de credito");
-			System.out.println("2.Tarjeta Debito");
-			// opcion = viewReservaPrueba.pedirOpcion();
-			switch (opcion) {
-			case 1:
-				opcionesCredito(clienteAutenticado, tarjetas, precioTotal);
-				opcion = 0;
-				break;
-			case 2:
-				break;
-			default:
-				break;
-			}
-
-		}
-	}
-
-	public void opcionesCredito(Cliente clienteAutenticado, ArrayList<Tarjeta> tarjetas, double precioTotal) {
-		System.out.println("Metodos de pago");
-		/*
-		 * int opcion = -1; while (opcion != 0) {
-		 * System.out.println(" 1.Aregar Tareta");
-		 * System.out.println("2.Tarjetas ya registradas"); opcion =
-		 * viewReservaPrueba.pedirOpcion(); switch (opcion) { case 1: Credito
-		 * tarjetaCredito = new Credito(viewReservaPrueba.pedirTipoTarjeta(),
-		 * viewReservaPrueba.pedirBanco(), viewReservaPrueba.pedirCodigoDeseguridad(),
-		 * viewReservaPrueba.pedirNombreTitular(),
-		 * viewReservaPrueba.pedirNumeroDetarjeta(), null,
-		 * viewReservaPrueba.pedirSaldo(), viewReservaPrueba.pedirItereses());
-		 * clienteAutenticado.agregarTarjeta(tarjetaCredito); int numeroCuotas =
-		 * viewReservaPrueba.pedirNumeroDeCuotas();
-		 * tarjetaCredito.calcularCredito(precioTotal, numeroCuotas);
-		 * tarjetaCredito.setCuotas(numeroCuotas); try {
-		 * 
-		 * // viewReservaPrueba.mostrarCompraTarjeta(tarjetaCredito.Pagar(precioTotal));
-		 * // } catch (SaldoInsuficienteException e) { //
-		 * viewReservaPrueba.mostrarMensaje(e.getMessage()); // e.printStackTrace(); //
-		 * } opcion = 0; break; case 2: if (tarjetas.isEmpty()) {
-		 * 
-		 * System.out.println("No hay ninguna tarjeta registrada"); } break; default:
-		 * break; }
-		 * 
-		 * }
-		 */
 	}
 
 }

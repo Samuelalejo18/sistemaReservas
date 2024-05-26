@@ -37,8 +37,6 @@ public class ViewReserva extends JFrame {
 
 	private JPanel jpnInfo;
 	private RoundedPanel jpnBackGround;
-	private RoundButton btnCerrarSesion;
-	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
 	private RoundedTextField txtNombreHospedajeAReservar;
 	private RoundedPanel jpnSeccionReserva;
@@ -66,6 +64,7 @@ public class ViewReserva extends JFrame {
 	private RoundButton btnCrearReserva;
 
 	private RoundedPanel jpnReservaDeFondo;
+	private RoundButton rndbtnHospedajes;
 
 	public ViewReserva() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,45 +85,6 @@ public class ViewReserva extends JFrame {
 		contentPane.add(jpnInfo);
 		jpnInfo.setLayout(null);
 
-		JPanel jpnSuperiorCentro_1 = new JPanel();
-		jpnSuperiorCentro_1.setLayout(null);
-		jpnSuperiorCentro_1.setBackground(new Color(16, 6, 38));
-		jpnSuperiorCentro_1.setBounds(510, 0, 547, 120);
-		jpnInfo.add(jpnSuperiorCentro_1);
-
-		JButton btnContactanos = new JButton("Contáctanos");
-		btnContactanos.setForeground(Color.WHITE);
-		btnContactanos.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
-		btnContactanos.setFocusable(false);
-		btnContactanos.setBorderPainted(false);
-		btnContactanos.setBackground(new Color(16, 6, 38));
-		btnContactanos.setBounds(182, 47, 172, 37);
-		jpnSuperiorCentro_1.add(btnContactanos);
-
-		JButton btnNosotros = new JButton("Nosotros");
-		btnNosotros.setForeground(Color.WHITE);
-		btnNosotros.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
-		btnNosotros.setFocusable(false);
-		btnNosotros.setBorderPainted(false);
-		btnNosotros.setBackground(new Color(16, 6, 38));
-		btnNosotros.setBounds(375, 47, 172, 37);
-		jpnSuperiorCentro_1.add(btnNosotros);
-
-		JButton btnHospedajes = new JButton("Hospedajes");
-		btnHospedajes.setForeground(Color.WHITE);
-		btnHospedajes.setFont(new Font("Raleway ExtraBold", Font.PLAIN, 20));
-		btnHospedajes.setFocusable(false);
-		btnHospedajes.setBorderPainted(false);
-		btnHospedajes.setBackground(new Color(16, 6, 38));
-		btnHospedajes.setBounds(0, 47, 172, 37);
-		jpnSuperiorCentro_1.add(btnHospedajes);
-
-		RoundedPanel jpnFiltrosCiudades_1_1 = new RoundedPanel(20);
-		jpnFiltrosCiudades_1_1.setLayout(null);
-		jpnFiltrosCiudades_1_1.setBackground(Color.WHITE);
-		jpnFiltrosCiudades_1_1.setBounds(390, 87, 140, 7);
-		jpnSuperiorCentro_1.add(jpnFiltrosCiudades_1_1);
-
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
 		lblNewLabel_3.setBounds(440, 461, 244, 96);
@@ -136,30 +96,27 @@ public class ViewReserva extends JFrame {
 		jpnInfo.add(jpnUsuario);
 		jpnUsuario.setLayout(null);
 
-		btnCerrarSesion = new RoundButton("Registrarse");
-		btnCerrarSesion.setBounds(128, 37, 207, 48);
-		jpnUsuario.add(btnCerrarSesion);
-		btnCerrarSesion.setText("Cerrar Sesión");
-		btnCerrarSesion.setBorderPainted(false);
-		btnCerrarSesion.setBackground(new Color(255, 255, 255));
-		btnCerrarSesion.setForeground(new Color(16, 6, 38));
-		btnCerrarSesion.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
-
-		lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(372, 0, 101, 120);
-		jpnUsuario.add(lblNewLabel_2);
-		lblNewLabel_2.setIcon(new ImageIcon(ViewAutenticacion.class.getResource("/imagenes/flechas-a-la-derecha.png")));
-
 		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(
 				new ImageIcon(ViewHospedaje.class.getResource("/imagenes/Captura de pantalla 2024-05-21 003128.png")));
 		lblNewLabel_4.setBounds(0, 0, 393, 120);
 		jpnInfo.add(lblNewLabel_4);
 
-		btnCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JLabel lblGraciasPorReservar = new JLabel("Gracias por reservar con Nosotros");
+		lblGraciasPorReservar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGraciasPorReservar.setForeground(new Color(255, 255, 255));
+		lblGraciasPorReservar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 30));
+		lblGraciasPorReservar.setBounds(150, 28, 801, 48);
+		jpnInfo.add(lblGraciasPorReservar);
+
+		rndbtnHospedajes = new RoundButton("Registrarse");
+		rndbtnHospedajes.setText("Hospedajes");
+		rndbtnHospedajes.setForeground(new Color(16, 6, 38));
+		rndbtnHospedajes.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		rndbtnHospedajes.setBorderPainted(false);
+		rndbtnHospedajes.setBackground(Color.WHITE);
+		rndbtnHospedajes.setBounds(999, 28, 207, 48);
+		jpnInfo.add(rndbtnHospedajes);
 
 		jpnBackGround = new RoundedPanel(50);
 		jpnBackGround.setBackground(new Color(51, 26, 108));
@@ -380,13 +337,7 @@ public class ViewReserva extends JFrame {
 		this.jpnHabitaciones = jpnHabitaciones;
 	}
 
-	public RoundButton getBtnCerrarSesion() {
-		return btnCerrarSesion;
-	}
-
-	public void setBtnCerrarSesion(RoundButton btnCerrarSesion) {
-		this.btnCerrarSesion = btnCerrarSesion;
-	}
+	
 
 	public RoundedTextField getTxtNombreHospedajeAReservar() {
 		return txtNombreHospedajeAReservar;
@@ -490,6 +441,17 @@ public class ViewReserva extends JFrame {
 
 	public void setJpnReservaDeFondo(RoundedPanel jpnReservaDeFondo) {
 		this.jpnReservaDeFondo = jpnReservaDeFondo;
+	}
+	
+	
+
+
+	public RoundButton getRndbtnHospedajes() {
+		return rndbtnHospedajes;
+	}
+
+	public void setRndbtnHospedajes(RoundButton rndbtnHospedajes) {
+		this.rndbtnHospedajes = rndbtnHospedajes;
 	}
 
 	public RoundedPanel mostrarPanelHabitacionesDisponibles(String tH, int capacidad, boolean disponibilidad,
@@ -735,14 +697,14 @@ public class ViewReserva extends JFrame {
 		lblNumeroTelefono.setBounds(0, 89, 505, 48);
 		jpnReserva.add(lblNumeroTelefono);
 
-		JLabel lblFechaDeEntrada = new JLabel("Fecha de entrada: " + fechaEntrada.toString());
+		JLabel lblFechaDeEntrada = new JLabel("Fecha de entrada: " + fechaEntrada);
 		lblFechaDeEntrada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaDeEntrada.setForeground(Color.WHITE);
 		lblFechaDeEntrada.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 16));
 		lblFechaDeEntrada.setBounds(0, 118, 533, 48);
 		jpnReserva.add(lblFechaDeEntrada);
 
-		JLabel lblFechaSalida = new JLabel("Fecha salida: " + fechaSalida.toString());
+		JLabel lblFechaSalida = new JLabel("Fecha salida: " + fechaSalida);
 		lblFechaSalida.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFechaSalida.setForeground(Color.WHITE);
 		lblFechaSalida.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 16));
