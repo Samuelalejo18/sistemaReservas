@@ -578,7 +578,7 @@ public class ViewReserva extends JFrame {
 		jpnImagenHabitacion.setLayout(null);
 
 		JLabel lblImagenHabitacion = new JLabel("");
-		lblImagenHabitacion.setBounds(0, 0, 249, 96);
+		lblImagenHabitacion.setBounds(39, 0, 249, 96);
 		jpnImagenHabitacion.add(lblImagenHabitacion);
 
 		lblImagenHabitacion.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
