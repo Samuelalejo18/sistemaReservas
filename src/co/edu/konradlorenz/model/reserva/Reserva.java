@@ -1,6 +1,8 @@
 package co.edu.konradlorenz.model.reserva;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import co.edu.konradlorenz.model.cliente.Cliente;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;

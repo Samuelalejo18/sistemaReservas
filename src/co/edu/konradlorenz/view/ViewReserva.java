@@ -24,6 +24,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import co.edu.konradlorenz.controller.ControllerAutenticacion;
 import co.edu.konradlorenz.model.cliente.Cliente;
 
@@ -43,7 +45,7 @@ public class ViewReserva extends JFrame {
 	private RoundButtonCircle btnBuscarNombre;
 	private JScrollPane scrollPaneHospedajes;
 	private JPanel jpnUsuario;
-	private JLabel lblNameUsuario;
+
 	private JLabel lblHabitacionesDisponibles;
 	private JLabel lblNumeroDeLa;
 	private RoundedPanel jpnHospedajeAReservar;
@@ -52,6 +54,9 @@ public class ViewReserva extends JFrame {
 	private JComboBox<String> cboNumeroPersonas;
 	private JComboBox<String> cboNumeroNoches;
 	private JLabel lblHospedajeAReservar;
+	private JDateChooser dataChooserIngreso;
+	
+	private RoundButton btnFecha;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -258,6 +263,28 @@ public class ViewReserva extends JFrame {
 		cboNumeroNoches.setBackground(new Color(51, 26, 108));
 		cboNumeroNoches.setBounds(46, 395, 217, 47);
 		jpnSeccionReserva.add(cboNumeroNoches);
+
+		dataChooserIngreso = new JDateChooser();
+
+		dataChooserIngreso.setBounds(46, 512, 217, 83);
+		jpnSeccionReserva.add(dataChooserIngreso);
+
+		JLabel lblFechaDeIngreso = new JLabel("Fecha de  ingreso");
+		lblFechaDeIngreso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFechaDeIngreso.setForeground(Color.BLACK);
+		lblFechaDeIngreso.setFont(new Font("Open Sans SemiBold", Font.BOLD, 20));
+		lblFechaDeIngreso.setBounds(0, 453, 307, 48);
+		jpnSeccionReserva.add(lblFechaDeIngreso);
+
+		btnFecha = new RoundButton("Registrarse");
+		btnFecha.setText("fecha de ingreso");
+		btnFecha.setForeground(new Color(16, 6, 38));
+		btnFecha.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 21));
+		btnFecha.setBorderPainted(false);
+		btnFecha.setBackground(Color.WHITE);
+		btnFecha.setBounds(56, 622, 207, 48);
+		jpnSeccionReserva.add(btnFecha);
+
 		// Main panel with rounded corners inside the scroll pane
 		jpnHabitaciones = new RoundedPanel(50);
 		jpnHabitaciones.setBackground(new Color(255, 255, 255));
@@ -267,7 +294,7 @@ public class ViewReserva extends JFrame {
 		scrollPaneHospedajes = new CustomScrollPane(jpnHabitaciones, 50);
 		;
 		scrollPaneHospedajes.setBorder(null);
-		scrollPaneHospedajes.setBounds(368, 34, 1350, 400); // Set bounds for the scroll pane
+		scrollPaneHospedajes.setBounds(368, 34, 800, 400); // Set bounds for the scroll pane
 		scrollPaneHospedajes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneHospedajes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jpnBackGround.add(scrollPaneHospedajes);
@@ -275,7 +302,7 @@ public class ViewReserva extends JFrame {
 		jpnHabitacionAreservar = new RoundedPanel(50);
 		jpnHabitacionAreservar.setLayout(null);
 		jpnHabitacionAreservar.setBackground(new Color(179, 170, 255));
-		jpnHabitacionAreservar.setBounds(723, 453, 327, 400);
+		jpnHabitacionAreservar.setBounds(786, 453, 327, 400);
 		jpnBackGround.add(jpnHabitacionAreservar);
 
 		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitación a reservar");
@@ -288,7 +315,7 @@ public class ViewReserva extends JFrame {
 		jpnHospedajeAReservar = new RoundedPanel(50);
 		jpnHospedajeAReservar.setLayout(null);
 		jpnHospedajeAReservar.setBackground(new Color(179, 170, 255));
-		jpnHospedajeAReservar.setBounds(368, 453, 327, 400);
+		jpnHospedajeAReservar.setBounds(411, 453, 327, 400);
 		jpnBackGround.add(jpnHospedajeAReservar);
 
 		lblHospedajeAReservar = new JLabel("Hospedaje  a reservar");
@@ -297,6 +324,19 @@ public class ViewReserva extends JFrame {
 		lblHospedajeAReservar.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
 		lblHospedajeAReservar.setBounds(0, 0, 327, 48);
 		jpnHospedajeAReservar.add(lblHospedajeAReservar);
+		
+		RoundedPanel jpnHabitacionAreservar_1 = new RoundedPanel(50);
+		jpnHabitacionAreservar_1.setLayout(null);
+		jpnHabitacionAreservar_1.setBackground(new Color(179, 170, 255));
+		jpnHabitacionAreservar_1.setBounds(1197, 34, 525, 400);
+		jpnBackGround.add(jpnHabitacionAreservar_1);
+		
+		JLabel lblHospedajeAReservar_1_1_1 = new JLabel("Habitación a reservar");
+		lblHospedajeAReservar_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedajeAReservar_1_1_1.setForeground(Color.WHITE);
+		lblHospedajeAReservar_1_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
+		lblHospedajeAReservar_1_1_1.setBounds(0, 0, 327, 48);
+		jpnHabitacionAreservar_1.add(lblHospedajeAReservar_1_1_1);
 
 		// Example card panel with rounded corners inside the main panel
 
@@ -307,15 +347,9 @@ public class ViewReserva extends JFrame {
 		lblHabitacionesDisponibles.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHabitacionesDisponibles.setForeground(new Color(0, 0, 0));
 		lblHabitacionesDisponibles.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
-		lblHabitacionesDisponibles.setBounds(0, 0, 684, 48);
+		lblHabitacionesDisponibles.setBounds(0, 0, 801, 48);
 		jpnHabitaciones.add(lblHabitacionesDisponibles);
 
-		
-
-		
-		
-		
-		
 		// Cargar y redimensionar la imagen
 		try {
 			BufferedImage originalImage = ImageIO.read(ViewAutenticacion.class.getResource("/imagenes/show.png"));
@@ -326,9 +360,6 @@ public class ViewReserva extends JFrame {
 
 	}
 
-	
-	
-	
 	public RoundedPanel getJpnHabitaciones() {
 		return jpnHabitaciones;
 	}
@@ -408,14 +439,24 @@ public class ViewReserva extends JFrame {
 	public void setCboNumeroNoches(JComboBox<String> cboNumeroNoches) {
 		this.cboNumeroNoches = cboNumeroNoches;
 	}
+	
+	
+	
+
+	public RoundButton getBtnFecha() {
+		return btnFecha;
+	}
+
+	public void setBtnFecha(RoundButton btnFecha) {
+		this.btnFecha = btnFecha;
+	}
 
 	public RoundedPanel mostrarPanelHabitacionesDisponibles(String tH, int capacidad, boolean disponibilidad,
 			int numeroHabitacion, double precioAdicionalPorTipoHabitacion, String imagen) {
-		
+
 		RoundedPanel jpnCardHabitacionesDisponibles = new RoundedPanel(50);
 		jpnCardHabitacionesDisponibles.setLayout(null);
 		jpnCardHabitacionesDisponibles.setBackground(new Color(51, 26, 108));
-
 
 		JPanel jpnImagen = new JPanel();
 		jpnImagen.setLayout(null);
@@ -427,14 +468,14 @@ public class ViewReserva extends JFrame {
 		lblImagenHabitacion_1.setBounds(0, 0, 249, 96);
 		jpnImagen.add(lblImagenHabitacion_1);
 
-		JLabel lblTipoHabitacion_1 = new JLabel("Tipo: "+ tH);
+		JLabel lblTipoHabitacion_1 = new JLabel("Tipo: " + tH);
 		lblTipoHabitacion_1.setForeground(new Color(255, 255, 255));
 		lblTipoHabitacion_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
 		lblTipoHabitacion_1.setBounds(0, 0, 269, 47);
 		jpnCardHabitacionesDisponibles.add(lblTipoHabitacion_1);
 
-		JLabel lblCapacidad_1 = new JLabel("Capacidad: "+ capacidad);
+		JLabel lblCapacidad_1 = new JLabel("Capacidad: " + capacidad);
 		lblCapacidad_1.setForeground(new Color(255, 255, 255));
 		lblCapacidad_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCapacidad_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
@@ -446,28 +487,27 @@ public class ViewReserva extends JFrame {
 		} else {
 			disponibilidad1 = "No";
 		}
-		JLabel lblDisponible_1 = new JLabel("Disponible: "+ disponibilidad1);
+		JLabel lblDisponible_1 = new JLabel("Disponible: " + disponibilidad1);
 		lblDisponible_1.setForeground(new Color(255, 255, 255));
 		lblDisponible_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDisponible_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 		lblDisponible_1.setBounds(10, 183, 249, 47);
 		jpnCardHabitacionesDisponibles.add(lblDisponible_1);
 
-		JLabel lblNumeroDeHabitacion_1 = new JLabel("Numero de habitación: "+ numeroHabitacion);
+		JLabel lblNumeroDeHabitacion_1 = new JLabel("Numero de habitación: " + numeroHabitacion);
 		lblNumeroDeHabitacion_1.setForeground(new Color(255, 255, 255));
 		lblNumeroDeHabitacion_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNumeroDeHabitacion_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 		lblNumeroDeHabitacion_1.setBounds(10, 231, 249, 47);
 		jpnCardHabitacionesDisponibles.add(lblNumeroDeHabitacion_1);
 
-		JLabel lblPrecioAdicional_1 = new JLabel("Precio adicional: $"+precioAdicionalPorTipoHabitacion);
+		JLabel lblPrecioAdicional_1 = new JLabel("Precio adicional: $" + precioAdicionalPorTipoHabitacion);
 		lblPrecioAdicional_1.setForeground(new Color(255, 255, 255));
 		lblPrecioAdicional_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPrecioAdicional_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 		lblPrecioAdicional_1.setBounds(10, 278, 259, 47);
 		jpnCardHabitacionesDisponibles.add(lblPrecioAdicional_1);
-		
-		
+
 		return jpnCardHabitacionesDisponibles;
 	}
 
@@ -477,15 +517,14 @@ public class ViewReserva extends JFrame {
 		jpnCardHabitacionAreservar.setLayout(null);
 		jpnCardHabitacionAreservar.setBackground(new Color(255, 255, 255));
 		jpnCardHabitacionAreservar.setBounds(30, 41, 269, 336);
-	
-		
+
 		JLabel lblHospedajeAReservar_1_1 = new JLabel("Habitación a reservar");
 		lblHospedajeAReservar_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHospedajeAReservar_1_1.setForeground(Color.WHITE);
 		lblHospedajeAReservar_1_1.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 24));
 		lblHospedajeAReservar_1_1.setBounds(0, 0, 327, 48);
 		jpnHabitacionAreservar.add(lblHospedajeAReservar_1_1);
-		
+
 		JPanel jpnImagenHabitacion = new JPanel();
 		jpnImagenHabitacion.setBounds(10, 46, 249, 96);
 		jpnCardHabitacionAreservar.add(jpnImagenHabitacion);
@@ -496,7 +535,7 @@ public class ViewReserva extends JFrame {
 		jpnImagenHabitacion.add(lblImagenHabitacion);
 
 		lblImagenHabitacion.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
-		
+
 		JLabel lblTipoHabitacion = new JLabel("Tipo: " + tH);
 		lblTipoHabitacion.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
 		lblTipoHabitacion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -515,7 +554,7 @@ public class ViewReserva extends JFrame {
 			disponibilidad1 = "No";
 		}
 
-		JLabel lblDisponible = new JLabel("Disponible:"+ disponibilidad1);
+		JLabel lblDisponible = new JLabel("Disponible:" + disponibilidad1);
 		lblDisponible.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDisponible.setFont(new Font("Open Sans SemiBold", Font.PLAIN, 14));
 		lblDisponible.setBounds(10, 183, 249, 47);
@@ -542,8 +581,6 @@ public class ViewReserva extends JFrame {
 
 		jpnCardHospedaje.setBackground(new Color(230, 230, 230));
 		jpnCardHospedaje.setLayout(null);
-		
-		
 
 		lblHospedajeAReservar = new JLabel("Hospedaje  a reservar");
 		lblHospedajeAReservar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -619,6 +656,14 @@ public class ViewReserva extends JFrame {
 		lblPrecioPorPersonaTexto_1.setBounds(2, 277, 238, 45);
 		jpnCardHospedaje.add(lblPrecioPorPersonaTexto_1);
 		return jpnCardHospedaje;
+	}
+
+	public JDateChooser getDataChooserIngreso() {
+		return dataChooserIngreso;
+	}
+
+	public void setDataChooserIngreso(JDateChooser dataChooserIngreso) {
+		this.dataChooserIngreso = dataChooserIngreso;
 	}
 
 	public String pedirNombreHospedaje() {
