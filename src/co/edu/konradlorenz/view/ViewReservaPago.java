@@ -9,15 +9,17 @@ import javax.swing.border.EmptyBorder;
 
 public class ViewReservaPago extends JFrame{
 
-    // Creación de los componentes a usar 
-    private JPanel contentPane;
+  
+    private JPanel contentPanel;
     private JPanel mainPanel;
     private JLabel lblImg;
     private JLabel lblImgCard;
 
 
     public ViewReservaPago() {
-    	 setTitle("Payment Method");
+    		setBackground(new Color(25, 25, 112));
+    		getContentPane().setBackground(new Color(25, 25, 112));
+    	 setTitle("Metodo de pago ");
          setSize(500, 300);
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          setLocationRelativeTo(null);
@@ -25,12 +27,13 @@ public class ViewReservaPago extends JFrame{
          
          // Header Panel
          JPanel headerPanel = new JPanel();
+         headerPanel.setBackground(new Color(25, 25, 112));
          headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
          headerPanel.add(new JLabel("Menu principal"));
          headerPanel.add(new JLabel(" | "));
          headerPanel.add(new JLabel("Detalles de hospedaje"));
          headerPanel.add(new JLabel(" | "));
-         JLabel paymentMethodLabel = new JLabel("Payment method");
+         JLabel paymentMethodLabel = new JLabel("Metodo de pago ");
          paymentMethodLabel.setForeground(Color.BLUE);
          headerPanel.add(paymentMethodLabel);
          getContentPane().add(headerPanel, BorderLayout.NORTH);
@@ -44,6 +47,7 @@ public class ViewReservaPago extends JFrame{
          
          // Payment Details Panel
          JPanel paymentDetailsPanel = new JPanel();
+         paymentDetailsPanel.setBackground(new Color(25, 25, 112));
          paymentDetailsPanel.setLayout(new GridLayout(5, 2, 5, 5));
          paymentDetailsPanel.setBorder(BorderFactory.createTitledBorder("Payment Details"));
          
@@ -57,6 +61,7 @@ public class ViewReservaPago extends JFrame{
          
          paymentDetailsPanel.add(new JLabel("Fecha de vencimiento:"));
          JPanel expiryPanel = new JPanel();
+         expiryPanel.setBackground(new Color(25, 25, 112));
          expiryPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
          JTextField expiryMonthField = new JTextField(2);
          JTextField expiryYearField = new JTextField(4);
@@ -71,6 +76,7 @@ public class ViewReservaPago extends JFrame{
          
          // Buttons
          JPanel buttonPanel = new JPanel();
+         buttonPanel.setBackground(new Color(25, 25, 112));
          buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
          JButton confirmButton = new JButton("CONFIRM AND PAY");
          confirmButton.addActionListener(new ActionListener() {
