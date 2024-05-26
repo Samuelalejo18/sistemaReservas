@@ -464,7 +464,7 @@ public class ViewRegistro extends JFrame {
 
 			}
 
-			if (nombre.matches("[a-zA-Z ]+")) {
+			if (nombre.matches("[a-zA-ZñÑ ]+")) {
 				nombreValido = true;
 			} else {
 				throw new Exception("Ingrese un nombre válido (solo letras).");
@@ -492,7 +492,7 @@ public class ViewRegistro extends JFrame {
 
 			}
 
-			if (apellido.matches("[a-zA-Z ]+")) {
+			if (apellido.matches("[a-zA-ZñÑ ]+")) {
 				apellidoValido = true;
 
 			} else {
@@ -518,7 +518,7 @@ public class ViewRegistro extends JFrame {
 			email = txtCorreo.getText();
 
 			// Expresión regular para validar el formato de correo electrónico
-			String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+			String regex = "^[a-zA-Z0-9_+&*-ñÑ]+(?:\\.[a-zA-Z0-9_+&*-ñÑ]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-ZñÑ]{2,7}$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(email);
 			if (email.isEmpty()) {

@@ -27,10 +27,7 @@ import co.edu.konradlorenz.model.hospedajes.Resort;
 import co.edu.konradlorenz.view.RoundButton;
 import co.edu.konradlorenz.view.RoundButtonCircle;
 import co.edu.konradlorenz.view.RoundedPanel;
-import co.edu.konradlorenz.view.ViewAutenticacion;
 import co.edu.konradlorenz.view.ViewHospedaje;
-
-import co.edu.konradlorenz.view.ViewRegistro;
 
 public class ControllerHospedajes implements ActionListener {
 
@@ -90,6 +87,7 @@ public class ControllerHospedajes implements ActionListener {
 		btnReservar.addActionListener(this);
 		btnLogin.addActionListener(this);
 
+
 		cboTipo = viewHospedaje.getCboTipo();
 		cboEstrellas = viewHospedaje.getCboEstrellas();
 		cboTipo.addActionListener(this);
@@ -131,7 +129,7 @@ public class ControllerHospedajes implements ActionListener {
 
 		if (e.getSource() == btnReservar) {
 			Cliente usuarioAutenticado = ControllerAutenticacion.usuarioAutenticado;
-			if (usuarioAutenticado != null) {
+			//if (usuarioAutenticado != null) {
 				viewHospedaje.dispose();
 
 				viewHospedaje.setVisible(false);
@@ -139,7 +137,7 @@ public class ControllerHospedajes implements ActionListener {
 				JOptionPane.showMessageDialog(viewHospedaje, "Autentificate para reservar", "Error",
 						JOptionPane.ERROR_MESSAGE);
 
-			}
+			//}
 
 		}
 
@@ -247,6 +245,7 @@ public class ControllerHospedajes implements ActionListener {
 
 		if (e.getSource() == btnContactanos) {
 			viewHospedaje.dispose();
+			ControllerContactanos controllerContactanos = new ControllerContactanos();
 			viewHospedaje.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		}
@@ -654,6 +653,7 @@ public class ControllerHospedajes implements ActionListener {
 		hospedajes.add(cabana1);
 		HabitacionDoble habitacionDoble1 = new HabitacionDoble(2, true, 50000,
 				"1 Cama Doble, Baño amplio, Jacuzzi Privado");
+		
 		cabana1.agregarHabitacion(habitacionDoble1);
 
 		Cabana cabana2 = new Cabana("Cabaña de Montaña", "Monterrey", "Mexico", 6,
@@ -693,6 +693,7 @@ public class ControllerHospedajes implements ActionListener {
 
 		HabitacionDoble habitacionDoble5 = new HabitacionDoble(2, false, 80000, "King");
 
+
 		cabana5.agregarHabitacion(habitacionDoble5);
 
 		Cabana cabana6 = new Cabana("Cabaña de Aventura", "La vega", "Colombia", 4,
@@ -722,8 +723,8 @@ public class ControllerHospedajes implements ActionListener {
 				"");
 
 		hospedajes.add(cabana8);
-		HabitacionBase habitacionBase8 = new HabitacionBase(4, false, 0, "Wifi, TV, Aire acondicionado");
-		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, false, 45000, "King");
+		HabitacionBase habitacionBase8 = new HabitacionBase(4, true, 0, "Wifi, TV, Aire acondicionado");
+		HabitacionDoble habitacionDoble8 = new HabitacionDoble(2, true, 45000, "King");
 		cabana8.agregarHabitacion(habitacionBase8);
 		cabana8.agregarHabitacion(habitacionDoble8);
 
@@ -825,8 +826,8 @@ public class ControllerHospedajes implements ActionListener {
 		camping7.agregarHabitacion(habitacionDoble18);
 
 		Camping camping8 = new Camping("Camping de Relax", "Queenstown", "Nueva Zelanda", 4,
-				"Un camping para desconectar y relajarse", "Rural", 340000,
-				"/imagenes2/Camping-8.png", "Área de meditación", "Yoga");
+				"Un camping para desconectar y relajarse", "Rural", 340000, "/imagenes2/Camping-8.png",
+				"Área de meditación", "Yoga");
 		hospedajes.add(camping8);
 		HabitacionBase habitacion19 = new HabitacionBase(2, true, 0, "Con bañera de hidromasaje");
 		HabitacionDoble habitacionDoble19 = new HabitacionDoble(4, false, 45000, "Junior");
@@ -834,8 +835,8 @@ public class ControllerHospedajes implements ActionListener {
 		camping8.agregarHabitacion(habitacionDoble19);
 
 		Camping camping9 = new Camping("Camping de Aventura Extrema", "Salzburgo", "Australia", 3,
-				"Un camping para los más intrépidos", "Rural", 250000,
-				"/imagenes2/Camping-9.png", "Tirolesa", "Escalada");
+				"Un camping para los más intrépidos", "Rural", 250000, "/imagenes2/Camping-9.png", "Tirolesa",
+				"Escalada");
 		hospedajes.add(camping9);
 		HabitacionBase habitacion20 = new HabitacionBase(2, false, 0, "Con acceso a la piscina");
 		HabitacionDoble habitacionDoble20 = new HabitacionDoble(4, true, 40000, "Presidencial");
@@ -843,15 +844,15 @@ public class ControllerHospedajes implements ActionListener {
 		camping9.agregarHabitacion(habitacionDoble20);
 
 		Camping camping10 = new Camping("Camping Romántico", "Glencoe", "Escocia", 5,
-				"Un camping para parejas en busca de romance", "Rural", 1000000,
-				"/imagenes2/Camping-10.png", "Área de picnic", "Paseos nocturnos");
+				"Un camping para parejas en busca de romance", "Rural", 1000000, "/imagenes2/Camping-10.png",
+				"Área de picnic", "Paseos nocturnos");
 		hospedajes.add(camping10);
 		HabitacionDoble habitacionDoble21 = new HabitacionDoble(4, true, 90000, "Ejecutiva");
 		camping10.agregarHabitacion(habitacionDoble21);
 
 		Camping camping11 = new Camping("Camping las maravillas", "Anapoima", "Colombia", 3,
-				"Camping con excelente ubicacion", "rural", 180000,
-				"/imagenes2/Camping-11.png", "Cercano a parrillas comunitarias", "Yoga");
+				"Camping con excelente ubicacion", "rural", 180000, "/imagenes2/Camping-11.png",
+				"Cercano a parrillas comunitarias", "Yoga");
 
 		hospedajes.add(camping11);
 		HabitacionBase habitacion22 = new HabitacionBase(2, true, 0, "Con vistas al río");
@@ -863,9 +864,8 @@ public class ControllerHospedajes implements ActionListener {
 		/* Glampings */
 
 		Glamping glamping1 = new Glamping("Glamping donde Julian", "Guatape", "Colombia", 5,
-				"Glamping perfecto para ir con tu pareja", "rural", 450000,
-				"/imagenes2/Glamping-1.png", "Vistas con mucha fauna", "Comida",
-				"Todo es reciclable");
+				"Glamping perfecto para ir con tu pareja", "rural", 450000, "/imagenes2/Glamping-1.png",
+				"Vistas con mucha fauna", "Comida", "Todo es reciclable");
 		hospedajes.add(glamping1);
 		HabitacionBase habitacionBase23 = new HabitacionBase(3, true, 0, "Con vistas al jardín");
 		HabitacionDoble habitacionDoble23 = new HabitacionDoble(2, true, 48000, "Queen");
@@ -912,6 +912,7 @@ public class ControllerHospedajes implements ActionListener {
 				"Reutilización de agua");
 		hospedajes.add(glamping6);
 
+
 		HabitacionBase habitacionBase28 = new HabitacionBase(4, false, 0, "Con acceso para discapacitados");
 		HabitacionDoble habitacionDoble28 = new HabitacionDoble(2, true, 35.0, "Suite");
 
@@ -931,6 +932,7 @@ public class ControllerHospedajes implements ActionListener {
 		Hotel hotel1 = new Hotel("Hotel de Lujo", "Paris", "Francia", 5,
 				"Una experiencia de alojamiento de primer nivel", "Urbano", 2500000, "/imagenes2/Hotel-1.png", true,
 				true);
+
 		hospedajes.add(hotel1);
 		HabitacionBase habitacionBase29 = new HabitacionBase(2, true, 0, "Con vistas al jardín");
 		HabitacionBase habitacionBase30 = new HabitacionBase(2, true, 0, "Con baño privado");
@@ -1002,6 +1004,7 @@ public class ControllerHospedajes implements ActionListener {
 		HabitacionPresidencial habitacionPresidencial8 = new HabitacionPresidencial(5, true, 700000, "Spa privado");
 		HabitacionPresidencial habitacionPresidencial9 = new HabitacionPresidencial(3, true, 30000,
 				"Chromecast en la habitación");
+		
 		HabitacionPresidencial habitacionPresidencial10 = new HabitacionPresidencial(2, true, 30000, "Terraza moderna");
 
 		HabitacionSuite habitacionSuite6 = new HabitacionSuite(2, true, 1000000, "Casino Privado");

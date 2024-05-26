@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ViewContactanos",
+            "request": "launch",
+            "mainClass": "co.edu.konradlorenz.view.ViewContactanos",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "ViewHospedaje",
             "request": "launch",
             "mainClass": "co.edu.konradlorenz.view.ViewHospedaje",

@@ -884,7 +884,7 @@ public class ViewHospedaje extends JFrame {
 			}
 
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "Ingrese un precio minimo valido, Solo numeros", "Error",
+			JOptionPane.showMessageDialog(this, "Ingrese un precio maximo valido, Solo numeros", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -904,11 +904,11 @@ public class ViewHospedaje extends JFrame {
 				throw new Exception("El campo de pais no puede estar vacío.");
 
 			}
-			if (ciudad.matches("[a-zA-Z ]+")) {
+			if (ciudad.matches("[a-zA-ZñÑ ]+")) {
 				ciudadValida = true;
 
 			} else {
-				throw new Exception("Ingrese un  pais válido (solo letras).");
+				throw new Exception("Ingrese una ciudad válida (solo letras).");
 
 			}
 		} catch (Exception e) {
@@ -932,7 +932,7 @@ public class ViewHospedaje extends JFrame {
 				throw new Exception("El campo de pais no puede estar vacío.");
 
 			}
-			if (pais.matches("[a-zA-Z ]+")) {
+			if (pais.matches("[a-zA-ZñÑ ]+")) {
 				paisValido = true;
 
 			} else {
@@ -961,11 +961,11 @@ public class ViewHospedaje extends JFrame {
 
 			}
 
-			if (nombre.matches("[a-zA-Z ]+")) {
+			if (nombre.matches("[a-zA-ZñÑ ]+")) {
 				nombreValido = true;
 
 			} else {
-				throw new Exception("Ingrese un  pais válido (solo letras).");
+				throw new Exception("Ingrese un  nombre válido (solo letras).");
 
 			}
 		} catch (Exception e) {

@@ -37,17 +37,5 @@ public class RoundButtonCircle extends JButton {
         return shape.contains(x, y);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(200, 200);
 
-        RoundButton btnBuscarNombre = new RoundButton("Buscar");
-        btnBuscarNombre.setBackground(Color.BLUE);
-        btnBuscarNombre.setForeground(Color.WHITE);
-        
-        frame.setLayout(new FlowLayout());
-        frame.add(btnBuscarNombre);
-        frame.setVisible(true);
-    }
 }

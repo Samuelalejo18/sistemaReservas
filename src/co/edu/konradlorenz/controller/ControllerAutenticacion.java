@@ -12,17 +12,15 @@ import javax.swing.JOptionPane;
 import co.edu.konradlorenz.model.cliente.AuthCliente;
 import co.edu.konradlorenz.model.cliente.Cliente;
 import co.edu.konradlorenz.model.excepciones.AuntenticacionFallidaException;
-import co.edu.konradlorenz.model.excepciones.CapacidadInsuficienteException;
-import co.edu.konradlorenz.model.excepciones.HabitacionNoEncontradaException;
-import co.edu.konradlorenz.model.excepciones.HospedajeNoEncontradoException;
+
 import co.edu.konradlorenz.model.excepciones.RegistroFallidoException;
 import co.edu.konradlorenz.model.habitaciones.Habitacion;
 import co.edu.konradlorenz.model.hospedajes.Hospedaje;
-import co.edu.konradlorenz.model.reserva.Reserva;
+
 import co.edu.konradlorenz.view.ViewAutenticacion;
 
 import co.edu.konradlorenz.view.ViewRegistro;
-import co.edu.konradlorenz.view.ViewReservaPrueba;
+
 
 public class ControllerAutenticacion implements ActionListener {
 
@@ -143,6 +141,7 @@ public class ControllerAutenticacion implements ActionListener {
 
 		if (e.getSource() == btnContactanosLogin) {
 			viewAutenticacion.dispose();
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
 			viewAutenticacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
@@ -161,7 +160,7 @@ public class ControllerAutenticacion implements ActionListener {
 		
 		if(e.getSource()== btnContactanosRegister) {
 			viewRegistro.dispose();
-	
+			ControllerContactanos controllerContactanos= new ControllerContactanos();
 			viewRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		

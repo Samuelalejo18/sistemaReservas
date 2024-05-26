@@ -1,5 +1,8 @@
 package co.edu.konradlorenz.model.habitaciones;
 
+
+             
+
 public class Habitacion {
 
 	private int capacidad;
