@@ -124,9 +124,13 @@ public class ControllerAutenticacion implements ActionListener {
 				Cliente cliente = new Cliente(viewRegistro.pedirNombre(), viewRegistro.pedirApellido(),
 						viewRegistro.pedirId(), viewRegistro.pedirEmail(), viewRegistro.pedirContrasena(),
 						viewRegistro.pedirNumeroTelefono(), viewRegistro.pedirDireccion());
-				JOptionPane.showMessageDialog(viewRegistro, "Registro exitoso para el usuario " + cliente.getNombre(),
-						"Éxito", JOptionPane.INFORMATION_MESSAGE);
-				AuthCliente.registrar(cliente);
+				
+				if( cliente!=null) {
+					AuthCliente.registrar(cliente);
+					JOptionPane.showMessageDialog(viewRegistro, "Registro exitoso para el usuario " + cliente.getNombre(),
+							"Éxito", JOptionPane.INFORMATION_MESSAGE);
+				}
+			
 			} catch (RegistroFallidoException e2) {
 				JOptionPane.showMessageDialog(viewRegistro, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				e2.printStackTrace();

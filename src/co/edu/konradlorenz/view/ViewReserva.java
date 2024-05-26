@@ -474,7 +474,7 @@ public class ViewReserva extends JFrame {
 
 		JLabel lblImagenHabitacion_1 = new JLabel("");
 		lblImagenHabitacion_1.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
-		lblImagenHabitacion_1.setBounds(124, 0, 64, 64);
+		lblImagenHabitacion_1.setBounds(90, 15, 64, 64);
 		jpnImagen.add(lblImagenHabitacion_1);
 
 		JLabel lblTipoHabitacion_1 = new JLabel("Tipo: " + tH);
@@ -540,7 +540,7 @@ public class ViewReserva extends JFrame {
 		jpnImagenHabitacion.setLayout(null);
 
 		JLabel lblImagenHabitacion = new JLabel("");
-		lblImagenHabitacion.setBounds(39, 0, 249, 96);
+		lblImagenHabitacion.setBounds(90, 15, 64, 64);
 		jpnImagenHabitacion.add(lblImagenHabitacion);
 
 		lblImagenHabitacion.setIcon(new ImageIcon(ViewReserva.class.getResource(imagen)));
@@ -548,7 +548,7 @@ public class ViewReserva extends JFrame {
 		JLabel lblTipoHabitacion = new JLabel("Tipo: " + tH);
 		lblTipoHabitacion.setFont(new Font("Open Sans SemiBold", Font.BOLD, 16));
 		lblTipoHabitacion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTipoHabitacion.setBounds(0, 0, 269, 47);
+		lblTipoHabitacion.setBounds(15, 15, 64, 64);
 		jpnCardHabitacionAreservar.add(lblTipoHabitacion);
 
 		JLabel lblCapacidad = new JLabel("Capacidad: " + capacidad);
