@@ -17,7 +17,7 @@ public class Reserva implements Pago {
 	private int cantidadDePersonas;
 	private double precioTotal;
 	private int numeroNoches;
-
+	
 	public Reserva() {
 	}
 
@@ -29,14 +29,48 @@ public class Reserva implements Pago {
 		this.hospedajeReservado = hospedajeReservado;
 		this.habitacionReservada = habitacionReservada;
 		this.cantidadDePersonas = cantidadDePersonas;
-
+		
 		this.numeroNoches = numeroNoches;
 	}
+	
+	@Override
+	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
+		double subTotal = subtotal();
+		double precio = 0;
+		if (numeroPersonas > 2) {
+			precio = subTotal * numeroPersonas * numeroNoches;
+			precioTotal = precio + (precio * IMPUESTO);
+		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
+			precio = subTotal * numeroNoches;
+			precioTotal = precio + (precio * IMPUESTO);
+		}
 
+		return precioTotal;
+
+	}
+
+	@Override
+	public String realizarPago(String respuestaUsuario, double precioTotal) {
+		String pagoRealizado = "";
+		boolean aceptar = respuestaUsuario.equals("si") || respuestaUsuario.equals("s");
+
+		if (aceptar) {
+			pagoRealizado = " Pago realizado por un total de : "
+					+ precioTotal;
+		} else {
+			cancelarPago();
+		}
+		return pagoRealizado;
+	}
+
+	@Override
+	public String cancelarPago() {
+		return " Pago Cancelado";
+	}
 	public Cliente getCliente() {
 		return cliente;
 	}
-
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
@@ -104,40 +138,6 @@ public class Reserva implements Pago {
 		return precioPorPersona;
 	}
 
-	@Override
-	public double calcularPrecioTotal(int numeroPersonas, int numeroNoches) {
-		double subTotal = subtotal();
-		double precio = 0;
-		if (numeroPersonas > 2) {
-			precio = subTotal * numeroPersonas * numeroNoches;
-			precioTotal = precio + (precio * IMPUESTO);
-		} else if (numeroPersonas >= 1 && numeroPersonas <= 2) {
-			precio = subTotal * numeroNoches;
-			precioTotal = precio + (precio * IMPUESTO);
-		}
-
-		return precioTotal;
-
-	}
-
-	@Override
-	public String realizarPago(String respuestaUsuario, double precioTotal) {
-		String pagoRealizado = "";
-		boolean aceptar = respuestaUsuario.equals("si") || respuestaUsuario.equals("s");
-
-		if (aceptar) {
-			pagoRealizado = " Pago realizado por un total de : "
-					+ precioTotal;
-		} else {
-			cancelarPago();
-		}
-		return pagoRealizado;
-	}
-
-	@Override
-	public String cancelarPago() {
-		return " Pago Cancelado";
-	}
 
 	@Override
 	public String toString() {

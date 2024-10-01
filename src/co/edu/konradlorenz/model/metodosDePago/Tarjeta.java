@@ -12,13 +12,13 @@ public abstract class Tarjeta {
     protected String nombreTitular;
     protected long numeroDetarjeta;
     protected Date fechaExpiracion;
-
+    
     public Tarjeta() {
-
+        
     }
-
+    
     public Tarjeta(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
-            long numeroDetarjeta, Date fechaExpiracion) {
+    long numeroDetarjeta, Date fechaExpiracion) {
         this.tipoDetarjeta = tipoDetarjeta;
         this.banco = banco;
         this.codigoSeguridad = codigoSeguridad;
@@ -26,7 +26,11 @@ public abstract class Tarjeta {
         this.numeroDetarjeta = numeroDetarjeta;
         this.fechaExpiracion = fechaExpiracion;
     }
-
+    
+        public abstract String Pagar(double precioTotal) throws SaldoInsuficienteException;
+    
+        public abstract String pagoRechazado();
+    
     public String getTipoDetarjeta() {
         return tipoDetarjeta;
     }
@@ -66,10 +70,6 @@ public abstract class Tarjeta {
     public void setFechaExpiracion(Date fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
     }
-
-    public abstract String Pagar(double precioTotal) throws SaldoInsuficienteException;
-
-    public abstract String pagoRechazado();
 
     @Override
     public String toString() {

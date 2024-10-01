@@ -24,10 +24,27 @@ public class Credito extends Tarjeta {
 
     public Credito(String tipoDetarjeta, String banco, short codigoSeguridad, String nombreTitular,
             long numeroDetarjeta, Date fechaExpiracion) {
-        super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
-
-    }
-
+                super(tipoDetarjeta, banco, codigoSeguridad, nombreTitular, numeroDetarjeta, fechaExpiracion);
+                
+            }
+    
+            @Override
+            public String Pagar(double precioTotal) throws SaldoInsuficienteException {
+                String credito = "";
+                if (saldoCredito > precioTotal) {
+                    credito = " credito aprobado por un total de :  " + calcularCredito(precioTotal, this.cuota);
+                } else {
+                    credito = pagoRechazado();
+                    throw new SaldoInsuficienteException("Saldo insuficiente");
+                }
+                return credito;
+            }
+            
+            @Override
+            public String pagoRechazado() {
+                return " pago cancelado, saldo insuficiente";
+            
+            }
     public long getSaldoCredito() {
         return saldoCredito;
     }
@@ -66,23 +83,6 @@ public class Credito extends Tarjeta {
 
     }
 
-    @Override
-    public String Pagar(double precioTotal) throws SaldoInsuficienteException {
-        String credito = "";
-        if (saldoCredito > precioTotal) {
-            credito = " credito aprobado por un total de :  " + calcularCredito(precioTotal, this.cuota);
-        } else {
-            credito = pagoRechazado();
-            throw new SaldoInsuficienteException("Saldo insuficiente");
-        }
-        return credito;
-    }
-
-    @Override
-    public String pagoRechazado() {
-        return " pago cancelado, saldo insuficiente";
-
-    }
     @Override
     public String toString() {
         return "Credito [saldoCredito=" + saldoCredito + ", cuota=" + cuota + ", interes=" + interes
